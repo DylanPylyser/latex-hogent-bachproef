@@ -1,3 +1,55 @@
+## Onderzoeksvraag bepalen:
+
+- Vergelijking van verschillende identity providers zoals azure ad, active directory maar zeker ook Octa.
+  - Identity provider
+    - Azure AD
+    - AD
+    - Octa
+  - Vergelijking tussen deze 3
+- Gebruik van 1 identity provider om in te loggen op verschillende platvormen...
+  - Identity provider
+    - Welke ???
+  - Platvormen???
+    - Dieper???
+- Zero trust op hybrid endpoint devices is eventueel wel een brede optie.
+  - Zero trust?
+    - Niks "implicitet" binnenlaten van binnen naar buiten
+    - Vroeger: perimeter security
+  - Endpoint?
+  - Hybrid (Cloud, endpoint...)?
+  - => Impact van zero trust op een
+
+=> Hoe een Zero Trust Security implementatie via Azure AD kan gebruikt worden als beveiligingsprincipe voor endpoint devices met Proof-Of-Concept.
+
+=> Azure Active Directory als Zero Trust Security omgeving voor endpoint devices met Proof-Of-Concept
+
+Kernwoorden van OV3:
+
+- Zero trust:
+  - Zero trust (vroeger perimeter security => uw muur zo hoog mogelik maken, maar dat is niet meer mogelijk door work from home)
+  - Zero trust hou je de menselijke versie van betrouwbaarheid tegen! iemand met een badge kan nog steeds "onbetrouwbaar" zijn
+  - Zero Trust: Never trust, always verify => when verified, then trust
+  - Implement Least Privilege => minimum rechten voor hun job, niets overbodig
+  - Assume Breach: voorbereidt op aanvallen
+  - Zero trust is nodig om de bad guys zowel binnen- als buitenaf weg te houden => elke zone is untrusted
+- Endpoint (Protection):
+  - Het beveiligen van de laatste users in een netwerk (de gebruikers) bv. gsm, computer, smart watch...
+  - 3 principes:
+    - EPP (Endpoint protection platform) => lijkt op een anti-virus
+    - EDR (Endpoint detection and response) => analysis, signatures
+    - XDR (Extended detections and response solutions) => state-of-the-art
+  - Endpoint protection heeft vele voordelen: tijd, kost...
+  - Next-gen antivirus => behaviour analysis, AI, machine learning...
+  - MDM, vulnerability management, access governance, PAM, email protection
+  - tips:
+    - on-premise of cloud-based => cloud-based
+    - sandboxes voor het onderzoeken van virussen
+- Hybrid cloud:
+  - bestaat uit private and public cloud
+- Hybrid endpoint
+
+---
+
 # Bachelorproef toegepaste informatica
 
 Deze repository bevat LaTeX sjablonen voor gebruik bij het opmaken van je bachelorproef toegepaste informatica:
@@ -31,15 +83,15 @@ Qua editors voor LaTeX zijn er verschillende keuzemogelijkheden. We raden [TeXst
 Kies in het menu voor Options > Configure TeXstudio en pas volgende instellingen aan:
 
 - Build:
-    - Default compiler: "xelatex"
-    - Default Bibliography Tool: "Biber"
+  - Default compiler: "xelatex"
+  - Default Bibliography Tool: "Biber"
 - Commands:
-    - Latexmk: `xelatex -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error %`
+  - Latexmk: `xelatex -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error %`
 - Editor:
-    - Indentation mode: Indent and Unindent Automatically
-    - Replace Indentation Tab by Spaces: Aanvinken
-    - Replace Tab in Text by spaces: Aanvinken
-    - Replace Double Quotes: English Quotes: ‘‘’’
+  - Indentation mode: Indent and Unindent Automatically
+  - Replace Indentation Tab by Spaces: Aanvinken
+  - Replace Tab in Text by spaces: Aanvinken
+  - Replace Double Quotes: English Quotes: ‘‘’’
 
 Tips:
 
@@ -51,10 +103,10 @@ Tips:
 Kies voor Options > Preferences en pas volgende instellingen aan:
 
 - General:
-    - Default encoding: UTF-8
-    - Default library mode: biblatex
+  - Default encoding: UTF-8
+  - Default library mode: biblatex
 - File:
-    - (optioneel) Main file directory: geef hier de directory waar je de PDFs van gevonden bronnen bijhoudt. Als je dezelfde bestandsnaam gebruikt als je BibtexKey, dan vindt JabRef de PDF en kan je die openen vanuit het overzicht.
+  - (optioneel) Main file directory: geef hier de directory waar je de PDFs van gevonden bronnen bijhoudt. Als je dezelfde bestandsnaam gebruikt als je BibtexKey, dan vindt JabRef de PDF en kan je die openen vanuit het overzicht.
 
 ## Bachelorproef in het Engels
 
@@ -69,10 +121,10 @@ Je kan `dutch` verwijderen of vervangen door `english`.
 Aandachtspunten:
 
 - Het voorblad blijft in het Nederlands (behalve je titel), en dit is ook de bedoeling
-- Pas de naam van het diploma aan (regel met commando`\degreesought{}`) in *Bachelor in applied computer science*.
+- Pas de naam van het diploma aan (regel met commando`\degreesought{}`) in _Bachelor in applied computer science_.
 - Je moet in dit geval ook een Nederlandse vertaling van je samenvatting voorzien. Het sjabloon houdt daar ook rekening mee:
-    - De samenvatting in de hoofdtaal van het document komt [op lijn 40 van het LaTeX-bestand](https://github.com/HoGentTIN/bachproef-latex-sjabloon/blob/master/bachproef/samenvatting.tex#L40)
-    - De Nederlandse vertaling ervan komt [op lijn 31](https://github.com/HoGentTIN/bachproef-latex-sjabloon/blob/master/bachproef/samenvatting.tex#L31)
+  - De samenvatting in de hoofdtaal van het document komt [op lijn 40 van het LaTeX-bestand](https://github.com/HoGentTIN/bachproef-latex-sjabloon/blob/master/bachproef/samenvatting.tex#L40)
+  - De Nederlandse vertaling ervan komt [op lijn 31](https://github.com/HoGentTIN/bachproef-latex-sjabloon/blob/master/bachproef/samenvatting.tex#L31)
 
 ## Vragen, fouten, verbeteringen
 
