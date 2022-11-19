@@ -19,9 +19,15 @@
   - Hybrid (Cloud, endpoint...)?
   - => Impact van zero trust op een
 
-=> Hoe een Zero Trust Security implementatie via Azure AD kan gebruikt worden als beveiligingsprincipe voor endpoint devices met Proof-Of-Concept.
+=> Zero Trust implementatie via Azure Active Directory als beveiliging voor endpoint devices.
 
-=> Azure Active Directory als Zero Trust Security omgeving voor endpoint devices met Proof-Of-Concept
+=> Azure Active Directory als controlecentrum voor het beveiligen van endpoint devices
+
+=> Een vergelijkende studie tussen Azure en AWS voor een DevOps-team dat een .NET webapplicatie moet afleveren.
+
+=> Het gebruik van Ansible als tool voor het automatiseren van een DevOps Azure omgeving.
+
+=> Het gebruik van Azure DevOps-services als tool voor Agile DevOps projecten.
 
 Kernwoorden van OV3:
 
