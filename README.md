@@ -21,15 +21,9 @@
 
 => Zero Trust implementatie via Azure Active Directory als beveiliging voor endpoint devices.
 
-=> Azure Active Directory als controlecentrum voor het beveiligen van endpoint devices
-
-=> Een vergelijkende studie tussen Azure en AWS voor een DevOps-team dat een .NET webapplicatie moet afleveren.
-
 => Het gebruik van Ansible als tool voor het automatiseren van een DevOps Azure omgeving.
 
-=> Het gebruik van Azure DevOps-services als tool voor Agile DevOps projecten.
-
-Kernwoorden van OV3:
+Kernwoorden van OV => Zero Trust implementatie via Azure Active Directory als beveiliging voor endpoint devices.:
 
 - Zero trust:
   - Zero trust (vroeger perimeter security => uw muur zo hoog mogelik maken, maar dat is niet meer mogelijk door work from home)
@@ -54,7 +48,23 @@ Kernwoorden van OV3:
   - bestaat uit private and public cloud
 - Hybrid endpoint
 
+- Zero Trust Security Implementatation (programma's):
+
+  - Azure AD
+  - Endpoint manager
+  - Cloud App Security
+
 ---
+
+Inspiratie: Infrastructure Automation, DevOps project en volgende BP: "Het gebruik van Ansible als tool voor het automatiseren van een Windows- en Linux-omgeving"
+
+- Het gebruik van Ansible als tool voor het automatiseren van virtuele testomgevingen binnen Azure.
+- Het gebruik van Ansible als tool voor het automatiseren virtuele netwerken en cloud-instanties binnen Azure.
+
+Bronnen:
+
+- https://galaxy.ansible.com/azure/azcollection?extIdCarryOver=true&sc_cid=701f2000001OH7YAAW
+- ***
 
 # Bachelorproef toegepaste informatica
 
