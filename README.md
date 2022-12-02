@@ -1,5 +1,52 @@
 ## Onderzoeksvraag bepalen:
 
+### Azure automatisatie via Ansible en Cloud-init
+
+- Idee: **Terraform?**
+- Idee: **Ansible**
+
+  - Wat interessant is dat Ansible zowel Azure (buiten de VM) als de VM zelf (binnen) kan configureren!!!
+
+- Idee: **Cloud-init**
+
+  - Werkt alleen binnen in de VM vanaf de deployment ervan
+
+- In Azure (configuratie)
+
+  - Ansible is mogelijk
+  - Terraform => ONDERZOEKEN !!!
+
+- In de VM:
+
+  - Cloud-Init naar Ansible is mogelijk vanuit de VM!
+    - Cloud-init automatiseert direct vanaf de deployment van de VM, het kan dus Ansible aanspreken en doen opstarten!
+
+Notes:
+
+Inspiratie: Infrastructure Automation, DevOps project en volgende BP: "Het gebruik van Ansible als tool voor het automatiseren van een Windows- en Linux-omgeving"
+
+- Dit zijn titels, geen OV'en
+  - Het gebruik van Ansible als tool voor het automatiseren van virtuele testomgevingen binnen Azure.
+  - Het gebruik van Ansible als tool voor het automatiseren virtuele netwerken en cloud-instanties binnen Azure.
+    - Conclusie: NIET alleen Ansible gebruiken
+
+--- (met Cloud-init) om ook volledig Azure te automatiseren vanaf de eerste deployment (Ansible als config-mgmt voor Azure)
+
+- Het gebruik van Cloud-init en Ansible als tool voor het automatiseren van een Linux-omgeving in Azure.
+
+**Notes: noteren bij co-promotor => "iemand van Easi"**
+
+Bronnen:
+
+- https://galaxy.ansible.com/azure/azcollection?extIdCarryOver=true&sc_cid=701f2000001OH7YAAW
+- https://www.youtube.com/watch?v=Ff0DoAmpv6w
+
+---
+
+---
+
+---
+
 - Vergelijking van verschillende identity providers zoals azure ad, active directory maar zeker ook Octa.
   - Identity provider
     - Azure AD
@@ -53,18 +100,6 @@ Kernwoorden van OV => Zero Trust implementatie via Azure Active Directory als be
   - Azure AD
   - Endpoint manager
   - Cloud App Security
-
----
-
-Inspiratie: Infrastructure Automation, DevOps project en volgende BP: "Het gebruik van Ansible als tool voor het automatiseren van een Windows- en Linux-omgeving"
-
-- Het gebruik van Ansible als tool voor het automatiseren van virtuele testomgevingen binnen Azure.
-- Het gebruik van Ansible als tool voor het automatiseren virtuele netwerken en cloud-instanties binnen Azure.
-
-Bronnen:
-
-- https://galaxy.ansible.com/azure/azcollection?extIdCarryOver=true&sc_cid=701f2000001OH7YAAW
-- ***
 
 # Bachelorproef toegepaste informatica
 
