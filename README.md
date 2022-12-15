@@ -2,6 +2,25 @@
 
 ### Azure automatisatie via Ansible en Cloud-init
 
+Gesprek Van Vreckem:
+
+- Focus meer op het eerste deel: de configuratie van Azure zelf om een virtuele omgeving na te bootsen
+
+  - Welke tools zijn er? (zie Azure document) => Vergelijkende studie?
+    - Ansible
+    - Terraform
+    - Packer?
+    - Bicep? (is wel een DSL?)
+  - Denk aan de levenscyclus van zo'n infrastructuur (cloud management of infrastructure ... lifecycle) => zoek een bron/foto:
+    - 1. configureren (in de cloud)
+    - 2. depoloyen
+    - 3. Omgeving zelf configureren
+    - 4. orchestration
+  - Gebruik het tweede deel dan als realtische omgeving MAAR focus op de eerste stap die is interessanter en er is meer nood aan
+    - in AWS is het iets populairder, binnen Azure nog niet
+
+Onderwerp: Automatiseren van Azure configuraties via Infrastructure Automation tools voor het opzetten van een virtuele omgeving.
+
 - Idee: **Terraform?**
 - Idee: **Ansible**
 
@@ -28,7 +47,7 @@ Inspiratie: Infrastructure Automation, DevOps project en volgende BP: "Het gebru
 - Dit zijn titels, geen OV'en
   - Het gebruik van Ansible als tool voor het automatiseren van virtuele testomgevingen binnen Azure.
   - Het gebruik van Ansible als tool voor het automatiseren virtuele netwerken en cloud-instanties binnen Azure.
-    - Conclusie: NIET alleen Ansible gebruiken
+  - - Conclusie: NIET alleen Ansible gebruiken
 
 --- (met Cloud-init) om ook volledig Azure te automatiseren vanaf de eerste deployment (Ansible als config-mgmt voor Azure)
 

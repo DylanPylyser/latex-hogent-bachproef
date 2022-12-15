@@ -3,6 +3,7 @@
 \section{Introductie}%
 \label{sec:introductie}
 
+\begin{comment}
 Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
 
 \begin{itemize}
@@ -20,10 +21,22 @@ Formuleer duidelijk de onderzoeksvraag! De begeleiders lezen nog steeds te veel 
 
 Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat van je onderzoek, naast de uitgeschreven scriptie? Is het een proof-of-concept, een rapport met aanbevelingen, \ldots Met welk eindresultaat kan je je bachelorproef als een succes beschouwen?
 
+\end{comment}
+
+Tijdens en na de COVID-19-pandemie is het gebruik van cloud computing services aanzienlijk toegenomen, bevestigt de \textcite{EU2021}. Hierdoor stijgt de populariteit van Cloud-providers en de nood naar automatisatie hiervan. Bestaande onderzoeken naar Infrastructure Automation tools waaronder Ansible \autocite{RedHat2022}, Chef \autocite{PSC2022}, Packer \autocite{HashiCorp2022}, Puppet \autocite{Perforce2022} en Terraform \autocite{HashiCorp2022a} illustreren het gebruik en potentieel van deze tools. Daarnaast is er ook een mogelijkheid om infrastructuren te automatiseren en te configureren binnen Cloud-providers met deze tools. 
+
+Het bedrijf Easi focust zich vooral rondom het Windows-framework. Hierbij gebruikt het Microsoft Azure \autocite{Microsoft2022} als Cloud-provider. Indien het bedrijf virtuele omgevingen moet opzetten, wordt dit gedaan via de GUI (Graphical User Interface). Deze methode is inefficiënt en kan geoptimaliseerd worden. Door deze eerste stap binnenin de Infrastructure Deployment and Management Lifecycle te automatiseren, versneld dit het Deployment proces en kan het dienen als Disaster Recovery. 
+
+Dit onderzoek focust zich op de volgende onderzoeksvraag: “Wat zijn de mogelijkheden van niet Infrastructure Automation Tools tot het automatiseren van Azure configuraties in verband met een Linux-omgeving?”. Het doel wordt bereikt door eerst een vergelijking te maken van alle mogelijke tools. Nadien volgt een Proof-of-Concept die de werking van de tools in deze casus beschrijft. Vervolgens wordt er via Ansible een virtuele Linux-omgeving opgezet dat dient als nabootsing van een realistische omgeving. Als laatste volgt er een Disaster Recovery-scenario waarbij de omgeving met opzet wordt beschadigd en opnieuw wordt opgezet. Hierdoor wordt de impact geanalyseerd door het gebruikmaken van geautomatiseerde configuraties via Infrastructure Automation tools.
+
+
+
 %---------- Stand van zaken ---------------------------------------------------
 
 \section{State-of-the-art}%
 \label{sec:state-of-the-art}
+
+\begin{comment}
 
 Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
 
@@ -44,9 +57,25 @@ Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle no
 
 Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
 
+\end{comment}
+
+AWS \autocite{AWS2022}, de grootste Cloud-provider volgens \textcite{Vailshery2022} en \textcite{SRG2022}, geeft de mogelijkheid tot automatisatie van Cloud Computing Services op hun platform. Hierdoor zijn er veel onderzoeken binnen AWS uitgevoerd omtrent automatisatie van virtuele-omgevingen. Dit onderzoek zal zich focussen op Azure, de grootste concurrent van AWS op dit moment.
+
+Azure biedt ondersteuning aan voor verschillende niet Microsoft-gerelateerde infrastructure automation tools. Configuration management tool zoals Ansible, Chef en Puppet werden al onderzocht en onderling vergeleken in andere studies \autocite{Microsoft2022a}. 
+
+Ansible biedt goede ondersteuning aan op \newline lange termijn en is simpel in gebruik met goede documentatie. Daarnaast is Ansible een krachtige tool met veel potentieel \autocite{Masek2018}. Het wordt eerder wel aangeraden voor kleinere projecten door zijn onvolledigheid. Waarbij Chef en Puppet meer compleet zijn en grote projecten beter kan verwerken \autocite{Bertram2016}. 
+
+Naast bovenstaande tools ondersteunt Azure orchestration tools waaronder Terraform. Deze tool is onveranderlijk ten opzicht van configuration management tools. Deze wordt gebruikt om machines te orkestreren wat makkelijker is om meerdere instanties te voorzien. Terwijl configuration management tools zich focussen op het configureren van instanties \autocite{Brikman2016}.
+
+Binnen Hogeschool Gent zijn er reeds een aantal studies uitgevoerd naar aspecten die voorkomen in dit onderwerp. Kelvin \textcite{Vermeulen2021} heeft een onderzoek uitgevoerd naar het automatiseren van een Public Cloud-omgeving binnen AWS. Daarnaast heeft Joachim \textcite{VandeKeere2021} een studie uitgevoerd naar het gebruik van Ansible binnen lokale omgevingen. 
+
+In het eerste onderzoek van Vermeulen werd de configuratie van AWS manueel uitgevoerd. Vervolgens werd in het tweede onderzoek van Van der Keere Ansible gebruikt voor een lokale  \newline Windows- en Linux-omgeving. In deze studie worden de configuraties van Azure geautomatiseerd. Verder wordt er een Linux-testomgeving opgezet in de Cloud via Ansible.
+
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
 \label{sec:methodologie}
+
+\begin{comment}
 
 Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
 
@@ -59,6 +88,17 @@ Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook techni
 Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
 
 Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+
+\end{comment}
+
+Het onderzoek omvat vier fases. In de eerste fase wordt er een vergelijkende studie uitgevoerd. Deze tools worden onder de loep genomen en worden vergeleken op vlak van logica, leesbaarheid, verwerkingssnelheid, documentatie, community en eventuele limieten. Er wordt zowel gebruikgemaakt van eigen simulaties binnenin Azure als studies en vakliteratuur. Achteraf volgt er een verklarende tekst die alle resultaten en bevinden op papier zet. 
+
+De tweede fase bestaat uit een Proof-of-Concept die de werking van de infrastructure automation tools illustreert. De tools worden gebruikt om de configuraties van Azure te automatiseren om vervolgens te kunnen gebruiken voor een virtuele omgeving. Hierbij worden er scripts uitgewerkt via de Azure CLI (Command Line Interface). Deze scripts worden vervolgens uitgewerkt in de scriptie met eventuele bevindingen. Deze fase is doorslaggevend voor de casus en de onderzoeksvraag.
+
+In de derde fase volgt een nabootsing van een realistische Linux-omgeving. Aan de hand van de geautomatiseerde configuraties ontstaat de mogelijkheid om de omgeving op te zetten. Hierbij wordt Ansible als configuration management tool voor het opzetten van de infrastructuur. In de testomgeving voorzien we vier virtuele servers en een virtuele client, waarbij alle virtuele machines AlmaLinux (BRON) als distributie gebruiken. De eerste server maakt gebruik van BIND (BRON) om de DNS te voorzien. De tweede server voorziet DHCP voor dynamisch IP-adressering voor clients. De derde server fungeert als webserver en databank met een WordPress (BRON) installatie. De laatste server maakt gebruik van Prometheus (BRON) en Grafana (BRON) om de servers te kunnen monitoren. De client is een gebruiker van het domein en test de beschikbare functionaliteiten.
+
+De laatste fase omvat een Disaster Recovery-scenario waarbij de omgeving wordt beschadigd. Door deze beschadiging wordt de omgeving van voren af opgezet aan de hand van de automatisatie uit de tweede fase. Hierbij ligt de focus op de impact dat het heeft via de geautomatiseerde manier ten opzichte van de manuele manier. Deze impact wordt geanalyseerd en getest, nadien worden alle bevinden verwerkt in de scriptie.
+
 
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%
