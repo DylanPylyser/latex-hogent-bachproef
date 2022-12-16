@@ -165,4 +165,12 @@
   urldate = {2022-12-13},
 }
 
+@Online{GrafanaLabs2022,
+  author  = {{Grafana Labs}},
+  date    = {2022},
+  title   = {Grafana},
+  url     = {https://grafana.com/},
+  urldate = {2022-12-11},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
