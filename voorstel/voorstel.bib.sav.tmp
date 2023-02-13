@@ -1,0 +1,135 @@
+% Encoding: UTF-8
+
+@Online{EU2021,
+  author       = {EU},
+  date         = {2021-12},
+  title        = {Cloud computing - statistics on the use by enterprises},
+  url          = {https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Cloud_computing_-_statistics_on_the_use_by_enterprises},
+  organization = {EU},
+  urldate      = {2022-12-04},
+}
+
+@Online{Microsoft2022,
+  author  = {Microsoft},
+  date    = {2022},
+  title   = {Azure},
+  url     = {https://azure.microsoft.com/en-us/},
+  urldate = {2022-12-01},
+}
+
+@Online{Vailshery2022,
+  author  = {Sujay Vailshery, Lionel},
+  date    = {2022-08-25},
+  title   = {Cloud infrastructure services vendor market share worldwide from 4th quarter 2017 to 1st quarter 2022},
+  url     = {https://www.statista.com/statistics/967365/worldwide-cloud-infrastructure-services-market-share-vendor/},
+  urldate = {2022-12-02},
+}
+
+@Online{AWS2022,
+  author  = {{Amazon Web Services}},
+  date    = {2022},
+  title   = {AWS},
+  url     = {https://aws.amazon.com/},
+  urldate = {2022-12-01},
+}
+
+@Online{SRG2022,
+  author  = {{Synergy Research Group}},
+  date    = {2022-02-03},
+  title   = {As Quarterly Cloud Spending Jumps to Over 50B dollars, Microsoft Looms Larger in Amazon’s Rear Mirror},
+  url     = {https://www.srgresearch.com/articles/as-quarterly-cloud-spending-jumps-to-over-50b-microsoft-looms-larger-in-amazons-rear-mirror},
+  urldate = {2022-12-03},
+}
+
+@InBook{Hoefling2022,
+  author    = {Hoefling, Skye},
+  booktitle = {Getting Started with the Uno Platform and WinUI 3: Hands-On Building of Cross-Platform Desktop, Mobile, and Web Applications That Can Run Anywhere},
+  date      = {2022},
+  title     = {Microsoft Graph, Web APIs, and MyFilesPage},
+  doi       = {10.1007/978-1-4842-8248-9_13},
+  isbn      = {978-1-4842-8248-9},
+  location  = {Berkeley, CA},
+  pages     = {337--400},
+  publisher = {Apress},
+  url       = {https://doi.org/10.1007/978-1-4842-8248-9_13},
+  urldate   = {2023-02-11},
+  abstract  = {The Microsoft Graph is the API we are going to use to communicate with Microsoft OneDrive to retrieve files and folders in our UnoDrive application. It is a RESTful API, which you can integrate with using any language, that provides read and write access to many Microsoft services, including OneDrive.},
+}
+
+@InBook{VanRousselt2021,
+  author    = {Van Rousselt, Rick},
+  booktitle = {Pro Microsoft Teams Development: A Hands-on Guide to Building Custom Solutions for the Teams Platform},
+  date      = {2021},
+  title     = {Microsoft Graph for Teams},
+  doi       = {10.1007/978-1-4842-6364-8_17},
+  isbn      = {978-1-4842-6364-8},
+  location  = {Berkeley, CA},
+  pages     = {345--353},
+  publisher = {Apress},
+  url       = {https://doi.org/10.1007/978-1-4842-6364-8_17},
+  urldate   = {2023-02-11},
+  abstract  = {From now on, we are done with building on top of the Teams platform. It sometimes is necessary that we build a solution against the Teams platform. Provisioning, for example, is a use case most used. Users needing multiple teams with specific settings don't want to create them all manually. A company policy changes, and suddenly all GIF settings must change for all Teams. Doing something like that manually would be impossible. That's the reason we sometimes must develop against Microsoft Teams, and for that we are going to use the Microsoft Graph.},
+}
+
+@InBook{Jenkins2021,
+  author    = {NS, Jenkins},
+  booktitle = {Building Solutions with Microsoft Teams: Understanding the Teams App Developer Platform},
+  date      = {2021},
+  title     = {Extend Your Solution with Microsoft Graph},
+  doi       = {10.1007/978-1-4842-6476-8_8},
+  isbn      = {978-1-4842-6476-8},
+  location  = {Berkeley, CA},
+  pages     = {267--306},
+  publisher = {Apress},
+  url       = {https://doi.org/10.1007/978-1-4842-6476-8_8},
+  urldate   = {2023-02-11},
+  abstract  = {In this chapter, I will be covering the automation of Teams lifecycle management, messages, webhooks, and resource-specific permission consent. Microsoft Graph is a unified API endpoint for dealing with data so that there is a graph endpoint for SharePoint, Teams, exchanges, and planning a whole variety of different Microsoft products, all exposed under a common API endpoint. Teams allows you to build a variety of different apps like tabs, bots, connectors, etc.},
+}
+
+@InBook{Mishra2022,
+  author    = {Mishra, Abhishek},
+  booktitle = {Microsoft Azure for Java Developers: Deploying Java Applications through Azure WebApp, Azure Kubernetes Service, Azure Functions, and Azure Spring Cloud},
+  date      = {2022},
+  title     = {Sending Emails Using Graph API},
+  doi       = {10.1007/978-1-4842-8251-9_10},
+  isbn      = {978-1-4842-8251-9},
+  location  = {Berkeley, CA},
+  pages     = {197--220},
+  publisher = {Apress},
+  url       = {https://doi.org/10.1007/978-1-4842-8251-9_10},
+  urldate   = {2023-02-11},
+  abstract  = {Modern applications need to send emails to the stakeholders, customers, or developers or anyone related to the application. There can be a scenario where the customer is placing an order in an e-commerce application. And once the order gets placed, it intimates the customer with the order and the dispatch status. If the order fails, it should notify the operations team to look into it. You can configure your SMTP server for mailing needs on a virtual machine on Azure. However, you will end up maintaining the virtual machine and spend cost and effort to keep the SMTP server up and running. To address this issue, Microsoft provides Graph API deployed on Azure and helps you interact with Microsoft 365 Core services. Using the Graph API, you can send emails.},
+}
+
+@Misc{Parsa2019,
+  author      = {Parsa, Parnia and Hedlund, Bj{\"o}rn},
+  date        = {2019},
+  title       = {Room management system : Integrating Raspberry Pi with Graph API},
+  url         = {https://www.diva-portal.org/smash/record.jsf?pid=diva2:1282704&dswid=-507},
+  urldate     = {2023-02-11},
+  abstract    = {The increase in connectivity and use of “smart” devices offers companies new possibilities to improve their efficiency by using digitalization. For example, booking of meeting rooms have gone from using a paper calendar to electronic booking. To enable both digital remote booking, as well as being able to book a room directly (as with a paper calendar) this project has developed a room manager system. The room manager is a device that provides a quick and intuitive way for employees to handle conference room booking. The project was started on behalf of the company ÅF, who would like to optimize their use of conference rooms.  The result was a fully functional touchscreen device built using a Raspberry Pi. The room manager integrates successfully with the existing calendar system used at ÅF and meets all the requirements set by ÅF. The device will be used to determine if a room manager system is worth investing in and may be used as a foundation for continued development. },
+  institution = {Karlstad University, Department of Mathematics and Computer Science (from 2013)},
+  keywords    = {Graph API, Microsoft Outlook, Microsoft Exchange, Raspberry Pi, REST, Integration, Authentication, Authorization, User Interface, Python, Internet of Things, Raspbian, Django, Websockets, Booking system, Room managment},
+  pages       = {46},
+  school      = {Karlstad University, Department of Mathematics and Computer Science (from 2013)},
+  year        = {2019},
+}
+
+@Online{Sahay2022,
+  author  = {Sahay, Shobhit},
+  date    = {2022-03-01},
+  editor  = {Microsoft},
+  title   = {Azure AD: Change Management Simplified},
+  url     = {https://techcommunity.microsoft.com/t5/microsoft-entra-azure-ad-blog/azure-ad-change-management-simplified/ba-p/2967456?WT.mc_id=M365-MVP-9501},
+  urldate = {2023-02-01},
+}
+
+@Online{Microsoft2023,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {Microsoft Graph},
+  url     = {https://developer.microsoft.com/en-us/graph},
+  urldate = {2023-02-01},
+}
+
+@Comment{jabref-meta: databaseType:bibla

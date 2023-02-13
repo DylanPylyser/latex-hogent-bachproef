@@ -23,12 +23,15 @@ Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat
 
 \end{comment}
 
-Tijdens en na de COVID-19-pandemie is het gebruik van Cloud Computing Services aanzienlijk toegenomen, bevestigt de \textcite{EU2021}. Hierdoor stijgt de populariteit van Cloud Providers en de nood naar automatisatie hiervan. Bestaande onderzoeken naar Infrastructure Automation tools waaronder Ansible \autocite{RedHat2022}, Chef \autocite{PSC2022}, Packer \autocite{HashiCorp2022}, Puppet \autocite{Perforce2022} en Terraform \autocite{HashiCorp2022a} illustreren het gebruik en potentieel van deze tools. Daarnaast is er ook een mogelijkheid om infrastructuren te automatiseren en te configureren binnen Cloud Providers met deze tools. 
+Naar aanleiding van de snel evoluerende cloudtechnologie, focust Microsoft zich steeds meer op het bouwen van een ecosysteem dat bestuurd kan worden vanuit zoveel mogelijk platformen \autocite{EU2021}.
 
-Het bedrijf Easi focust zich vooral rondom het Windows Framework. Hierbij gebruikt het Microsoft Azure \autocite{Microsoft2022} als Cloud Provider. Indien het bedrijf virtuele omgevingen moet opzetten, wordt dit gedaan via de GUI (Graphical User Interface). Deze methode is inefficiënt en kan geoptimaliseerd worden. Door deze eerste stap binnenin de Infrastructure Deployment and Management Lifecycle te automatiseren, versneld dit het Deployment proces en kan het dienen als Disaster Recovery. 
+Deze gedachtegang van Microsoft brengt volgende wijziging met zich mee, namelijk het uitfaseren van de bestaande Azure AD (Active Directory) PowerShell module \autocite{Sahay2022}. Deze wijziging staat gepland om in midden 2023 op Microsoft 365 tenants doorgevoerd te worden.
 
-Dit onderzoek focust zich op de volgende onderzoeksvraag: “Wat zijn de mogelijkheden van niet Windows-gerelateerde Infrastructure Automation tools tot het automatiseren van Azure configuraties in verband met een Linux-omgeving?”. Het doel wordt bereikt door eerst een vergelijking te maken van alle mogelijke tools. Nadien volgt een Proof-of-Concept die de werking van de tools in deze casus beschrijft. Vervolgens wordt er via Ansible een virtuele Linux-omgeving opgezet dat dient als nabootsing van een realistische omgeving. Ten slotte volgt er een Disaster Recovery-scenario waarbij de omgeving met opzet wordt beschadigd en opnieuw wordt opgezet. Hierdoor wordt de impact geanalyseerd door het gebruikmaken van geautomatiseerde configuraties via Infrastructure Automation tools.
+Bij het IT-bedrijf Easi worden er veel courante taken, automatisaties en wederkerende acties uitgevoerd bij klanten met behulp van de vooraf vernoemde AzureAD-PowerShell module. Hierdoor is het bedrijf genoodzaakt om een oplossing te vinden voor deze uitfaserende module.
 
+Een mogelijke oplossing voor dit probleem is Microsoft Graph \autocite{Microsoft2023}. Deze technologie is nog volop in ontwikkeling, waardoor er nog geen zekerheid bestaat om dit in te zetten bij klanten.
+
+Dit onderzoek zal zich focussen op wat er vandaag de dag mogelijk is binnen Microsoft Graph. Het doel is om een antwoord te geven op de vraag of de huidige versie van Microsoft Graph klaar is om gebruikt te worden als vervanger van de huidige AzureAD-PowerShell module. Het antwoord op de vraag wordt onderbouwd door een bijhorende Proof-of-Concept die de mogelijkheden van de technologie illustreert.
 
 
 %---------- Stand van zaken ---------------------------------------------------
@@ -57,7 +60,7 @@ Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle no
 
 Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
 
-\end{comment}
+
 
 AWS \autocite{AWS2022}, de grootste Cloud Provider volgens \textcite{Vailshery2022} en \textcite{SRG2022}, geeft de mogelijkheid tot automatisatie van Cloud Computing Services op hun platform. Hierdoor zijn er veel onderzoeken binnen AWS uitgevoerd omtrent automatisatie van virtuele-omgevingen. Dit onderzoek focust zich op Azure, de grootste concurrent van AWS op dit moment.
 
@@ -70,6 +73,8 @@ Naast bovenstaande tools ondersteunt Azure Orchestration tools waaronder Terrafo
 Binnen Hogeschool Gent zijn er reeds een aantal studies uitgevoerd naar aspecten die voorkomen in dit onderwerp. Kelvin \textcite{Vermeulen2021} heeft een onderzoek uitgevoerd naar het automatiseren van een Public Cloud-omgeving binnen AWS. Daarnaast heeft Joachim \textcite{VandeKeere2021} een studie uitgevoerd naar het gebruik van Ansible binnen lokale omgevingen. 
 
 In het eerste onderzoek van Vermeulen werd de configuratie van AWS manueel uitgevoerd. Vervolgens werd in het tweede onderzoek van Van der Keere Ansible gebruikt voor een lokale \newline Windows- en Linux-omgeving. In deze studie worden de configuraties van Azure geautomatiseerd. Verder wordt er een Linux-testomgeving opgezet in de Cloud via Ansible.
+
+\end{comment}
 
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
@@ -89,7 +94,7 @@ Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt
 
 Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
 
-\end{comment}
+
 
 Het onderzoek omvat vier fases. In de eerste fase wordt er een vergelijkende studie uitgevoerd. Deze tools worden onder de loep genomen en vergeleken op vlak van logica, leesbaarheid, verwerkingssnelheid, documentatie, community en eventuele limieten. Er wordt zowel gebruikgemaakt van vakliteratuur als simulaties binnen Azure. Achteraf volgt er een verklarende tekst die alle resultaten en bevindingen op papier zet. 
 
@@ -98,6 +103,8 @@ De tweede fase bestaat uit een Proof-of-\newline{}Concept die de werking van de 
 In de derde fase volgt een nabootsing van een realistische Linux-omgeving. Aan de hand van geautomatiseerde configuraties ontstaat de mogelijkheid om een omgeving op te zetten. Hierbij wordt Ansible als Configuration Management tool ingezet voor het opzetten van de infrastructuur. In de testomgeving voorzien we vier virtuele servers en een virtuele client. Waarbij alle virtuele machines AlmaLinux \autocite{AOF2022} als distributie gebruiken. De eerste server maakt gebruik van BIND \autocite{ISC2022} om de DNS (Domain Name System) te voorzien. De tweede server voorziet DHCP (Dynamic Host Configuration Protocol) met dynamische IP-adressen voor de virtuele client. De derde server fungeert als webserver en databank met een \textcite{WordPress2022} installatie. De laatste server maakt gebruik van Prometheus \autocite{PrometheusAuthors2022} en Grafana \autocite{GrafanaLabs2022} om de servers te kunnen monitoren. De client is een gebruiker van het domein en test de beschikbare functionaliteiten.
 
 De laatste fase omvat een Disaster Recovery-scenario waarbij de omgeving wordt beschadigd. Door deze beschadiging wordt de omgeving nogmaals opgezet aan de hand van automatisatie uit de tweede fase. Er wordt gekeken naar welke impact de automatisatie heeft in vergelijking met de manuele manier van configureren. Deze impact wordt geanalyseerd en getest, nadien worden alle bevinden verwerkt in de scriptie.
+
+\end{comment}
 
 
 %---------- Verwachte resultaten ----------------------------------------------
@@ -112,10 +119,11 @@ Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt
 
 Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
 
-\end{comment}
+
 
 Er wordt verwacht dat alle niet Microsoft-\newline{}gerelateerde Infrastructure Automation tools de nodige Azure configuraties kunnen opzetten voor een testomgeving. Hoewel Ansible en Terraform een opmerkelijk beter potentieel hebben ten opzichte van de andere tools. Dit gaat gepaard met meer mogelijkheden binnen Azure. In vergelijking met de andere tools, zitten Ansible en Terraform in een continue ontwikkelingscyclus door het jonge toetreden tot de IT-sector. Beide tools scoren goed op vlak van logica, leesbaarheid, documentatie, community en limieten. In tegenstelling tot de andere tools die eerder op vlak van verwerkingssnelheid domineren. 
 
 Vervolgens wordt er uit het onderzoek verwacht dat het automatiseren van Azure configuraties alleen maar voordelen heeft. Het enige nadeel in verband met de Infrastructure Automation tools is het leerproces om de tools onder de knie te hebben. Toch wordt dit ook als een voordeel gezien, omwille de tools buiten Azure populair zijn en ondersteund worden. Door het gebruik van deze automatisatie wordt de efficiëntie aanzienlijk verhoogd. Vervolgens biedt het de mogelijkheid tot Disaster Recovery aan. Daarbovenop is de kans tot menselijke fouten opmerkelijk verkleind.
 
+\end{comment}
 
