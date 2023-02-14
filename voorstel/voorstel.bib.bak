@@ -41,22 +41,6 @@
   urldate = {2022-12-03},
 }
 
-@Online{Microsoft2023,
-  author  = {Microsoft},
-  date    = {2023},
-  title   = {Microsoft Graph Explorer},
-  url     = {https://developer.microsoft.com/en-us/graph/graph-explorer},
-  urldate = {2023-02-03},
-}
-
-@Online{Microsoft2023a,
-  author  = {Microsoft},
-  date    = {2023},
-  title   = {Microsoft Graph documentation},
-  url     = {https://learn.microsoft.com/en-us/graph},
-  urldate = {2023-02-03},
-}
-
 @InBook{Hoefling2022,
   author    = {Hoefling, Skye},
   booktitle = {Getting Started with the Uno Platform and WinUI 3: Hands-On Building of Cross-Platform Desktop, Mobile, and Web Applications That Can Run Anywhere},
@@ -137,6 +121,14 @@
   editor  = {Microsoft},
   title   = {Azure AD: Change Management Simplified},
   url     = {https://techcommunity.microsoft.com/t5/microsoft-entra-azure-ad-blog/azure-ad-change-management-simplified/ba-p/2967456?WT.mc_id=M365-MVP-9501},
+  urldate = {2023-02-01},
+}
+
+@Online{Microsoft2023,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {Microsoft Graph},
+  url     = {https://developer.microsoft.com/en-us/graph},
   urldate = {2023-02-01},
 }
 
