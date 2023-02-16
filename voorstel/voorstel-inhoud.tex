@@ -23,15 +23,15 @@ Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat
 
 \end{comment}
 
-Naar aanleiding van de snel evoluerende cloudtechnologie, focust Microsoft zich steeds meer op het bouwen van een ecosysteem dat bestuurd kan worden vanuit zoveel mogelijk platformen \autocite{Parker2021}.
+Naar aanleiding van de snel evoluerende cloudtechnologie, focust Microsoft zich op het bouwen van een ecosysteem dat bestuurd kan worden vanuit zo veel mogelijk platformen \autocite{Parker2021}.
 
 Deze gedachtegang van Microsoft brengt volgende wijziging met zich mee, namelijk het uitfaseren van de bestaande Azure AD (Active Directory) Graph API (Application Programming Interface) en ADAL (Azure AD Authentication Library) \autocite{Sahay2022}. Deze wijziging staat gepland om op 30 juni 2023 op Microsoft 365 tenants doorgevoerd te worden.
 
-Bij het IT-bedrijf Easi worden er courante taken, automatisaties en wederkerende acties uitgevoerd bij klanten met behulp van de vooraf vernoemde Azure AD PowerShell modules. Hierdoor is het bedrijf genoodzaakt om een oplossing te vinden voor bovenstaand probleem.
+Bij het IT-bedrijf Easi worden er courante taken, automatisaties en wederkerende acties uitgevoerd bij klanten door de vooraf vermelde Azure AD PowerShell modules. Hierdoor is het bedrijf genoodzaakt om een oplossing te vinden voor dit probleem.
 
-Een mogelijke oplossing is het gebruik van MSAL (Microsoft Authentication Library) en Microsoft Graph API \autocite{Microsoft2023}. Microsoft Graph is nog volop in ontwikkeling, waardoor er nog geen zekerheid bestaat om dit in te zetten bij klanten.
+Een oplossing is het gebruik van MSAL (Microsoft Authentication Library) en Microsoft Graph API \autocite{Microsoft2023}. Microsoft Graph is nog volop in ontwikkeling, waardoor er nog geen zekerheid bestaat om dit in te zetten bij klanten.
 
-Dit onderzoek zal zich focussen op wat er vandaag de dag mogelijk is binnen Microsoft Graph. Het doel is om een antwoord te geven op de vraag of Microsoft Graph klaar is om gebruikt te worden als vervanger van de Azure AD PowerShell modules. Het antwoord op de vraag wordt onderbouwd door een bijhorende vergelijkende studie en Proof-of-Concept die de mogelijkheden van de technologie illustreert.
+Dit onderzoek zal zich focussen op wat er vandaag de dag mogelijk is binnen Microsoft Graph. Het doel is om een antwoord te geven op de vraag of Microsoft Graph klaar is om gebruikt te worden als vervanger van de Azure AD PowerShell modules. Het antwoord op de vraag wordt onderbouwd door een  vergelijkende studie en Proof-of-Concept die de mogelijkheden van de technologie illustreert.
 
 
 %---------- Stand van zaken ---------------------------------------------------
@@ -76,15 +76,15 @@ In het eerste onderzoek van Vermeulen werd de configuratie van AWS manueel uitge
 
 \end{comment}
 
-Microsoft Azure is de voorbije jaren de grootste concurrent van AWS binnen Cloud Computing Services, blijkt uit onderzoek van \textcite{Vailshery2022} en \textcite{SRG2022}. Het platform biedt verschillende services aan waaronder Azure Active Directory. Azure AD kan beheerd worden vanuit bijhorende PowerShell modules, maar de ondersteuning voor deze modules wordt stopgezet, zoals vermeld in de introductie. 
+Microsoft Azure is de voorbije jaren de grootste concurrent van AWS binnen Cloud Computing Services, blijkt uit onderzoek van \textcite{Vailshery2022} en \textcite{SRG2022}. Het platform biedt services in de Cloud aan waaronder Azure Active Directory. Azure AD kan beheerd worden vanuit bijhorende PowerShell modules, echter wordt de ondersteuning voor deze modules stopgezet, zoals vermeld in de introductie. 
 
-Microsoft 365 applicaties en services hebben een eigen unieke API om data te raadplegen. In projecten of applicaties waarbij meerdere Microsoft 365 services moeten aangesproken worden, kan dit voor problemen zorgen. Bijvoorbeeld, de API van Azure AD heeft andere functies en werkwijzen in vergelijking met een SharePoint API \autocite{VanRousselt2021}. Deze verschillen leiden tot inefficiëntie. Een mogelijke oplossing is een universele API die alle services kan aanspreken.
+Microsoft 365 applicaties en services hebben een eigen API om data te raadplegen. In projecten of applicaties waarbij  Microsoft 365 services moeten aangesproken worden, kan dit tot problemen leiden. Een voorbeeld hiervan is dat de API van Azure AD andere functies en werkwijzen heeft in vergelijking met een SharePoint API \autocite{VanRousselt2021}. Deze verschillen leiden tot inefficiëntie. Een oplossing is het gebruik een algemene API die alle services kan aanspreken.
 
-Microsoft Graph is een universele API dat toegepast kan worden voor bovenstaande problemen. Graph is een toegangspoort om data te kunnen raadplegen in Microsoft 365 applicaties en services. Deze toegangspoort is een universele API dat gebruikmaakt van REST (Representational State Transfer). Het idee hierachter is om een eindpunt aan te bieden, waardoor de verschillende applicaties en services gebundeld worden tot een samenhang. 
+Microsoft Graph is een toegangspoort om data te kunnen raadplegen in Microsoft 365 applicaties en services. Graph bevat een universele REST (Representational State Transfer) API dat toegepast kan worden voor deze problemen. Het idee hierachter is om een eindpunt aan te bieden, waardoor de verschillende applicaties en services gebundeld worden tot een samenhang. 
 
-Uit onderzoek bleek dat Microsoft Graph stabiel genoeg is om specifieke taken binnen Microsoft 365 applicaties en services uit te voeren, ondanks nog steeds in de ontwerpfase te zitten. \textcite{Hoefling2022} maakte gebruik van Graph om OneDrive data te kunnen raadplegen. \textcite{Jenkins2021} illustreerde het gebruik van Graph in combinatie met Teams. Daarnaast bewezen \textcite{Parsa2019} de eenvoud van de Graph API om Outlook data te verwerken in een kamerbeheersysteem. 
+Uit onderzoek bleek dat Microsoft Graph stabiel genoeg is om specifieke taken binnen Microsoft 365 applicaties en services uit te voeren, ondanks in de ontwerpfase te zitten. \textcite{Hoefling2022} maakte gebruik van Graph om OneDrive data te kunnen raadplegen. \textcite{Jenkins2021} illustreerde het gebruik van Graph in combinatie met Teams. Daarnaast bewezen \textcite{Parsa2019} de eenvoud van de Graph API om Outlook data te verwerken in een kamerbeheersysteem. 
 
-Deze studie legt de focus op Azure Active Dirctory, een Microsoft Cloud-service dat nog niet in onderzoek werd verwerkt met Microsoft Graph. 
+Deze studie legt de focus op Azure Active Directory, een Microsoft service dat nog niet in onderzoek werd verwerkt met Microsoft Graph. 
 
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
@@ -116,21 +116,21 @@ De laatste fase omvat een Disaster Recovery-scenario waarbij de omgeving wordt b
 
 \end{comment}
 
-In dit onderzoek wordt er in twee fases gewerkt.
+Dit onderzoek bestaat uit twee fases.
  
 In de eerste fase wordt er een vergelijkende studie uitgevoerd tussen de uitfaserende Azure AD PowerShell modules en Microsoft Graph. Deze twee technologieën worden vergeleken op vlak van achterliggende logica, ondersteunende tenants, gebruik en security. Deze vergelijking verduidelijkt de evolutie van de PowerShell modules (Azure AD) naar de API (Graph).
 
-Eerst wordt er gekeken naar de achterliggende logica van beide technologieën. De focus ligt op de werking en communicatie met Microsoft 365 tenants. 
+Eerst, wordt er gekeken naar de achterliggende logica van de twee technologieën. De focus ligt op de werking en communicatie met Microsoft 365 tenants. 
 
-Ten tweede worden de ondersteunde Microsoft 365 tenants onder de loep genomen. Bij dit onderdeel ligt de nadruk op welke Microsoft 365 applicaties en services kunnen aangesproken worden met beide technologieën.
+Ten tweede, worden de Microsoft 365 tenants onder de loep genomen. Bij dit onderdeel ligt de nadruk op welke Microsoft 365 applicaties en services aanspreekbaar zijn door beide technologieën
 
-Vervolgens wordt het gebruik besproken. Dit wilt zeggen, hoe zien beide technologieën eruit op vlak van code en notatie. Dit is belangrijk om te begrijpen hoe beiden geautomatiseerd worden en hoe de complexiteit van een script er kan uitzien.
+Vervolgens, wordt het gebruik besproken. Dit wilt zeggen, hoe zien beide technologieën eruit op vlak van code en notatie. Dit leidt tot meer begrip over de automatisatie en complexiteit van een script.
 
-Als laatste worden de PowerShell modules en Graph vergeleken op security. De focus wordt gelegd op welke data beide technologieën verwerken en nodig hebben. Bovendien wordt er gekeken naar mogelijke veiligheidsrisico's. Dit zal bepalen hoe veilig het gebruik van beide technologieën zijn.
+Als laatste, worden de PowerShell modules en Graph vergeleken op security. De focus wordt gelegd op welke data beide technologieën verwerken en nodig hebben. Bovendien wordt er gekeken naar mogelijke veiligheidsrisico's. Dit zal bepalen hoe veilig het gebruik van beide technologieën zijn.
 
-De tweede fase bestaat uit een Proof-of-Concept die de werking van Microsoft Graph illustreert. Voor deze uitwerking wordt er gebruikgemaakt van een reeds bestaand PowerShell-script. Dit script omvat het genereren van Office 365 Security Audit documenten voor klanten van Easi. Het genereren van deze Audit-data wordt via Azure AD PowerShell modules voorzien, waardoor deze kwetsbaar is voor de uitfasering. 
+De tweede fase is het opstellen van een Proof-of-Concept die de werking van Microsoft Graph illustreert. Voor deze uitwerking wordt er gebruikgemaakt van een bestaand PowerShell script. Dit script omvat het genereren van Office 365 Security Audit documenten voor klanten van Easi. Het genereren van deze data wordt via Azure AD PowerShell modules voorzien, waardoor deze kwetsbaar is voor de uitfasering. 
 
-Als Proof-of-Concept wordt bovenstaand script omgevormd en uitgewerkt met Microsoft Graph. Het doel van deze uitwerking is om te bewijzen wat Microsoft Graph vandaag de dag al kan en wat nog niet. Bovendien verduidelijkt deze fase de evolutie van Azure AD Graph modules naar de Graph API op een praktische manier. Daarnaast kan deze uitwerking gebruikt worden als basis voor andere toepassingen met Graph zoals Microsoft Purview \autocite{Microsoft2023a}. 
+Als Proof-of-Concept wordt bovenstaand script omgevormd en uitgewerkt met Microsoft Graph. Het doel van deze uitwerking is om te bewijzen wat Microsoft Graph vandaag de dag al kan en wat nog niet. Bovendien verduidelijkt deze fase de evolutie van Azure AD Graph modules naar de Graph API op een praktische manier. Daarnaast kan deze uitwerking dienen als basis voor andere toepassingen met Graph zoals Microsoft Purview \autocite{Microsoft2023a}. 
 
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%
@@ -152,8 +152,8 @@ Vervolgens wordt er uit het onderzoek verwacht dat het automatiseren van Azure c
 
 \end{comment}
 
-Er wordt verwacht dat Microsoft Graph in de vergelijking met Azure AD Graph verbeterd is op de vier onderdelen. De logica van Graph is anders, maar wordt langer ondersteunend door het gebruik van REST. Graph ondersteunend meer tenants, dus meer Microsoft 365 applicaties en services. Het gebruik van Graph is schaalbaarder en efficiënter, doormiddel van universele functies en minder verschillende soorten API’s. De security van Graph is veiliger door een zero-trust beleid dat wordt toegepast bij het gebruiken van de Microsoft Graph API.
+Er wordt verwacht dat Microsoft Graph in vergelijking met Azure AD Graph verbeterd is op de vier onderdelen. De logica van Graph is anders, echter is de ondersteuning langer door het gebruik van REST. Graph ondersteunt meer tenants, dus meer Microsoft 365 applicaties en services. Het gebruik van Graph is schaalbaarder en efficiënter, doormiddel van universele functies en minder soorten API’s. De security van Graph is veiliger door een Zero Trust-beleid dat wordt toegepast bij het gebruiken van de Microsoft Graph API.
 
-Vervolgens wordt er verwacht dat Microsoft Graph, op dit moment, niet stabiel genoeg is om alle Azure AD PowerShell modules te vervangen tegen de uitfaseringsdeadline van 30 juni 2023. Bovendien is Microsoft Graph, op dit moment, niet aan te raden in cruciale productieomgevingen van klanten. Echter wordt er wel verwacht dat Microsoft Graph de Proof-of-Concept in verband met auditing kan uitwerken. Hierdoor is het stabiel genoeg om niet-bedrijfskritische toepassingen uit te werken.
+Vervolgens wordt er verwacht dat Microsoft Graph, op dit moment, niet stabiel genoeg is om alle Azure AD PowerShell modules te vervangen tegen de deadline van 30 juni 2023. Bovendien is Microsoft Graph, op dit moment, niet aan te raden in cruciale productieomgevingen van klanten. Echter wordt er wel verwacht dat Microsoft Graph de Proof-of-Concept in verband met auditing kan uitwerken. Hierdoor is het stabiel genoeg om niet-bedrijfskritische toepassingen uit te werken.
 
 
