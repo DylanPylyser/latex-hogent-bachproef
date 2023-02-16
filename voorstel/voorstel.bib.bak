@@ -132,4 +132,12 @@
   urldate = {2023-02-01},
 }
 
+@Online{Microsoft2023a,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {Microsoft Purview},
+  url     = {https://learn.microsoft.com/en-us/purview/},
+  urldate = {2023-02-14},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
