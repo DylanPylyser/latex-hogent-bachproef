@@ -1,4 +1,27 @@
-## Onderzoeksvraag bepalen:
+# Planning BP:
+
+## Deliverables + Planning
+
+- [ ] Voorwoord
+- [ ] Samenvatting
+- [ ] Inleiding
+- [ ] Stand-van-zaken
+- [ ] Methodologie
+- [ ] Conclusie
+- [x] Voorstel
+
+**01/03 - 08/03**
+
+| Task             | Status |
+| ---------------- | ------ |
+| Literatuurstudie | TO DO  |
+
+**08/03 - 15/03**
+
+| Task             | Status |
+| ---------------- | ------ |
+| Literatuurstudie | TO DO  |
+| Proof-of-Concept | TO DO  |
 
 ### Azure automatisatie via Ansible en Cloud-init
 
