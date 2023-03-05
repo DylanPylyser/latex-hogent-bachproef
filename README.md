@@ -5,7 +5,23 @@
 - [ ] Voorwoord
 - [ ] Samenvatting
 - [ ] Inleiding
-- [ ] Stand-van-zaken
+- [ ] Stand-van-zaken (Lit-studie)
+  - [ ] OUD: AAD Graph API:
+    - [ ] Intro (wat, waarom...)
+    - [ ] Logica
+    - [ ] Tenants
+    - [ ] Gebruik
+    - [ ] Security
+  - [ ] NIEUW: MS Graph
+    - [ ] Intro
+    - [ ] Logica
+    - [ ] Tenants
+    - [ ] Gebruik
+    - [ ] Security
+  - [ ] DEEL 1: Vergelijking (op de 4 pijlers + intro)
+  - [ ] DEEL 2: PoC
+    - [ ] Small PoC: Learn bijvoorbeeld (node.js app?)
+    - [ ] Real PoC: Auditing script herschrijven
 - [ ] Methodologie
 - [ ] Conclusie
 - [x] Voorstel
@@ -23,125 +39,21 @@
 | Literatuurstudie | TO DO  |
 | Proof-of-Concept | TO DO  |
 
-### Azure automatisatie via Ansible en Cloud-init
+# Notes BP - Literatuurstudie
 
-Gesprek Van Vreckem:
+## OLD: Azure AD Graph (API)
 
-- Focus meer op het eerste deel: de configuratie van Azure zelf om een virtuele omgeving na te bootsen
+Werkwijze: Google scholar en zoeken op term
 
-  - Welke tools zijn er? (zie Azure document) => Vergelijkende studie?
-    - Ansible
-    - Terraform
-    - Packer?
-    - Bicep? (is wel een DSL?)
-  - Denk aan de levenscyclus van zo'n infrastructuur (cloud management of infrastructure ... lifecycle) => zoek een bron/foto:
-    - 1. configureren (in de cloud)
-    - 2. depoloyen
-    - 3. Omgeving zelf configureren
-    - 4. orchestration
-  - Gebruik het tweede deel dan als realtische omgeving MAAR focus op de eerste stap die is interessanter en er is meer nood aan
-    - in AWS is het iets populairder, binnen Azure nog niet
+### BRON-1: Feature differences between Azure AD Graph and Microsoft Graph
 
-Onderwerp: Automatiseren van Azure configuraties via Infrastructure Automation tools voor het opzetten van een virtuele omgeving.
+> Link: https://learn.microsoft.com/en-us/graph/migrate-azure-ad-graph-feature-differences
 
-- Idee: **Terraform?**
-- Idee: **Ansible**
+### BRON-2: Azure Active Directiory: What is the Graph API
 
-  - Wat interessant is dat Ansible zowel Azure (buiten de VM) als de VM zelf (binnen) kan configureren!!!
+> Link: https://www.kuppingercole.com/blog/kuppinger/azure-active-directory-what-is-the-graph-api
 
-- Idee: **Cloud-init**
-
-  - Werkt alleen binnen in de VM vanaf de deployment ervan
-
-- In Azure (configuratie)
-
-  - Ansible is mogelijk
-  - Terraform => ONDERZOEKEN !!!
-
-- In de VM:
-
-  - Cloud-Init naar Ansible is mogelijk vanuit de VM!
-    - Cloud-init automatiseert direct vanaf de deployment van de VM, het kan dus Ansible aanspreken en doen opstarten!
-
-Notes:
-
-Inspiratie: Infrastructure Automation, DevOps project en volgende BP: "Het gebruik van Ansible als tool voor het automatiseren van een Windows- en Linux-omgeving"
-
-- Dit zijn titels, geen OV'en
-  - Het gebruik van Ansible als tool voor het automatiseren van virtuele testomgevingen binnen Azure.
-  - Het gebruik van Ansible als tool voor het automatiseren virtuele netwerken en cloud-instanties binnen Azure.
-  - - Conclusie: NIET alleen Ansible gebruiken
-
---- (met Cloud-init) om ook volledig Azure te automatiseren vanaf de eerste deployment (Ansible als config-mgmt voor Azure)
-
-- Het gebruik van Cloud-init en Ansible als tool voor het automatiseren van een Linux-omgeving in Azure.
-
-**Notes: noteren bij co-promotor => "iemand van Easi"**
-
-Bronnen:
-
-- https://galaxy.ansible.com/azure/azcollection?extIdCarryOver=true&sc_cid=701f2000001OH7YAAW
-- https://www.youtube.com/watch?v=Ff0DoAmpv6w
-
----
-
----
-
----
-
-- Vergelijking van verschillende identity providers zoals azure ad, active directory maar zeker ook Octa.
-  - Identity provider
-    - Azure AD
-    - AD
-    - Octa
-  - Vergelijking tussen deze 3
-- Gebruik van 1 identity provider om in te loggen op verschillende platvormen...
-  - Identity provider
-    - Welke ???
-  - Platvormen???
-    - Dieper???
-- Zero trust op hybrid endpoint devices is eventueel wel een brede optie.
-  - Zero trust?
-    - Niks "implicitet" binnenlaten van binnen naar buiten
-    - Vroeger: perimeter security
-  - Endpoint?
-  - Hybrid (Cloud, endpoint...)?
-  - => Impact van zero trust op een
-
-=> Zero Trust implementatie via Azure Active Directory als beveiliging voor endpoint devices.
-
-=> Het gebruik van Ansible als tool voor het automatiseren van een DevOps Azure omgeving.
-
-Kernwoorden van OV => Zero Trust implementatie via Azure Active Directory als beveiliging voor endpoint devices.:
-
-- Zero trust:
-  - Zero trust (vroeger perimeter security => uw muur zo hoog mogelik maken, maar dat is niet meer mogelijk door work from home)
-  - Zero trust hou je de menselijke versie van betrouwbaarheid tegen! iemand met een badge kan nog steeds "onbetrouwbaar" zijn
-  - Zero Trust: Never trust, always verify => when verified, then trust
-  - Implement Least Privilege => minimum rechten voor hun job, niets overbodig
-  - Assume Breach: voorbereidt op aanvallen
-  - Zero trust is nodig om de bad guys zowel binnen- als buitenaf weg te houden => elke zone is untrusted
-- Endpoint (Protection):
-  - Het beveiligen van de laatste users in een netwerk (de gebruikers) bv. gsm, computer, smart watch...
-  - 3 principes:
-    - EPP (Endpoint protection platform) => lijkt op een anti-virus
-    - EDR (Endpoint detection and response) => analysis, signatures
-    - XDR (Extended detections and response solutions) => state-of-the-art
-  - Endpoint protection heeft vele voordelen: tijd, kost...
-  - Next-gen antivirus => behaviour analysis, AI, machine learning...
-  - MDM, vulnerability management, access governance, PAM, email protection
-  - tips:
-    - on-premise of cloud-based => cloud-based
-    - sandboxes voor het onderzoeken van virussen
-- Hybrid cloud:
-  - bestaat uit private and public cloud
-- Hybrid endpoint
-
-- Zero Trust Security Implementatation (programma's):
-
-  - Azure AD
-  - Endpoint manager
-  - Cloud App Security
+## NEW: Microsoft Graph
 
 # Bachelorproef toegepaste informatica
 
