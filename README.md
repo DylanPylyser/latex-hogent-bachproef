@@ -53,6 +53,32 @@ Werkwijze: Google scholar en zoeken op term
 
 > Link: https://www.kuppingercole.com/blog/kuppinger/azure-active-directory-what-is-the-graph-api
 
+- [x] Done
+
+### BRON-3: Azure AD Graph to Microsoft Graph migration FAQ
+
+> Link: https://learn.microsoft.com/en-us/graph/migrate-azure-ad-graph-faq
+
+### BRON-4: Identity Security with Azure Active Directory
+
+> Link:
+
+### BRON-5: Modern authentication with Azure AD for web applications
+
+> Link: http://ptgmedia.pearsoncmg.com/images/9780735696945/samplepages/9780735696945.pdf
+
+### BRON-6: Active Directory Custom Data Extensions:
+
+> Link: https://link.springer.com/chapter/10.1007/978-1-4842-5040-2_6
+
+### BRON-7: Introduction to Authorization
+
+> Link: https://link.springer.com/chapter/10.1007/978-1-4842-5040-2_9
+
+### BRON-8: Authentication and Authorization Mechanism for Cloud Security
+
+> Link: https://www.researchgate.net/profile/Dr-Chandra-Jadala/publication/335842661_Authentication_and_Authorization_Mechanism_for_Cloud_Security/links/5d7fe326a6fdcc66b001a77f/Authentication-and-Authorization-Mechanism-for-Cloud-Security.pdf
+
 ## NEW: Microsoft Graph
 
 # Bachelorproef toegepaste informatica
