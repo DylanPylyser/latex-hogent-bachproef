@@ -67,6 +67,9 @@ Werkwijze: Google scholar en zoeken op term
 
 > Link: http://ptgmedia.pearsoncmg.com/images/9780735696945/samplepages/9780735696945.pdf
 
+- [ ] Done?
+  - [x] Work in progress -> nog eens bekijken
+
 ### BRON-6: Active Directory Custom Data Extensions:
 
 > Link: https://link.springer.com/chapter/10.1007/978-1-4842-5040-2_6
@@ -79,7 +82,33 @@ Werkwijze: Google scholar en zoeken op term
 
 > Link: https://www.researchgate.net/profile/Dr-Chandra-Jadala/publication/335842661_Authentication_and_Authorization_Mechanism_for_Cloud_Security/links/5d7fe326a6fdcc66b001a77f/Authentication-and-Authorization-Mechanism-for-Cloud-Security.pdf
 
+### BRON-9: Azure AD Graph Explorer
+
+> Link: https://graphexplorer.azurewebsites.net/
+
+### BRON-10: Azure AD Graph API reference
+
+> Link: https://weareminky.com/share/ms/docs/reference/rest/example/index.html
+
+### BRON-11 (TWIJFEL) Graph API connection for Azure AD
+
+> Link: https://community.akumina.com/knowledge-base/graph-api-connection-for-azure-ad/
+
 ## NEW: Microsoft Graph
+
+### BRON-1 ...
+
+## Algemene Bronnen Jarne
+
+> MSGPRAH PowerShell Module Info: https://www.powershellgallery.com/packages/Microsoft.Graph/1.23.0
+
+> Azure AD PowerShell Documentatie: https://learn.microsoft.com/en-us/powershell/module/azuread/?view=azureadps-2.0
+
+> MSGraph Documentatie: https://learn.microsoft.com/en-us/graph/
+
+> How to deploy MS Graph: https://www.eginnovations.com/documentation/SharePoint-Online/Installing-MS-Graph-App-On-Azure-AD.htm
+
+Vergelijk de Modules: kijk wat er allemaal in de Oude Graph zit en kijk of het nog in de nieuwe MS Graph zit. Dus vergelijk OUD -> NIEUW en niet OUD <> NIEUW.
 
 # Bachelorproef toegepaste informatica
 
