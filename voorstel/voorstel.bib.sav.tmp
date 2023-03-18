@@ -124,7 +124,7 @@
   urldate = {2023-02-01},
 }
 
-@Online{Microsoft2023,
+@Online{Microsoft2023Va,
   author  = {Microsoft},
   date    = {2023},
   title   = {Microsoft Graph},
@@ -132,5 +132,5 @@
   urldate = {2023-02-01},
 }
 
-@Online{Microsoft2023a,
-  author  = {Mi
+@Online{Microsoft2023V,
+  author  = {

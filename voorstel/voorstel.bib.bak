@@ -124,7 +124,7 @@
   urldate = {2023-02-01},
 }
 
-@Online{Microsoft2023,
+@Online{Microsoft2023Va,
   author  = {Microsoft},
   date    = {2023},
   title   = {Microsoft Graph},
@@ -132,12 +132,22 @@
   urldate = {2023-02-01},
 }
 
-@Online{Microsoft2023a,
+@Online{Microsoft2023V,
   author  = {Microsoft},
   date    = {2023},
   title   = {Microsoft Purview},
   url     = {https://learn.microsoft.com/en-us/purview/},
   urldate = {2023-02-14},
+}
+
+@Online{Parker2021,
+  author       = {Parker, Nick},
+  date         = {2021-02-10},
+  title        = {Microsoft’s partner ecosystem: Enabling innovation and business resilience},
+  url          = {https://blogs.microsoft.com/blog/2021/02/10/microsofts-partner-ecosystem-enabling-innovation-and-business-resilience/},
+  language     = {English},
+  organization = {Microsoft},
+  urldate      = {2023-02-15},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

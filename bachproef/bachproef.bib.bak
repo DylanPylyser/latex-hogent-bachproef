@@ -89,12 +89,4 @@
   year    = {2010},
 }
 
-@Online{Microsoft2017,
-  author  = {Microsoft},
-  date    = {2017-05-09},
-  title   = {What’s new for Microsoft Graph Developers at Build 2017},
-  url     = {https://devblogs.microsoft.com/microsoft365dev/microsoft-graph-at-build-2017/},
-  urldate = {2023-03-18},
-}
-
 @Comment{jabref-meta: databaseType:biblatex;}

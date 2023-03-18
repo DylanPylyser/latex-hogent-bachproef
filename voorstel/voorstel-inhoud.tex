@@ -29,7 +29,7 @@ Deze visie van Microsoft brengt de volgende verschuiving met zich mee, namelijk 
 
 Bij het IT-bedrijf Easi worden courante taken, automatisaties en wederkerende acties door de vooraf vermelde Azure AD PowerShell modules. Door de uitfasering van de Azure AD modules is het bedrijf genoodzaakt om een oplossing te vinden voor dit probleem.
 
-Een oplossing is het gebruik van MSAL (Microsoft Authentication Library) en Microsoft Graph API \autocite{Microsoft2023}. Microsoft Graph is nog volop in ontwikkeling, waardoor dit nog niet in productieomgevingen wordt ingezet.
+Een oplossing is het gebruik van MSAL (Microsoft Authentication Library) en Microsoft Graph API \autocite{Microsoft2023Va}. Microsoft Graph is nog volop in ontwikkeling, waardoor dit nog niet in productieomgevingen wordt ingezet.
 
 Dit onderzoek zal zich focussen op wat er vandaag de dag mogelijk is binnen Microsoft Graph. Het doel is om een antwoord te geven op de vraag of Microsoft Graph klaar is om gebruikt te worden als vervanger van de Azure AD PowerShell modules. Het antwoord op de vraag wordt onderbouwd door een vergelijkende studie en Proof-of-Concept die de mogelijkheden van de technologie illustreert.
 
@@ -130,7 +130,7 @@ Als laatste, worden de PowerShell modules en Graph vergeleken op security. De fo
 
 De tweede fase is het opstellen van een Proof-of-Concept die de werking van Microsoft Graph illustreert. Voor deze uitwerking wordt er gebruikgemaakt van een bestaand PowerShell script. Dit script omvat het genereren van Office 365 Security Audit documenten voor klanten van Easi. Het genereren van deze data wordt via Azure AD PowerShell modules voorzien, waardoor deze kwetsbaar is voor de uitfasering. 
 
-Als Proof-of-Concept wordt bovenstaand script omgevormd en uitgewerkt met Microsoft Graph. Het doel van deze uitwerking is om te bewijzen wat Microsoft Graph vandaag de dag al kan en wat nog niet. Bovendien verduidelijkt deze fase de evolutie van Azure AD Graph modules naar de Graph API op een praktische manier. Daarnaast kan deze uitwerking dienen als basis voor andere toepassingen met Graph zoals Microsoft Purview \autocite{Microsoft2023a}. 
+Als Proof-of-Concept wordt bovenstaand script omgevormd en uitgewerkt met Microsoft Graph. Het doel van deze uitwerking is om te bewijzen wat Microsoft Graph vandaag de dag al kan en wat nog niet. Bovendien verduidelijkt deze fase de evolutie van Azure AD Graph modules naar de Graph API op een praktische manier. Daarnaast kan deze uitwerking dienen als basis voor andere toepassingen met Graph zoals Microsoft Purview \autocite{Microsoft2023V}. 
 
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%

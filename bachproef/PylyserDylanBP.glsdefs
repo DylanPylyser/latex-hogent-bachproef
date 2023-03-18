@@ -1,0 +1,28 @@
+\glsdefs@newdocentry{ad}%
+{%
+name={\acronymfont {\glsentryshort {ad}}},%
+sort={AD},%
+type={acronym},%
+first={AD},%
+firstplural={ADs},%
+text={AD},%
+plural={ADs},%
+description={Active Directory},%
+descriptionplural={Active Directory},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Active Directory},%
+longplural={Active Directorys},%
+short={AD},%
+shortplural={ADs},%
+counter={page},%
+parent={},%
+%
+}%
+

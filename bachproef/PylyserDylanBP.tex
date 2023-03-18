@@ -14,12 +14,17 @@
 \usepackage{lipsum} % For blind text, can be removed after adding actual content
 
 %% Pictures to include in the text can be put in the graphics/ folder
+\usepackage{graphicx}
 \graphicspath{{graphics/}}
 
 %% For source code highlighting, requires pygments to be installed
 %% Compile with the -shell-escape flag!
 \usepackage[section]{minted}
 \usepackage{comment}
+
+\usepackage[printonlyused]{acronym}
+%\usepackage[acronym]{glossaries}
+
 \usemintedstyle{solarized-light}
 \definecolor{bg}{RGB}{253,246,227} %% Set the background color of the codeframe
 
@@ -50,11 +55,10 @@
 
 %%---------- Document metadata -------------------------------------------------
 % TODO: Replace this with your own information
-\author{Ernst Aarden}
-\supervisor{Dhr. F. Van Houte}
-\cosupervisor{Mevr. S. Beeckman}
-\title[Optionele ondertitel]%
-    {Titel van de bachelorproef}
+\author{Dylan Pylyser}
+\supervisor{Dhr. G. Bosteels}
+\cosupervisor{Dhr. J. Creten}
+\title{Microsoft administration met Microsoft Graph: van module naar API}
 \academicyear{\advance\year by -1 \the\year--\advance\year by 1 \the\year}
 \examperiod{1}
 \degreesought{\IfLanguageName{dutch}{Professionele bachelor in de toegepaste informatica}{Bachelor of applied computer science}}
@@ -120,6 +124,11 @@
 % hier thuis. Gebruik bijvoorbeeld de ``glossaries'' package.
 % https://www.overleaf.com/learn/latex/Glossaries
 
+\chapter{Lijst van afkortingen}
+\begin{acronym}
+\acro{AD}{Active Directory}
+\acro{CLI}{Command Line Interface}
+\end{acronym}
 %---------- Kern ---------------------------------------------------------------
 
 \mainmatter{}
@@ -138,10 +147,8 @@
 % vormen. De structuur en titels hangen af van je eigen onderzoek. Je kan bv.
 % elke fase in je onderzoek in een apart hoofdstuk bespreken.
 
-%\input{...}
-%\input{...}
-%...
-
+\input{vergelijking}
+\input{poc}
 \input{conclusie}
 
 %---------- Bijlagen -----------------------------------------------------------
