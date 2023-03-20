@@ -162,4 +162,12 @@
   year         = {2009},
 }
 
+@Online{Denaux2022,
+  author  = {Denaux, Lins and Van Damme, Tania},
+  date    = {2022-05-15},
+  title   = {Grafen - UGent Wiskunde},
+  url     = {https://cage.ugent.be/~tvd/Grafennascholing/Grafensyllabusvolledig.pdf},
+  urldate = {2023-03-20},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
