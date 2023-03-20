@@ -21,6 +21,50 @@ Soms wil je de auteur niet expliciet vernoemen, dan gebruik je \texttt{$\backsla
 
 \section{Wat is Microsoft administration?}
 
+\subsection{Waarvoor staan Microsoft en administration?}
+
+Microsoft administration bestaat uit twee kernwoorden die gekend zijn binnen de IT-wereld. Microsoft staat voor het Amerikaanse technologiebedrijf en de producten dat het aanbiedt \autocite{Warner2019}. Het woord administration, oftewel administratie in het Nederlands, staat voor het beheren van iets (BRON). Vanuit het woord administration volgde het woord administrator, dat duidt op een persoon die een instantie beheerd \autocite{VDU2023}. Microsoft administration staat dus voor het beheren van Microsoft-instanties en -producten waaronder Windows en Azure. 
+
+\subsection{Waarvoor staan Microsoft en administration?}
+
+Het beheren van systemen kunnen omvat worden in een aantal taken, hieronder volgt een lijst van frequente taken tussen het jaar 1980 en 2000 \autocite{Frisch2002}.
+
+\begin{itemize}
+    \item Toevoegen van nieuwe gebruikers en toestellen.
+    \item Maken en beheren van back-ups.
+    \item Bestanden en andere data recupereren.
+    \item Gebruikers assisteren in dagelijkse taken en problemen.
+    \item Monitoren van systemen.
+    \item De veiligheid van de systemen garanderen.
+    \item Het beheren en installeren van updates.
+    \item Het automatiseren van taken.
+\end{itemize}
+
+Deze taken zijn vandaag de dag nog steeds herkenbaar als dagdagelijkse taken van een systeembeheerder. 
+
+\subsection{Wat houdt Microsoft administration in?}
+
+Sinds de opkomst van Windows-systemen zoals Windows 2000 server, zijn er verschillende mogelijkheden om administratieve taken uit te voeren binnen netwerkinfrastructuren \autocite{Tulloch2001}. \\
+
+Binnen Windows 2000 server zijn er administratieve tools zoals Microsoft Management Console, Event Viewer en Active Directory Domains and Trusts-instellingen beschikbaar. Deze tools dienen om de taken van een administrator te vergemakkelijken, door een overzicht te brengen van alle data in dat specifieke onderdeel \autocite{Sibisi2022}. Door het gebruik van deze administratieve tools kan een administrator Microsoft-entiteiten waaronder Windows-toestellen beheren om zijn taken mee uit te voeren. 
+
+\subsection{Hoe evolueerde de systemen en de administratie hiervan doorheen de jaren?}
+
+Rond het vroege begin van de $21^{ste}$ eeuw werden systemen en servers zoals Windows 2000 server met een focus op on-premise onderhouden. On-premises betekent dat software en hardware, zoals computers en servers, op locaties staan dat eigendom is van het bedrijf en lokaal worden toegepast \autocite{Insight2023}. Hierbij wordt de systeemadministratie door systeembeheerders lokaal aangepakt. Ter illustratie, in dit scenario wordt de automatisatie via PowerShell gefocust op de lokale entiteiten binnen het bedrijf. Databanken, mailservers, DNS-servers… worden lokaal aangesproken en geautomatiseerd indien nodig. \\
+
+Rond het jaar 2006 evolueerde de on-premises-aanpak naar een cloud-aanpak \autocite{Hayes2008}. EC2 van Amazon is een van de grondleggers binnen de cloudservices \autocite{Qian2009}. Deze inventie van Amazon heeft sindsdien invloed op de huidige marktleiderspositie van AWS in cloud computing \autocite{Vailshery2022}. Op de tweede plaats bevindt zich de cloudservice van Microsoft, genaamd Azure. \\
+
+De migratie van on-premise naar de cloud is geen toeval. Eenenveertig procent van de bedrijven uit de \ac{EU} maakt gebruik van Cloud Computing in 2021. % TODO !!! Het gebruik van cloud computing en cloudservices heeft aanzienlijke voordelen, namelijk ... 
+% TODO !!!
+
+\subsection{Hoe evolueerde de systemen en de administratie hiervan doorheen de jaren?}
+
+De evolutie van on-premise naar de cloud heeft invloed op de huidige stand van zaken van Microsoft administration. Microsoft administratie staat in voor het beheren van Microsoft-entiteiten. Door een verschuiving van on-premises naar cloud-omgevingen wordt de nadruk stilaan gelegd op het beheren van deze entiteiten via cloud-toepassingen. % TODO: (BRON van iets soortgelijk?) \\
+
+Kortom, Microsoft-entiteiten worden vandaag de dag zowel lokaal als op afstand of virtueel beheerd door administrators. In het geval van Active Directory, kan deze Microsoft-toepassing worden gestuurd vanuit Azure Active Directory, een cloud-toepassing binnen Microsoft Azure. % TODO: (BRON ???)
+
+% TODO (bronnen zoeken over tools of on-prem naar Cloud !!!) 
+
 
 \section{Azure Active Directory Graph}
 
@@ -42,7 +86,9 @@ Door het gebruik van Azure \ac{AD} in combinatie met PowerShell, wordt er gebrui
 
 \subsection{Wat is Azure Active Directory Graph?}
 
-De communicatie tussen Azure AD en de Azure AD PowerShell module gebeurd via een API. Deze API is een REST API dat Graph wordt genoemd. De naam “Graph” (graaf in het Nederlands) staat voor de verbindingen tussen de entiteiten dat het ondersteunt, een principe dat voorkomt in de wiskunde (zie figuur \ref{mga}) \autocite{Kokkarinen2022}. Microsoft gebruikt deze wiskundige graaf als interpretatie van Graph (zie figuur \ref{gms}). 
+De communicatie tussen Azure AD en de Azure AD PowerShell module gebeurd via een API. Deze API is een REST API dat Graph wordt genoemd. \\ 
+
+De naam Graph is afgeleid uit het wiskundige figuur van een graaf. Een graaf is een verzameling van punten die wel of niet met elkaar zijn verbonden \autocite{Denaux2022}. Een voorbeeld van een wiskundige graaf is te zien op Figuur \ref{mga}. \\
 
 \begin{figure}
     \includegraphics[width=\textwidth]{MathGraphExample.jpg}
@@ -50,9 +96,11 @@ De communicatie tussen Azure AD en de Azure AD PowerShell module gebeurd via een
     \label{mga}
 \end{figure}
 
+Graph van Microsoft heeft een soortgelijke betekenis als dat van een wiskundige graaf. Graph staat in voor de verbindingen tussen de entiteiten dat het ondersteunt, in dit geval Microsoft-entiteiten \autocite{Kokkarinen2022}. Een logische interpretatie van Graph wordt weergegeven op Figuur \ref{gms}.
+
 \begin{figure}
     \includegraphics[width=\textwidth]{GraphMicrosoft.png}
-    \caption[Voorbeeld Microsoft graaf]{Figuurlijke voorstelling van Graph binnen \textcite{Microsoft2017}.}
+    \caption[Voorbeeld Microsoft Graph]{Voorstelling van Graph door \textcite{Microsoft2017}.}
     \label{gms}
 \end{figure}
 

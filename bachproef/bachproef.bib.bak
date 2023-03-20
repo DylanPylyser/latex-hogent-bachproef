@@ -89,4 +89,77 @@
   year    = {2010},
 }
 
+@Online{Microsoft2017,
+  author  = {Microsoft},
+  date    = {2017-05-09},
+  title   = {What’s new for Microsoft Graph Developers at Build 2017},
+  url     = {https://devblogs.microsoft.com/microsoft365dev/microsoft-graph-at-build-2017/},
+  urldate = {2023-03-18},
+}
+
+@Article{Warner2019,
+  author = {Warner, Jacob Paul},
+  date   = {2019},
+  title  = {Microsoft: A Strategic Audit},
+  year   = {2019},
+}
+
+@Online{VDU2023,
+  author  = {{Van Dale Uitgevers}},
+  date    = {2023},
+  title   = {Betekenis 'administratie'},
+  url     = {https://www.vandale.nl/gratis-woordenboek/nederlands/betekenis/administratie},
+  urldate = {2023-03-20},
+}
+
+@Book{Frisch2002,
+  author    = {Frisch, Aeleen},
+  date      = {2002},
+  title     = {Essential system administration: Tools and techniques for linux and unix administration},
+  publisher = {" O'Reilly Media, Inc."},
+  year      = {2002},
+}
+
+@Book{Tulloch2001,
+  author    = {Tulloch, Mitch},
+  date      = {2001},
+  title     = {Windows 2000 administration in a nutshell: a desktop quick reference},
+  publisher = {" O'Reilly Media, Inc."},
+  year      = {2001},
+}
+
+@Online{Sibisi2022,
+  author  = {Sibisi, Mduduzi},
+  date    = {2022-08-31},
+  title   = {What are Windows Administrative Tools and How to Use (Windows 10 / 11)},
+  url     = {https://cloudinfrastructureservices.co.uk/what-are-windows-administrative-tools-and-how-to-use-windows-10-11/},
+  urldate = {2023-03-20},
+}
+
+@Online{Insight2023,
+  author  = {Insight},
+  date    = {2023},
+  title   = {Tech glossary: On-premises},
+  url     = {https://www.insight.com/en_US/glossary/o/on-premises.html},
+  urldate = {2023-03-20},
+}
+
+@Misc{Hayes2008,
+  author    = {Hayes, Brian},
+  date      = {2008},
+  title     = {Cloud computing},
+  publisher = {ACM New York, NY, USA},
+  year      = {2008},
+}
+
+@InProceedings{Qian2009,
+  author       = {Qian, Ling and Luo, Zhiguo and Du, Yujian and Guo, Leitao},
+  booktitle    = {Cloud Computing: First International Conference, CloudCom 2009, Beijing, China, December 1-4, 2009. Proceedings 1},
+  date         = {2009},
+  title        = {Cloud computing: An overview},
+  organization = {Springer},
+  pages        = {626--631},
+  year         = {2009},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
