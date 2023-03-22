@@ -18,26 +18,34 @@ Soms wil je de auteur niet expliciet vernoemen, dan gebruik je \texttt{$\backsla
 
 \end{comment}
 
+% TODO ?
+
 
 \section{Wat is Microsoft administration?}
 
+In dit onderdeel wordt ...
+
+% TODO Aanvulen
+
 \subsection{Waarvoor staan Microsoft en administration?}
 
-Microsoft administration bestaat uit twee kernwoorden die gekend zijn binnen de IT-wereld. Microsoft staat voor het Amerikaanse technologiebedrijf en de producten dat het aanbiedt \autocite{Warner2019}. Het woord administration, oftewel administratie in het Nederlands, staat voor het beheren van iets \autocite{VDU2023}. Vanuit het woord administration volgde het woord administrator, dat duidt op een persoon die een of meerdere instanties beheerd \autocite{VDU2023a}. Microsoft administration staat dus voor het beheren van Microsoft-instanties en -producten waaronder Windows en Azure. 
+Microsoft administration bestaat uit twee kernwoorden die gekend zijn binnen de IT-wereld. Microsoft staat voor het Amerikaanse technologiebedrijf en de producten dat het aanbiedt \autocite{Warner2019}. Het woord administration, oftewel administratie in het Nederlands, staat voor het beheren van iets \autocite{Burgess2003}. Vanuit het woord administration volgde het woord administrator, dat duidt op een persoon die een of meerdere instanties beheerd. Microsoft administration staat voor het beheren van Microsoft-instanties en -producten waaronder Windows en Azure. 
+
+% TODO Secundarie Bron zoeken voor Administrator ...
 
 \subsection{Waarvoor staan Microsoft en administration?}
 
 Het beheren van systemen kunnen omvat worden in een aantal taken, hieronder volgt een lijst van frequente taken tussen het jaar 1980 en 2000 \autocite{Frisch2002}.
 
 \begin{itemize}
-    \item Toevoegen van nieuwe gebruikers en toestellen.
-    \item Maken en beheren van back-ups.
-    \item Bestanden en andere data recupereren.
-    \item Gebruikers assisteren in dagelijkse taken en problemen.
-    \item Monitoren van systemen.
-    \item De veiligheid van de systemen garanderen.
-    \item Het beheren en installeren van updates.
-    \item Het automatiseren van taken.
+    \item Toevoegen van nieuwe gebruikers en toestellen
+    \item Maken en beheren van back-ups
+    \item Bestanden en andere data recupereren
+    \item Gebruikers assisteren in dagelijkse taken en problemen
+    \item Monitoren van systemen
+    \item De veiligheid van de systemen garanderen
+    \item Het beheren en installeren van updates
+    \item Het automatiseren van taken
 \end{itemize}
 
 Deze taken zijn vandaag de dag nog steeds herkenbaar als dagdagelijkse taken van een systeembeheerder. 
@@ -50,21 +58,38 @@ Binnen Windows 2000 server zijn er administratieve tools zoals Microsoft Managem
 
 \subsection{Hoe evolueerde de systemen en de administratie hiervan doorheen de jaren?}
 
-Rond het vroege begin van de $21^{ste}$ eeuw werden systemen en servers zoals Windows 2000 server met een focus op on-premise onderhouden. On-premises betekent dat software en hardware, zoals computers en servers, op locaties staan dat eigendom is van het bedrijf en lokaal worden toegepast \autocite{Insight2023}. Hierbij wordt de systeemadministratie door systeembeheerders lokaal aangepakt. Ter illustratie, in dit scenario wordt de automatisatie via PowerShell gefocust op de lokale entiteiten binnen het bedrijf. Databanken, mailservers, DNS-servers… worden lokaal aangesproken en geautomatiseerd indien nodig. \\
+Rond het vroege begin van de $21^{ste}$ eeuw werden systemen en servers zoals Windows 2000 server met een focus op \ac{On-prem} onderhouden \autocite{Microsoft2022a}. \ac{On-prem} betekent dat software en hardware, zoals computers en servers, op locaties staan dat eigendom is van het bedrijf en lokaal worden toegepast \autocite{Gastermann2015}. Hierbij wordt de systeemadministratie door systeembeheerders lokaal aangepakt. Ter illustratie, in dit scenario wordt de automatisatie via PowerShell gefocust op de lokale entiteiten binnen het bedrijf. Databanken, mailservers, DNS-servers… worden lokaal aangesproken en geautomatiseerd indien nodig. \\
 
-Rond het jaar 2006 evolueerde de on-premises-aanpak naar een cloud-aanpak \autocite{Hayes2008}. EC2 van Amazon is een van de grondleggers binnen de cloudservices \autocite{Qian2009}. Deze inventie van Amazon heeft sindsdien invloed op de huidige marktleiderspositie van AWS in cloud computing \autocite{Vailshery2022}. Op de tweede plaats bevindt zich de cloudservice van Microsoft, genaamd Azure. \\
+Rond het jaar 2006 evolueerde de On-premises-aanpak naar een cloud-aanpak \autocite{Hayes2008}. EC2 van Amazon is een van de grondleggers binnen de cloudservices \autocite{Qian2009}. Deze inventie van Amazon heeft sindsdien invloed op de huidige marktleiderspositie van AWS in cloud computing \autocite{Vailshery2022}. Op de tweede plaats bevindt zich de cloudservice van Microsoft, genaamd Azure. \\
 
-De migratie van on-premise naar de cloud is geen toeval. Eenenveertig procent van de bedrijven uit de \ac{EU} maakt gebruik van Cloud Computing in 2021. % TODO !!! Het gebruik van cloud computing en cloudservices heeft aanzienlijke voordelen, namelijk ... 
-% TODO !!!
+\subsection{De impact van Cloud Computing}
 
-\subsection{Hoe evolueerde de systemen en de administratie hiervan doorheen de jaren?}
+Cloud Computing heeft een heel brede betekenis. Het is in feite een technologiemodel die wordt gebruikt om verschillende middelen en diensten beschikbaar te stellen op het internet, oftewel de cloud. \autocite{Haag2009} \\
 
-De evolutie van on-premise naar de cloud heeft invloed op de huidige stand van zaken van Microsoft administration. Microsoft administratie staat in voor het beheren van Microsoft-entiteiten. Door een verschuiving van on-premises naar cloud-omgevingen wordt de nadruk stilaan gelegd op het beheren van deze entiteiten via cloud-toepassingen. % TODO: (BRON van iets soortgelijk?) \\
+De migratie van \ac{On-prem} naar de cloud is geen toeval. Eenenveertig procent van de bedrijven uit de \ac{EU} maakt gebruik van cloud computing in 2021. Het gebruik van cloud computing en cloudservices heeft vele voordelen. De volgende lijst bevat enkele voordelen van Cloud Computing. De lijst is samengesteld uit onderzoek van \textcite{Aljabre2012}, \textcite{Rittinghouse2016}.
 
-Kortom, Microsoft-entiteiten worden vandaag de dag zowel lokaal als op afstand of virtueel beheerd door administrators. In het geval van Active Directory, kan deze Microsoft-toepassing worden gestuurd vanuit Azure Active Directory, een cloud-toepassing binnen Microsoft Azure. % TODO: (BRON ???)
+\begin{itemize}
+    \item Minder onderhouds-, implementatie en infrastructuurkosten
+    \item Goedkopere computers per gebruiker (via virtuele machines)
+    \item Verhoogde mobiliteitskansen voor de werkkrachten
+    \item Nieuwe en flexibelere infrastructuren met meer schaalbaarheid
+    \item Vergroening van data centers
+    \item Verhoogde beschikbaarheid van applicaties
+    \item Mogelijkheid om gebruikers te doen samenwerking in documenten en projecten
+     
+\end{itemize}
 
-% TODO (bronnen zoeken over tools of on-prem naar Cloud !!!) 
+\subsection{Welke impact heeft de verschuiving van On-premises naar de cloud op Micosoft administration?}
 
+De evolutie van \ac{On-prem} naar de cloud heeft invloed op de huidige stand van zaken binnen Microsoft administration. Microsoft administratie staat in voor het beheren van Microsoft-entiteiten. Door een verschuiving van \ac{On-prem} naar cloud-omgevingen, wordt de nadruk stilaan gelegd op het beheren van bepaalde entiteiten via cloud-toepassingen. \\
+
+Deze nadruk valt op wanneer de productenlijst van Microsoft Azure wordt geraadpleegd \autocite{Microsoft2023b}. Dit is een lijst die steeds verder wordt uitgebreid met nieuwe technologieën. \\
+
+Een praktisch voorbeeld van een entiteit, of een groep van entiteiten, dat via de cloud kan beheerd worden is Azure Active Directory \autocite{Microsoft2023c}. Azure Active Directory kan gebruikt worden als alternatief voor Active Directory voor bepaalde onderdelen. Active Directory is kortweg een opslagplaats die een focus heeft op On-premises-instanties. Active Directory en Azure Active Directory worden in het volgende onderdeel verder besproken.
+
+% ---
+% Volgende onderdeel
+% ---
 
 \section{Azure Active Directory Graph}
 
