@@ -223,4 +223,62 @@
   urldate = {2023-03-22},
 }
 
+@Online{Microsoft2023c,
+  author  = {Microsoft},
+  date    = {2023-02-22},
+  title   = {What is Azure Active Directory?},
+  url     = {https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-whatis},
+  urldate = {2023-03-22},
+}
+
+@Online{OData2023,
+  author  = {OData},
+  date    = {2023},
+  title   = {OData Version 3.0 Core Protocol},
+  url     = {https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/},
+  urldate = {2023-03-25},
+}
+
+@Online{Microsoft2016,
+  author  = {Microsoft},
+  date    = {2016-03-23},
+  title   = {Azure AD Graph API reference},
+  url     = {https://learn.microsoft.com/en-gb/previous-versions/azure/ad/graph/api/api-catalog},
+  urldate = {2023-03-14},
+}
+
+@WWW{Microsoft,
+  author  = {Microsoft},
+  title   = {Azure AD Graph Explorer},
+  url     = {https://graphexplorer.azurewebsites.net/},
+  urldate = {2023-03-05},
+}
+
+@Online{Microsoft2015,
+  author  = {Microsoft},
+  date    = {2015},
+  editor  = {MINKY},
+  title   = {Azure AD Graph API reference},
+  url     = {https://weareminky.com/share/ms/docs/reference/rest/example/index.html},
+  urldate = {2023-03-01},
+}
+
+@Online{OAuth,
+  author  = {OAuth},
+  title   = {OAuth 2.0},
+  url     = {https://oauth.net/2/},
+  urldate = {2023-03-25},
+}
+
+@Article{saltzer1975protection,
+  author    = {Saltzer, Jerome H and Schroeder, Michael D},
+  title     = {The protection of information in computer systems},
+  number    = {9},
+  pages     = {1278--1308},
+  volume    = {63},
+  journal   = {Proceedings of the IEEE},
+  publisher = {IEEE},
+  year      = {1975},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}

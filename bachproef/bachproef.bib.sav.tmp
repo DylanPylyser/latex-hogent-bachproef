@@ -1,0 +1,266 @@
+% Encoding: UTF-8
+
+@Book{Allen2003,
+  author    = {Allen, Robbie and Lowe-Norris, Alistair},
+  date      = {2003},
+  title     = {Active directory},
+  publisher = {" O'Reilly Media, Inc."},
+  year      = {2003},
+}
+
+@Article{Mayank2019,
+  author    = {Mayank, Manas and Garg, Mohit and Mayank, Manas and Garg, Mohit},
+  date      = {2019},
+  title     = {Introduction to Azure Active Directory},
+  pages     = {1--16},
+  journal   = {Developing Applications with Azure Active Directory: Principles of Authentication and Authorization for Architects and Developers},
+  publisher = {Springer},
+  year      = {2019},
+}
+
+@Article{Chappell2008,
+  author  = {Chappell, David and others},
+  date    = {2008},
+  title   = {Introducing the Azure services platform},
+  number  = {11},
+  volume  = {1364},
+  journal = {White paper, Oct},
+  year    = {2008},
+}
+
+@Online{Microsoft2023,
+  author  = {Microsoft},
+  date    = {2023-02-01},
+  title   = {Azure Active Directory PowerShell for Graph},
+  url     = {https://learn.microsoft.com/en-us/powershell/azure/active-directory/overview?view=azureadps-2.0},
+  urldate = {2023-03-17},
+}
+
+@Online{Microsoft2022,
+  author  = {Microsoft},
+  date    = {2022-10-22},
+  title   = {What is PowerShell?},
+  url     = {https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.3},
+  urldate = {2023-03-16},
+}
+
+@Article{Hosmer2019,
+  author    = {Hosmer, Chet},
+  date      = {2019},
+  title     = {An Introduction to PowerShell for Investigators},
+  pages     = {1--21},
+  journal   = {PowerShell and Python Together: Targeting Digital Investigations},
+  publisher = {Springer},
+  year      = {2019},
+}
+
+@Online{Microsoft2023a,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {PowerShell Gallery},
+  url     = {https://www.powershellgallery.com/},
+  urldate = {2023-03-18},
+}
+
+@TechReport{Breton2003,
+  author      = {Breton, Richard and Boss{\'e}, {\'E}loi},
+  date        = {2003},
+  institution = {DEFENCE RESEARCH AND DEVELOPMENT CANADAVALCARTIER (QUEBEC)},
+  title       = {The cognitive costs and benefits of automation},
+  year        = {2003},
+}
+
+@Online{Kokkarinen2022,
+  author  = {Laura Kokkarinen},
+  date    = {2022-05-04},
+  title   = {The Ultimate Beginner’s Guide to Microsoft Graph},
+  url     = {https://laurakokkarinen.com/the-ultimate-beginners-guide-to-microsoft-graph/#where-does-the-name-come-from},
+  urldate = {2023-03-18},
+}
+
+@Article{Diestel2010,
+  author  = {Diestel, Reinhard and Schrijver, Alexander and Seymour, Paul},
+  date    = {2010},
+  title   = {Graph theory},
+  number  = {1},
+  pages   = {521--580},
+  volume  = {7},
+  journal = {Oberwolfach Reports},
+  year    = {2010},
+}
+
+@Online{Microsoft2017,
+  author  = {Microsoft},
+  date    = {2017-05-09},
+  title   = {What’s new for Microsoft Graph Developers at Build 2017},
+  url     = {https://devblogs.microsoft.com/microsoft365dev/microsoft-graph-at-build-2017/},
+  urldate = {2023-03-18},
+}
+
+@Article{Warner2019,
+  author = {Warner, Jacob Paul},
+  date   = {2019},
+  title  = {Microsoft: A Strategic Audit},
+  year   = {2019},
+}
+
+@Book{Frisch2002,
+  author    = {Frisch, Aeleen},
+  date      = {2002},
+  title     = {Essential system administration: Tools and techniques for linux and unix administration},
+  publisher = {" O'Reilly Media, Inc."},
+  year      = {2002},
+}
+
+@Book{Tulloch2001,
+  author    = {Tulloch, Mitch},
+  date      = {2001},
+  title     = {Windows 2000 administration in a nutshell: a desktop quick reference},
+  publisher = {" O'Reilly Media, Inc."},
+  year      = {2001},
+}
+
+@Online{Sibisi2022,
+  author  = {Sibisi, Mduduzi},
+  date    = {2022-08-31},
+  title   = {What are Windows Administrative Tools and How to Use (Windows 10 / 11)},
+  url     = {https://cloudinfrastructureservices.co.uk/what-are-windows-administrative-tools-and-how-to-use-windows-10-11/},
+  urldate = {2023-03-20},
+}
+
+@Misc{Hayes2008,
+  author    = {Hayes, Brian},
+  date      = {2008},
+  title     = {Cloud computing},
+  publisher = {ACM New York, NY, USA},
+  year      = {2008},
+}
+
+@InProceedings{Qian2009,
+  author       = {Qian, Ling and Luo, Zhiguo and Du, Yujian and Guo, Leitao},
+  booktitle    = {Cloud Computing: First International Conference, CloudCom 2009, Beijing, China, December 1-4, 2009. Proceedings 1},
+  date         = {2009},
+  title        = {Cloud computing: An overview},
+  organization = {Springer},
+  pages        = {626--631},
+  year         = {2009},
+}
+
+@Online{Denaux2022,
+  author  = {Denaux, Lins and Van Damme, Tania},
+  date    = {2022-05-15},
+  title   = {Grafen - UGent Wiskunde},
+  url     = {https://cage.ugent.be/~tvd/Grafennascholing/Grafensyllabusvolledig.pdf},
+  urldate = {2023-03-20},
+}
+
+@Book{Rittinghouse2016,
+  author    = {Rittinghouse, John W and Ransome, James F},
+  date      = {2016},
+  title     = {Cloud computing: implementation, management, and security},
+  publisher = {CRC press},
+  year      = {2016},
+}
+
+@Article{Aljabre2012,
+  author    = {Aljabre, Abdulaziz},
+  date      = {2012},
+  title     = {Cloud computing for increased business value},
+  number    = {1},
+  volume    = {3},
+  journal   = {International Journal of Business and social science},
+  publisher = {Centre for Promoting Ideas, USA},
+  year      = {2012},
+}
+
+@Book{Haag2009,
+  author    = {Haag, S. and Cummings, M.},
+  date      = {2009},
+  title     = {Management Information Systems for the Information Age},
+  isbn      = {9780073376783},
+  publisher = {McGraw-Hill Companies,Incorporated},
+  url       = {https://books.google.be/books?id=PGQ9PgAACAAJ},
+  lccn      = {2009036809},
+  year      = {2009},
+}
+
+@Article{Burgess2003,
+  author    = {Burgess, Mark},
+  date      = {2003},
+  title     = {On the theory of system administration},
+  number    = {1-3},
+  pages     = {1--46},
+  volume    = {49},
+  journal   = {Science of Computer Programming},
+  publisher = {Elsevier},
+  year      = {2003},
+}
+
+@Article{Gastermann2015,
+  author    = {Gastermann, Bernd and Stopper, Markus and Kossik, Anja and Katalinic, Branko},
+  date      = {2015},
+  title     = {Secure implementation of an on-premises cloud storage service for small and medium-sized enterprises},
+  pages     = {574--583},
+  volume    = {100},
+  journal   = {Procedia Engineering},
+  publisher = {Elsevier},
+  year      = {2015},
+}
+
+@Online{Microsoft2022a,
+  author  = {Microsoft},
+  date    = {2022-11-23},
+  title   = {Compare Active Directory to Azure Active Directory},
+  url     = {https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-compare-azure-ad-to-ad},
+  urldate = {2023-03-22},
+}
+
+@Online{Microsoft2023b,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {Azure products},
+  url     = {https://azure.microsoft.com/en-us/products/},
+  urldate = {2023-03-22},
+}
+
+@Online{Microsoft2023c,
+  author  = {Microsoft},
+  date    = {2023-02-22},
+  title   = {What is Azure Active Directory?},
+  url     = {https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-whatis},
+  urldate = {2023-03-22},
+}
+
+@Online{OData2023,
+  author  = {OData},
+  date    = {2023},
+  title   = {OData Version 3.0 Core Protocol},
+  url     = {https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/},
+  urldate = {2023-03-25},
+}
+
+@Online{Microsoft2016,
+  author  = {Microsoft},
+  date    = {2016-03-23},
+  title   = {Azure AD Graph API reference},
+  url     = {https://learn.microsoft.com/en-gb/previous-versions/azure/ad/graph/api/api-catalog},
+  urldate = {2023-03-14},
+}
+
+@WWW{Microsoft,
+  author  = {Microsoft},
+  title   = {Azure AD Graph Explorer},
+  url     = {https://graphexplorer.azurewebsites.net/},
+  urldate = {2023-03-05},
+}
+
+@Online{Microsoft2015,
+  author  = {Microsoft},
+  date    = {2015},
+  editor  = {MINKY},
+  title   = {Azure AD Graph API reference},
+  url     = {https://weareminky.com/share/ms/docs/reference/rest/example/index.html},
+  urldate = {2023-03-01},
+}
+
+@Online{OAuth
