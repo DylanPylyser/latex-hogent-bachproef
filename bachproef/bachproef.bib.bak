@@ -270,8 +270,9 @@
   urldate = {2023-03-25},
 }
 
-@Article{saltzer1975protection,
+@Article{Saltzer1975,
   author    = {Saltzer, Jerome H and Schroeder, Michael D},
+  date      = {1975},
   title     = {The protection of information in computer systems},
   number    = {9},
   pages     = {1278--1308},
@@ -279,6 +280,39 @@
   journal   = {Proceedings of the IEEE},
   publisher = {IEEE},
   year      = {1975},
+}
+
+@TechReport{Dusseault2010,
+  author = {Dusseault, Lisa and Snell, J},
+  date   = {2010},
+  title  = {Patch method for http},
+  year   = {2010},
+}
+
+@Misc{Fielding1999,
+  author    = {Fielding, Roy and Gettys, Jim and Mogul, Jeffrey and Frystyk, Henrik and Masinter, Larry and Leach, Paul and Berners-Lee, Tim},
+  date      = {1999},
+  title     = {RFC2616: Hypertext Transfer Protocol--HTTP/1.1},
+  publisher = {RFC Editor},
+  year      = {1999},
+}
+
+@Article{Liang2016,
+  author    = {Liang, Steve and Huang, Chih-Yuan and Khalafbeigi, Tania},
+  date      = {2016},
+  title     = {OGC SensorThings API Part 1: Sensing, Version 1.0.},
+  publisher = {Open Geospatial Consortium},
+  year      = {2016},
+}
+
+@Article{wojcieszyn2014odata,
+  author    = {Wojcieszyn, Filip and Wojcieszyn, Filip},
+  date      = {2014},
+  title     = {OData},
+  pages     = {347--363},
+  journal   = {ASP. NET Web API 2 Recipes: A Problem Solution Approach},
+  publisher = {Springer},
+  year      = {2014},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

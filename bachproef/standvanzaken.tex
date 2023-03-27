@@ -133,7 +133,7 @@ Door het gebruik van \ac{REST}-eindpunten kunnen \ac{HTTP}-verzoeken verstuurd w
 
 Het proces van Graph gaat van start wanneer een applicatie een verzoek doet. Dit verzoek moet een token bevatten. Deze token wordt gegeven door Azure \ac{AD} en bewijst dat de gebruiker de juiste machtigingen heeft om de gevraagde data te raadplegen.
 
-\subsubsection{Authenticatie en authorizatie}
+\subsubsection{Authenticatie en autorisatie}
 
 Azure Active Directory-tokens bevatten informatie over de applicatie, de gebruiker, authenticatie en de rechten die een applicatie mag uitvoeren op de bijhorende directory \autocite{Microsoft2015}. \\
 
@@ -151,7 +151,7 @@ Vervolgens voert de \ac{API} de nodige autorisaties uit via permissie scopes. Di
 
 De permissie scopes worden gebruikt om te controleren of een gebruiker toegang heeft tot een bepaalde map of locatie. Een ontwikkelaar moet in dit scenario de juiste permissie scopes gebruiken om over de vereiste rechten te beschikken voor een actie. \\
 
-Wanneer er wordt aangemeld, krijgt de gebruiker de mogelijkheid om toestemming te geven of de applicatie in kwestie de mapgegevens van de gebruiker mag benutten. Tijdens het toestaan worden de permissie scopes meegegeven die de ontwikkelaar heeft ingesteld. Een oplijsting van de mogelijk permissie scopes binnen de Azure \ac{AD} Graph \ac{API} bevindt zich hieronder. 
+Wanneer er wordt aangemeld, krijgt de gebruiker de mogelijkheid om toestemming te geven of de applicatie in kwestie de mapgegevens van de gebruiker mag benutten. Tijdens het toestaan worden de permissie scopes meegegeven die de ontwikkelaar heeft ingesteld. Een opsomming van de mogelijk permissie scopes binnen de Azure \ac{AD} Graph \ac{API} bevindt zich hieronder. 
 
 \begin{itemize}
     \item User.Read: Rechten om aan te melden en het gebruikersprofiel te lezen.
@@ -169,23 +169,99 @@ Het gebruik van permissie scopes komt overeen met een gekend veiligheidsprincipe
 
 \subsubsection{Eindpunt adressering}
 
-...
+Om taken of functies uit te voeren met de Graph \ac{API}, wordt er gebruikgemaakt van \ac{HTTP}-verzoeken. Deze verzoeken maken gebruik van een bepaalde methode. Een opsomming van de mogelijk methodes wordt hieronder weergegeven met bijhorende betekenis, gebaseerd op het onderzoek van \textcite{Fielding1999}, \textcite{Dusseault2010}.
+
+\begin{itemize}
+    \item GET: Geeft data weer van de server.
+    \item POST: Verstuurt data naar de server om nieuwe data aan te maken.
+    \item PATCH: Verstuurt data naar de server om gedeeltelijk de bron bij te werken.
+    \item PUT: Verstuurt data naar de server om de volledige bron bij te werken.
+    \item DELETE: Verwijdert data van de server.
+\end{itemize}
+
+Deze verzoeken zijn gericht op een eindpunt van een dienst, rescource, een verzameling of rescource of andere entiteiten die de \ac{API} ondersteunt. De eindpunten worden genoteerd als een \ac{URL}. Het gebruikelijk formaat van zo'n eindpunt wordt voorgesteld op Figuur \ref{bfe}. \\
+
+\begin{figure}
+    \begin{verbatim}https://graph.windows.net/{tenant_id}/{resource_path}?{api_version}
+    \end{verbatim}    
+    \caption[Basis formaat Graph API-eindpunt]{Het basis formaat van een Graph API-eindpunt.}
+    \label{bfe}
+\end{figure}
+
+De reeds voorgestelde \ac{URL} bestaat uit vier componenten.
+
+\begin{itemize}
+    \item Service root: Het aanspreekpunt voor alle Graph \ac{API}-verzoeken. Voor Azure \ac{AD} Graph is dit “https://graph.windows.net”.
+    \item Tenant Identifier: De identiteit van de tenant waar het verzoek naar gericht is.
+    \item Rescource path: Het pad van de bron waar het verzoek naar gericht is.
+    \item Graph \ac{API} version: De versie van de \ac{API} waar het verzoek naar gericht is.
+\end{itemize}
+
+Een praktisch voorbeeld met betrekking tot het oproepen van gebruikersgegevens, wordt weergegeven op Figuur \ref{pfe}.   \\
+
+\begin{figure}
+    \begin{verbatim}https://graph.windows.net/contoso.com/users/john@contoso.com/
+$links/manager?api-version=1.6
+    \end{verbatim}    
+    \caption[Voorbeeld Graph \ac{API}-eindpunt]{Praktisch voorbeeld van een Graph \ac{API}-eindpunt, gericht op de manager eigenschap van “john@contoso.com”.}
+    \label{pfe}
+\end{figure}
+
+\subsubsection{OData Query Parameters}
+
+Zoals reeds vermeld maar de Graph \ac{API} gebruik van OData. Het gebruik van OData-queryparameters zorgt ervoor dat een ingelezen verzameling van bronnen kunnen gefilterd, gesorteerd en gepagineerd worden. \\
+
+De Graph \ac{API} biedt ondersteuning aan voor de volgende parameters met bijhorende betekenis. De betekenissen staan gedefinieerd in studies van \textcite{Liang2016}, \textcite{Wojcieszyn2014}. 
+
+\begin{itemize}
+    \item \$batch: Indienen van \ac{HTTP} POST-verzoeken.
+    \item \$expand: Opnemen van een of meerdere bronnen in het antwoord.
+    \item \$filter: Filteren van beschikbare bronnen.
+    \item \$orderby: Opgeven van ordening door de opgevraagde collectie.
+    \item \$previous-page: Ophalen van vorige pagina met resultaten.
+    \item \$top: Beperken van een teruggezonden opgevraagde verzameling.
+    \item \$skiptoken: Overslaan van opgegeven aantal items.
+\end{itemize}
 
 \subsubsection{Request en Response Headers}
 
-...
+% TODO: Bron zoeken voor onderstaande uitleg?
 
-\subsubsection{Request and Response Bodies}
+De Graph \Ac{API} werkt met verzoeken en antwoorden. Een verzoek werkt met een aantal soorten headers en bodies. 
+
+Drie voorkomende verzoekheaders zijn de volgende:
+
+\begin{itemize}
+    \item Authorization: Uitgegeven Azure \ac{AD}-token.
+    \item Content-Type: Mediatype van de inhoud.
+    \item Content-Length: Lengte van het verzoek (in bytes).
+\end{itemize} 
+
+Daarnaast bestaan er ook een aantal antwoordheaders:
+
+\begin{itemize}
+    \item Content-Type:
+    \item Location:
+    \item ocp-aad-diagnostics-server-name:
+    \item ocp-aad-session-key:
+\end{itemize}
+
+\subsubsection{Request en Response Bodies}
 
 ...
 
 \subsection{Toepassingen van Azure AD via PowerShell en Graph} 
 
+% TODO... (Reserve)
+
+Idee: reeds recente voorbeelden illustreren...
+
+Vb. Applicatie voor Teams via de Graph API... 
 
 \section{Microsoft Graph}
 
+\subsection{Waarom Microsoft Graph?} 
 
+\subsection{Achterliggende werking van Microsoft Graph}
 
-
-
-
+\subsection{Toepassingen van Microsoft Graph}
