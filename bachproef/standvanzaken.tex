@@ -115,7 +115,7 @@ Graph van Microsoft heeft een soortgelijke betekenis als dat van een wiskundige 
 
 \begin{figure}
     \includegraphics[width=\textwidth]{GraphMicrosoft.png}
-    \caption[Voorbeeld Microsoft Graph]{Voorstelling van Graph door \textcite{Microsoft2017}.}
+    \caption[Voorbeeld Azure \ac{AD} Graph]{Voorstelling van Azure \ac{AD} Graph door \textcite{Microsoft2017}.}
     \label{gms}
 \end{figure}
 
@@ -168,6 +168,8 @@ Wanneer er wordt aangemeld, krijgt de gebruiker de mogelijkheid om toestemming t
 Het gebruik van permissie scopes komt overeen met een gekend veiligheidsprincipe binnen de \ac{IT}. “Principle of Least Privilege”, of “Beginsel van de minste voorrechten” in het Nederlands, staat voor het toekennen van een minimum aan rechten \autocite{Saltzer1975}. 
 
 \subsubsection{Eindpunt adressering}
+
+% TODO: foto's zoeken om het makkelijker te maken?
 
 Om taken of functies uit te voeren met de Graph \ac{API}, wordt er gebruikgemaakt van \ac{HTTP}-verzoeken. Deze verzoeken maken gebruik van een bepaalde methode. Een opsomming van de mogelijk methodes wordt hieronder weergegeven met bijhorende betekenis, gebaseerd op het onderzoek van \textcite{Fielding1999}, \textcite{Dusseault2010}.
 
@@ -227,9 +229,9 @@ De Graph \ac{API} biedt ondersteuning aan voor de volgende parameters met bijhor
 
 % TODO: Bron zoeken voor onderstaande uitleg?
 
-De Graph \Ac{API} werkt met verzoeken en antwoorden. Een verzoek werkt met een aantal soorten headers en bodies. 
+De Graph \ac{API} werkt met verzoeken en antwoorden. Een verzoek werkt met een aantal soorten headers en bodies. \\
 
-Drie voorkomende verzoekheaders zijn de volgende:
+Drie voorbeelden van voorkomende verzoekheaders zijn de volgende:
 
 \begin{itemize}
     \item Authorization: Uitgegeven Azure \ac{AD}-token.
@@ -237,18 +239,22 @@ Drie voorkomende verzoekheaders zijn de volgende:
     \item Content-Length: Lengte van het verzoek (in bytes).
 \end{itemize} 
 
-Daarnaast bestaan er ook een aantal antwoordheaders:
+Daarnaast bestaan er ook een aantal antwoordheaders. Hieronder worden een aantal mogelijke antwoordheaders meegegeven.
 
 \begin{itemize}
-    \item Content-Type:
-    \item Location:
-    \item ocp-aad-diagnostics-server-name:
-    \item ocp-aad-session-key:
+    \item Content-Type: Mediatype van de inhoud.
+    \item Location: Antwoord op POST-verzoeken wanneer een nieuwe bron in de directory wordt aangemaakt.
+    \item ocp-aad-diagnostics-server-name: Identifier voor de server die een bewerking uitvoert.
+    \item ocp-aad-session-key: Sleutel die een sessie met de directorydienst identificeert.
 \end{itemize}
 
 \subsubsection{Request en Response Bodies}
 
-...
+Request bodies kunnen via \Ac{JSON}- of \ac{XML}-payloads verzonden worden voor POST-, PATCH- en PUT-verzoeken. Bovendien kunnen antwoorden (van een server) worden teruggestuurd via \ac{JSON} of \ac{XML}. \\
+
+Het woord “payload” staat voor data die via een pakket of transmissie worden gedragen \autocite{Comer2006}. \\
+
+Deze payloads kunnen in de request bodies gespecifieerd worden via de Content-Type verzoekheader en in antwoorden van Accept-verzoekheaders. 
 
 \subsection{Toepassingen van Azure AD via PowerShell en Graph} 
 
@@ -258,10 +264,45 @@ Idee: reeds recente voorbeelden illustreren...
 
 Vb. Applicatie voor Teams via de Graph API... 
 
+% ---
+% Volgend onderdeel
+% ---
+
 \section{Microsoft Graph}
 
-\subsection{Waarom Microsoft Graph?} 
+Microsoft Graph is, net zoals de reeds besproken Azure \Ac{AD} Graph, een centrale \ac{REST} \ac{API} voor Microsoft-entiteiten. Deze technologie werd door \textcite{Microsoft2015a} in de schijnwerper gezet in 2015. \\
+
+De technologie is gebasseerd op de wiskundige graaf, zoals ook reeds besproken werd bij Azure \Ac{AD} Graph. Microsoft Graph integreert applicaties met verschillende programmeertalen en platformen. Het logisch concept van Graph wordt weergegeven op Figuur \ref{msg}.
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{MicrosoftGraph.png}
+    \caption[Voorbeeld Microsoft Graph]{Voorstelling van Microsoft Graph door \textcite{Microsoft2023d}.}
+    \label{msg}
+\end{figure}
+
+\subsection{Waarom Microsoft Graph als vervanger?} 
+Microsoft Graph is de opvolger van de Azure \ac{AD} PowerShell-modules en bijhorende Azure \Ac{AD} Graph. Op 30 september 2022 maakte Microsoft (BRON uitfasering) bekend dat de uitfasering van de Azure \ac{AD} PowerShell-modules van start zou gaan op 30 juni 2023. \\
+
+De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende redenen volgens Microsoft (BRON migration to MS graph):
+
+\begin{itemize}
+    \item Het gebruik van Microsoft Graph ligt dubbel zo hoog dan dat van Azure \ac{AD} Graph.
+    \item Microsoft Graph bevat meer dan 150 nieuwe functies.
+    \item Microsoft Graph biedt meer veiligheid en is veerkrachtiger.
+    \item Microsoft Graph client libraries bevatten een ingebouwde ondersteuning voor bepaalde functies, waaronder
+    \begin{itemize}
+        \item herhaalde verwerkingshandelingen,
+        \item veilige doorverwijzing,
+        \item transparante verificatie,
+        \item en payloadcompressie.
+    \end{itemize}
+    \item Verbeterde mogelijkheden zoals Microsoft 365-groepsbeheer, uitnodiging voor externe gebruikers en nog vele anderen.
+\end{itemize} 
+
+% TODO Verder schrijven?
 
 \subsection{Achterliggende werking van Microsoft Graph}
+
+% TODO: \subsubsection{MSAL ...}
 
 \subsection{Toepassingen van Microsoft Graph}

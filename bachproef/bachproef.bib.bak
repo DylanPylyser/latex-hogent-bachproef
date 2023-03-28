@@ -305,7 +305,7 @@
   year      = {2016},
 }
 
-@Article{wojcieszyn2014odata,
+@Article{Wojcieszyn2014,
   author    = {Wojcieszyn, Filip and Wojcieszyn, Filip},
   date      = {2014},
   title     = {OData},
@@ -313,6 +313,30 @@
   journal   = {ASP. NET Web API 2 Recipes: A Problem Solution Approach},
   publisher = {Springer},
   year      = {2014},
+}
+
+@Book{Comer2006,
+  author    = {Comer, Douglas E},
+  date      = {2006},
+  title     = {Internetworking con TCP/IP},
+  publisher = {Pearson Italia Spa},
+  volume    = {1},
+  year      = {2006},
+}
+
+@Online{Microsoft2015a,
+  author  = {Microsoft},
+  date    = {2015-11-18},
+  title   = {Connect(); // 2015: Microsoft Graph (/bèta)},
+  url     = {https://learn.microsoft.com/en-us/events/visual-studio-connect-event-2015/302},
+  urldate = {2023-03-28},
+}
+
+@Online{,
+  author = {Microsoft},
+  date   = {2023-03-16},
+  title  = {Overview of Microsoft Graph},
+  url    = {https://learn.microsoft.com/en-us/graph/images/microsoft-graph.png},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}
