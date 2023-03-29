@@ -1,0 +1,44 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+    \PYG{n+nt}{\PYGZdq{}odata.metadata\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}https://graph.windows.net/myorganization\PYGZbs{}n}
+\PYG{l+s+s2}{    /\PYGZdl{}metadata\PYGZsh{}directoryObjects/Microsoft.DirectoryServices.User/@Element\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}odata.type\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Microsoft.DirectoryServices.User\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}objectType\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}User\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}objectId\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}84fba1e8\PYGZhy{}b942\PYGZhy{}47c9\PYGZhy{}a10e\PYGZhy{}a4bee353ce60\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}deletionTimestamp\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}accountEnabled\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{true}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}assignedLicenses\PYGZdq{}}\PYG{p}{:} \PYG{p}{[],}
+    \PYG{n+nt}{\PYGZdq{}assignedPlans\PYGZdq{}}\PYG{p}{:} \PYG{p}{[],}
+    \PYG{n+nt}{\PYGZdq{}city\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}country\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}department\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}dirSyncEnabled\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}displayName\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Alex Wu\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}facsimileTelephoneNumber\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}givenName\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}immutableId\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}jobTitle\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}lastDirSyncTime\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}mail\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}mailNickname\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}AlexW\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}mobile\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}onPremisesSecurityIdentifier\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}otherMails\PYGZdq{}}\PYG{p}{:} \PYG{p}{[],}
+    \PYG{n+nt}{\PYGZdq{}passwordPolicies\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}passwordProfile\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}physicalDeliveryOfficeName\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}postalCode\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}preferredLanguage\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}provisionedPlans\PYGZdq{}}\PYG{p}{:} \PYG{p}{[],}
+    \PYG{n+nt}{\PYGZdq{}provisioningErrors\PYGZdq{}}\PYG{p}{:} \PYG{p}{[],}
+    \PYG{n+nt}{\PYGZdq{}proxyAddresses\PYGZdq{}}\PYG{p}{:} \PYG{p}{[],}
+    \PYG{n+nt}{\PYGZdq{}sipProxyAddress\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}state\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}streetAddress\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}surname\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}telephoneNumber\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}usageLocation\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}userPrincipalName\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}alex@a830edad9050849NDA1.com\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}userType\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Member\PYGZdq{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

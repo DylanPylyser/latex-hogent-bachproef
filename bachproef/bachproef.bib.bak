@@ -332,11 +332,12 @@
   urldate = {2023-03-28},
 }
 
-@Online{,
-  author = {Microsoft},
-  date   = {2023-03-16},
-  title  = {Overview of Microsoft Graph},
-  url    = {https://learn.microsoft.com/en-us/graph/images/microsoft-graph.png},
+@Online{Microsoft2023d,
+  author  = {Microsoft},
+  date    = {2023-03-16},
+  title   = {Overview of Microsoft Graph},
+  url     = {https://learn.microsoft.com/en-us/graph/overview},
+  urldate = {2023-03-28},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}
