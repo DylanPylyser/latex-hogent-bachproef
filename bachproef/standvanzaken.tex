@@ -404,6 +404,10 @@ linenos
 \label{hresb}
 \end{listing}
 
+\subsection{Wat is de link tussen Azure AD en PowerShell-modules?}
+
+% TODO... navragen of het interessant is om dit onderdeel te kaderen
+
 \subsection{Toepassingen van Azure AD via PowerShell en Graph} 
 
 % TODO... (Reserve)
@@ -449,7 +453,34 @@ De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende reden
 
 % TODO Verder schrijven? Navragen!!!
 
-\subsection{Achterliggende werking van Microsoft Graph}
+\subsection{Microsoft Graph componenten}
+
+% TODO: Klopt dit??? 
+
+Microsoft Graph bestaat uit drie componenten. \\
+
+Het eerste component is de Microsoft Graph \Ac{API}. Dit is een eindpunt dat kan aangesproken worden via “https://graph.microsoft.com” dat Microsoft-entiteiten binnen de cloud kan aanspreken. \\
+
+Het tweede component is Microsoft Graph connectors. Deze Graph-connectoren werken in de ingaande richting. Door het gebruik van deze connectoren, kunnen gegevens buiten de Microsoft-cloud worden gestuurd naar Graph en bijhorende toepassingen. \\
+
+Als laatste worden er een set van tools aangeboden via Microsoft Graph Data Connect. Deze tools kunnen gebruikt worden om toepassingen te maken. De tools dienen voor het stroomlijnen van Graph-data naar Azure-datastores. \\
+
+\subsection{Microsoft Graph API}
+
+Zoals vermeld is de Microsoft Graph \Ac{API} gebasseerd op \Ac{REST}. Door het gebruik van de \ac{API} zijn de Cloud-servicebronnen van Microsoft beschikbaar. \\
+
+Om tot deze bronnen toegang te hebben en om de \Ac{API}aan te spreken, moeten er twee acties voldaan zijn. 
+
+\begin{itemize}
+    \item De applicatie is geregistreerd.
+    \item Er zijn authenticatietokens verkregen voor een gebruiker of instantie.
+\end{itemize}
+
+\subsubsection{OData}
+
+De \ac{API} maakt gebruik van OData. OData werd al reeds besproken in het vorige onderdeel, dit wordt dus niet nog eens aangekaart. Door het gebruik van OData kunnen bronnen, methodes en opsommingen in de metadata van Microsoft Graph worden gedefinieerd.
+
+% TODO: verder schrijven...
 
 % TODO: \subsubsection{MSAL ...}
 
