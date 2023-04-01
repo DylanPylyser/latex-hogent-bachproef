@@ -340,4 +340,53 @@
   urldate = {2023-03-28},
 }
 
+@Online{Microsoft2023e,
+  author  = {Microsoft},
+  date    = {2023-01-27},
+  title   = {Migrate your apps from Azure AD Graph to Microsoft Graph},
+  url     = {https://learn.microsoft.com/en-us/graph/migrate-azure-ad-graph-overview},
+  urldate = {2023-03-27},
+}
+
+@InProceedings{Truica2015,
+  author       = {Truica, Ciprian-Octavian and Radulescu, Florin and Boicea, Alexandru and Bucur, Ion},
+  booktitle    = {2015 20th International Conference on Control Systems and Computer Science},
+  date         = {2015},
+  title        = {Performance evaluation for CRUD operations in asynchronously replicated document oriented database},
+  organization = {IEEE},
+  pages        = {191--196},
+  year         = {2015},
+}
+
+@Online{Microsoft2023f,
+  author  = {Microsoft},
+  date    = {2023-03-31},
+  title   = {Microsoft Graph Changelog},
+  url     = {https://developer.microsoft.com/en-us/graph/changelog/},
+  urldate = {2023-04-01},
+}
+
+@Online{Microsoft2023g,
+  author  = {Microsoft},
+  date    = {2023-02-03},
+  title   = {Use query parameters to customize responses},
+  url     = {https://learn.microsoft.com/en-us/graph/query-parameters?tabs=http},
+  urldate = {2023-04-01},
+}
+
+@WWW{Microsoft2023h,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {Graph Explorer},
+  url     = {https://developer.microsoft.com/en-us/graph/graph-explorer},
+  urldate = {2023-03-18},
+}
+
+@Online{Postman2023,
+  author = {{Postman Inc.}},
+  date   = {2023},
+  title  = {Postman},
+  url    = {https://www.postman.com/},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}

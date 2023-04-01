@@ -97,7 +97,7 @@ Een praktisch voorbeeld van een entiteit, of een groep van entiteiten, dat via d
 % Volgende onderdeel
 % ---
 
-\section{Azure Active Directory}
+\section{Wat is Azure Active Directory?}
 
 \ac{AD} is een centrale en gemeenschappelijke opslagplaats voor informatie geïntroduceerd door Microsoft \autocite{Allen2003}. De eerste versie van \ac{AD} is gemaakt voor de Windows 2000 server-editie. Deze opslagplaats bevat allerlei informatie binnen een netwerk, zoals gebruikers, groepen, computers, applicaties, bestanden en printers. Deze informatie kan worden opgevraagd en beheerd. \\
 
@@ -117,7 +117,7 @@ De communicatie tussen Azure \ac{AD} en de Azure \ac{AD} PowerShell-module gebeu
 
 De naam Graph is afgeleid uit het wiskundige figuur van een graaf. Een graaf is een verzameling van punten die wel of niet met elkaar zijn verbonden \autocite{Denaux2022}. Een voorbeeld van een wiskundige graaf is te zien op Figuur \ref{mga}. \\
 
-\begin{figure}[h]
+\begin{figure}[!b]
     \includegraphics[width=\textwidth]{MathGraphExample.jpg}
     \caption[Voorbeeld wiskundige graaf]{Voorbeeld van een graaf in de wiskunde uit het boek Graph Theory van \textcite{Diestel2010}.}
     \label{mga}
@@ -125,9 +125,9 @@ De naam Graph is afgeleid uit het wiskundige figuur van een graaf. Een graaf is 
 
 Graph van Microsoft heeft een soortgelijke betekenis als dat van een wiskundige graaf. Graph staat in voor de verbindingen tussen de entiteiten dat het ondersteunt, in dit geval Microsoft-entiteiten \autocite{Kokkarinen2022}. Een logische interpretatie van Graph wordt weergegeven op Figuur \ref{gms}. \\
 
-\begin{figure}[h]
+\begin{figure}[!b]
     \includegraphics[width=\textwidth]{GraphMicrosoft.png}
-    \caption[Voorbeeld Azure \ac{AD} Graph]{Voorstelling van Azure \ac{AD} Graph door \textcite{Microsoft2017}.}
+    \caption[Voorbeeld Azure AD Graph]{Voorstelling van Azure \Ac{AD} Graph door \textcite{Microsoft2017}.}
     \label{gms}
 \end{figure}
 
@@ -138,6 +138,22 @@ Graph van Microsoft heeft een soortgelijke betekenis als dat van een wiskundige 
 % TODO: Schrijf verder vanuit de bron van weareminky, dit is de makkelijkste manier
 
 De Azure \ac{AD} Graph \ac{API} is een OData 3.0-compatibele dienst om objecten zoals gebruikers, groepen en contactpersonen in een tenant te lezen en te wijzigen \autocite{Microsoft2016}. \\
+
+Een tenant kan vergeleken worden met een appartementencomplex \autocite{Saxton2015}. Binnen dit complex zijn meerdere appartementen. In elk appartement heb je bijvoorbeeld een badkamer, slaapkamer, living en balkon. Deze uitleg wordt gevisualiseerd op Figuur \ref{rlt}. \\
+
+\begin{figure}[!h]
+    \includegraphics[width=50mm, scale=0.5]{RealTenant.png}
+    \caption[Voorbeeld werkelijke tenant]{Voorbeeld van een tenant in het echte leven uit de blog van \textcite{Saxton2015}.}
+    \label{rlt}
+\end{figure}
+
+In dit scenario met Microsoft is (in \ac{IT}-termen) het complex de Microsoft Office 365-datacenters. Het appartement stelt de tenant of de organisatie in het algemeen voor. Deze tenant-omgeving bevat bijvoorbeeld abonnementen, gebruikers, domeinen en groepen. De tenant wordt gezien als een huurder van de omgeving. Dit concept wordt gevisualiseerd op Figuur \ref{mst}. \\
+
+\begin{figure}[!h]
+    \includegraphics[width=50mm, scale=0.5]{MSTenant.png}
+    \caption[Voorbeeld Microsoft tenant]{Voorbeeld van een tenant binnen Microsoft uit de blog van \textcite{Saxton2015}.}
+    \label{mst}
+\end{figure}
 
 Het OData-protocol dient voor interacties met gegevens via \ac{REST}-webdiensten. Dit protocol biedt een uniforme manier om gegevens en gegevensmodellen te beschrijven \autocite{OData2023}. \\
 
@@ -155,7 +171,7 @@ Een afgekort voorbeeld hiervan is te zien op Figuur \ref{ahtoken}. \\
 \begin{figure}[h]
     \begin{verbatim}Authorization: Bearer eyJ0eX ... FWSXfwtQ
     \end{verbatim}    
-    \caption[Voorbeeld Azure AD-token]{Afgekort voorbeeld van een Azure AD-token binnen een autorisatieheader.}
+    \caption[Voorbeeld Azure AD-token]{Afgekort voorbeeld van een Azure \Ac{AD}-token binnen een autorisatieheader.}
     \label{ahtoken}
 \end{figure}
 
@@ -196,9 +212,9 @@ Om taken of functies uit te voeren met de Graph \ac{API}, wordt er gebruikgemaak
 Deze verzoeken zijn gericht op een eindpunt van een dienst, rescource, een verzameling of rescource of andere entiteiten die de \ac{API} ondersteunt. De eindpunten worden genoteerd als een \ac{URL}. Het gebruikelijk formaat van zo'n eindpunt wordt voorgesteld op Figuur \ref{bfe}. \\
 
 \begin{figure}[h]
-    \begin{verbatim}https://graph.windows.net/{tenant_id}/{resource_path}?{api_version}
+    \footnotesize\begin{verbatim}https://graph.windows.net/{tenant_id}/{resource_path}?{api_version}
     \end{verbatim}    
-    \caption[Basis formaat Graph API-eindpunt]{Het basis formaat van een Graph API-eindpunt.}
+    \caption[Basis formaat Graph API-eindpunt]{Het basis formaat van een Graph \ac{API}-eindpunt.}
     \label{bfe}
 \end{figure}
 
@@ -214,10 +230,10 @@ De reeds voorgestelde \ac{URL} bestaat uit vier componenten.
 Een praktisch voorbeeld met betrekking tot het oproepen van gebruikersgegevens, wordt weergegeven op Figuur \ref{pfe}. \\
 
 \begin{figure}[h]
-    \begin{verbatim}https://graph.windows.net/contoso.com/users/john@contoso.com/
+    \footnotesize\begin{verbatim}https://graph.windows.net/contoso.com/users/john@contoso.com/
 $links/manager?api-version=1.6
     \end{verbatim}    
-    \caption[Voorbeeld Graph \ac{API}-eindpunt]{Praktisch voorbeeld van een Graph \ac{API}-eindpunt, gericht op de manager eigenschap van “john@contoso.com”.}
+    \caption[Voorbeeld Graph API-eindpunt]{Praktisch voorbeeld van een Graph \ac{API}-eindpunt, gericht op de manager eigenschap van “john@contoso.com”.}
     \label{pfe}
 \end{figure}
 
@@ -240,13 +256,12 @@ De Graph \ac{API} biedt ondersteuning aan voor de volgende parameters met bijhor
 Een toegepast voorbeeld van een OData-queryparameter is te vinden in Figuur \ref{odqp}. \\
 
 \begin{figure}[h]
-\begin{verbatim}GET https://graph.windows.net/contoso.com/directoryObjects?api-version=
-2013-04-05&$filter=isof('Microsoft.WindowsAzure.ActiveDirectory.User')%20
-or%20isof('Microsoft.WindowsAzure.ActiveDirectory.Group')%20
-or%20isof('Microsoft.WindowsAzure.ActiveDirectory.Contact')
-&deltaLink= HTTP /1.1
+\footnotesize\begin{verbatim}GET https://graph.windows.net/contoso.com/directoryObjects?api-version=2013-04-05&
+$filter=isof('Microsoft.WindowsAzure.ActiveDirectory.User')%20or%20isof
+('Microsoft.WindowsAzure.ActiveDirectory.Group')%20or%20isof
+('Microsoft.WindowsAzure.ActiveDirectory.Contact')&deltaLink=HTTP/1.1
 \end{verbatim}    
-\caption[Voorbeeld OData-queryparamter]{Toegepast voorbeeld van een OData-queryparamter op een \ac{HTTP} GET-request.}
+\caption[Voorbeeld OData-queryparamter]{Toegepast voorbeeld van een OData-queryparameter op een \ac{HTTP} GET-request.}
 \label{odqp}
 \end{figure}
 
@@ -318,7 +333,7 @@ Een voorbeeld van een request, met bijhorende request en response body wordt voo
 \begin{verbatim}
 POST https://graph.windows.net/myorganization/users?api-version
 \end{verbatim}
-\caption[Voorbeeld \Ac{HTTP} POST-resuest]{Voorbeeld van een \ac{HTTP} POST-request binnen Azure \ac{AD} Graph.}
+\caption[Voorbeeld HTTP POST-request]{Voorbeeld van een \ac{HTTP} POST-request binnen Azure \ac{AD} Graph.}
 \label{hpr}
 \end{listing}
 
@@ -420,7 +435,7 @@ Vb. Applicatie voor Teams via de Graph API...
 % Volgend onderdeel
 % ---
 
-\section{Microsoft Graph}
+\section{Wat is Microsoft Graph?}
 
 Microsoft Graph is, net zoals de reeds besproken Azure \Ac{AD} Graph, een centrale \ac{REST} \ac{API} voor Microsoft-entiteiten. Deze technologie werd door \textcite{Microsoft2015a} in de schijnwerper gezet in 2015. \\
 
@@ -433,7 +448,7 @@ De technologie is gebasseerd op de wiskundige graaf, zoals ook reeds besproken w
 \end{figure}
 
 \subsection{Waarom Microsoft Graph als vervanger?} 
-Microsoft Graph is de opvolger van de Azure \ac{AD} PowerShell-modules en bijhorende Azure \Ac{AD} Graph. Op 30 september 2022 maakte Microsoft (BRON uitfasering???) bekend dat de uitfasering van de Azure \ac{AD} PowerShell-modules van start zou gaan op 30 juni 2023. \\
+Microsoft Graph is de opvolger van de Azure \ac{AD} PowerShell-modules en bijhorende Azure \Ac{AD} Graph. Op 30 september 2022 maakte Microsoft bekend dat de uitfasering van de Azure \ac{AD} PowerShell-modules van start zou gaan op 30 juni 2023 \autocite{Sahay2022}. \\
 
 De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende redenen volgens \textcite{Microsoft2023e}:
 
@@ -453,9 +468,9 @@ De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende reden
 
 % TODO Verder schrijven? Navragen!!!
 
-\subsection{Microsoft Graph componenten}
+\subsection{Uit wat bestaat Microsoft Graph?}
 
-% TODO: Klopt dit??? 
+% TODO: Klopt dit??? Navragen Jarne
 
 Microsoft Graph bestaat uit drie componenten. \\
 
@@ -467,7 +482,7 @@ Als laatste worden er een set van tools aangeboden via Microsoft Graph Data Conn
 
 \subsection{Microsoft Graph API}
 
-Zoals vermeld is de Microsoft Graph \Ac{API} gebasseerd op \Ac{REST}. Door het gebruik van de \ac{API} zijn de Cloud-servicebronnen van Microsoft beschikbaar. \\
+Zoals vermeld is de Microsoft Graph \Ac{API} gebasseerd op \Ac{REST}. Door het gebruik van de \ac{API} zijn de cloud-servicebronnen van Microsoft beschikbaar. \\
 
 Om tot deze bronnen toegang te hebben en om de \Ac{API}aan te spreken, moeten er twee acties voldaan zijn. 
 
@@ -476,11 +491,107 @@ Om tot deze bronnen toegang te hebben en om de \Ac{API}aan te spreken, moeten er
     \item Er zijn authenticatietokens verkregen voor een gebruiker of instantie.
 \end{itemize}
 
+\subsubsection{Authenticatie en Autorisatie}
+
+% TODO: ...
+
 \subsubsection{OData}
 
 De \ac{API} maakt gebruik van OData. OData werd al reeds besproken in het vorige onderdeel, dit wordt dus niet nog eens aangekaart. Door het gebruik van OData kunnen bronnen, methodes en opsommingen in de metadata van Microsoft Graph worden gedefinieerd.
 
-% TODO: verder schrijven...
+\subsubsection{REST API}
+
+Om naar een bron te schrijven of te lezen, wordt er gebruikgemaakt van een verzoek. De opbouw van een verzoek wordt weergegeven op Figuur \ref{RAM}. \\
+
+\begin{figure}[h]
+    \footnotesize\begin{verbatim}{HTTP method} https://graph.microsoft.com/{version}/{resource}?{query-parameters}
+    \end{verbatim}    
+    \caption[Basis formaat Microsoft Graph API-eindpunt]{Het basis formaat van een Microsoft Graph \Ac{API}-eindpunt.}
+    \label{RAM}
+\end{figure}
+
+Een verzoek bestaat uit vier componenten, namelijk het volgende:
+
+\begin{itemize}
+    \item \ac{HTTP} method: Een \ac{HTTP}-methode dat gebruik wordt voor het verzoek.
+    \item version: De versie van de \ac{API} dat de bijhorende applicatie ondersteunt.
+    \item rescource: De bron of rescource dat gebruikt wordt.
+    \item query-parameters: Optionele OData-queryparameters of \Ac{REST}-methodes dat het antwoord aanpassen.
+\end{itemize}
+
+% TODO: nakijken!
+\begin{comment}
+Wanneer er een verzoek wordt verstuurd, krijgt dit ook een antwoord terug. Een antwoord bestaat uit minstens volgende onderdelen: 
+
+\begin{itemize}
+    \item Status code:
+    \item Response message:
+    \item @odata.nextLink:
+\end{itemize}
+\end{comment}
+
+\subsubsection{HTTP methods}
+
+Microsoft Graph werkt met \Ac{HTTP}-methodes bij een verzoek. Microsoft Graph maakt gebruik van vijf soorten methodes, namelijk:
+
+\begin{itemize}
+    \item GET
+    \item POST
+    \item PATCH
+    \item PUT
+    \item DELETE
+\end{itemize}
+
+De betekenis van deze vijf methodes werd al reeds aangehaald bij Azure \Ac{AD} Graph. \\
+
+De GET- en DELETE-methode vallen onder CRUD-methodes. CRUD staat voor CREATE, READ, UPDATE en DELETE \autocite{Truica2015}. De CRUD-operaties komen voor in het \ac{IT}-component rond databanken. In Microsoft Graph staan GET en DELETE gelijk aan de CRUD-operaties READ en DELETE. Bovendien maken deze twee methodes geen gebruik van een request body. \\
+
+De andere drie methodes (POST, PATCH en PUT) gebruiken wel een request body. Meestal wordt in dit deel van het verzoek gebruikgemaakt van het \ac{JSON}-formaat. In dit formaat wordt er extra informatie meegeven over welke waarden moeten gebruikt worden voor een operatie of methode uit te voeren.
+
+\subsubsection{Beschikbare versies}
+
+Microsoft Graph is volop in ontwikkeling en ondersteunt, op dit moment van het schrijven, twee versies \Autocite{Microsoft2023f}. \\
+
+De eerste versie, onder de naam v1.0, is een stabiele versie dat toegepast kan worden in productieomgevingen en -applicaties. \\
+
+De tweede versie, onder de naam beta, is een versie waar actief aan (nieuwe) concepten gesleuteld wordt. Deze versie wordt toegepast in testomgevingen, doordat het nog in ontwikkeling is. Het wordt niet aangeraden voor in productie te gebruiken. 
+
+\subsubsection{Wat zijn resources?}
+
+Bronnen, of beter bekend als rescources, zijn entiteiten of types die gebruikt worden om de communicatie met een verzoek mogelijk te maken. Zoals in de \ac{URL} weergegeven, komt een rescource hierin voor. \\
+
+Mogelijke bronnen zijn bijvoorbeeld “me”, een user, een groep, etc. Deze bronnen ondersteunen ook relaties, waardoor andere onderdelen aangesproken kunnen worden. Ter illustratie, wanneer er een gebruiker een mail wilt sturen, is dit mogelijk via “me/sendMail”. \\
+
+Bronnen vereisen machtigingen om bepaalde acties uit te voeren. Hier moet rekening mee gehouden worden voor er een actie wordt uitgevoerd.
+
+\subsubsection{Responses aanpassen via queryparameters}
+
+Antwoorden of responses worden weergegeven na het gebruik van een bepaald HTTP-verzoek. Het antwoord kan aangepast worden via twee soorten queryparameters. \\
+
+Als eerste de OData-queryparameters. Deze queryparamaters zijn afkomstig van het OData-protocol waarvan bepaalde parameters worden ondersteund door \textcite{Microsoft2023g}. Een toegepast voorbeeld van een verzoek met een OData-queryparameter wordt weergegeven op Figuur \ref{TRAM}. \\
+
+\begin{figure}[h]
+    \footnotesize\begin{verbatim}GET https://graph.microsoft.com/v1.0/me?$select=displayName,jobTitle
+    \end{verbatim}    
+    \caption[Voorbeeld OData HTTP-verzoek]{Praktisch OData voorbeeld van een Microsoft Graph \Ac{API}-eindpunt, waarbij er op “displayName” en “jobTitle” wordt gefilterd.}
+    \label{TRAM}
+\end{figure}
+
+Het tweede soort dat antwoorden kan aanpassen zijn de normale queryparameters. Met het woord normaal worden niet-OData-gerelateerde parameters bedoelt. Een voorbeeld van dit soort queryparameters is te vinden op Figuur \ref{NRAM}. \\
+
+\begin{figure}[h]
+    \footnotesize\begin{verbatim}GET https://graph.microsoft.com/me/calendarView?startDateTime=
+2019-09-01T09:00:00.0000000&endDateTime=2019-09-01T17:00:00.0000000
+    \end{verbatim}    
+    \caption[Voorbeeld niet-OData HTTP-verzoek]{Praktisch niet-OData voorbeeld van een Microsoft Graph \Ac{API}-eindpunt, waarbij een bepaalde tijdsperiode wordt opgevraagd.}
+    \label{NRAM}
+\end{figure}
+
+\subsubsection{Tools om de Microsoft Graph API te testen}
+
+De werking van Microsoft Graph API kan worden getest in een demo-omgeving. Deze omgeving wordt Graph Explorer genoemd en wordt voorzien door \textcite{Microsoft2023h}. Hierin kunnen verzoeken worden getest met of zonder Microsoft-tenant. \\
+
+Daarnaast kan de API ook worden getest via Postman. Postman is een collaboratief \ac{API}-platform dat los van Microsoft staat \autocite{Postman2023}.
 
 % TODO: \subsubsection{MSAL ...}
 
