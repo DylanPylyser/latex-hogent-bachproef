@@ -480,6 +480,87 @@ Het tweede component is Microsoft Graph connectors. Deze Graph-connectoren werke
 
 Als laatste worden er een set van tools aangeboden via Microsoft Graph Data Connect. Deze tools kunnen gebruikt worden om toepassingen te maken. De tools dienen voor het stroomlijnen van Graph-data naar Azure-datastores. \\
 
+\subsection{Authenticatie en Autorisatie}
+
+Vooraleer er een token wordt uitgegeven, moet een applicatie geregistreerd zijn in het Microsoft identity platform \autocite{Microsoft2022b}. Bovendien moet de applicatie beschikken over de juiste machtigingen om Microsoft Graph te mogen gebruiken. \\
+
+\subsubsection{Registreren van een applicatie op het Microsoft identity platform}
+
+Een applicatie kan een token krijgen wanneer het geregistreerd is in het Azure-portaal. Wanneer de applicatie geregistreerd is, gaat het Microsoft-identiteitsplatform instaan voor volgende informatie:
+
+\begin{itemize}
+    \item Application ID: Unieke identificatie.
+    \item Redirect URI/URL: Eindpunt waar de applicatie wordt op aangesproken.
+    \item Client secret: Wachtwoord of sleutelpaar dat gebruikt wordt voor authenticatie. Dit wordt gebruikt bij webapplicaties.
+\end{itemize}
+
+Een voorbeeld van hoe een tokenverzoek er kan uitzien, is te vinden op Figuur \ref{HTR}. \\
+
+\begin{figure}[h]
+    \footnotesize\begin{verbatim}POST /common/oauth2/v2.0/token HTTP/1.1
+Host: https://login.microsoftonline.com
+Content-Type: application/x-www-form-urlencoded
+        
+client_id=6731de76-14a6-49ae-97bc-6eba6914391e
+&scope=user.read%20mail.read
+&code=OAAABAAAAiL9Kn2Z27UubvWFPbm0gLWQJVzCTE9UkP3pSx1aXxUjq3n8b2JRLk4OxVXr...
+&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
+&grant_type=authorization_code
+&client_secret=JqQX2PNo9bpM0uEihUPzyrh
+    \end{verbatim}    
+    \caption[Voorbeeld tokenverzoek Microsoft Graph]{Een voorbeeld van een tokenverzoek via \ac{HTTP} binnen Microsoft Graph door \autocite{Microsoft2022b}.}
+    \label{HTR}
+\end{figure}
+
+\subsubsection{Toegangsmogelijkheden}
+
+Binnen Microsoft Graph zijn er twee mogelijkheden om toegang te verschaffen tot gegevens. Dit kan via de gedelegeerde- of App-only-methode. Een simpele weergave van wat deze methodes betekenen wordt weergegeven op Figuur \ref{MIPM}.
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{MIPmethods.png}
+    \caption[Voorbeeld toegangsmogelijkheden]{Voorstelling van de twee mogelijke methodes om toegang te krijgen tot het Microsoft identity platform door \autocite{Microsoft2022b}.}
+    \label{MIPM}
+\end{figure}
+
+De eerste methode, delegated access, staat voor het toegang hebben namens de gebruiker. Dit is mogelijk wanneer een gebruiker zich aanmeldt bij een applicatie. Hierdoor geeft de gebruiker toestemming. Vervolgens kan Microsoft Graph in naam van de gebruiker een actie uitvoeren. Zowel de applicatie als de gebruiker moet over de juiste machtigingen beschikken om het verzoek te laten doorgaan. \\
+
+Een ander woord voor gedelegeerde machtigingen zijn scopes. Deze scopes maken gebruik van OAuth2-permissies. Dit concept werd al reeds besproken bij Azure \ac{AD} Graph. \\
+
+App-only access is de tweede methode. Dit principe werkt zonder een gebruiker om met gegevens te interageren. Dit principe komt eerder voor bij automatische taken (bv. een back-up) of achtergronddiensten (bv. daemons). Dit principe is aan te raden wanneer een gebruiker niet mag inloggen of de vereiste gegevens via meerdere gebruikers worden toegewezen. \\
+
+Bij de tweede methode moet de applicatie over de juiste privileges beschikken. Dit kan via permissies of app-rollen. Een andere manier is via toekennen van eigendomsrechten aan de applicatie. 
+
+\subsubsection{Wat zijn access tokens?}
+
+Access tokens worden verkregen wanneer een toepassing of applicatie een authenticatieverzoek doet. Deze tokens worden gebruikt om de \ac{API} aan te spreken. \\
+
+Als extra veiligheidsprincipe worden toegangstokens van het Microsoft-\newline
+identiteitsplatform uitgerust met claims. Claims bevatten extra informatie dat kan dienen als extra validatiemethode. Deze validatie wordt gebruikt om na te kijken of de instantie wel degelijk over de juiste rechten beschikken om bepaalde acties uit te voeren. \\
+
+Deze tokens worden behandeld als ondoorzichtige strings dat alleen voor de \ac{API} bedoeld zijn. Een voorbeeld van een access token is te vinden op Figuur \ref{MSGAT}. \\
+
+\begin{figure}[h]
+    \footnotesize\begin{verbatim}eyJ0eXAiOiJKV1QiLCJhb ... lciIUs9DrBLfpCt
+\end{verbatim}    
+    \caption[Afgekort voorbeeld Microsoft Graph access token]{Afgekort voorbeeld van een access token binnen Microsoft Graph.}
+    \label{MSGAT}
+\end{figure}
+
+Microsoft Graph wordt aangeroepen door een autorisatieverzoek van een applicatie. De toegangstoken wordt als een Bearer-token gekoppeld aan de Autorisatieheader binnen een \ac{HTTP}-verzoek. Dit concept is gelijkaardig aan dat van een Azure \ac{AD}-token dat al reeds besproken werd. Een voorbeeld van een \ac{HTTP}-verzoek met deze onderdelen wordt weergegeven op Figuur \ref{MSGA}. \\
+
+\begin{figure}[h]
+    \footnotesize\begin{verbatim}GET https://graph.microsoft.com/v1.0/me/ HTTP/1.1
+Host: graph.microsoft.com
+Authorization: Bearer EwAoA8l6BAAU ... 7PqHGsykYj7A0XqHCjbKKgWSkcAg==
+    \end{verbatim}    
+    \caption[Voorbeeld Microsoft Graph Autorisatieverzoek]{Een voorbeeld van een autorisatieverzoek met een access token binnen Microsoft Graph.}
+    \label{MSGA}
+\end{figure}
+
+Om aan access tokens te geraken, bestaan er oplossingen zoals authenticatiebibliotheken. Een oplossing van Microsoft is \ac{MSAL} dat voor dit scenario toegankelijk is. Bovendien bestaan er alternatieven zoals Server middleware en authenticatiebibliotheken van derde partijen. \\
+
+Hoe dan ook, deze bibliotheken zijn niet verplicht. Access tokens kunnen ook rechtstreeks verkregen worden als dit gewenst is. 
+
 \subsection{Microsoft Graph API}
 
 Zoals vermeld is de Microsoft Graph \Ac{API} gebasseerd op \Ac{REST}. Door het gebruik van de \ac{API} zijn de cloud-servicebronnen van Microsoft beschikbaar. \\
@@ -490,10 +571,6 @@ Om tot deze bronnen toegang te hebben en om de \Ac{API}aan te spreken, moeten er
     \item De applicatie is geregistreerd.
     \item Er zijn authenticatietokens verkregen voor een gebruiker of instantie.
 \end{itemize}
-
-\subsubsection{Authenticatie en Autorisatie}
-
-% TODO: ...
 
 \subsubsection{OData}
 

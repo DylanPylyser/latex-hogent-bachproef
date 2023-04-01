@@ -389,4 +389,13 @@
   url    = {https://www.postman.com/},
 }
 
+@Online{Saxton2015,
+  author  = {Saxton, Adam},
+  date    = {2015-04-09},
+  editor  = {Microsoft},
+  title   = {What is a Tenant?},
+  url     = {https://powerbi.microsoft.com/en-us/blog/what-is-a-tenant/},
+  urldate = {2023-04-01},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
