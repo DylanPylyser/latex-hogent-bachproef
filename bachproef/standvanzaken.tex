@@ -623,7 +623,43 @@ De betekenis van deze vijf methodes werd al reeds aangehaald bij Azure \Ac{AD} G
 
 De GET- en DELETE-methode vallen onder CRUD-methodes. CRUD staat voor CREATE, READ, UPDATE en DELETE \autocite{Truica2015}. De CRUD-operaties komen voor in het \ac{IT}-component rond databanken. In Microsoft Graph staan GET en DELETE gelijk aan de CRUD-operaties READ en DELETE. Bovendien maken deze twee methodes geen gebruik van een request body. \\
 
-De andere drie methodes (POST, PATCH en PUT) gebruiken wel een request body. Meestal wordt in dit deel van het verzoek gebruikgemaakt van het \ac{JSON}-formaat. In dit formaat wordt er extra informatie meegeven over welke waarden moeten gebruikt worden voor een operatie of methode uit te voeren.
+De andere drie methodes (POST, PATCH en PUT) gebruiken wel een request body. Meestal wordt in dit deel van het verzoek gebruikgemaakt van het \ac{JSON}-formaat. In dit formaat wordt er extra informatie meegeven over welke waarden moeten gebruikt worden voor een operatie of methode uit te voeren. Een voorbeeld van een request met bijhorend antwoord is te vinden op Figuur \ref{MSPR} en \ref{MSPRES}. \\
+
+\begin{figure}[h]
+    \footnotesize\begin{verbatim}POST
+https://graph.microsoft.com/v1.0/tenantRelationships/delegatedAdminRelationships/
+5d027261- ... -a3205431b836/requests
+Content-Type: application/json
+
+{
+    "action": "lockForApproval"
+}
+    \end{verbatim}    
+    \caption[Voorbeeld Microsoft Graph POST-verzoek]{Een voorbeeld van een \ac{HTTP} POST-verzoek binnen Microsoft Graph.}
+    \label{MSPR}
+\end{figure}
+
+\begin{figure}[h]
+    \footnotesize\begin{verbatim}
+HTTP/1.1 201 Created
+Content-Type: application/json
+Location: https://graph.microsoft.com/v1.0/tenantRelationships/
+delegatedAdminRelationships/c45e5ffb- ... -25a5a3fbf339
+
+{
+    "@odata.type": "#microsoft.graph.delegatedAdminRelationshipRequest",
+    "@odata.context": "https://graph.microsoft.com/v1.0\n
+    /tenantRelationships/$metadata#requests",
+    "id": "5a6666c9-7282-0a41-67aa-25a5a3fbf339",
+    "action": "lockForApproval",
+    "status": "created",
+    "createdDateTime": "2022-02-10T10:55:47.1180588Z",
+    "lastModifiedDateTime": "2022-02-10T10:55:47.1180588Z"
+}
+    \end{verbatim}    
+    \caption[Voorbeeld Microsoft Graph POST-antwoord]{Een voorbeeld van een \ac{HTTP} POST-antwoord binnen Microsoft Graph.}
+    \label{MSPRES}
+\end{figure}
 
 \subsubsection{Beschikbare versies}
 
@@ -637,7 +673,14 @@ De tweede versie, onder de naam beta, is een versie waar actief aan (nieuwe) con
 
 Bronnen, of beter bekend als rescources, zijn entiteiten of types die gebruikt worden om de communicatie met een verzoek mogelijk te maken. Zoals in de \ac{URL} weergegeven, komt een rescource hierin voor. \\
 
-Mogelijke bronnen zijn bijvoorbeeld “me”, een user, een groep, etc. Deze bronnen ondersteunen ook relaties, waardoor andere onderdelen aangesproken kunnen worden. Ter illustratie, wanneer er een gebruiker een mail wilt sturen, is dit mogelijk via “me/sendMail”. \\
+Mogelijke bronnen zijn bijvoorbeeld “me”, een user, een groep, etc. Deze bronnen ondersteunen ook relaties, waardoor andere onderdelen aangesproken kunnen worden. Ter illustratie, wanneer er een gebruiker een mail wilt sturen, is dit mogelijk via “me/sendMail”. Een voorbeeld van het gebruik van een resource is te vinden op Figuur \ref{MSGR}. \\
+
+\begin{figure}[h]
+    \footnotesize\begin{verbatim}GET https://graph.microsoft.com/v1.0/me/onenote/resources/{id}/content
+    \end{verbatim}    
+    \caption[Voorbeeld Microsoft Graph resource]{Een voorbeeld van een “me/onenote” resource binnen Microsoft Graph.}
+    \label{MSGR}
+\end{figure}
 
 Bronnen vereisen machtigingen om bepaalde acties uit te voeren. Hier moet rekening mee gehouden worden voor er een actie wordt uitgevoerd.
 
