@@ -398,4 +398,20 @@
   urldate = {2023-04-01},
 }
 
+@Online{Microsoft2022b,
+  author  = {Microsoft},
+  date    = {2022-12-20},
+  title   = {Authentication and authorization basics},
+  url     = {https://learn.microsoft.com/en-us/graph/auth/auth-concepts},
+  urldate = {2023-04-01},
+}
+
+@Online{Hay2021,
+  author  = {Hay, Richard},
+  date    = {2021-06-10},
+  title   = {Microsoft Graph Connectors Expand Access to Key Data Sources},
+  url     = {https://www.itprotoday.com/office-365/microsoft-graph-connectors-expand-access-key-data-sources},
+  urldate = {2023-04-04},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}

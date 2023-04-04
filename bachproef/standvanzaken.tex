@@ -472,13 +472,27 @@ De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende reden
 
 % TODO: Klopt dit??? Navragen Jarne
 
-Microsoft Graph bestaat uit drie componenten. \\
+Microsoft Graph bestaat uit drie toepassingen. \\
 
-Het eerste component is de Microsoft Graph \Ac{API}. Dit is een eindpunt dat kan aangesproken worden via “https://graph.microsoft.com” dat Microsoft-entiteiten binnen de cloud kan aanspreken. \\
+De eerste toepassing is de Microsoft Graph \Ac{API}. Dit is een eindpunt dat kan aangesproken worden via “https://graph.microsoft.com” dat Microsoft-entiteiten binnen de cloud kan aanspreken. Dit onderdeel wordt later dieper besproken. \\
 
-Het tweede component is Microsoft Graph connectors. Deze Graph-connectoren werken in de ingaande richting. Door het gebruik van deze connectoren, kunnen gegevens buiten de Microsoft-cloud worden gestuurd naar Graph en bijhorende toepassingen. \\
+De tweede toepassing is Microsoft Graph connectors. Deze Graph-connectoren werken in de ingaande richting. Door het gebruik van deze connectoren, kunnen gegevens buiten de Microsoft-cloud worden gestuurd naar Graph en bijhorende toepassingen. \\
 
-Als laatste worden er een set van tools aangeboden via Microsoft Graph Data Connect. Deze tools kunnen gebruikt worden om toepassingen te maken. De tools dienen voor het stroomlijnen van Graph-data naar Azure-datastores. \\
+Door het gebruik van deze connectors vermindert de overhead, doordat de informatie bereikbaar is. Deze bereikbaarheid is te danken aan het gebruik van eindpunten zoals SharePoint, Office.com of Bing.com dat de connectors ondersteunen. Op Figuur \ref{MSGC} wordt de werking van Connectors geïllustreerd. \\
+
+\begin{figure}[!h]
+    \includegraphics[width=\textwidth]{GraphConnectors.png}
+    \caption[Voorbeeld Microsoft Graph Connectors]{Voorstelling van Connectors binnen Microsoft Graph door \textcite{Hay2021}.}
+    \label{MSGC}
+\end{figure}
+
+Als laatste worden er een set van tools aangeboden via Microsoft Graph Data Connect. Deze tools kunnen gebruikt worden om applicaties te ontwikkelen voor analyse, intelligentie en bedrijfsprocesoptimalisatie met Microsoft 365-data. Deze data wordt geïntegreerd binnen Azure, zodat de reken- en opslagcapaciteiten van het cloudplatform worden gebruikt. Een voorstelling van Data Connect is te zien op Figuur \ref{MSGDC}. \\
+
+\begin{figure}[!h]
+    \includegraphics[width=\textwidth]{GraphDataConnect.png}
+    \caption[Voorbeeld Microsoft Graph Data Connect]{Voorstelling van Data Connect binnen Microsoft Graph door \textcite{Microsoft2022c}.}
+    \label{MSGDC}
+\end{figure}
 
 \subsection{Authenticatie en Autorisatie}
 
@@ -560,6 +574,22 @@ Authorization: Bearer EwAoA8l6BAAU ... 7PqHGsykYj7A0XqHCjbKKgWSkcAg==
 Om aan access tokens te geraken, bestaan er oplossingen zoals authenticatiebibliotheken. Een oplossing van Microsoft is \ac{MSAL} dat voor dit scenario toegankelijk is. Bovendien bestaan er alternatieven zoals Server middleware en authenticatiebibliotheken van derde partijen. \\
 
 Hoe dan ook, deze bibliotheken zijn niet verplicht. Access tokens kunnen ook rechtstreeks verkregen worden als dit gewenst is. 
+
+\subsubsection{Toegang hebben op naam van een gebruiker}
+
+Zoals reeds vermeld, regelen access tokens de toegang tot het gebruik van Microsoft Graph. Om aan een access token te geraken worden volgende stappen gehanteerd. \\
+
+% TODO: verder schrijven!
+
+Als eerste stap moet de applicatie worden geregisteerd bij Azure \ac{AD}. \\
+
+Als tweede volgt het autoriseren. \\
+
+Daarna moet er een token worden verkregen. \\
+
+Vervolgens wordt de verkregen token gebruikt om Microsoft Graph op te roepen. \\
+
+Als laatste volgt het gebruik van een refresh token.
 
 \subsection{Microsoft Graph API}
 
