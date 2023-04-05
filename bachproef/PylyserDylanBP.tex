@@ -21,7 +21,7 @@
 %% Compile with the -shell-escape flag!
 \usepackage[section]{minted}
 % Info: https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted
-\usepackage{listings}
+\renewcommand{\listoflistingscaption}{Lijst van broncode}
 % Info: https://www.overleaf.com/learn/latex/Code_listing#Using_listings_to_highlight_code
 \usepackage{comment}
 
@@ -120,8 +120,14 @@
 
 % If you included tables and/or source code listings, uncomment the appropriate
 % lines.
-%\listoftables
-%\listoflistings
+
+\listoftables 
+
+
+\listoflistings
+\addcontentsline{toc}{chapter}{Lijst van broncode}
+    
+
 
 % Als je een lijst van afkortingen of termen wil toevoegen, dan hoort die
 % hier thuis. Gebruik bijvoorbeeld de ``glossaries'' package.
@@ -141,6 +147,7 @@
 \acro{On-prem}{On-premises}
 \acro{URL}{Uniform Resource Locators}
 \acro{REST}{Representational State Transfer}
+\acro{SDK}{Software Development Kit}
 \acro{XML}{Extensible Markup Language}
 \end{acronym}
 %---------- Kern ---------------------------------------------------------------

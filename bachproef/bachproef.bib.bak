@@ -414,4 +414,44 @@
   urldate = {2023-04-04},
 }
 
+@Online{Microsoft2022c,
+  author  = {Microsoft},
+  date    = {2022-09-08},
+  title   = {Overview of Microsoft Graph Data Connect},
+  url     = {https://learn.microsoft.com/en-us/graph/data-connect-concept-overview},
+  urldate = {2023-04-04},
+}
+
+@Online{Microsoft2023i,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {AzureAD},
+  url     = {https://learn.microsoft.com/en-us/powershell/module/azuread/?view=azureadps-2.0&preserve-view=true},
+  urldate = {2023-03-21},
+}
+
+@Online{RedHat2020,
+  author  = {{Red Hat}},
+  date    = {2020-06-10},
+  title   = {What is an SDK?},
+  url     = {https://www.redhat.com/en/topics/cloud-native-apps/what-is-SDK},
+  urldate = {2023-04-05},
+}
+
+@Online{Microsoft2023j,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {Microsoft Graph PowerShell documentation},
+  url     = {https://learn.microsoft.com/en-us/powershell/microsoftgraph/?view=graph-powershell-1.0},
+  urldate = {2023-04-05},
+}
+
+@Online{Microsoft2023k,
+  author  = {Microsoft},
+  date    = {2023-04-03},
+  title   = {Microsoft Graph PowerShell module},
+  url     = {https://www.powershellgallery.com/packages/Microsoft.Graph/1.23.0},
+  urldate = {2023-04-05},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}

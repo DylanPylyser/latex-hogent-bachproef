@@ -111,6 +111,63 @@ PowerShell staat gekend voor zijn breed scala aan informatie dat het kan verkrij
 
 Door het gebruik van Azure \ac{AD} in combinatie met PowerShell, wordt er gebruikgemaakt van het beste van de twee werelden. Een gecentraliseerd beheerplatform automatisch doen werken brengt bijkomende voordelen voor de maker. Uit onderzoek van \textcite{Breton2003} zijn enkele voordelen van automatisatie minder stress, tijdbesparing en een lagere kans op menselijke fouten.
 
+\subsubsection{Ondersteunende data-objecten}
+
+PowerShell heeft verschillende soorten commando's voor het toevoegen, verwijderen of lezen van iets. Wanneer een commando de functie heeft om iets op te vragen, dan kan dit bijvoorbeeld een “Get”-commando zijn zoals “Get-MgUser”. \\
+
+Binnen Azure AD PowerShell zijn er twaalf soorten commando's, namelijk:
+
+\begin{itemize}
+    \item Add: Toevoegen.
+    \item Confirm: Bevestigen.
+    \item Connect: Verbinden.
+    \item Disconnect: Ontkoppelen.
+    \item Get: Informatie ophalen.
+    \item New: Aanmaken.
+    \item Remove: Verwijderen.
+    \item Restore: Herstellen.
+    \item Revoke: Intrekken.
+    \item Select: Informatie ophalen.
+    \item Set: Wijzigen.
+    \item Update: Bijwerken.
+\end{itemize}
+
+Azure AD PowerShell ondersteunt volgende data-objecten met een specifiek aantal uitvoerbare commando's \autocite{Microsoft2023i}. Per data-object zijn er een of meerdere soorten PowerShell-commando's, in de tabel wordt alleen het aantal commando's weergegeven. Een overzicht van alle ondersteunde data-objecten met het aantal commando's wordt weergeven in Tabel \ref{AADT}. 
+
+\begin{table}
+    \small
+    \centering
+    \begin{tabular}{ |c|c| } 
+        \hline
+        \textbf{Data-object} & \textbf{Aantal commando's} \\
+        \hline
+        Administrative Units & 9 \\ 
+        Application Proxy Application Management & 8 \\ 
+        Application Proxy Connector Management & 9 \\
+        Applications & 20 \\ 
+        AzureAD & 49 \\ 
+        Certificate Authorities & 4 \\ 
+        Connect to directory & 2 \\ 
+        Contacts & 8 \\ 
+        Contracts & 1 \\ 
+        Deleted Objects & 1 \\ 
+        Devices & 11 \\    
+        Directory & 3 \\
+        Directory Objects & 1 \\ 
+        Directory Roles & 13 \\ 
+        Domains & 8 \\ 
+        Extension Properties & 1 \\ 
+        Groups & 26 \\ 
+        OAuth2 & 2 \\ 
+        Policies & 2 \\ 
+        Service Principals & 22 \\ 
+        Users & 30 \\ 
+        \hline
+    \end{tabular}
+    \caption[Tabel Azure AD data-objecten]{Tabel met overzicht van alle ondersteunende data-objecten met bijhorende commando's binnen Azure \ac{AD} PowerShell.}
+    \label{AADT}
+\end{table}
+
 \subsection{Wat is Azure Active Directory Graph?}
 
 De communicatie tussen Azure \ac{AD} en de Azure \ac{AD} PowerShell-module gebeurd via een \ac{API}. Deze \ac{API} is een \ac{REST} \ac{API} dat Graph wordt genoemd. \\ 
@@ -418,10 +475,6 @@ linenos
 \caption[Voorbeeld Response Body Azure AD Graph]{Voorbeeld van een Response Body binnen Azure \ac{AD} Graph.}
 \label{hresb}
 \end{listing}
-
-\subsection{Wat is de link tussen Azure AD en PowerShell-modules?}
-
-% TODO... navragen of het interessant is om dit onderdeel te kaderen
 
 \subsection{Toepassingen van Azure AD via PowerShell en Graph} 
 
@@ -745,6 +798,102 @@ Daarnaast kan de API ook worden getest via Postman. Postman is een collaboratief
 
 % TODO: \subsubsection{MSAL ...}
 
+\subsection{Microsoft Graph met PowerShell}
 
+Microsoft Graph kan worden aangestuurd met PowerShell \autocite{Microsoft2023j}. Deze PowerShell-integratie zit in de Microsoft Graph PowerShell \ac{SDK}. Een \ac{SDK} bestaat uit een verzameling van tools dat instaan voor het maken van bepaalde software of hardware \autocite{RedHat2020}. Deze PowerShell \ac{SDK} stelt de \ac{API} van Microsoft Graph bloot. Door deze blootstelling kan PowerShell de \ac{API} gebruiken, beheren en automatiseren.
+
+\subsubsection{Ondersteunende dependencies}
+
+Microsoft Graph PowerShell ondersteunt een lijst van dependencies \autocite{Microsoft2023k}. Een overzicht van alle ondersteunde dependencies is te vinden in Tabel \ref{MSGDT}. 
+
+\begin{table}
+    \small
+    \centering
+    \begin{tabular}{ |c| } 
+        \hline
+        \textbf{Dependencies (tot aan versie 1.23)} \\
+        \hline
+        Applications \\
+        Authentication \\
+        Bookings \\
+        Calender \\
+        Changing Notifications \\
+        Cloud Communications \\
+        Compliance \\
+        Cross Device Experiences \\
+        Device Management \\
+        Device Management Actions \\
+        Device Management Administration \\
+        Device Management Enrolment \\
+        Device Management Functions \\
+        Devices Cloud Print \\
+        Devices Corporate Management \\
+        Devices Service Announcement
+        Directory Objects \\
+        Education \\
+        Files \\
+        Financials \\
+        Groups \\
+        Identity Directory Management \\
+        Identity Governance \\
+        Identity Sign-ins \\
+        Mail \\
+        Managed Tenants \\
+        Notes \\
+        People \\
+        Personal Contacts \\
+        Planner \\
+        Reports \\
+        Schema Extensions \\
+        Search \\
+        Sites \\
+        Teams \\
+        Users \\
+        Users Actions \\
+        Users Funtions \\
+        Windows Updates \\
+        \hline
+    \end{tabular}
+    \caption[Tabel Microsoft Graph dependencies]{Tabel met overzicht van alle ondersteunende dependencies tot aan versie 1.23 binnen Microsoft Graph PowerShell.}
+    \label{MSGDT}
+\end{table}
+
+\subsubsection{Geïntegreerde data-objecten van Azure AD}
+
+Door de uitfasering van Azure \ac{AD} PowerShell, worden de data-objecten van de AzureAD-module geïntegreerd binnen Microsoft Graph \autocite{Microsoft2023l}. Een overzicht van deze integratie wordt weergegeven in Tabel \ref{MSGDOT}.
+
+\begin{table}
+    \small
+    \centering
+    \begin{tabular}{ |c|c| } 
+        \hline
+        \textbf{Geïntegreerd data-object} & \textbf{Aantal commando's} \\
+        \hline
+        Administrative Units & 9 \\ 
+        Applications & 20 \\ 
+        AzureAD & 48 \\ 
+        Certificate Authorities & 1 \\ 
+        Connect to directory & 2 \\ 
+        Contacts & 7 \\ 
+        Contracts & 1 \\ 
+        Deleted Objects & 1 \\ 
+        Devices & 9 \\    
+        Directory & 3 \\
+        Directory Objects & 1 \\ 
+        Directory Roles & 13 \\ 
+        Domains & 8 \\ 
+        Extension Properties & 1 \\ 
+        Groups & 26 \\ 
+        OAuth2 & 2 \\ 
+        Policies & 2 \\ 
+        Service Principals & 22 \\ 
+        Users & 30 \\ 
+        \hline
+    \end{tabular}
+    \caption[Tabel geïntegreerde data-objecten]{Tabel met overzicht van alle geïntegreerde data-objecten met bijhorende commando's binnen Microsoft Graph PowerShell.}
+    \label{MSGDOT}
+\end{table}
 
 \subsection{Toepassingen van Microsoft Graph}
+
+% TODO ...
