@@ -723,6 +723,20 @@ GET https://localhost/myapp/permissions
     \label{MSGRARES}
 \end{figure}
 
+Bij de vierde stap moet er een access token aanwezig zijn. Dit principe komt overeen met de derde stap van de vorige methode. \\
+
+De vijfde stap is het gebruiken van de access token om Microsoft Graph op te roepen. Dit komt overeen met de vierde stap van de eerste manier. Er wordt een verzoek gedaan met een access token dat verkregen werd. Een voorbeeld van dit verzoek is te vinden op Figuur \ref{}.
+
+\begin{figure}[!h]
+    \footnotesize\begin{verbatim}
+        GET https://localhost/myapp/permissions
+        ?tenant=a8990e1f-ff32-408a-9f8e-78d3b9139b95&state=12345
+        &admin_consent=True
+    \end{verbatim}    
+    \caption[Voorbeeld Adminconsent respons Microsoft Graph]{Een voorbeeld van een antwoord voor toestemming van de beheerder via \ac{HTTP} binnen Microsoft Graph.}
+    \label{MSGRARES}
+\end{figure}
+
 \subsection{Microsoft Graph API}
 
 Zoals vermeld is de Microsoft Graph \Ac{API} gebasseerd op \Ac{REST}. Door het gebruik van de \ac{API} zijn de cloud-servicebronnen van Microsoft beschikbaar. \\
