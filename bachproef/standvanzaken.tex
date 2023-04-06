@@ -551,37 +551,9 @@ Als laatste worden er een set van tools aangeboden via Microsoft Graph Data Conn
 
 Vooraleer er een token wordt uitgegeven, moet een applicatie geregistreerd zijn in het Microsoft identity platform \autocite{Microsoft2022b}. Bovendien moet de applicatie beschikken over de juiste machtigingen om Microsoft Graph te mogen gebruiken. \\
 
-\subsubsection{Registreren van een applicatie op het Microsoft identity platform}
-
-Een applicatie kan een token krijgen wanneer het geregistreerd is in het Azure-portaal. Wanneer de applicatie geregistreerd is, gaat het Microsoft-identiteitsplatform instaan voor volgende informatie:
-
-\begin{itemize}
-    \item Application ID: Unieke identificatie.
-    \item Redirect URI/URL: Eindpunt waar de applicatie wordt op aangesproken.
-    \item Client secret: Wachtwoord of sleutelpaar dat gebruikt wordt voor authenticatie. Dit wordt gebruikt bij webapplicaties.
-\end{itemize}
-
-Een voorbeeld van hoe een tokenverzoek er kan uitzien, is te vinden op Figuur \ref{HTR}. \\
-
-\begin{figure}[h]
-    \footnotesize\begin{verbatim}POST /common/oauth2/v2.0/token HTTP/1.1
-Host: https://login.microsoftonline.com
-Content-Type: application/x-www-form-urlencoded
-        
-client_id=6731de76-14a6-49ae-97bc-6eba6914391e
-&scope=user.read%20mail.read
-&code=OAAABAAAAiL9Kn2Z27UubvWFPbm0gLWQJVzCTE9UkP3pSx1aXxUjq3n8b2JRLk4OxVXr...
-&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
-&grant_type=authorization_code
-&client_secret=JqQX2PNo9bpM0uEihUPzyrh
-    \end{verbatim}    
-    \caption[Voorbeeld tokenverzoek Microsoft Graph]{Een voorbeeld van een tokenverzoek via \ac{HTTP} binnen Microsoft Graph door \autocite{Microsoft2022b}.}
-    \label{HTR}
-\end{figure}
-
 \subsubsection{Toegangsmogelijkheden}
 
-Binnen Microsoft Graph zijn er twee mogelijkheden om toegang te verschaffen tot gegevens. Dit kan via de gedelegeerde- of App-only-methode. Een simpele weergave van wat deze methodes betekenen wordt weergegeven op Figuur \ref{MIPM}.
+Binnen Microsoft Graph zijn er twee mogelijkheden om toegang te verschaffen tot gegevens. Dit kan via de gedelegeerde- of App-only-methode. Een simpele weergave van wat deze methodes betekenen wordt weergegeven op Figuur \ref{MIPM}. \\
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{MIPmethods.png}
@@ -630,25 +602,132 @@ Hoe dan ook, deze bibliotheken zijn niet verplicht. Access tokens kunnen ook rec
 
 \subsubsection{Toegang hebben op naam van een gebruiker}
 
-Zoals reeds vermeld, regelen access tokens de toegang tot het gebruik van Microsoft Graph. Om aan een access token te geraken worden volgende stappen gehanteerd. \\
+Zoals reeds vermeld, regelen access tokens de toegang tot het gebruik van Microsoft Graph. Om een access token te verkrijgen via een gebruiker, worden de volgende vijf stappen gehanteerd. \\
 
-% TODO: verder schrijven!
+Als eerste stap moet de applicatie worden geregisteerd bij Azure \ac{AD}. De registratie gebeurd via het onderdeel App Registrations binnen Azure. Wanneer de applicatie geregistreerd is, gaat het Microsoft-identiteitsplatform instaan voor volgende informatie: 
 
-Als eerste stap moet de applicatie worden geregisteerd bij Azure \ac{AD}. \\
+\begin{itemize}
+    \item Application ID: Unieke identificatie.
+    \item Redirect URI/URL: Eindpunt waar de applicatie wordt op aangesproken.
+    \item Client secret: Wachtwoord of sleutelpaar dat gebruikt wordt voor authenticatie. Dit wordt gebruikt bij webapplicaties.
+\end{itemize}
 
-Als tweede volgt het autoriseren. \\
+Als tweede volgt het autoriseren. Dit gebeurd via het Microsoft identity platform. Via dit platform kan een gebruiker aanmelden en toestemming geven. Bij het verkrijgen van toestemming wordt er een code teruggestuurd. Deze code zorgt voor het verlenen van een access token. Een voorbeeld van deze terugkerende code wordt weergegeven op Figuur \ref{MSGAR}. \\
 
-Daarna moet er een token worden verkregen. \\
+\begin{figure}[h]
+    \footnotesize
+    \begin{verbatim}
+GET https://localhost/myapp/?
+code=M0ab92efe-b6fd-df08-87dc-2c6500a7f84d
+&state=12345
+    \end{verbatim}    
+    \caption[Voorbeeld Microsoft Graph Authorization response]{Een voorbeeld van een autorisatie antwoord met de nodige code om een access token te verkrijgen binnen Microsoft Graph.}
+    \label{MSGAR}
+\end{figure}
 
-Vervolgens wordt de verkregen token gebruikt om Microsoft Graph op te roepen. \\
+Daarna moet er een token worden verkregen. Dit gebeurd via een tokenverzoek dat op Figuur \ref{HTR} wordt weergegeven. Na het versturen van dit verzoek volgt er een antwoord met een access token in \ac{JSON}-formaat. Dit antwoord wordt voorgesteld op Figuur \ref{HTRES}. \\ 
 
-Als laatste volgt het gebruik van een refresh token.
+\begin{figure}[!h]
+    \footnotesize\begin{verbatim}
+POST /common/oauth2/v2.0/token HTTP/1.1
+Host: https://login.microsoftonline.com
+Content-Type: application/x-www-form-urlencoded
+        
+client_id=6731de76-14a6-49ae-97bc-6eba6914391e
+&scope=user.read%20mail.read
+&code=OAAABAAAAiL9Kn2Z27UubvWFPbm0gLWQJVzCTE9UkP3pSx1aXxUjq3n8b2JRLk4OxVXr...
+&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
+&grant_type=authorization_code
+&client_secret=JqQX2PNo9bpM0uEihUPzyrh
+    \end{verbatim}    
+    \caption[Voorbeeld Token request Microsoft Graph]{Een voorbeeld van een tokenverzoek via \ac{HTTP} binnen Microsoft Graph.}
+    \label{HTR}
+\end{figure}
+
+\begin{figure}[!h]
+    \footnotesize\begin{verbatim}
+{
+    "token_type": "Bearer",
+    "scope": "user.read%20Fmail.read",
+    "expires_in": 3600,
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCQ...",
+    "refresh_token": "AwABAAAAvPM1KaPlrEqdFSBzjqfTGAMxZGUTdM0t4B4..."
+}        
+    \end{verbatim}    
+    \caption[Voorbeeld Token response Microsoft Graph]{Een voorbeeld van een tokenantwoord via \ac{JSON} binnen Microsoft Graph.}
+    \label{HTRES}
+\end{figure}
+
+Vervolgens wordt de verkregen token gebruikt om Microsoft Graph op te roepen. Het toegankstoken wordt in de autorisatieheader van een verzoek geplaatst. Dit werd al reeds voorgesteld op Figuur \ref{MSGA}. \\
+
+Als laatste volgt het gebruik van een refresh token. Een refresh token ververst de duur van een toegangstoken, doordat een toegangstoken kan vervallen. Een verzoek en antwoord, met het gebruik van refresh tokens, is te vinden op Figuur \ref{MSGRTR} en \ref{MSGRTRES}.
+
+\begin{figure}[!h]
+    \footnotesize\begin{verbatim}
+POST /{tenant}/oauth2/v2.0/token HTTP/1.1
+Host: https://login.microsoftonline.com
+Content-Type: application/x-www-form-urlencoded
+
+client_id=11111111-1111-1111-1111-111111111111
+&scope=user.read%20mail.read
+&refresh_token=OAAABAAAAiL9Kn2Z27UubvWFPbm0gLWQJVzCTE9UkP3pSx1aXxUjq...
+&grant_type=refresh_token
+&client_secret=jXoM3iz...   
+    \end{verbatim}    
+    \caption[Voorbeeld Refresh Token request Microsoft Graph]{Een voorbeeld van een verzoek met een refresh token via \ac{HTTP} binnen Microsoft Graph.}
+    \label{MSGRTR}
+\end{figure}
+
+\begin{figure}[!h]
+    \footnotesize\begin{verbatim}
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZnl0aEV1Q...",
+    "token_type": "Bearer",
+    "expires_in": 3599,
+    "scope": "user.read%20mail.read",
+    "refresh_token": "AwABAAAAvPM1KaPlrEqdFSBzjqfTGAMxZGUTdM0t4B4...",
+}    
+    \end{verbatim}    
+    \caption[Voorbeeld Refresh Token response Microsoft Graph]{Een voorbeeld van een antwoord met een refresh token via \ac{JSON} binnen Microsoft Graph.}
+    \label{MSGRTRES}
+\end{figure}
+
+\subsubsection{Toegang hebben zonder een gebruiker}
+
+De tweede manier om een access token te verkrijgen, is zonder het gebruik van een user. Dit zijn de volgende vijf stappen gehanteerd. \\
+
+De eerste stap is het registreren van een applicatie. Dit komt overeen met de uitleg die in de eerste manier werd beschreven. \\
+
+Vervolgens moeten de permissies van Microsoft Graph worden geconfigureerd. Dit is nodig zodat een applicatie zonder toestemming een token mag aanvragen. Dit kan geconfigureerd worden onder “Request \ac{API} permission” bij het app-registratieportaal van Azure. \\
+
+De derde stap omvat het verkrijgen van toegang door de beheerder. Het verkijgen van toegang door een beheerder kan gebeuren op twee manieren. De eerste manier is via Azure, door het gebruik van het portaal. De andere optie is via het Microsoft identity platform door middel van een verzoek naar het adminconsent-eindpunt. Een bijhorend voorbeeld van een verzoek en antwoord wordt weergegeven op \ref{MSGRAR} en \ref{MSGRARES}. \\
+
+\begin{figure}[!h]
+    \footnotesize\begin{verbatim}
+GET https://login.microsoftonline.com/{tenant}/adminconsent
+?client_id=6731de76-14a6-49ae-97bc-6eba6914391e
+&state=12345
+&redirect_uri=https://localhost/myapp/permissions
+    \end{verbatim}    
+    \caption[Voorbeeld Adminconsent request Microsoft Graph]{Een voorbeeld van een verzoek voor toestemming van de beheerder via \ac{HTTP} binnen Microsoft Graph.}
+    \label{MSGRAR}
+\end{figure}
+
+\begin{figure}[!h]
+    \footnotesize\begin{verbatim}
+GET https://localhost/myapp/permissions
+?tenant=a8990e1f-ff32-408a-9f8e-78d3b9139b95&state=12345
+&admin_consent=True
+    \end{verbatim}    
+    \caption[Voorbeeld Adminconsent respons Microsoft Graph]{Een voorbeeld van een antwoord voor toestemming van de beheerder via \ac{HTTP} binnen Microsoft Graph.}
+    \label{MSGRARES}
+\end{figure}
 
 \subsection{Microsoft Graph API}
 
 Zoals vermeld is de Microsoft Graph \Ac{API} gebasseerd op \Ac{REST}. Door het gebruik van de \ac{API} zijn de cloud-servicebronnen van Microsoft beschikbaar. \\
 
-Om tot deze bronnen toegang te hebben en om de \Ac{API}aan te spreken, moeten er twee acties voldaan zijn. 
+Om tot deze bronnen toegang te hebben en om de \Ac{API} aan te spreken, moeten er twee acties voldaan zijn:
 
 \begin{itemize}
     \item De applicatie is geregistreerd.
