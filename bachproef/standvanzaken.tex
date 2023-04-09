@@ -218,7 +218,27 @@ Door het gebruik van \ac{REST}-eindpunten kunnen \ac{HTTP}-verzoeken verstuurd w
 
 Het proces van Graph gaat van start wanneer een applicatie een verzoek doet. Dit verzoek moet een token bevatten. Deze token wordt gegeven door Azure \ac{AD} en bewijst dat de gebruiker de juiste machtigingen heeft om de gevraagde data te raadplegen.
 
-\subsubsection{Authenticatie en autorisatie}
+
+
+\subsubsection{Authenticatie via libraries}
+
+Vooraleer de autorisatie kan plaatsvinden, moet er eerst worden geauthenticeerd. Dit gebeurd via een tool genaamd \ac{ADAL} of de modernere \ac{MSAL} van \textcite{Microsoft2022d}. \\
+
+\ac{ADAL} en \ac{MSAL} worden gebruikt voor verificatie- en autorisatiefunctionaliteiten \autocite{Ooms2022}. Beide technologieën dienen om te kunnen authenticeren met de Graph \ac{API}. \\ 
+
+Er zijn twee methodes om te verbinden met de Graph \ac{API}. \\
+
+De eerste is door middel van een gedelegeerde of interactieve manier. Er wordt gebruikgemaakt van een prompt waarbij de gebruikersnaam (of mailadres) en het wachtwoord wordt gevraagd. \\
+
+Bovendien kan er gevraagd worden om een \ac{2FA}- of \ac{MFA}-methode toe te passen. Dit gaat gepaard met het account waarop de gebruiker wilt inloggen, indien dit geactiveerd is. \\
+
+Het gebruik van \ac{2FA} of \ac{MFA} is veiliger dan alleen het gebruik van een naam en wachtwoord, bevestigt het onderzoek van \textcite{Gunson2011} en \textcite{Banyal2013}. Het wordt sterk aangeraden om minstens \ac{2FA} toe te passen bij het gebruik van een gedelegeerde methode. \\
+
+De tweede methode is door een niet-interactieve of geprogrammeerde manier. Deze methode maakt gebruik van secrets die aan de registratie van een applicatie is gekoppeld. Deze registratie gebeurd in Azure. 
+
+
+
+\subsubsection{Autorisatie door middel van tokens}
 
 Azure Active Directory-tokens bevatten informatie over de applicatie, de gebruiker, authenticatie en de rechten die een applicatie mag uitvoeren op de bijhorende directory \autocite{Microsoft2015}. \\
 
@@ -252,9 +272,9 @@ Wanneer er wordt aangemeld, krijgt de gebruiker de mogelijkheid om toestemming t
 
 Het gebruik van permissie scopes komt overeen met een gekend veiligheidsprincipe binnen de \ac{IT}. “Principle of Least Privilege”, of “Beginsel van de minste voorrechten” in het Nederlands, staat voor het toekennen van een minimum aan rechten \autocite{Saltzer1975}. 
 
-\subsubsection{Eindpunt adressering}
 
-% TODO: foto's zoeken om het makkelijker te maken?
+
+\subsubsection{Eindpunt adressering}
 
 Om taken of functies uit te voeren met de Graph \ac{API}, wordt er gebruikgemaakt van \ac{HTTP}-verzoeken. Deze verzoeken maken gebruik van een bepaalde methode. Een opsomming van de mogelijk methodes wordt hieronder weergegeven met bijhorende betekenis, gebaseerd op het onderzoek van \textcite{Fielding1999}, \textcite{Dusseault2010}.
 
@@ -293,6 +313,8 @@ $links/manager?api-version=1.6
     \caption[Voorbeeld Graph API-eindpunt]{Praktisch voorbeeld van een Graph \ac{API}-eindpunt, gericht op de manager eigenschap van “john@contoso.com”.}
     \label{pfe}
 \end{figure}
+
+
 
 \subsubsection{OData Query Parameters}
 
@@ -500,8 +522,9 @@ De technologie is gebasseerd op de wiskundige graaf, zoals ook reeds besproken w
     \label{msg}
 \end{figure}
 
-\subsection{Waarom Microsoft Graph als vervanger?} 
-Microsoft Graph is de opvolger van de Azure \ac{AD} PowerShell-modules en bijhorende Azure \Ac{AD} Graph. Op 30 september 2022 maakte Microsoft bekend dat de uitfasering van de Azure \ac{AD} PowerShell-modules van start zou gaan op 30 juni 2023 \autocite{Sahay2022}. \\
+\subsection{Waarom Microsoft Graph als vervanger?}
+ 
+Microsoft Graph is de opvolger van de Azure \ac{AD} PowerShell-modules en bijhorende Azure \Ac{AD} Graph. Op 30 september 2022 maakte Microsoft bekend dat de uitfasering van de Azure \ac{AD} PowerShell-modules en \ac{ADAL} van start zou gaan op 30 juni 2023 \autocite{Sahay2022}. \\
 
 De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende redenen volgens \textcite{Microsoft2023e}:
 
@@ -521,9 +544,15 @@ De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende reden
 
 % TODO Verder schrijven? Navragen!!!
 
-\subsection{Uit wat bestaat Microsoft Graph?}
+\subsubsection{MSAL als vervanger voor ADAL}
 
-% TODO: Klopt dit??? Navragen Jarne
+Naast de uitfasering van de Azure \ac{AD} PowerShell-modules, start ook de uitval van \ac{ADAL} op 30 juni 2023. Zoals reeds besproken in Azure \ac{AD} wordt er gebruikgemaakt van \ac{ADAL} of \ac{MSAL} om met de oude als nieuwe Graph te kunnen verbinden. \\
+
+De migratie naar \ac{MSAL} brengt voordelen met zich mee, dat \ac{ADAL} niet kan aanbieden, verklaard \autocite{Microsoft2023m}. Daarnaast is \ac{MSAL} gebouwd om met het Microsoft identity platform te werken, dat de werking met Microsoft Graph vereenvoudigd.
+
+
+
+\subsection{Uit wat bestaat Microsoft Graph?}
 
 Microsoft Graph bestaat uit drie toepassingen. \\
 
@@ -640,7 +669,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 &grant_type=authorization_code
 &client_secret=JqQX2PNo9bpM0uEihUPzyrh
     \end{verbatim}    
-    \caption[Voorbeeld Token request Microsoft Graph]{Een voorbeeld van een tokenverzoek via \ac{HTTP} binnen Microsoft Graph.}
+    \caption[Voorbeeld User Token Request Microsoft Graph]{Een voorbeeld van een tokenverzoek via \ac{HTTP} binnen Microsoft Graph.}
     \label{HTR}
 \end{figure}
 
@@ -654,7 +683,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
     "refresh_token": "AwABAAAAvPM1KaPlrEqdFSBzjqfTGAMxZGUTdM0t4B4..."
 }        
     \end{verbatim}    
-    \caption[Voorbeeld Token response Microsoft Graph]{Een voorbeeld van een tokenantwoord via \ac{JSON} binnen Microsoft Graph.}
+    \caption[Voorbeeld User Token Response Microsoft Graph]{Een voorbeeld van een tokenantwoord via \ac{JSON} binnen Microsoft Graph.}
     \label{HTRES}
 \end{figure}
 
@@ -698,7 +727,7 @@ De tweede manier om een access token te verkrijgen, is zonder het gebruik van ee
 
 De eerste stap is het registreren van een applicatie. Dit komt overeen met de uitleg die in de eerste manier werd beschreven. \\
 
-Vervolgens moeten de permissies van Microsoft Graph worden geconfigureerd. Dit is nodig zodat een applicatie zonder toestemming een token mag aanvragen. Dit kan geconfigureerd worden onder “Request \ac{API} permission” bij het app-registratieportaal van Azure. \\
+Vervolgens moeten de permissies van Microsoft Graph worden geconfigureerd. Dit is nodig zodat een applicatie zonder toestemming een token mag aanvragen. Dit kan geconfigureerd worden onder “Request \ac{API} permission” bij het registratieportaal voor applicaties binnen Azure. \\
 
 De derde stap omvat het verkrijgen van toegang door de beheerder. Het verkijgen van toegang door een beheerder kan gebeuren op twee manieren. De eerste manier is via Azure, door het gebruik van het portaal. De andere optie is via het Microsoft identity platform door middel van een verzoek naar het adminconsent-eindpunt. Een bijhorend voorbeeld van een verzoek en antwoord wordt weergegeven op \ref{MSGRAR} en \ref{MSGRARES}. \\
 
@@ -723,19 +752,49 @@ GET https://localhost/myapp/permissions
     \label{MSGRARES}
 \end{figure}
 
-Bij de vierde stap moet er een access token aanwezig zijn. Dit principe komt overeen met de derde stap van de vorige methode. \\
-
-De vijfde stap is het gebruiken van de access token om Microsoft Graph op te roepen. Dit komt overeen met de vierde stap van de eerste manier. Er wordt een verzoek gedaan met een access token dat verkregen werd. Een voorbeeld van dit verzoek is te vinden op Figuur \ref{}.
+Bij de vierde stap moet er een access token aanwezig zijn. Dit principe komt overeen met de derde stap van de vorige methode. Een voorbeeld van een verzoek en antwoord binnen deze stap wordt weergegeven op Figuur \ref{MSGATRR} en \ref{MSGATRRES}. \\
 
 \begin{figure}[!h]
     \footnotesize\begin{verbatim}
-        GET https://localhost/myapp/permissions
-        ?tenant=a8990e1f-ff32-408a-9f8e-78d3b9139b95&state=12345
-        &admin_consent=True
+POST https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token HTTP/1.1
+Host: login.microsoftonline.com
+Content-Type: application/x-www-form-urlencoded
+
+client_id=535fb089-9ff3-47b6-9bfb-4f1264799865
+&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default
+&client_secret=qWgdYAmab0YSkuL1qKv5bPX
+&grant_type=client_credentials 
     \end{verbatim}    
-    \caption[Voorbeeld Adminconsent respons Microsoft Graph]{Een voorbeeld van een antwoord voor toestemming van de beheerder via \ac{HTTP} binnen Microsoft Graph.}
-    \label{MSGRARES}
+    \caption[Voorbeeld Application Token Request Microsoft Graph]{Een voorbeeld van een verzoek met een applicatie access token via \ac{HTTP} binnen Microsoft Graph.}
+    \label{MSGATRR}
 \end{figure}
+
+\begin{figure}[!h]
+    \footnotesize\begin{verbatim}
+{
+    "token_type": "Bearer",
+    "expires_in": 3599,
+    "ext_expires_in":3599,
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNBVGZNNXBP..."
+} 
+    \end{verbatim}    
+    \caption[Voorbeeld Application Token Response Microsoft Graph]{Een voorbeeld van een antwoord met een applicatie access token via \ac{JSON} binnen Microsoft Graph.}
+    \label{MSGATRRES}
+\end{figure}
+
+De vijfde stap is het gebruiken van de access token om Microsoft Graph op te roepen. Dit komt overeen met de vierde stap van de eerste manier. Er wordt een verzoek gedaan met een access token dat verkregen werd. Een voorbeeld van dit verzoek is te vinden op Figuur \ref{MSGAAT}.
+
+\begin{figure}[!h]
+    \footnotesize\begin{verbatim}
+GET https://graph.microsoft.com/v1.0/users/12345678-73a6-4952-a53a-e9916737ff7f
+Authorization: Bearer eyJ0eXAiO ... 0X2tnSQLEANnSPHY0gKcgw
+Host: graph.microsoft.com
+    \end{verbatim}    
+    \caption[Voorbeeld Application autorisatieverzoek Microsoft Graph]{Een voorbeeld van een autorisatieverzoek met een application access token via \ac{HTTP} binnen Microsoft Graph.}
+    \label{MSGAAT}
+\end{figure}
+
+
 
 \subsection{Microsoft Graph API}
 
