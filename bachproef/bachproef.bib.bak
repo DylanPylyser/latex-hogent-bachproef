@@ -498,7 +498,7 @@
   year      = {2011},
 }
 
-@InProceedings{banyal2013multi,
+@InProceedings{Banyal2013,
   author       = {Banyal, Rohitash Kumar and Jain, Pragya and Jain, Vijendra Kumar},
   booktitle    = {2013 fifth international conference on computational intelligence, modelling and simulation},
   date         = {2013},
@@ -506,6 +506,14 @@
   organization = {IEEE},
   pages        = {105--110},
   year         = {2013},
+}
+
+@Book{bertocci2015modern,
+  author    = {Bertocci, Vittorio},
+  date      = {2015},
+  title     = {Modern authentication with Azure Active Directory for web applications},
+  publisher = {Microsoft Press},
+  year      = {2015},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

@@ -18,7 +18,7 @@ Soms wil je de auteur niet expliciet vernoemen, dan gebruik je \texttt{$\backsla
 
 \end{comment}
 
-% TODO: SVZ korte introductie meegeven ...
+In dit hoofdstuk wordt de state-of-the-art van dit onderzoek diepgaand besproken. Dit hoofdstuk biedt alle nodige informatie om de vergelijking tussen het oude en het nieuwe te vormen. Daarnaast is dit hoofdstuk de basislaag om dit onderzoek praktisch uit te werken. De titel bestaat uit drie onderdelen, namelijk: Microsoft administration, de module van Azure Active Directory en Microsoft Graph met \ac{API}. Als eerste wordt het begrip Microsoft administration besproken met bijhorende geschiedenis. Microsoft administration wordt gebruikt als vertrekpunt om vanuit een brede visie te kunnen vertrekken. Bij het tweede onderdeel wordt er dieper gekeken in dit domein. Er wordt meer duiding gegeven over Azure Active Directory met bijhorende componenten waaronder de PowerShell-module. Als laatste wordt Microsoft Graph aangeraakt met een focus op de \ac{API}. De interne werking en mogelijkheden worden hierbij gedetailleerd besproken.
 
 
 \section{Wat is Microsoft administration?}
@@ -70,7 +70,9 @@ Rond het jaar 2006 evolueerde de On-premises-aanpak naar een cloud-aanpak \autoc
 
 Cloud computing heeft een brede betekenis. Het is in feite een technologiemodel die wordt gebruikt om middelen en diensten beschikbaar te stellen op het internet, of de cloud. \autocite{Haag2009} \\
 
-De migratie van \ac{On-prem} naar de cloud is geen toeval. Eenenveertig procent van de bedrijven uit de \ac{EU} maakt gebruik van cloud computing in 2021 \autocite{EU2021}. Het gebruik van cloud computing en cloudservices heeft vele voordelen. De volgende lijst bevat enkele voordelen van cloud computing. De lijst is samengesteld uit onderzoek van \textcite{Aljabre2012}, \textcite{Rittinghouse2016}.
+De migratie van \ac{On-prem} naar de cloud is geen toeval. Eenenveertig procent van de bedrijven uit de \ac{EU} maakt gebruik van cloud computing in 2021 \autocite{EU2021}. \\
+
+Het gebruik van cloud computing en cloudservices heeft vele voordelen. De volgende lijst bevat enkele voordelen van cloud computing. De lijst is samengesteld uit onderzoek van \textcite{Aljabre2012}, \textcite{Rittinghouse2016}.
 
 \begin{itemize}
     \item Minder onderhouds-, implementatie- en infrastructuurkosten.
@@ -79,9 +81,10 @@ De migratie van \ac{On-prem} naar de cloud is geen toeval. Eenenveertig procent 
     \item Nieuwe en flexibelere infrastructuren met verhoogde schaalbaarheid.
     \item Vergroening van data centers.
     \item Verhoogde beschikbaarheid van applicaties.
-    \item Mogelijkheid om gebruikers te doen samenwerking in documenten en projecten.
-     
+    \item Mogelijkheid om gebruikers te doen samenwerken in documenten en projecten.
 \end{itemize}
+
+
 
 \subsection{Welke impact heeft de verschuiving van On-premises naar de cloud op Microsoft administration?}
 
@@ -286,7 +289,7 @@ Om taken of functies uit te voeren met de Graph \ac{API}, wordt er gebruikgemaak
     \item DELETE: Verwijdert data van de server.
 \end{itemize}
 
-Deze verzoeken zijn gericht op een eindpunt van een dienst, rescource, een verzameling of rescource of andere entiteiten die de \ac{API} ondersteunt. De eindpunten worden genoteerd als een \ac{URL}. Het gebruikelijk formaat van zo'n eindpunt wordt voorgesteld op Figuur \ref{bfe}. \\
+Deze verzoeken zijn gericht op een eindpunt van een dienst, een resource, een verzameling van resources of andere entiteiten die de \ac{API} ondersteunt. De eindpunten worden genoteerd als een \ac{URL}. Het gebruikelijk formaat van zo'n eindpunt wordt voorgesteld op Figuur \ref{bfe}. \\
 
 \begin{figure}[h]
     \footnotesize\begin{verbatim}https://graph.windows.net/{tenant_id}/{resource_path}?{api_version}
@@ -318,7 +321,7 @@ $links/manager?api-version=1.6
 
 \subsubsection{OData Query Parameters}
 
-Zoals reeds vermeld maar de Graph \ac{API} gebruik van OData. Het gebruik van OData-queryparameters zorgt ervoor dat een ingelezen verzameling van bronnen kunnen gefilterd, gesorteerd en gepagineerd worden. \\
+Zoals reeds vermeld maakt de Graph \ac{API} gebruik van OData. Het gebruik van OData-queryparameters zorgt ervoor dat een ingelezen verzameling van bronnen kunnen gefilterd, gesorteerd en gepagineerd worden. \\
 
 De Graph \ac{API} biedt ondersteuning aan voor de volgende parameters met bijhorende betekenis. De betekenissen staan gedefinieerd in studies van \textcite{Liang2016}, \textcite{Wojcieszyn2014}. 
 
@@ -406,7 +409,7 @@ Het woord “payload” staat voor data die via een pakket of transmissie worden
 
 Deze payloads kunnen in de request bodies gespecifieerd worden via de Content-Type verzoekheader en in antwoorden van Accept-verzoekheaders. \\
 
-Een voorbeeld van een request, met bijhorende request en response body wordt voorgesteld bij Listing \ref{hpr}, \ref{hreqb} en \ref{hresb}. \\
+Een voorbeeld van een request, met bijhorende request en response body, wordt voorgesteld bij Listing \ref{hpr}, \ref{hreqb} en \ref{hresb}. \\
 
 \begin{listing}[h]
 \begin{verbatim}
@@ -497,14 +500,6 @@ linenos
 \caption[Voorbeeld Response Body Azure AD Graph]{Voorbeeld van een Response Body binnen Azure \ac{AD} Graph.}
 \label{hresb}
 \end{listing}
-
-\subsection{Toepassingen van Azure AD via PowerShell en Graph} 
-
-% TODO... (Reserve)
-
-Idee: reeds recente voorbeelden illustreren...
-
-Vb. Applicatie voor Teams via de Graph API... 
 
 % ---
 % Volgend onderdeel
@@ -1046,6 +1041,4 @@ Door de uitfasering van Azure \ac{AD} PowerShell, worden de data-objecten van de
     \label{MSGDOT}
 \end{table}
 
-\subsection{Toepassingen van Microsoft Graph}
-
-% TODO ...
+% === END ===
