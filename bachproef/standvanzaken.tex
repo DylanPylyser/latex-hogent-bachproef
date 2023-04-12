@@ -56,7 +56,7 @@ Sinds de opkomst van Windows-systemen zoals Windows 2000 server, zijn er mogelij
 
 Binnen Windows 2000 server zijn er administratieve tools zoals Microsoft Management Console, Event Viewer en Active Directory Domains and Trusts-instellingen beschikbaar. Deze tools dienen om de taken van een administrator te vergemakkelijken, door een overzicht te brengen van alle data in dat specifieke onderdeel \autocite{Sibisi2022}. Door het gebruik van deze administratieve tools kan een administrator Microsoft-entiteiten waaronder Windows-toestellen beheren om zijn taken mee uit te voeren. 
 
-\subsection{Hoe evolueerde de systemen en de administratie hiervan doorheen de jaren?}
+\subsection{De evolutie van systemen en zijn administratie}
 
 % Taalcheck OK
 
@@ -86,7 +86,7 @@ Het gebruik van cloud computing en cloudservices heeft vele voordelen. De volgen
 
 
 
-\subsection{Welke impact heeft de verschuiving van On-premises naar de cloud op Microsoft administration?}
+\subsection{Verschuiving van On-premises naar de cloud}
 
 % Taalcheck
 
@@ -106,7 +106,7 @@ Een praktisch voorbeeld van een entiteit, of een groep van entiteiten, dat via d
 
 Azure \ac{AD} is een modernere aanpak van Active Directory binnen de cloud dat ontstaan is in 2008 \autocite{Chappell2008}. Azure \ac{AD} is een gecentraliseerd beheerplatform van Microsoft voor gebruikers en apparaten in netwerken die een verbinding hebben met de Azure-clouddienst \autocite{Mayank2019}. Middelen, waaronder gebruikers en apparaten, kunnen vanuit Azure \ac{AD} beheerd worden met bijhorende netwerkauthenticatie. Het dient als een centraal punt van informatie, waarbij details over alle middelen in het netwerk worden opgeslagen.
 
-\subsection{Wat is Azure Active Directory met PowerShell?} 
+\subsection{Azure Active Directory PowerShell-modules} 
 
 Azure \ac{AD} PowerShell voor Graph, kortweg Azure \ac{AD} PowerShell, is een module binnen PowerShell dat gebruikt kan worden om Azure \ac{AD} te beheren \autocite{Microsoft2023}. PowerShell is een oplossing van Microsoft voor taakautomatisering via een \ac{CLI} \autocite{Microsoft2022}. \\
 
@@ -517,7 +517,7 @@ De technologie is gebasseerd op de wiskundige graaf, zoals ook reeds besproken w
     \label{msg}
 \end{figure}
 
-\subsection{Waarom Microsoft Graph als vervanger?}
+\subsection{Uitfasering van Azure AD Graph}
  
 Microsoft Graph is de opvolger van de Azure \ac{AD} PowerShell-modules en bijhorende Azure \Ac{AD} Graph. Op 30 september 2022 maakte Microsoft bekend dat de uitfasering van de Azure \ac{AD} PowerShell-modules en \ac{ADAL} van start zou gaan op 30 juni 2023 \autocite{Sahay2022}. \\
 
@@ -539,7 +539,7 @@ De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende reden
 
 % TODO Verder schrijven? Navragen!!!
 
-\subsubsection{MSAL als vervanger voor ADAL}
+\subsubsection{Uitfasering van ADAL}
 
 Naast de uitfasering van de Azure \ac{AD} PowerShell-modules, start ook de uitval van \ac{ADAL} op 30 juni 2023. Zoals reeds besproken in Azure \ac{AD} wordt er gebruikgemaakt van \ac{ADAL} of \ac{MSAL} om met de oude als nieuwe Graph te kunnen verbinden. \\
 
@@ -547,7 +547,7 @@ De migratie naar \ac{MSAL} brengt voordelen met zich mee, dat \ac{ADAL} niet kan
 
 
 
-\subsection{Uit wat bestaat Microsoft Graph?}
+\subsection{Microsoft Graph toepassingen}
 
 Microsoft Graph bestaat uit drie toepassingen. \\
 
@@ -593,7 +593,7 @@ App-only access is de tweede methode. Dit principe werkt zonder een gebruiker om
 
 Bij de tweede methode moet de applicatie over de juiste privileges beschikken. Dit kan via permissies of app-rollen. Een andere manier is via toekennen van eigendomsrechten aan de applicatie. 
 
-\subsubsection{Wat zijn access tokens?}
+\subsubsection{Access tokens}
 
 Access tokens worden verkregen wanneer een toepassing of applicatie een authenticatieverzoek doet. Deze tokens worden gebruikt om de \ac{API} aan te spreken. \\
 
@@ -715,6 +715,8 @@ client_id=11111111-1111-1111-1111-111111111111
     \caption[Voorbeeld Refresh Token response Microsoft Graph]{Een voorbeeld van een antwoord met een refresh token via \ac{JSON} binnen Microsoft Graph.}
     \label{MSGRTRES}
 \end{figure}
+
+
 
 \subsubsection{Toegang hebben zonder een gebruiker}
 
