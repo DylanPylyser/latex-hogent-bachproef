@@ -28,8 +28,33 @@ De vergelijking tussen de twee bevat de eerste helft van het antwoord op de onde
 
 Met deze vier onderdelen wordt de vergelijking tussen het oude en het nieuwe uitgevoerd. Deze vergelijking wordt aan de hand van de verwerkte literatuur toegepast.  \\
 
-Om de tweede helft van het antwoord te geven op de onderzoeksvraag wordt de casus praktisch uitgewerkt in een Proof-of-Concept. Het verouderde Audit script, dat geschreven is in PowerShell, maakt gebruik van de verouderde modules. Dit script wordt vernieuwd door middel van Microsoft Graph. Door dit script te herwerken wordt er op een praktisch manier aangetoond wat wel en niet mogelijk is, vandaag de dag, met Microsoft Graph. \\
+Om de tweede helft van het antwoord te geven op de onderzoeksvraag wordt de casus praktisch uitgewerkt in een Proof-of-Concept. Het verouderde Audit script van Easi, dat geschreven is in PowerShell, maakt gebruik van de verouderde modules. Dit script wordt vernieuwd door middel van Microsoft Graph. Door dit script te herwerken wordt er op een praktisch manier aangetoond wat vandaag de dag wel en niet mogelijk is met Microsoft Graph. \\
 
-Om dit script zo efficiënt mogelijk te herwerken, worden twintig kleinere onderdelen van dit script behandeld. \\
+Tijdens de uitwerking van de Proof-of-Concept wordt er gewerkt met een zes stappenplan. \\
+
+Om dit script zo efficiënt mogelijk te herwerken, worden twintig kleinere onderdelen van dit script behandeld. Deze twintig onderdelen worden gebruikt in het audit-script dat gebruikmaakt van de uitgefaseerde Azure \ac{AD} PowerShell-module. Hieronder worden de twintig onderdelen opgelijst met een korte beschrijving. \\
+
+\begin{enumerate}
+    \item Alle aanwezige domeinen binnen de Office 365-omgeving.
+    \item Aantal gebruikers binnen de omgeving, onderverdeeld in interne en externe gebruikers.
+    \item Aantal gebruikers die geblokkeerd zijn.
+    \item Aantal licenties.
+    \item Overzicht en telling van gebruikers met administrator-privileges.
+    \item Overzicht en telling van gebruikers met \ac{MFA}.
+    \item Aantal gelicenseerde, actieve accounts waarbij \ac{MFA} uitstaat.
+    \item Aantal externe accounts waarbij \ac{MFA} uitstaat.
+    \item Overzicht van accounts met administrator-priviliges, onderverdeeld in gebruik van \ac{MFA}.
+    \item Groottes van elk type mailbox.
+    \item Groottes van elke mailbox, gerankschikt van groot naar klein.
+    \item Onderverdeling van gebruikersmailboxes op basis van grootte.
+    \item Onderverdeling van gedeelde mailboxen op basis van grootte.
+    \item Onderverdeling van hoeveelheid mailboxen per domein.
+    \item Overzicht van accounts met als primair \Ac{SMTP}-adresdomein “.onmicrosoft.com”.
+    \item Overzicht gedeelde mailboxen, onderverdeeld in aanwezigheid van een licentie.
+    \item Overzicht van verborgen mailboxen.
+    \item Overzicht van email-forwarding.
+    \item Overzicht verschillende types van licenties en het aantal personen met dit licentietype.
+    \item Overzicht verschillende methodes waarop \ac{MFA} wordt gebruikt met hoeveelheid gebruikers, onderverdeeld op basis van methode.
+\end{enumerate}
 
 % TODO Verder schrijven
