@@ -79,3 +79,190 @@ ff549021-dbb4-436b-8706-cd1fb89dfa08 Lidia Holloway    LidiaH@25ky3d.onmicrosoft
 ff5666f6-60d0-45b9-8dc5-bb929203efc0 Patti Fernandez   PattiF@25ky3d.onmicrosoft.com        PattiF@25ky3d.onmicrosoft.com
 ea3d8841-88e3-4cf8-b541-2b14f89a9853 Pradeep Gupta     PradeepG@25ky3d.onmicrosoft.com      PradeepG@25ky3d.onmicrosoft.com
 ```
+
+#### Audit data
+
+```ps1
+# Nodig:
+    #domain,
+Get-MgDomain
+    #userprincipalname,
+Get-MgUser -Select "UserPrincipalName"
+    #displayname,
+Get-MgUser -Select "DisplayName"
+    #usagelocation,
+///
+    #cloudtype,
+
+    #IsAdmin,
+    #Roles,
+    #isMFA,
+    #MfaEnabled,
+    #MfaMethods,
+    #NumberOfMfaMethods,
+    #MfaDefaultMethod,
+    #MfaMethodsConfigured,
+    #MfaPhone,
+    #MfaEmail,
+    #lastdirsynctime,
+    #LastPasswordChangeTimestamp,
+    #LastLogonTime,
+    #Blockcredential,
+    #AccountDisabled,
+    #islicensed,
+    #Licenses,
+    #ServiceName,
+    #ProvisioningStatus,
+    #recipienttypedetails,
+    #MailboxSize,
+    #TotalItems,
+    #FolderCount,
+    #ArchiveStatus,
+    #Archive,
+    #ArchiveSize,
+    #RetentionPolicy,
+    #PrimarySMTP,
+    #PrimarySMTPDomain,
+    #EmailAliases,
+    #DeliverToMailboxAndForward,
+    #ForwardingSMTPAddress,
+    #Hidden,
+    #UserType,
+Get-MgUser -Select "UserType"
+    #domains
+
+
+```
+
+#### Pivot 1 (STATUS: 50/50)
+
+**Azure AD Graph**
+
+```powershell
+#PIVOT 1: Domains: Template 3.1
+$domains = (get-msoldomain)
+# Define the table Columns
+$TableDomains  = New-Object system.Data.DataTable 'Overview_domains'
+$newcol = New-Object system.Data.DataColumn Name,([string]);  $TableDomains.columns.add($newcol)
+$newcol = New-Object system.Data.DataColumn Status,([string]);  $TableDomains.columns.add($newcol)
+$newcol = New-Object system.Data.DataColumn Authentication,([string]);  $TableDomains.columns.add($newcol)
+
+ # Add a table row
+
+Foreach ($i in $domains){
+ $row                = $TableDomains.NewRow()
+ $row.Name           = $i.Name
+ $row.Status         = $i.Status
+ $row.Authentication = $i.Authentication
+ $TableDomains.Rows.Add($row)
+}
+ # Get the data out
+$TableDomains | Export-Csv -path '.\domainOverview.csv' -NoTypeInformation
+Import-Csv '.\domainOverview.csv' | Export-Excel $fileNameExcelOutput -Autosize -TableName $TableDomains.TableName -WorksheetName 'Domains'
+```
+
+**MS Graph**
+
+```powershell
+Get-MgDomain
+```
+
+#### Pivot 2 (STATUS: 50/50)
+
+**Azure AD Graph**
+
+```ps1
+[Int]$totalsynced= ($auditdata | Where-Object {$_.CloudType -eq 'synced'}).count
+[Int]$totalguest = ($auditdata | Where-Object {($_.UserType  -eq 'guest')}).count
+[Int]$totalmember= ($auditdata | Where-Object {($_.CloudType -eq 'cloud') -and ($_.UserType  -eq 'member')}).count
+[Int]$totalcloud = [Int]$totalmember + [Int]$totalguest
+[Int]$total      = [Int]$totalcloud + [Int]$totalsynced
+
+# Define the DataAccounts Columns
+$TableAccounts = New-Object system.Data.DataTable 'Overview_TableAccounts'
+$newcol = New-Object system.Data.DataColumn Account_Type,([string]); $TableAccounts.columns.add($newcol)
+$newcol = New-Object system.Data.DataColumn Total,([int]); $TableAccounts.columns.add($newcol)
+
+# Add a DataAccounts row
+
+$rowCloud = $TableAccounts.NewRow()
+$rowCloud.Account_Type= ("Cloud")
+$rowCloud.Total= $totalcloud
+$TableAccounts.Rows.Add($rowCloud)
+
+$rowGuest = $TableAccounts.NewRow()
+$rowGuest.Account_Type= ("   Guest")
+$rowGuest.Total= $totalguest
+$TableAccounts.Rows.Add($rowGuest)
+
+$rowMember = $TableAccounts.NewRow()
+$rowMember.Account_Type= ("   Member")
+$rowMember.Total= $totalmember
+$TableAccounts.Rows.Add($rowMember)
+
+$rowSynced = $TableAccounts.NewRow()
+$rowSynced.Account_Type= ("Synced")
+$rowSynced.Total= $totalsynced
+$TableAccounts.Rows.Add($rowSynced)
+
+$rowTotal = $TableAccounts.NewRow()
+$rowTotal.Account_Type= ("Total")
+$rowTotal.Total= $total
+$TableAccounts.Rows.Add($rowTotal)
+
+# Get the data out
+$TableAccounts | Export-Csv -path '.\AccountsOverview.csv' -NoTypeInformation
+Import-Csv '.\AccountsOverview.csv' | Export-Excel $fileNameExcelOutput -Autosize -TableName $TableAccounts.TableName  -WorksheetName 'AccountsOverview'
+```
+
+**MS Graph**
+
+```ps1
+Get-MgUser -Select "UserType"
+Get-MgUser | Format-List -Property "OnPremisesSyncEnabled"
+```
+
+#### Pivot 3 (Status: )
+
+**Azure AD Graph**
+
+```ps1
+#PIVOT 3 : Template 3.3.2.1
+
+[Int]$countFalse = ($auditdata | Where-Object {($_.UserType -eq 'Member') -and ($_.BlockCredential -eq $false)}).count
+[Int]$countTrue  = ($auditdata | Where-Object {($_.UserType -eq 'Member') -and ($_.BlockCredential -eq $true)}).count
+[Int]$grandTotal = [int]$countFalse + [int]$countTrue
+
+
+# Define the Table and Columns
+$BlockedAccounts = New-Object system.Data.DataTable 'Overview_BlockedAccounts'
+$newcol = New-Object system.Data.DataColumn Account_Blocked,([string]); $BlockedAccounts.columns.add($newcol)
+$newcol = New-Object system.Data.DataColumn Items,([int]); $BlockedAccounts.columns.add($newcol)
+
+# Add the Table Rows
+
+$rowTrue = $BlockedAccounts.NewRow()
+$rowTrue.Account_Blocked= ("Active")
+$rowTrue.Items= $countFalse
+$BlockedAccounts.Rows.Add($rowTrue)
+
+$rowFalse = $BlockedAccounts.NewRow()
+$rowFalse.Account_Blocked= ("Blocked")
+$rowFalse.Items= $countTrue
+$BlockedAccounts.Rows.Add($rowFalse)
+
+$rowTotal = $BlockedAccounts.NewRow()
+$rowTotal.Account_Blocked= ("Grand Total")
+$rowTotal.Items= $grandTotal
+$BlockedAccounts.Rows.Add($rowTotal)
+
+# Get the data out
+$BlockedAccounts | Export-Csv -path '.\BlockedAccounts.csv' -NoTypeInformation
+Import-Csv '.\BlockedAccounts.csv' | Export-Excel $fileNameExcelOutput -Autosize -TableName $BlockedAccounts.TableName -WorksheetName 'BlockedAccounts'
+```
+
+**MS Graph**
+
+```ps1
+Get-MgUser -Select AccountEnabled,DisplayName | Format-List -Property "AccountEnabled", "DisplayName"
+```
