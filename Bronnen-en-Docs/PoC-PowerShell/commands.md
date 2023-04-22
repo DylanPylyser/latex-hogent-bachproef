@@ -2,6 +2,27 @@
 
 ## Voorbereiding
 
+- [x] 1
+- [x] 2
+- [x] 3
+- [ ] 4
+- [x] 5
+- [ ] 6
+- [ ] 7
+- [ ] 8
+- [ ] 9
+- [ ] 10
+- [ ] 11
+- [ ] 12
+- [ ] 13
+- [ ] 14
+- [ ] 15
+- [ ] 16
+- [ ] 17
+- [ ] 18
+- [ ] 19
+- [ ] 20
+
 ### PowerShell Versie
 
 ```powershell
@@ -134,7 +155,7 @@ Get-MgUser -Select "UserType"
 
 ```
 
-#### Pivot 1 (STATUS: 50/50)
+#### Pivot 1 (STATUS: Check!)
 
 **Azure AD Graph**
 
@@ -167,11 +188,11 @@ Import-Csv '.\domainOverview.csv' | Export-Excel $fileNameExcelOutput -Autosize 
 Get-MgDomain
 ```
 
-#### Pivot 2 (STATUS: 50/50)
+#### Pivot 2 (STATUS: Check!)
 
 **Azure AD Graph**
 
-```ps1
+```powershell
 [Int]$totalsynced= ($auditdata | Where-Object {$_.CloudType -eq 'synced'}).count
 [Int]$totalguest = ($auditdata | Where-Object {($_.UserType  -eq 'guest')}).count
 [Int]$totalmember= ($auditdata | Where-Object {($_.CloudType -eq 'cloud') -and ($_.UserType  -eq 'member')}).count
@@ -222,11 +243,11 @@ Get-MgUser -Select "UserType"
 Get-MgUser | Format-List -Property "OnPremisesSyncEnabled"
 ```
 
-#### Pivot 3 (Status: )
+#### Pivot 3 (Status: Check!)
 
 **Azure AD Graph**
 
-```ps1
+```powershell
 #PIVOT 3 : Template 3.3.2.1
 
 [Int]$countFalse = ($auditdata | Where-Object {($_.UserType -eq 'Member') -and ($_.BlockCredential -eq $false)}).count
@@ -265,4 +286,237 @@ Import-Csv '.\BlockedAccounts.csv' | Export-Excel $fileNameExcelOutput -Autosize
 
 ```ps1
 Get-MgUser -Select AccountEnabled,DisplayName | Format-List -Property "AccountEnabled", "DisplayName"
+```
+
+#### Pivot 4 (Status: CHECK!)
+
+**Azure AD Graph**
+
+```powershell
+#PIVOT 4: Licensed, Blocked accounts: Template 3.3.2.3
+
+$blockedLicensed = ($auditdata | Where-Object {($_.BlockCredential -eq $true) -and ($_.IsLicensed -eq $true)})
+$count = 0
+
+# Define the DataAccounts Columns
+ $TableBlockedLicensed = New-Object system.Data.DataTable 'Overview_Licensed_Blocked_accounts'
+ $newcol = New-Object system.Data.DataColumn UserPrincipalName,([string]); $TableBlockedLicensed.columns.add($newcol)
+ $newcol = New-Object system.Data.DataColumn DisplayName,([string]); $TableBlockedLicensed.columns.add($newcol)
+
+ # Add a DataAccounts row
+foreach($i in $blockedLicensed){
+    $row                     = $TableBlockedLicensed.NewRow()
+    $row.UserPrincipalName   = $i.userprincipalname
+    $row.DisplayName         = $i.displayname
+    $TableBlockedLicensed.Rows.Add($row)
+    $count ++
+}
+$row = $TableBlockedLicensed.NewRow()
+$row.UserPrincipalName = "Count"
+$row.DisplayName = $count
+$TableBlockedLicensed.Rows.Add($row)
+
+# Get the data out
+$TableBlockedLicensed | Export-Csv -path '.\BlockedLicensedAccounts.csv' -NoTypeInformation
+Import-Csv '.\BlockedLicensedAccounts.csv' | Export-Excel $fileNameExcelOutput -Autosize -TableName $TableBlockedlicensed.TableName -WorksheetName 'BlockedLicensedAccounts'
+```
+
+**MS Graph**
+
+```powershell
+# Initialize an empty array to hold the user principal names
+$upnArray = @()
+$licenseArray = @()
+
+# Get all users from the MgUser command and loop through them
+Get-MgUser | ForEach-Object {
+    # Add the user principal name to the array
+    $upnArray += $_.UserPrincipalName
+
+}
+
+foreach ($upn in $upnArray) {
+   $licenseArray += (Get-MgUserLicenseDetail -UserId "$upn" -Select "SkuPartNumber")
+}
+
+$upnArray
+$licenseArray
+
+# Output the array
+for ($i = 0; $i -lt $upnArray.Count; $i++) {
+   Write-Host "$($upnArray[$i]) - $($licenseArray.SkuPartNumber[$i-1])"
+}
+```
+
+#### Pivot 5 (STATUS: CHECK!)
+
+**Azure AD Graph**
+
+```powershell
+$adminAccounts = ($auditdata | Where-Object {$_.Roles})
+
+# Define the DataAccounts Columns
+ $TableAdminAccounts = New-Object system.Data.DataTable 'Overview_Admin_Accounts'
+ $newcol = New-Object system.Data.DataColumn DisplayName,([string]); $TableAdminAccounts.columns.add($newcol)
+ $newcol = New-Object system.Data.DataColumn UserPrincipalName,([string]); $TableAdminAccounts.columns.add($newcol)
+ $newcol = New-Object system.Data.DataColumn SigninStatus,([string]); $TableAdminAccounts.columns.add($newcol)
+ $newcol = New-Object system.Data.DataColumn AdminRoles,([string]); $TableAdminAccounts.columns.add($newcol)
+
+ # Add a DataAccounts row
+foreach($i in $adminAccounts){
+    if($i.DisplayName -notlike '*Synchronization*'){
+        $row                     = $TableAdminAccounts.NewRow()
+        $row.DisplayName         = $i.displayname
+        $row.UserPrincipalName   = $i.userprincipalname
+        if($i.BlockCredential -eq $true){
+            $row.SigninStatus    = "Disabled"
+        }else{
+            $row.SigninStatus    = "Enabled"
+        }
+        $row.AdminRoles         = $i.Roles
+        $TableAdminAccounts.Rows.Add($row)
+    }
+} -join ', '
+ # Get the data out
+ $TableAdminAccounts | Export-Csv -path '.\adminAccounts.csv' -NoTypeInformation
+ Import-Csv '.\adminAccounts.csv' | Export-Excel $fileNameExcelOutput -Autosize -TableName $TableAdminAccounts.TableName -WorksheetName 'AdminAccounts'
+```
+
+**MS Graph**
+
+```powershell
+Get-MgDirectoryRole -DirectoryRoleId "e26351ad-20e7-4446-8954-ed9411376217" -ExpandProperty "Members" | Format-List -Property "Members"
+```
+
+#### Pivot 6 (STATUS: TODO!)
+
+**Azure AD Graph**
+
+```powershell
+
+[Int]$countMFAEnabled  = ($auditdata | Where-Object  {($_.usertype -eq "Member") -and ($_.MfaEnabled -eq "Enabled")   -and ($_.RecipientTypeDetails -eq "UserMailbox" -or $null)}).count
+[Int]$countMFAEnforced = ($auditdata | Where-Object  {($_.usertype -eq "Member") -and ($_.MfaEnabled -eq "Enforced")  -and ($_.RecipientTypeDetails -eq "UserMailbox" -or $null)}).count
+[Int]$countMFADisabled = ($auditdata | Where-Object  {($_.usertype -eq "Member") -and ($_.MfaEnabled -eq "Disabled")  -and ($_.RecipientTypeDetails -eq "UserMailbox" -or $null)}).count
+[Int]$totalCountMFA    = [Int]$countMFAEnabled + [Int]$countMFAEnforced + [Int]$countMFADisabled
+
+
+# Define the Table and Columns
+$MfaCountTable = New-Object system.Data.DataTable 'Overview_MFA_Count'
+$newcol = New-Object system.Data.DataColumn Active_Accounts,([string]); $MfaCountTable.columns.add($newcol)
+$newcol = New-Object system.Data.DataColumn Count,([int]); $MfaCountTable.columns.add($newcol)
+$newcol = New-Object system.Data.DataColumn Percentage,([int]); $MfaCountTable.columns.add($newcol)
+
+ # Add the Table Rows
+
+$rowMFADisabled = $MfaCountTable.NewRow()
+$rowMFADisabled.Active_Accounts= ("MFA is Disabled")
+$rowMFADisabled.Count= $countMFADisabled
+$rowMFADisabled.Percentage= (($countMFADisabled/$totalCountMFA)*100)
+$MfaCountTable.Rows.Add($rowMFADisabled)
+
+$rowMFAEnabled = $MfaCountTable.NewRow()
+$rowMFAEnabled.Active_Accounts= ("MFA is Enabled")
+$rowMFAEnabled.Count= $countMFAEnabled
+$rowMFAEnabled.Percentage= (($countMFAEnabled/$totalCountMFA)*100)
+$MfaCountTable.Rows.Add($rowMFAEnabled)
+
+$rowMFAEnforced = $MfaCountTable.NewRow()
+$rowMFAEnforced.Active_Accounts= ("MFA is Enforced")
+$rowMFAEnforced.Count= $countMFAEnforced
+$rowMFAEnforced.Percentage= (($countMFAEnforced/$totalCountMFA)*100)
+$MfaCountTable.Rows.Add($rowMFAEnforced)
+
+$rowMFATotal = $MfaCountTable.NewRow()
+$rowMFATotal.Active_Accounts= ("Total")
+$rowMFATotal.Count= $totalCountMFA
+$rowMFATotal.Percentage = 100
+$MfaCountTable.Rows.Add($rowMFATotal)
+
+# Get the data out
+$MfaCountTable | Export-Csv -path '.\MfaOverview.csv' -NoTypeInformation
+Import-Csv '.\MfaOverview.csv' | Export-Excel $fileNameExcelOutput -Autosize -TableName $MfaCountTable.TableName -WorksheetName 'MfaOverview'
+
+
+
+#Multifactor Authentication : Template 3.3.4
+
+[Int]$countOneWaySMS          = 0
+[Int]$countTwoWayVoiceMobile  = 0
+[Int]$countPhoneAppOTP        = 0
+[Int]$countPhoneAppNotif      = 0
+[Int]$countNoMfaMethod        = 0
+
+# Define the Table and Columns
+$MfaMethodsTable = New-Object system.Data.DataTable 'OverviewMfaMethodsUsed'
+$newcol = New-Object system.Data.DataColumn Active_Method,([string]); $MfaMethodsTable.columns.add($newcol)
+$newcol = New-Object system.Data.DataColumn Count,([int]); $MfaMethodsTable.columns.add($newcol)
+
+ # Add the Table Rows
+
+foreach ($i in $auditdata){
+    if ($i.mfamethods -like "*OneWaySMS*") {
+        $countOneWaySMS++
+    }
+    if ($i.mfamethods -like "*TwoWayVoiceMobile*"){
+        $countTwoWayVoiceMobile++
+    }
+    if ($i.mfamethods -like "*PhoneAppOTP*"){
+        $countPhoneAppOTP++
+    }
+    if ($i.mfamethods -like "*PhoneAppNotification*"){
+        $countPhoneAppNotif++
+    }
+    if (($i.numberOfMfaMethods -like "*0*") -or ($i.MfaMethodsConfigured -like "*0*")){
+        $countNoMfaMethod++
+    }
+}
+
+$rowOneWaySMS = $MfaMethodsTable.NewRow()
+$rowOneWaySMS.Active_Method= ("OneWaySMS")
+$rowOneWaySMS.Count= $countOneWaySMS
+$MfaMethodsTable.Rows.Add($rowOneWaySMS)
+
+$rowPhoneAppNotification = $MfaMethodsTable.NewRow()
+$rowPhoneAppNotification.Active_Method= ("PhoneAppNotification")
+$rowPhoneAppNotification.Count=$countPhoneAppNotif
+$MfaMethodsTable.Rows.Add($rowPhoneAppNotification)
+
+$rowTwoWayVoice = $MfaMethodsTable.NewRow()
+$rowTwoWayVoice.Active_Method= ("TwoWayVoiceAlternateMobile")
+$rowTwoWayVoice.Count= $countTwoWayVoiceMobile
+$MfaMethodsTable.Rows.Add($rowTwoWayVoice)
+
+$rowPhoneAppOTP = $MfaMethodsTable.NewRow()
+$rowPhoneAppOTP.Active_Method= ("phoneAppOTP")
+$rowPhoneAppOTP.Count= $countPhoneAppOTP
+$MfaMethodsTable.Rows.Add($rowPhoneAppOTP)
+
+$rowNoMfa = $MfaMethodsTable.NewRow()
+$rowNoMfa.Active_Method= ("no Mfa Method")
+$rowNoMfa.Count= $countNoMfaMethod
+$MfaMethodsTable.Rows.Add($rowNoMfa)
+
+# Get the data out
+$MfaMethodsTable | Export-Csv -path '.\OverviewMfaMethodsUsed.csv' -NoTypeInformation
+Import-Csv '.\OverviewMfaMethodsUsed.csv' | Export-Excel $fileNameExcelOutput -Autosize -TableName $MfaMethodsTable.TableName -WorksheetName 'OverviewMfaMethodsUsed'
+```
+
+**MS Graph**
+
+```powershell
+
+```
+
+#### Pivot 10 (STATUS: !)
+
+**Azure AD Graph**
+
+```powershell
+
+```
+
+**MS Graph**
+
+```powershell
+
 ```
