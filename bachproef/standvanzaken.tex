@@ -18,14 +18,14 @@ Soms wil je de auteur niet expliciet vernoemen, dan gebruik je \texttt{$\backsla
 
 \end{comment}
 
-In dit hoofdstuk wordt de state-of-the-art van dit onderzoek diepgaand besproken. Dit hoofdstuk biedt alle nodige informatie om de vergelijking tussen het oude en het nieuwe te vormen. Daarnaast is dit hoofdstuk de basislaag om dit onderzoek praktisch uit te werken. De titel bestaat uit drie onderdelen, namelijk: Microsoft administration, de module van Azure Active Directory en Microsoft Graph met \ac{API}. Als eerste wordt het begrip Microsoft administration besproken met bijhorende geschiedenis. Microsoft administration wordt gebruikt als vertrekpunt om vanuit een brede visie te kunnen vertrekken. Bij het tweede onderdeel wordt er dieper gekeken in dit domein. Er wordt meer duiding gegeven over Azure Active Directory met bijhorende componenten waaronder de PowerShell-module. Als laatste wordt Microsoft Graph aangeraakt met een focus op de \ac{API}. De interne werking en mogelijkheden worden hierbij gedetailleerd besproken.
+In dit hoofdstuk wordt de state-of-the-art van dit onderzoek diepgaand besproken. Dit hoofdstuk biedt alle nodige informatie om de vergelijking tussen het oude en het nieuwe te vormen. Daarnaast is dit hoofdstuk de basislaag om dit onderzoek praktisch uit te werken. De titel bestaat uit drie onderdelen, namelijk: Microsoft administration, de module van Azure Active Directory en Microsoft Graph met \ac{API}. Als eerste wordt het begrip Microsoft administration besproken met bijhorende geschiedenis. Microsoft administration is de overkoepelende term waarin beide technologieën zich afspelen. Bij het tweede onderdeel wordt er dieper gekeken in dit domein. Er wordt meer duiding gegeven over Azure Active Directory met bijhorende componenten waaronder de PowerShell-module. Als laatste wordt Microsoft Graph aangeraakt met een focus op de \ac{API}. De interne werking en mogelijkheden worden hierbij gedetailleerd besproken.
 
 
 \section{Wat is Microsoft administration?}
 
 % Taalcheck OK
 
-Microsoft administration bestaat uit twee kernwoorden die bekend zijn binnen de \ac{IT}-wereld. Microsoft staat voor het Amerikaanse technologiebedrijf en de producten dat het aanbiedt \autocite{Warner2019}. Het woord administration, oftewel administratie in het Nederlands, staat voor het beheren van iets \autocite{Burgess2003}. Vanuit het woord administration volgde het woord administrator, dat duidt op een persoon die een of meerdere instanties beheert. Kortom, Microsoft administration staat voor het beheren van Microsoft-instanties en -producten (bv. Windows en Azure). 
+Microsoft administration bestaat uit twee kernwoorden die bekend zijn binnen de \ac{IT}-wereld. Microsoft staat voor het Amerikaanse technologiebedrijf en de producten die het aanbiedt \autocite{Warner2019}. Het woord administration, oftewel administratie in het Nederlands, staat voor het beheren van iets \autocite{Burgess2003}. Vanuit het woord administration volgde het woord administrator, dat duidt op een persoon die een of meerdere instanties beheert. Kortom, Microsoft administration staat voor het beheren van Microsoft-instanties en -producten (bv. Windows en Azure). 
 
 % TODO: bv. & IT afkorting ergens noteren over zorgen dat dit hierboven komt en dan een “ac” erover maken 
 
@@ -62,13 +62,15 @@ Binnen Windows 2000 server zijn er administratieve tools zoals Microsoft Managem
 
 In het begin van de eenentwintigste eeuw werden systemen en servers zoals Windows 2000 server met een focus op \ac{On-prem} onderhouden \autocite{Microsoft2022a}. \ac{On-prem} betekent dat software en hardware, zoals computers en servers, op locaties staan dat eigendom is van het bedrijf en lokaal worden toegepast \autocite{Gastermann2015}. Hierbij wordt de systeemadministratie door systeembeheerders lokaal aangepakt. Ter illustratie, in dit scenario focust de automatisatie via PowerShell zich op de lokale entiteiten binnen het bedrijf. Databanken, mailservers, \ac{DNS}-servers en andere instanties worden lokaal aangesproken en geautomatiseerd indien nodig. \\
 
-Rond het jaar 2006 evolueerde de On-premises-aanpak naar een cloud-aanpak \autocite{Hayes2008}. EC2 van Amazon is een van de grondleggers binnen de cloudservices \autocite{Qian2009}. Deze inventie van Amazon heeft sindsdien invloed op de huidige marktleiderspositie van AWS in cloud computing \autocite{Vailshery2022}. Op de tweede plaats bevindt zich de cloudservice van Microsoft, genaamd Azure.
+Rond het jaar 2006 evolueerde de On-premises-aanpak naar een cloud-aanpak \autocite{Hayes2008}. \ac{EC2} van Amazon is een van de grondleggers binnen de cloudservices \autocite{Qian2009}. Deze inventie van Amazon heeft sindsdien invloed op de huidige marktleiderspositie van AWS in cloud computing \autocite{Vailshery2022}. Op de tweede plaats bevindt zich de cloudservice van Microsoft, genaamd Azure.
 
-\subsection{De impact van cloud computing}
+
+
+\subsection{De impact van cloud computing op systeem administratie}
 
 % Taalcheck OK
 
-Cloud computing heeft een brede betekenis. Het is in feite een technologiemodel die wordt gebruikt om middelen en diensten beschikbaar te stellen op het internet, of de cloud. \autocite{Haag2009} \\
+Cloud computing heeft een brede betekenis. Het is in feite een technologiemodel dat gebruikt wordt om middelen en diensten beschikbaar te stellen op het internet, of de cloud. \autocite{Haag2009} \\
 
 De migratie van \ac{On-prem} naar de cloud is geen toeval. Eenenveertig procent van de bedrijven uit de \ac{EU} maakt gebruik van cloud computing in 2021 \autocite{EU2021}. \\
 
@@ -108,7 +110,7 @@ Azure \ac{AD} is een modernere aanpak van Active Directory binnen de cloud dat o
 
 \subsection{Azure Active Directory PowerShell-modules} 
 
-Azure \ac{AD} PowerShell voor Graph, kortweg Azure \ac{AD} PowerShell, is een module binnen PowerShell dat gebruikt kan worden om Azure \ac{AD} te beheren \autocite{Microsoft2023}. PowerShell is een oplossing van Microsoft voor taakautomatisering via een \ac{CLI} \autocite{Microsoft2022}. \\
+Azure \ac{AD} PowerShell voor Graph, kortweg Azure \ac{AD} PowerShell, is een module binnen PowerShell die gebruikt kan worden om Azure \ac{AD} te beheren \autocite{Microsoft2023}. PowerShell is een oplossing van Microsoft voor taakautomatisering via een \ac{CLI} \autocite{Microsoft2022}. \\
 
 PowerShell staat gekend voor zijn breed scala aan informatie dat het kan verkrijgen. Dit breed scala gaat van systemen, servers, randapparatuur, mobiele apparaten tot gegevensgestuurde toepassingen zoals Active Directory \autocite{Hosmer2019}. Vandaag de dag ondersteunt PowerShell meer dan 11.350 unieke modules en scripts via de PowerShell Gallary, waaronder de Azure \ac{AD} PowerShell module \autocite{Microsoft2023a}. \\
 
@@ -173,7 +175,7 @@ Azure AD PowerShell ondersteunt volgende data-objecten met een specifiek aantal 
 
 \subsection{Wat is Azure Active Directory Graph?}
 
-De communicatie tussen Azure \ac{AD} en de Azure \ac{AD} PowerShell-module gebeurd via een \ac{API}. Deze \ac{API} is een \ac{REST} \ac{API} dat Graph wordt genoemd. \\ 
+De communicatie tussen Azure \ac{AD} en de Azure \ac{AD} PowerShell-module gebeurd via een \ac{API}. Deze \ac{API} is een \ac{REST} \ac{API} die Graph wordt genoemd. \\ 
 
 De naam Graph is afgeleid uit het wiskundige figuur van een graaf. Een graaf is een verzameling van punten die wel of niet met elkaar zijn verbonden \autocite{Denaux2022}. Een voorbeeld van een wiskundige graaf is te zien op Figuur \ref{mga}. \\
 
@@ -519,7 +521,7 @@ De technologie is gebasseerd op de wiskundige graaf, zoals ook reeds besproken w
 
 \subsection{Uitfasering van Azure AD Graph}
  
-Microsoft Graph is de opvolger van de Azure \ac{AD} PowerShell-modules en bijhorende Azure \Ac{AD} Graph. Op 30 september 2022 maakte Microsoft bekend dat de uitfasering van de Azure \ac{AD} PowerShell-modules en \ac{ADAL} van start zou gaan op 30 juni 2023 \autocite{Sahay2022}. \\
+Microsoft Graph is de opvolger van Azure \Ac{AD} Graph. Bovendien bevat Microsoft Graph bepaalde PowerShell-modules die de Azure \ac{AD} en MSOnline PowerShell-modules kunnen vervangen. Op 30 september 2022 maakte Microsoft bekend dat de uitfasering van de Azure \ac{AD} PowerShell-modules en \ac{ADAL} van start zou gaan op 30 juni 2023 \autocite{Sahay2022}. \\
 
 De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende redenen volgens \textcite{Microsoft2023e}:
 
