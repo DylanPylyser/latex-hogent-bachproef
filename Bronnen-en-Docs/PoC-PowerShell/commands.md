@@ -5,7 +5,7 @@
 - [x] 1
 - [x] 2
 - [x] 3
-- [ ] 4
+- [x] 4
 - [x] 5
 - [ ] 6
 - [ ] 7
@@ -16,12 +16,12 @@
 - [ ] 12
 - [ ] 13
 - [ ] 14
-- [ ] 15
+- [x] 15
 - [ ] 16
 - [ ] 17
 - [ ] 18
-- [ ] 19
-- [ ] 20
+- [x] 19
+- [ ] 204
 
 ### PowerShell Versie
 
@@ -103,7 +103,7 @@ ea3d8841-88e3-4cf8-b541-2b14f89a9853 Pradeep Gupta     PradeepG@25ky3d.onmicroso
 
 #### Audit data
 
-```ps1
+```powershell
 # Nodig:
     #domain,
 Get-MgDomain
@@ -152,7 +152,83 @@ Get-MgUser -Select "DisplayName"
 Get-MgUser -Select "UserType"
     #domains
 
+```
 
+#### MFA Data - SCRIPT
+
+Source: https://activedirectorypro.com/mfa-status-powershell/
+
+```powershell
+$results=@()
+$users = Get-MgUser -All
+
+foreach ($user in $users) {
+
+Write-Host  "`n$($user.UserPrincipalName)";
+$resultObject = [PSCustomObject]@{
+    user               = "-"
+    MFAstatus          = "_"
+    email              = "-"
+    fido2              = "-"
+    app                = "-"
+    password           = "-"
+    phone              = "-"
+    softwareoath       = "-"
+    tempaccess         = "-"
+    hellobusiness      = "-"
+}
+
+$MFAData=Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName
+
+$resultObject.user = $user.UserPrincipalName;
+    ForEach ($method in $MFAData) {
+
+        Switch ($method.AdditionalProperties["@odata.type"]) {
+          "#microsoft.graph.emailAuthenticationMethod"  {
+             $resultObject.email = $true
+             $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.fido2AuthenticationMethod"                   {
+            $resultObject.fido2 = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"  {
+            $resultObject.app = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.passwordAuthenticationMethod"                {
+                $resultObject.password = $true
+                # When only the password is set, then MFA is disabled.
+                if($resultObject.MFAstatus -ne "Enabled")
+                {
+                    $resultObject.MFAstatus = "Disabled"
+                }
+           }
+           "#microsoft.graph.phoneAuthenticationMethod"  {
+            $resultObject.phone = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.softwareOathAuthenticationMethod"  {
+            $resultObject.softwareoath = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.temporaryAccessPassAuthenticationMethod"  {
+            $resultObject.tempaccess = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
+            $resultObject.hellobusiness = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+        }
+    }
+
+##Collecting objects
+$results += $resultObject;
+
+}
+# Display the custom objects
+$results
 ```
 
 #### Pivot 1 (STATUS: Check!)
@@ -384,11 +460,13 @@ foreach($i in $adminAccounts){
 
 **MS Graph**
 
+**TODO: DisplayName vermelden**
+
 ```powershell
 Get-MgDirectoryRole -DirectoryRoleId "e26351ad-20e7-4446-8954-ed9411376217" -ExpandProperty "Members" | Format-List -Property "Members"
 ```
 
-#### Pivot 6 (STATUS: TODO!)
+#### Pivot 6 (STATUS: 50/50)
 
 **Azure AD Graph**
 
@@ -504,19 +582,347 @@ Import-Csv '.\OverviewMfaMethodsUsed.csv' | Export-Excel $fileNameExcelOutput -A
 **MS Graph**
 
 ```powershell
+$results = @()
+$members = @()
 
+$users = (Get-MgUser -Select UserPrincipalName,UserType)
+
+foreach ($user in $users) {
+    if ($user.UserType -eq "Member") { $members += $user }
+}
+
+foreach ($member in $members) {
+
+Write-Host  "`n$($member.UserPrincipalName)";
+$resultObject = [PSCustomObject]@{
+    user               = "-"
+    MFAstatus          = "_"
+    email              = "-"
+    fido2              = "-"
+    app                = "-"
+    password           = "-"
+    phone              = "-"
+    softwareoath       = "-"
+    tempaccess         = "-"
+    hellobusiness      = "-"
+}
+
+$MFAData=Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName
+
+$resultObject.user = $user.UserPrincipalName;
+    ForEach ($method in $MFAData) {
+
+        Switch ($method.AdditionalProperties["@odata.type"]) {
+          "#microsoft.graph.emailAuthenticationMethod"  {
+             $resultObject.email = $true
+             $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.fido2AuthenticationMethod"                   {
+            $resultObject.fido2 = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"  {
+            $resultObject.app = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.passwordAuthenticationMethod"                {
+                $resultObject.password = $true
+                # When only the password is set, then MFA is disabled.
+                if($resultObject.MFAstatus -ne "Enabled")
+                {
+                    $resultObject.MFAstatus = "Disabled"
+                }
+           }
+           "#microsoft.graph.phoneAuthenticationMethod"  {
+            $resultObject.phone = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.softwareOathAuthenticationMethod"  {
+            $resultObject.softwareoath = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.temporaryAccessPassAuthenticationMethod"  {
+            $resultObject.tempaccess = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
+            $resultObject.hellobusiness = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+        }
+    }
+
+##Collecting objects
+$results += $resultObject;
+
+}
+# Display the custom objects
+$results
 ```
 
-#### Pivot 10 (STATUS: !)
+#### Pivot 10 (STATUS: TODO!)
 
 **Azure AD Graph**
 
 ```powershell
+#PIVOT 10 Mailboxes Overview
+
+[Int]$EquipmentMailboxCount  = 0
+[uint64]$EquipmentMailboxSize   = 0
+[Int]$RoomMailboxCount       = 0
+[uint64]$RoomMailboxSize        = 0
+[Int]$SchedulingMailboxCount = 0
+[uint64]$SchedulingMailboxSize  = 0
+[Int]$SharedMailboxCount     = 0
+[uint64]$SharedMailboxSize      = 0
+[Int]$UserMailboxCount       = 0
+[uint64]$UserMailboxSize        = 0
+
+foreach ($i in $auditdata) {
+    if($i.RecipientTypeDetails -like "*EquipmentMailbox*"){
+        $EquipmentMailboxCount ++
+        $EquipmentMailboxSize += [convert]::ToUInt64($i.mailboxsize)
+    }elseif ($i.RecipientTypeDetails -like "*RoomMailbox*") {
+        $RoomMailboxCount ++
+        $RoomMailboxSize += [convert]::ToUInt64($i.mailboxsize)
+    }elseif ($i.RecipientTypeDetails -like "*SchedulingMailbox*"){
+        $SchedulingMailboxCount ++
+        $SchedulingMailboxSize += [convert]::ToUInt64($i.mailboxsize)
+    }elseif ($i.RecipientTypeDetails -like "*SharedMailbox*"){
+        $SharedMailboxCount ++
+        $SharedMailboxSize += [convert]::ToUInt64($i.mailboxsize)
+    }elseif($i.RecipientTypeDetails -like "*UserMailbox*"){
+        $UserMailboxCount ++
+        $UserMailboxSize += [convert]::ToUInt64($i.mailboxsize)
+    }else{
+        Write-Host 'User has no mailbox'
+    }
+}
+
+# Define the Table and Columns
+
+$MailboxOverviewTable = New-Object system.Data.DataTable 'MailboxOverview'
+$newcol = New-Object system.Data.DataColumn Mailbox_Type,([string]); $MailboxOverviewTable.columns.add($newcol)
+$newcol = New-Object system.Data.DataColumn NumberOfMailboxes,([Int]);  $MailboxOverviewTable.columns.add($newcol)
+$newcol = New-Object system.Data.DataColumn TotalMailboxSizeInMB,([Int]);  $MailboxOverviewTable.columns.add($newcol)
+
+# Add the Table Rows
+[double]$EquipmentMailboxSizeInMB = [math]::Round($EquipmentMailboxSize / 1MB, 4)
+[double]$RoomMailboxSizeInMB      = [math]::Round($RoomMailboxSize / 1MB, 3)
+[double]$SchedulingMailboxSizeInMB= [math]::Round($SchedulingMailboxSize / 1MB, 4)
+[double]$SharedMailboxSizeInMB    = [math]::Round($SharedMailboxSize / 1MB, 4)
+[double]$UserMailboxSizeInMB      = [math]::Round($UserMailboxSize / 1MB, 4)
+#[double]$totalMailboxSizeInGB     = [math]::Round($totalMailboxSizeInMB / 1GB, 3) Currently not used
+
+[double]$totalMailboxSizeInMB     = $EquipmentMailboxSizeInMB + $RoomMailboxSizeInMB + $SchedulingMailboxSizeInMB + $SharedMailboxSizeInMB + $UserMailboxSizeInMB
+
+$TotalNumberOfMailboxes = $EquipmentMailboxCount + $RoomMailboxCount + $SchedulingMailboxCount + $SharedMailboxCount + $UserMailboxCount
+
+$row = $MailboxOverviewTable.NewRow()
+$row.Mailbox_Type= ("EquipmentMailbox")
+$row.NumberOfMailboxes= $EquipmentMailboxCount
+$row.TotalMailboxSizeInMB=  $EquipmentMailboxSizeInMB
+$MailboxOverviewTable.Rows.Add($row)
+
+$row = $MailboxOverviewTable.NewRow()
+$row.Mailbox_Type= ("RoomMailbox")
+$row.NumberOfMailboxes= $RoomMailboxCount
+$row.TotalMailboxSizeInMB= $RoomMailboxSizeInMB
+$MailboxOverviewTable.Rows.Add($row)
+
+$row = $MailboxOverviewTable.NewRow()
+$row.Mailbox_Type= ("SchedulingMailbox")
+$row.NumberOfMailboxes= $SchedulingMailboxCount
+$row.TotalMailboxSizeInMB= $SchedulingMailboxSizeInMB
+$MailboxOverviewTable.Rows.Add($row)
+
+$row = $MailboxOverviewTable.NewRow()
+$row.Mailbox_Type= ("SharedMailbox")
+$row.NumberOfMailboxes= $SharedMailboxCount
+$row.TotalMailboxSizeInMB= $SharedMailboxSizeInMB
+$MailboxOverviewTable.Rows.Add($row)
+
+$row = $MailboxOverviewTable.NewRow()
+$row.Mailbox_Type= ("UserMailbox")
+$row.NumberOfMailboxes= $UserMailboxCount
+$row.TotalMailboxSizeInMB= $UserMailboxSizeInMB
+$MailboxOverviewTable.Rows.Add($row)
+
+$row = $MailboxOverviewTable.NewRow()
+$row.Mailbox_Type= ("Grand Total")
+$row.NumberOfMailboxes=$TotalNumberOfMailboxes
+$row.TotalMailboxSizeInMB=$totalMailboxSizeInMB
+$MailboxOverviewTable.Rows.Add($row)
+
+# Get the data out
+$MailboxOverviewTable | Export-Csv -path '.\MailboxOverview.csv' -NoTypeInformation
+Import-Csv '.\MailboxOverview.csv' | Export-Excel $fileNameExcelOutput -Autosize -TableName $MailboxOverviewTable.TableName -WorksheetName 'MailboxOverview'
+
+#TableUserMailboxSize
+
+$UserMailboxes = ($auditdata | Where-Object {($_.RecipientTypeDetails -like "*UserMailbox*")})
+
+# Define the Table and Columns
+
+$MailboxSizeOverviewTable = New-Object system.Data.DataTable 'MailboxSizeOverview'
+$newcol = New-Object system.Data.DataColumn Mailbox_size,([string]); $MailboxSizeOverviewTable.columns.add($newcol)
+$newcol = New-Object system.Data.DataColumn NumberOfMailboxes,([Int]);  $MailboxSizeOverviewTable.columns.add($newcol)
+
+# Add the Table Rows
+
+$Size0to4GB       = ($UserMailboxes | Where-Object {([convert]::ToInt64($_.mailboxsize) -lt 499999999)})
+$Size4to10GB      = ($UserMailboxes | Where-Object {(([convert]::ToInt64($_.mailboxsize) -gt 499999999)   -and (([uint64]($_.mailboxsize) -lt 9999999999)))})
+$Size10to20GB     = ($UserMailboxes | Where-Object {(([convert]::ToInt64($_.mailboxsize) -gt 9999999999)  -and (([convert]::ToUInt64($_.mailboxsize) -lt 19999999999)))})
+$Size20to30GB     = ($UserMailboxes | Where-Object {(([convert]::ToInt64($_.mailboxsize) -gt 19999999999) -and (([convert]::ToUInt64($_.mailboxsize) -lt 29999999999)))})
+$Size30to40GB     = ($UserMailboxes | Where-Object {(([convert]::ToInt64($_.mailboxsize) -gt 29999999999) -and (([convert]::ToUInt64($_.mailboxsize) -lt 39999999999)))})
+$Size40to50GB     = ($UserMailboxes | Where-Object {(([convert]::ToInt64($_.mailboxsize) -gt 39999999999) -and (([convert]::ToUInt64($_.mailboxsize) -lt 49999999999)))})
+$Size50to60GB     = ($UserMailboxes | Where-Object {(([convert]::ToInt64($_.mailboxsize) -gt 49999999999) -and (([convert]::ToUInt64($_.mailboxsize) -lt 59999999999)))})
+$Size60to70GB     = ($UserMailboxes | Where-Object {(([convert]::ToInt64($_.mailboxsize) -gt 59999999999) -and (([convert]::ToUInt64($_.mailboxsize) -lt 69999999999)))})
+$Size70to80GB     = ($UserMailboxes | Where-Object {(([convert]::ToInt64($_.mailboxsize) -gt 69999999999) -and (([convert]::ToUInt64($_.mailboxsize) -lt 79999999999)))})
+$Size80to90GB     = ($UserMailboxes | Where-Object {(([convert]::ToInt64($_.mailboxsize) -gt 79999999999) -and (([convert]::ToUInt64($_.mailboxsize) -lt 89999999999)))})
+$Size90to100GB    = ($UserMailboxes | Where-Object {(([convert]::ToInt64($_.mailboxsize) -gt 89999999999) -and (([convert]::ToUInt64($_.mailboxsize) -lt 99999999999)))})
+
+$row = $MailboxSizeOverviewTable.NewRow()
+$row.Mailbox_Size= ("0GB to 4GB")
+if ($Size0to4GB -eq "") {
+    $row.NumberOfMailboxes= "0"
+}else{
+    $row.NumberOfMailboxes= $Size0to4GB.Count
+}
+$row.NumberOfMailboxes= $Size0to4GB.Count
+$MailboxSizeOverviewTable.Rows.Add($row)
+
+$row = $MailboxSizeOverviewTable.NewRow()
+$row.Mailbox_Size= ("4GB to 10GB")
+$row.NumberOfMailboxes= $Size4to10GB.Count
+$MailboxSizeOverviewTable.Rows.Add($row)
+
+$row = $MailboxSizeOverviewTable.NewRow()
+$row.Mailbox_Size= ("10GB to 20GB")
+$row.NumberOfMailboxes= $Size10to20GB.Count
+$MailboxSizeOverviewTable.Rows.Add($row)
+
+$row = $MailboxSizeOverviewTable.NewRow()
+$row.Mailbox_Size= ("20GB to 30GB")
+$row.NumberOfMailboxes= $Size20to30GB.Count
+$MailboxSizeOverviewTable.Rows.Add($row)
+
+$row = $MailboxSizeOverviewTable.NewRow()
+$row.Mailbox_Size= ("30GB to 40GB")
+$row.NumberOfMailboxes= $Size30to40GB.Count
+$MailboxSizeOverviewTable.Rows.Add($row)
+
+$row = $MailboxSizeOverviewTable.NewRow()
+$row.Mailbox_Size= ("40GB to 50GB")
+$row.NumberOfMailboxes= $Size40to50GB.Count
+$MailboxSizeOverviewTable.Rows.Add($row)
+
+$row = $MailboxSizeOverviewTable.NewRow()
+$row.Mailbox_Size= ("50GB to 60GB")
+$row.NumberOfMailboxes= $Size50to60GB.Count
+$MailboxSizeOverviewTable.Rows.Add($row)
+
+$row = $MailboxSizeOverviewTable.NewRow()
+$row.Mailbox_Size= ("60GB to 70GB")
+$row.NumberOfMailboxes= $Size60to70GB.Count
+$MailboxSizeOverviewTable.Rows.Add($row)
+
+$row = $MailboxSizeOverviewTable.NewRow()
+$row.Mailbox_Size= ("70GB to 80GB")
+$row.NumberOfMailboxes= $Size70to80GB.Count
+$MailboxSizeOverviewTable.Rows.Add($row)
+
+$row = $MailboxSizeOverviewTable.NewRow()
+$row.Mailbox_Size= ("80GB to 90GB")
+$row.NumberOfMailboxes= $Size80to90GB.Count
+$MailboxSizeOverviewTable.Rows.Add($row)
+
+$row = $MailboxSizeOverviewTable.NewRow()
+$row.Mailbox_Size= ("90GB to 100GB")
+$row.NumberOfMailboxes= $Size90to100GB.Count
+$MailboxSizeOverviewTable.Rows.Add($row)
+
+# Get the data out
+$MailboxSizeOverviewTable | Export-Csv -path '.\MailboxSizeOverview.csv' -NoTypeInformation
+Import-Csv '.\MailboxSizeOverview.csv' | Export-Excel $fileNameExcelOutput -Autosize -TableName $MailboxSizeOverviewTable.TableName -WorksheetName 'MailboxSizeOverview'
 
 ```
 
 **MS Graph**
 
+https://joymalya.com/powershell-ms-graph-api-part-2/
+
+MS Graph heeft geen ondersteuning voor het opvragen van mailbox statistieken, het kan wel via hard-gecodeerde HTTP requests, dit moet wel worden verkwerkt
+
 ```powershell
+
+```
+
+#### Pivot 11 (STATUS: TODO MAIL!)
+
+#### Pivot 12 (STATUS: TODO MAIL!)
+
+#### Pivot 13 (STATUS: TODO MAIL!)
+
+#### Pivot 14 (STATUS: TODO MAIL!)
+
+#### Pivot 15 (STATUS: CHECK!)
+
+**MS Graph**
+
+```powershell
+$upnArray = @()
+$count = 0
+
+# Get all users from the MgUser command and loop through them
+Get-MgUser | ForEach-Object {
+    # Add the user principal name to the array
+    $upnArray += $_.UserPrincipalName
+}
+
+foreach ($upn in $upnArray) {
+   $cmd = (Get-MgUser -UserID $upn -Select Mail)
+   if (($cmd.Mail) -match "\.onmicrosoft\.com$")
+   {
+    $count++
+   }
+}
+
+
+Write-Host "=== RESULTS ==="
+Write-Host "$count users have '.onmicrosoft.com' in their mailaddress"
+Write-host "There are in total $($upnArray.Count) users"
+```
+
+#### Pivot 16 (STATUS: TODO MAIL!)
+
+#### Pivot 17 (STATUS: TODO MAIL!)
+
+#### Pivot 18 (STATUS: TODO MAIL!)
+
+#### Pivot 19 (STATUS: CHECK!)
+
+**MS Graph**
+
+```powershell
+$upnArray = @()
+# Get all users from the MgUser command and loop through them
+Get-MgUser | ForEach-Object {
+    # Add the user principal name to the array
+    $upnArray += $_.UserPrincipalName
+}
+
+foreach ($upn in $upnArray) {
+   $cmd = (Get-MgUserLicenseDetail -UserID $upn)
+   $servicePlans = $cmd.ServicePlans
+   Write-Host "User: $($upn) --- Licenses: $($servicePlans.ServicePlanName)"
+}
+```
+
+#### Pivot 20 (STATUS: TODO!)
+
+**MS Graph**
+
+```
 
 ```
