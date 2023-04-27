@@ -508,7 +508,7 @@
   year         = {2013},
 }
 
-@Book{bertocci2015modern,
+@Book{Bertocci2015,
   author    = {Bertocci, Vittorio},
   date      = {2015},
   title     = {Modern authentication with Azure Active Directory for web applications},

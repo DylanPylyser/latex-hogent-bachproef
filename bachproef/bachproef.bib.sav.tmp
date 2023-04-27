@@ -263,4 +263,265 @@
   urldate = {2023-03-01},
 }
 
-@Online{OAuth
+@Online{OAuth,
+  author  = {OAuth},
+  title   = {OAuth 2.0},
+  url     = {https://oauth.net/2/},
+  urldate = {2023-03-25},
+}
+
+@Article{Saltzer1975,
+  author    = {Saltzer, Jerome H and Schroeder, Michael D},
+  date      = {1975},
+  title     = {The protection of information in computer systems},
+  number    = {9},
+  pages     = {1278--1308},
+  volume    = {63},
+  journal   = {Proceedings of the IEEE},
+  publisher = {IEEE},
+  year      = {1975},
+}
+
+@TechReport{Dusseault2010,
+  author = {Dusseault, Lisa and Snell, J},
+  date   = {2010},
+  title  = {Patch method for http},
+  year   = {2010},
+}
+
+@Misc{Fielding1999,
+  author    = {Fielding, Roy and Gettys, Jim and Mogul, Jeffrey and Frystyk, Henrik and Masinter, Larry and Leach, Paul and Berners-Lee, Tim},
+  date      = {1999},
+  title     = {RFC2616: Hypertext Transfer Protocol--HTTP/1.1},
+  publisher = {RFC Editor},
+  year      = {1999},
+}
+
+@Article{Liang2016,
+  author    = {Liang, Steve and Huang, Chih-Yuan and Khalafbeigi, Tania},
+  date      = {2016},
+  title     = {OGC SensorThings API Part 1: Sensing, Version 1.0.},
+  publisher = {Open Geospatial Consortium},
+  year      = {2016},
+}
+
+@Article{Wojcieszyn2014,
+  author    = {Wojcieszyn, Filip and Wojcieszyn, Filip},
+  date      = {2014},
+  title     = {OData},
+  pages     = {347--363},
+  journal   = {ASP. NET Web API 2 Recipes: A Problem Solution Approach},
+  publisher = {Springer},
+  year      = {2014},
+}
+
+@Book{Comer2006,
+  author    = {Comer, Douglas E},
+  date      = {2006},
+  title     = {Internetworking con TCP/IP},
+  publisher = {Pearson Italia Spa},
+  volume    = {1},
+  year      = {2006},
+}
+
+@Online{Microsoft2015a,
+  author  = {Microsoft},
+  date    = {2015-11-18},
+  title   = {Connect(); // 2015: Microsoft Graph (/bèta)},
+  url     = {https://learn.microsoft.com/en-us/events/visual-studio-connect-event-2015/302},
+  urldate = {2023-03-28},
+}
+
+@Online{Microsoft2023d,
+  author  = {Microsoft},
+  date    = {2023-03-16},
+  title   = {Overview of Microsoft Graph},
+  url     = {https://learn.microsoft.com/en-us/graph/overview},
+  urldate = {2023-03-28},
+}
+
+@Online{Microsoft2023e,
+  author  = {Microsoft},
+  date    = {2023-01-27},
+  title   = {Migrate your apps from Azure AD Graph to Microsoft Graph},
+  url     = {https://learn.microsoft.com/en-us/graph/migrate-azure-ad-graph-overview},
+  urldate = {2023-03-27},
+}
+
+@InProceedings{Truica2015,
+  author       = {Truica, Ciprian-Octavian and Radulescu, Florin and Boicea, Alexandru and Bucur, Ion},
+  booktitle    = {2015 20th International Conference on Control Systems and Computer Science},
+  date         = {2015},
+  title        = {Performance evaluation for CRUD operations in asynchronously replicated document oriented database},
+  organization = {IEEE},
+  pages        = {191--196},
+  year         = {2015},
+}
+
+@Online{Microsoft2023f,
+  author  = {Microsoft},
+  date    = {2023-03-31},
+  title   = {Microsoft Graph Changelog},
+  url     = {https://developer.microsoft.com/en-us/graph/changelog/},
+  urldate = {2023-04-01},
+}
+
+@Online{Microsoft2023g,
+  author  = {Microsoft},
+  date    = {2023-02-03},
+  title   = {Use query parameters to customize responses},
+  url     = {https://learn.microsoft.com/en-us/graph/query-parameters?tabs=http},
+  urldate = {2023-04-01},
+}
+
+@WWW{Microsoft2023h,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {Graph Explorer},
+  url     = {https://developer.microsoft.com/en-us/graph/graph-explorer},
+  urldate = {2023-03-18},
+}
+
+@Online{Postman2023,
+  author = {{Postman Inc.}},
+  date   = {2023},
+  title  = {Postman},
+  url    = {https://www.postman.com/},
+}
+
+@Online{Saxton2015,
+  author  = {Saxton, Adam},
+  date    = {2015-04-09},
+  editor  = {Microsoft},
+  title   = {What is a Tenant?},
+  url     = {https://powerbi.microsoft.com/en-us/blog/what-is-a-tenant/},
+  urldate = {2023-04-01},
+}
+
+@Online{Microsoft2022b,
+  author  = {Microsoft},
+  date    = {2022-12-20},
+  title   = {Authentication and authorization basics},
+  url     = {https://learn.microsoft.com/en-us/graph/auth/auth-concepts},
+  urldate = {2023-04-01},
+}
+
+@Online{Hay2021,
+  author  = {Hay, Richard},
+  date    = {2021-06-10},
+  title   = {Microsoft Graph Connectors Expand Access to Key Data Sources},
+  url     = {https://www.itprotoday.com/office-365/microsoft-graph-connectors-expand-access-key-data-sources},
+  urldate = {2023-04-04},
+}
+
+@Online{Microsoft2022c,
+  author  = {Microsoft},
+  date    = {2022-09-08},
+  title   = {Overview of Microsoft Graph Data Connect},
+  url     = {https://learn.microsoft.com/en-us/graph/data-connect-concept-overview},
+  urldate = {2023-04-04},
+}
+
+@Online{Microsoft2023i,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {AzureAD},
+  url     = {https://learn.microsoft.com/en-us/powershell/module/azuread/?view=azureadps-2.0&preserve-view=true},
+  urldate = {2023-03-21},
+}
+
+@Online{RedHat2020,
+  author  = {{Red Hat}},
+  date    = {2020-06-10},
+  title   = {What is an SDK?},
+  url     = {https://www.redhat.com/en/topics/cloud-native-apps/what-is-SDK},
+  urldate = {2023-04-05},
+}
+
+@Online{Microsoft2023j,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {Microsoft Graph PowerShell documentation},
+  url     = {https://learn.microsoft.com/en-us/powershell/microsoftgraph/?view=graph-powershell-1.0},
+  urldate = {2023-04-05},
+}
+
+@Online{Microsoft2023k,
+  author  = {Microsoft},
+  date    = {2023-04-03},
+  title   = {Microsoft Graph PowerShell module},
+  url     = {https://www.powershellgallery.com/packages/Microsoft.Graph/1.23.0},
+  urldate = {2023-04-05},
+}
+
+@Online{Microsoft2023l,
+  author  = {Microsoft},
+  date    = {2023-03-13},
+  title   = {Find Azure AD and MSOnline cmdlets in Microsoft Graph PowerShell},
+  url     = {https://learn.microsoft.com/en-us/powershell/microsoftgraph/azuread-msoline-cmdlet-map?view=graph-powershell-1.0},
+  urldate = {2023-04-05},
+}
+
+@Online{Ooms2022,
+  author  = {Ooms, Rudy},
+  date    = {2022-03-05},
+  title   = {Those who wish me ADAL},
+  url     = {https://call4cloud.nl/2021/08/those-who-wish-me-adal/},
+  urldate = {2023-04-09},
+}
+
+@Online{Microsoft2022d,
+  author  = {Microsoft},
+  date    = {2022-10-12},
+  title   = {Overview of the Microsoft Authentication Library (MSAL)},
+  url     = {https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-overview},
+  urldate = {2023-04-09},
+}
+
+@Online{Microsoft2023m,
+  author  = {Microsoft},
+  date    = {2023-01-27},
+  title   = {Migrate applications to the Microsoft Authentication Library (MSAL)},
+  url     = {https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-migration},
+  urldate = {2023-04-09},
+}
+
+@Article{Gunson2011,
+  author    = {Gunson, Nancie and Marshall, Diarmid and Morton, Hazel and Jack, Mervyn},
+  date      = {2011},
+  title     = {User perceptions of security and usability of single-factor and two-factor authentication in automated telephone banking},
+  number    = {4},
+  pages     = {208--220},
+  volume    = {30},
+  journal   = {Computers \& Security},
+  publisher = {Elsevier},
+  year      = {2011},
+}
+
+@InProceedings{Banyal2013,
+  author       = {Banyal, Rohitash Kumar and Jain, Pragya and Jain, Vijendra Kumar},
+  booktitle    = {2013 fifth international conference on computational intelligence, modelling and simulation},
+  date         = {2013},
+  title        = {Multi-factor authentication framework for cloud computing},
+  organization = {IEEE},
+  pages        = {105--110},
+  year         = {2013},
+}
+
+@Book{Bertocci2015,
+  author    = {Bertocci, Vittorio},
+  date      = {2015},
+  title     = {Modern authentication with Azure Active Directory for web applications},
+  publisher = {Microsoft Press},
+  year      = {2015},
+}
+
+@Online{Microsoft2023n,
+  author  = {Microsoft},
+  date    = {2023-01-27},
+  title   = {Azure AD Graph to Microsoft Graph migration FAQ},
+  url     = {https://learn.microsoft.com/en-us/graph/migrate-azure-ad-graph-faq},
+  urldate = {2023-04-27},
+}
+
+@Comment{jabref-meta: databaseT
