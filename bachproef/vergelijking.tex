@@ -14,7 +14,10 @@
 % Vb. Begint met ... en eindigt met JSON. Is dit hetzelfde of...
 % Note: ook nog mogelijk om meerdere subsecties of subsubsecties te maken om de fases goed in detail te bespreken en te vergelijken.
 
+\subsubsection{Eindpunt adressering}
 
+Zowel Azure \ac{AD} Graph als Microsoft Graph ondersteunen vijf soorten \ac{HTTP}-verzoeken. Deze vijf zijn GET, POST, PATCH, PUT en DELETE.
+% TODO...
 
 \section{Data-objecten}
 
@@ -24,15 +27,52 @@
 % Vb. Waar zit het verschil? Is dit hetzelfde gebleven?
 
 
+
+
 \subsection{Aantal aanspreekbare data-objecten}
 
-Idee: een tabel of mooi overzicht over hoeveel data-objecten er kunnen worden aangesproken door beide.
-
-Vb. Zijn er veel nieuwe bijgekomen? Valt er iets op? Is er iets weggegaan...
-
+%Idee: een tabel of mooi overzicht over hoeveel data-objecten er kunnen worden aangesproken door beide.
+%Vb. Zijn er veel nieuwe bijgekomen? Valt er iets op? Is er iets weggegaan...
 % Hier wordt het data-object 
 
-% Dieper gaan op API = verbinding
+
+Met de migratie van Azure \ac{AD} Graph naar Microsoft Graph, wordt er verondersteld dat alle aanspreekbare data-objecten worden overgenomen. Wanneer het overzicht van data-objecten bij Azure \ac{AD} PowerShell naast dat van Microsoft Graph wordt gezet, ontstaat volgend overzicht dat te vinden is in Tabel \ref{AADMSG}. \\
+
+\begin{table}
+    \tiny
+    \centering
+    \begin{tabular}{ |c|c||c|c| } 
+        \hline
+        \textbf{Azure AD data-object} & \textbf{Aantal commando's} & \textbf{Microsoft Graph data-object} & \textbf{Aantal commando's} \\
+        \hline
+        Administrative Units & 9 & Administrative Units & 9 \\ 
+        Application Proxy Application Management & 8 & / & / \\
+        Application Proxy Connector Management & 9 & / & / \\
+        Applications & 20 & Applications & 20 \\ 
+        AzureAD & 49 & AzureAD & 48 \\ 
+        Certificate Authorities & 4 & Certificate Authorities & 1 \\ 
+        Connect to directory & 2 & Connect to directory & 2 \\ 
+        Contacts & 8 & Contacts & 7 \\ 
+        Contracts & 1 & Contracts & 1 \\ 
+        Deleted Objects & 1 & Deleted Objects & 1 \\ 
+        Devices & 11 & Devices & 9 \\    
+        Directory & 3 & Directory & 3 \\
+        Directory Objects & 1 & Directory Objects & 1 \\ 
+        Directory Roles & 13 & Directory Roles & 13 \\ 
+        Domains & 8 & Domains & 8 \\ 
+        Extension Properties & 1 & Extension Properties & 1 \\ 
+        Groups & 26 & Groups & 26 \\ 
+        OAuth2 & 2 & OAuth2 & 2 \\ 
+        Policies & 2 & Policies & 2 \\ 
+        Service Principals & 22 & Service Principals & 22 \\ 
+        Users & 30 & Users & 30 \\ 
+        \hline
+    \end{tabular}
+    \caption[Tabel migratie Azure AD data-objecten naar Microsoft Graph]{Tabel met overzicht van alle ondersteunende data-objecten bij de migratie van Azure \ac{AD} PowerShell naar Microsoft Graph}
+    \label{AADMSG}
+\end{table}
+
+Uit \ref{AADMSG} blijkt dat Microsoft Graph de meerderheid van de Azure \ac{AD} data-objecten overneemt. Toch worden er enkele verschillen opgemerkt uit deze migratie. Zowel de Application Proxy Application Management en Application Proxy Connector Management vallen weg. Vervolgens is er een commando weggehaald uit het AzureAD en Contacts data-object. Finaal zijn er twee commando's minder bij het Devices data-object. \\
 
 \section{Gebruik}
 
@@ -60,9 +100,8 @@ Vb. MFA is sterker dan alleen een wachtwoord...
 
 \subsection{Gebruik van rechten}
 
-Idee: Het beginsel van de minste voorrechten (PoLP) wordt toegepast. Is dit bij beide zo en hoe sterk is dit principe?
+% Idee: Het beginsel van de minste voorrechten (PoLP) wordt toegepast. Is dit bij beide zo en hoe sterk is dit principe?
 
-Vb. Leg PoLP dieper uit, wat kan het tegenhouden, waarom wordt het toegepast...
+% Vb. Leg PoLP dieper uit, wat kan het tegenhouden, waarom wordt het toegepast...
 
-%\subsection{Encryptie}
-%Idee: Wordt er een encryptie ondersteunt?
+
