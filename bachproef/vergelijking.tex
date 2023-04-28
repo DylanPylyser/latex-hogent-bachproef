@@ -5,31 +5,29 @@
 \chapter{Vergelijking oud en nieuw}%
 \label{ch:vergelijking}
 
-\section{Achterliggende logica}
+\section{Werking van de API}
 
 % TO DO: 4. Ideeën nakijken => Normaal OK
-
-\subsection{Doorloop van data}
 % Idee: Vergelijking in hoe wordt de data verzonden, verwerkt en teruggestuurd?
 % Vb. Begint met ... en eindigt met JSON. Is dit hetzelfde of...
 % Note: ook nog mogelijk om meerdere subsecties of subsubsecties te maken om de fases goed in detail te bespreken en te vergelijken.
 
-\subsubsection{Eindpunt adressering}
+\subsection{Eindpunt adressering}
 
 Zowel Azure \ac{AD} Graph als Microsoft Graph ondersteunen vijf soorten \ac{HTTP}-verzoeken. Deze vijf zijn GET, POST, PATCH, PUT en DELETE.
-% TODO...
 
-\section{Data-objecten}
+% TODO: \subsection{...}
 
-\subsection{Werking van de API}
+% ...
+
+% ---
+% Section
+% ---
+
+\section{Aanspreekbare data-objecten}
 
 % Idee: uitleggen hoe de API werkt en hoe het aan een data-object kan aanspreken
 % Vb. Waar zit het verschil? Is dit hetzelfde gebleven?
-
-
-
-
-\subsection{Aantal aanspreekbare data-objecten}
 
 %Idee: een tabel of mooi overzicht over hoeveel data-objecten er kunnen worden aangesproken door beide.
 %Vb. Zijn er veel nieuwe bijgekomen? Valt er iets op? Is er iets weggegaan...
@@ -74,6 +72,10 @@ Met de migratie van Azure \ac{AD} Graph naar Microsoft Graph, wordt er veronders
 
 Uit \ref{AADMSG} blijkt dat Microsoft Graph de meerderheid van de Azure \ac{AD} data-objecten overneemt. Toch worden er enkele verschillen opgemerkt uit deze migratie. Zowel de Application Proxy Application Management en Application Proxy Connector Management vallen weg. Vervolgens is er een commando weggehaald uit het AzureAD en Contacts data-object. Finaal zijn er twee commando's minder bij het Devices data-object. \\
 
+% ---
+% Section
+% ---
+
 \section{Gebruik}
 
 \subsection{Authenticatiemethodes}
@@ -88,7 +90,14 @@ Idee: Waar of hoe kan men de technologie aanspreken of gebruiken?
 
 Vb. Moet die manueel gebeuren? Is dit ook mogelijk via scripts? Kan dit via PowerShell of moet je in Azure zitten...
 
-% manueel werk, script werk... => verschil van werking, eventueel PowerShell aantoetsen
+% manueel werk, script werk... => verschil van werking, eventueel PowerShell aantoetsen, Java? ...
+
+
+
+
+% ---
+% Section
+% ---
 
 \section{Security}
 
