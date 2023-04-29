@@ -5,6 +5,8 @@
 \chapter{Vergelijking oud en nieuw}%
 \label{ch:vergelijking}
 
+De eerste helft van de conclusie wordt gestaafd aan de hand van een vergelijkende studie. Azure \ac{AD} Graph en PowerShell wordt vergeleken met Microsoft Graph met bijhorende PowerShell-module. In de vergelijking worden beide technologieën aangesproken als het “oude” en het “nieuwe”. 
+
 \section{Werking van de API}
 
 % TO DO: 4. Ideeën nakijken => Normaal OK
@@ -12,19 +14,45 @@
 % Vb. Begint met ... en eindigt met JSON. Is dit hetzelfde of...
 % Note: ook nog mogelijk om meerdere subsecties of subsubsecties te maken om de fases goed in detail te bespreken en te vergelijken.
 
-\subsection{Eindpunt adressering}
+  
 
-Zowel Azure \ac{AD} Graph als Microsoft Graph ondersteunen vijf soorten \ac{HTTP}-verzoeken. Deze vijf zijn GET, POST, PATCH, PUT en DELETE.
+\subsection{Soorten HTTP-verzoek}
 
-% TODO: \subsection{...}
+Zowel Azure \ac{AD} Graph als Microsoft Graph ondersteunen vijf soorten \ac{HTTP}-verzoeken. Deze vijf zijn GET, POST, PATCH, PUT en DELETE. 
 
-% ...
+\subsection{Eindpunt}
+
+Op Figuur \ref{bfe} bij Azure \ac{AD} Graph, wordt er gebruikgemaakt van “windows” in de \ac{URL}. In vergelijking met Microsoft Graph, dat op Figuur \ref{RAM} te vinden is, komt het woord “microsoft” voor in de \ac{URL}. \\
+
+Op vlak van onderdelen, wordt het volgende opgemerkt bij het vergelijken. Azure \ac{AD} Graph werkt met vier onderdelen: Tenant ID, Resource, (\ac{API}) Version en optionele OData query-parameters. Terwijl Microsoft Graph maar drie onderdelen gebruikt. de Tenant ID wordt uit het eindpunt geschrapt. Daarnaast worden de onderdelen “version” en “resource” van plaats gewisseld. De optionele query-parameters zijn in beide aanwezig. 
+
+
+% TODO: Invullen wanneer er tijd over is
+% !!! Idee: Alle HTTP-verzoeken uitvoeren, zien dat dit hetzelfde is en de resultaten opschrijven (zie hieronder voor voorbeeld)
+
+% https://graphexplorer.azurewebsites.net/#
+% GET: https://graph.windows.net/ffa43659-6d7d-4f83-a517-838af35d1353/domains
+% Resultaat... Helemaal meegeven
+
+% Dit hetzelfde voor MS Graph: https://developer.microsoft.com/en-us/graph/graph-explorer
+% GET: https://graph.microsoft.com/v1.0/domains
+% Resultaat... Helemaal meegeven
+
+% VERGLIJKING !!!
+
+% \subsection{Request en Response}
+
+%Voor dit onderdeel wordt er gebruikgemaakt van de Graph Explorer die zowel het oude %als het nieuwe aanbiedt.
+
+
+
+% \subsection{Versies}
 
 % ---
 % Section
 % ---
 
-\section{Aanspreekbare data-objecten}
+\section{Aanspreekbare data-objecten en dependencies}
 
 % Idee: uitleggen hoe de API werkt en hoe het aan een data-object kan aanspreken
 % Vb. Waar zit het verschil? Is dit hetzelfde gebleven?
@@ -60,17 +88,20 @@ Met de migratie van Azure \ac{AD} Graph naar Microsoft Graph, wordt er veronders
         Domains & 8 & Domains & 8 \\ 
         Extension Properties & 1 & Extension Properties & 1 \\ 
         Groups & 26 & Groups & 26 \\ 
+        MSOnline & 97 & MSOnline & 76 \\
         OAuth2 & 2 & OAuth2 & 2 \\ 
         Policies & 2 & Policies & 2 \\ 
         Service Principals & 22 & Service Principals & 22 \\ 
         Users & 30 & Users & 30 \\ 
         \hline
     \end{tabular}
-    \caption[Tabel migratie Azure AD data-objecten naar Microsoft Graph]{Tabel met overzicht van alle ondersteunende data-objecten bij de migratie van Azure \ac{AD} PowerShell naar Microsoft Graph}
+    \caption[Tabel migratie Azure AD data-objecten naar Microsoft Graph]{Tabel met overzicht van alle ondersteunende data-objecten bij de migratie van Azure \ac{AD} PowerShell naar Microsoft Graph uit documentatie van \textcite{Microsoft2023l}}
     \label{AADMSG}
 \end{table}
 
-Uit \ref{AADMSG} blijkt dat Microsoft Graph de meerderheid van de Azure \ac{AD} data-objecten overneemt. Toch worden er enkele verschillen opgemerkt uit deze migratie. Zowel de Application Proxy Application Management en Application Proxy Connector Management vallen weg. Vervolgens is er een commando weggehaald uit het AzureAD en Contacts data-object. Finaal zijn er twee commando's minder bij het Devices data-object. \\
+Uit de blijkt dat Microsoft Graph de meerderheid van de Azure \ac{AD} data-objecten overneemt. Toch worden er enkele verschillen opgemerkt uit deze migratie. Zowel de Application Proxy Application Management en Application Proxy Connector Management vallen weg. Daarnaast is er een commando weggehaald uit het AzureAD en Contacts data-object. Vervolgens zijn er twee commando's minder bij het Devices data-object. Finaal zijn er 21 commando's weggehaald uit het MSOnline data-object in Microsoft Graph. \\
+
+Naast de data-objecten bevat Microsoft Graph meer dependencies, dit wordt weergegeven in Tabel \ref{AADT}. Dit wilt zeggen dat Microsoft Graph meer Microsoft-entiteiten kan aanspreken dan de Azure \ac{AD} PowerShell-module. Azure \ac{AD} is dan ook gefocust op het beheren van Azure \ac{AD}, terwijl Microsoft Graph vandaag de dag ook Microsoft Teams, Outlook, To Do en andere entiteiten kan aanspreken naast Azure \ac{AD}.
 
 % ---
 % Section

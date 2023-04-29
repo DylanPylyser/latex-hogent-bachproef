@@ -114,7 +114,9 @@ Azure \ac{AD} PowerShell voor Graph, kortweg Azure \ac{AD} PowerShell, is een mo
 
 PowerShell staat gekend voor zijn breed scala aan informatie dat het kan verkrijgen. Dit breed scala gaat van systemen, servers, randapparatuur, mobiele apparaten tot gegevensgestuurde toepassingen zoals Active Directory \autocite{Hosmer2019}. Vandaag de dag ondersteunt PowerShell meer dan 11.350 unieke modules en scripts via de PowerShell Gallary, waaronder de Azure \ac{AD} PowerShell module \autocite{Microsoft2023a}. \\
 
-Door het gebruik van Azure \ac{AD} in combinatie met PowerShell, wordt er gebruikgemaakt van het beste van de twee werelden. Een gecentraliseerd beheerplatform automatisch doen werken brengt bijkomende voordelen voor de maker. Uit onderzoek van \textcite{Breton2003} zijn enkele voordelen van automatisatie minder stress, tijdbesparing en een lagere kans op menselijke fouten.
+Door het gebruik van Azure \ac{AD} in combinatie met PowerShell, wordt er gebruikgemaakt van het beste van de twee werelden. Een gecentraliseerd beheerplatform automatisch doen werken brengt bijkomende voordelen voor de maker. Uit onderzoek van \textcite{Breton2003} zijn enkele voordelen van automatisatie minder stress, tijdbesparing en een lagere kans op menselijke fouten. \\
+
+Naast de Azure \ac{AD} PowerShell-module, is er de MSOnline PowerShell-module \autocite{Prigent2019}. MSOnline is de voorganger van de AzureAD-module. MSOnline is de eerste versie, in vergelijking met AzureAD dat de tweede versie is. MSOnline heeft dezelfde functie als AzureAD en biedt de mogelijkheid aan om via PowerShell Azure \ac{AD} te kunnen aanspreken.
 
 \subsubsection{Ondersteunende data-objecten}
 
@@ -163,17 +165,20 @@ Azure AD PowerShell ondersteunt volgende data-objecten met een specifiek aantal 
         Domains & 8 \\ 
         Extension Properties & 1 \\ 
         Groups & 26 \\ 
+        MSOnline & 97 \\
         OAuth2 & 2 \\ 
         Policies & 2 \\ 
         Service Principals & 22 \\ 
         Users & 30 \\ 
         \hline
     \end{tabular}
-    \caption[Tabel Azure AD data-objecten]{Tabel met overzicht van alle ondersteunende data-objecten met bijhorende commando's binnen Azure \ac{AD} PowerShell.}
+    \caption[Tabel Azure AD en MSonline data-objecten]{Tabel met overzicht van alle ondersteunende data-objecten van Azure \ac{AD} en MSOnline met bijhorende commando's binnen Azure \ac{AD} PowerShell.}
     \label{AADT}
 \end{table}
 
 \subsection{Wat is Azure Active Directory Graph?}
+
+% TODO: uitleggen wat MSOnline is ??? (niet hier maar ergens anders)
 
 De communicatie tussen Azure \ac{AD} en de Azure \ac{AD} PowerShell-module gebeurd via een \ac{API}. Deze \ac{API} is een \ac{REST} \ac{API} die Graph wordt genoemd. \\ 
 
@@ -294,9 +299,9 @@ Om taken of functies uit te voeren met de Graph \ac{API}, wordt er gebruikgemaak
 Deze verzoeken zijn gericht op een eindpunt van een dienst, een resource, een verzameling van resources of andere entiteiten die de \ac{API} ondersteunt. De eindpunten worden genoteerd als een \ac{URL}. Het gebruikelijk formaat van zo'n eindpunt wordt voorgesteld op Figuur \ref{bfe}. \\
 
 \begin{figure}[h]
-    \footnotesize\begin{verbatim}https://graph.windows.net/{tenant_id}/{resource_path}?{api_version}
+    \footnotesize\begin{verbatim}https://graph.windows.net/{tenant_id}/{resource}?{version}&query-parameters
     \end{verbatim}    
-    \caption[Basis formaat Graph API-eindpunt]{Het basis formaat van een Graph \ac{API}-eindpunt.}
+    \caption[Basis formaat Graph API-eindpunt]{Het basis formaat van een Azure \ac{AD} Graph \ac{API}-eindpunt uit documentatie van \textcite{Microsoft2023o}.}
     \label{bfe}
 \end{figure}
 
@@ -813,14 +818,15 @@ De \ac{API} maakt gebruik van OData. OData werd al reeds besproken in het vorige
 Om naar een bron te schrijven of te lezen, wordt er gebruikgemaakt van een verzoek. De opbouw van een verzoek wordt weergegeven op Figuur \ref{RAM}. \\
 
 \begin{figure}[h]
-    \footnotesize\begin{verbatim}{HTTP method} https://graph.microsoft.com/{version}/{resource}?{query-parameters}
+    \footnotesize\begin{verbatim}https://graph.microsoft.com/{version}/{resource}?query-parameters
     \end{verbatim}    
-    \caption[Basis formaat Microsoft Graph API-eindpunt]{Het basis formaat van een Microsoft Graph \Ac{API}-eindpunt.}
+    \caption[Basis formaat Microsoft Graph API-eindpunt]{Het basis formaat van een Microsoft Graph \Ac{API}-eindpunt uit documentatie van \textcite{Microsoft2023o}.}
     \label{RAM}
 \end{figure}
 
-Een verzoek bestaat uit vier componenten, namelijk het volgende:
+Een verzoek bestaat uit vier componenten, namelijk het volgende: 
 
+% TODO: FOUT? HTTP method nakijken!!!
 \begin{itemize}
     \item \ac{HTTP} method: Een \ac{HTTP}-methode dat gebruik wordt voor het verzoek.
     \item version: De versie van de \ac{API} dat de bijhorende applicatie ondersteunt.
@@ -1032,7 +1038,8 @@ Door de uitfasering van Azure \ac{AD} PowerShell, worden de data-objecten van de
         Directory Roles & 13 \\ 
         Domains & 8 \\ 
         Extension Properties & 1 \\ 
-        Groups & 26 \\ 
+        Groups & 26 \\
+        MSOnline & 76 \\ 
         OAuth2 & 2 \\ 
         Policies & 2 \\ 
         Service Principals & 22 \\ 
