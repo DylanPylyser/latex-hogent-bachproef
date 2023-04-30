@@ -8,9 +8,9 @@
 - [x] 4
 - [x] 5
 - [x] 6
-- [ ] 7 (TODO: MFA)
+- [x] 7
 - [x] 8
-- [ ] 9 (TODO: MFA)
+- [x] 9
 - [ ] 10 (MAIL)
 - [ ] 11 (MAIL)
 - [ ] 12 (MAIL)
@@ -21,7 +21,7 @@
 - [ ] 17 (MAIL)
 - [ ] 18 (MAIL)
 - [x] 19
-- [ ] 20 (TODO: MFA)
+- [x] 20
 
 ### PowerShell Versie
 
@@ -364,7 +364,7 @@ Import-Csv '.\BlockedAccounts.csv' | Export-Excel $fileNameExcelOutput -Autosize
 Get-MgUser -Select AccountEnabled,DisplayName | Format-List -Property "AccountEnabled", "DisplayName"
 ```
 
-#### Pivot 4 (Status: CHECK!)
+#### Pivot 4 (Status: TO DO!)
 
 **Azure AD Graph**
 
@@ -400,27 +400,19 @@ Import-Csv '.\BlockedLicensedAccounts.csv' | Export-Excel $fileNameExcelOutput -
 **MS Graph**
 
 ```powershell
-# Initialize an empty array to hold the user principal names
-$upnArray = @()
-$licenseArray = @()
+# user = guest
+# user => licenties actief?
 
-# Get all users from the MgUser command and loop through them
-Get-MgUser | ForEach-Object {
-    # Add the user principal name to the array
-    $upnArray += $_.UserPrincipalName
+$users = (Get-MgUser -Select UserPrincipalName,UserType)
+$guests=@()
 
+foreach ($guest in $users) {
+    if ($guest.UserType -eq "Guest") { $guests += $guest }
 }
 
-foreach ($upn in $upnArray) {
-   $licenseArray += (Get-MgUserLicenseDetail -UserId "$upn" -Select "SkuPartNumber")
-}
-
-$upnArray
-$licenseArray
-
-# Output the array
-for ($i = 0; $i -lt $upnArray.Count; $i++) {
-   Write-Host "$($upnArray[$i]) - $($licenseArray.SkuPartNumber[$i-1])"
+foreach ($guestUser in $guests) {
+    if (Get-MgUserLicenseDetail -UserId $guestUser.UserPrincipalName) { Write-Host "$($guestUser.UserPrincipalName) is Licensed" }
+    else { Write-Host Write-Host "$($guestUser.UserPrincipalName) is not licensed" }
 }
 ```
 
@@ -460,10 +452,17 @@ foreach($i in $adminAccounts){
 
 **MS Graph**
 
-**TODO: DisplayName vermelden**
-
 ```powershell
-Get-MgDirectoryRole -DirectoryRoleId "e26351ad-20e7-4446-8954-ed9411376217" -ExpandProperty "Members" | Format-List -Property "Members"
+# Global Administrators: e26351ad-20e7-4446-8954-ed9411376217
+# Get-MgDirectoryRole -DirectoryRoleId "e26351ad-20e7-4446-8954-ed9411376217" -ExpandProperty "Members" | Format-List -Property "Members"
+$admins=@()
+
+$admins = (Get-MgDirectoryRole -DirectoryRoleId "e26351ad-20e7-4446-8954-ed9411376217" -ExpandProperty "Members")
+
+foreach ($adminId in $admins.Members.Id) {
+    Get-MgUser -UserId $adminId
+}
+
 ```
 
 #### Pivot 6 (STATUS: CHECK)
@@ -659,6 +658,102 @@ $results += $resultObject;
 $results
 ```
 
+#### Pivot 7 (STATUS: CHECK!)
+
+**MS Graph**
+
+```powershell
+# Alle gelicenseerde = Op licentie filteren
+# Actieve accounts => Account = member
+# Met MFA = false => Filteren op MFAstatus = Disabled
+
+$allUsers = (Get-MgUser -Select UserPrincipalName,UserType)
+$licensedUsers=@()
+$users=@()
+$results=@()
+$disabledMFAusers=@()
+
+foreach ($licensedUser in $allUsers) {
+    if (Get-MgUserLicenseDetail -UserId $licensedUser.UserPrincipalName) { $licensedUsers += $licensedUser }
+}
+
+foreach ($member in $licensedUsers) {
+    if ($member.UserType -eq "Member") { $users += $member }
+}
+
+foreach ($user in $users) {
+
+Write-Host  "`n$($user.UserPrincipalName)";
+$resultObject = [PSCustomObject]@{
+    user               = "-"
+    MFAstatus          = "_"
+    email              = "-"
+    fido2              = "-"
+    app                = "-"
+    password           = "-"
+    phone              = "-"
+    softwareoath       = "-"
+    tempaccess         = "-"
+    hellobusiness      = "-"
+}
+
+$MFAData = Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName
+
+$resultObject.user = $user.UserPrincipalName;
+    ForEach ($method in $MFAData) {
+
+        Switch ($method.AdditionalProperties["@odata.type"]) {
+          "#microsoft.graph.emailAuthenticationMethod"  {
+             $resultObject.email = $true
+             $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.fido2AuthenticationMethod"                   {
+            $resultObject.fido2 = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"  {
+            $resultObject.app = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.passwordAuthenticationMethod"                {
+                $resultObject.password = $true
+                # When only the password is set, then MFA is disabled.
+                if($resultObject.MFAstatus -ne "Enabled")
+                {
+                    $resultObject.MFAstatus = "Disabled"
+                }
+           }
+           "#microsoft.graph.phoneAuthenticationMethod"  {
+            $resultObject.phone = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.softwareOathAuthenticationMethod"  {
+            $resultObject.softwareoath = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.temporaryAccessPassAuthenticationMethod"  {
+            $resultObject.tempaccess = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
+            $resultObject.hellobusiness = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+        }
+    }
+
+##Collecting objects
+$results += $resultObject;
+
+}
+
+foreach ($disabledMFA in $results) {
+    if ($disabledMFA.MFAstatus -eq "Disabled") { $disabledMFAusers += $disabledMFA }
+}
+
+$disabledMFAusers
+```
+
 #### Pivot 8 (STATUS: CHECK)
 
 **MS Graph**
@@ -738,6 +833,89 @@ $results += $resultObject;
 
 }
 # Display the custom objects
+$results
+```
+
+#### Pivot 9 (STATUS: TODO!)
+
+**MS Graph**
+
+```powershell
+$users=@()
+$results=@()
+
+$admins = (Get-MgDirectoryRole -DirectoryRoleId "e26351ad-20e7-4446-8954-ed9411376217" -ExpandProperty "Members")
+
+foreach ($adminId in $admins.Members.Id) {
+    $users += (Get-MgUser -Select UserPrincipalName,UserType -UserId $adminId)
+}
+
+foreach ($user in $users) {
+
+Write-Host  "`n$($user.UserPrincipalName)";
+$resultObject = [PSCustomObject]@{
+    user               = "-"
+    MFAstatus          = "_"
+    email              = "-"
+    fido2              = "-"
+    app                = "-"
+    password           = "-"
+    phone              = "-"
+    softwareoath       = "-"
+    tempaccess         = "-"
+    hellobusiness      = "-"
+}
+
+$MFAData = Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName
+
+$resultObject.user = $user.UserPrincipalName;
+    ForEach ($method in $MFAData) {
+
+        Switch ($method.AdditionalProperties["@odata.type"]) {
+          "#microsoft.graph.emailAuthenticationMethod"  {
+             $resultObject.email = $true
+             $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.fido2AuthenticationMethod"                   {
+            $resultObject.fido2 = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"  {
+            $resultObject.app = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.passwordAuthenticationMethod"                {
+                $resultObject.password = $true
+                # When only the password is set, then MFA is disabled.
+                if($resultObject.MFAstatus -ne "Enabled")
+                {
+                    $resultObject.MFAstatus = "Disabled"
+                }
+           }
+           "#microsoft.graph.phoneAuthenticationMethod"  {
+            $resultObject.phone = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.softwareOathAuthenticationMethod"  {
+            $resultObject.softwareoath = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.temporaryAccessPassAuthenticationMethod"  {
+            $resultObject.tempaccess = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
+            $resultObject.hellobusiness = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+        }
+    }
+
+##Collecting objects
+$results += $resultObject;
+
+}
+
 $results
 ```
 
@@ -1000,10 +1178,98 @@ foreach ($upn in $upnArray) {
 }
 ```
 
-#### Pivot 20 (STATUS: TODO!)
+#### Pivot 20 (STATUS: COUNT IMPLEMENTEREN!)
 
 **MS Graph**
 
-```
+```powershell
+$results=@()
+$users = Get-MgUser -All
+$emailCount = $fido2Count = $appCount = $passwordCount = $phoneCount = $softwareoathCount = $tempaccessCount = $hellobusinessCount = 0
 
+foreach ($user in $users) {
+
+Write-Host  "`n$($user.UserPrincipalName)";
+$resultObject = [PSCustomObject]@{
+    user               = "-"
+    MFAstatus          = "_"
+    email              = "-"
+    fido2              = "-"
+    app                = "-"
+    password           = "-"
+    phone              = "-"
+    softwareoath       = "-"
+    tempaccess         = "-"
+    hellobusiness      = "-"
+}
+
+$MFAData = Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName
+
+$resultObject.user = $user.UserPrincipalName;
+    ForEach ($method in $MFAData) {
+
+        Switch ($method.AdditionalProperties["@odata.type"]) {
+          "#microsoft.graph.emailAuthenticationMethod"  {
+             $resultObject.email = $true
+             $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.fido2AuthenticationMethod"                   {
+            $resultObject.fido2 = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"  {
+            $resultObject.app = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+          "#microsoft.graph.passwordAuthenticationMethod"                {
+                $resultObject.password = $true
+                # When only the password is set, then MFA is disabled.
+                if($resultObject.MFAstatus -ne "Enabled")
+                {
+                    $resultObject.MFAstatus = "Disabled"
+                }
+           }
+           "#microsoft.graph.phoneAuthenticationMethod"  {
+            $resultObject.phone = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.softwareOathAuthenticationMethod"  {
+            $resultObject.softwareoath = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.temporaryAccessPassAuthenticationMethod"  {
+            $resultObject.tempaccess = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+            "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
+            $resultObject.hellobusiness = $true
+            $resultObject.MFAstatus = "Enabled"
+          }
+        }
+    }
+
+    $results += $resultObject;
+}
+
+ForEach ($MFAusers in $results) {
+    ForEach ($MFAuser in $MFAusers) {
+        if ($MFAuser.email -eq "True") { $emailCount++ }
+        if ($MFAuser.fido2 -eq "True") { $fido2Count++ }
+        if ($MFAuser.app -eq "True") { $appCount++ }
+        if ($MFAuser.password -eq "True") { $passwordCount++ }
+        if ($MFAuser.phone -eq "True") { $phoneCount++ }
+        if ($MFAuser.softwareoath -eq "True") { $softwareoathCount++ }
+        if ($MFAuser.tempaccess -eq "True") { $tempaccessCount++ }
+        if ($MFAuser.hellobusiness -eq "True") { $hellobusinessCount++ }
+    }
+}
+
+Write-Host "Usage of email: $($emailCount)"
+Write-Host "Usage of fido2: $($fido2Count)"
+Write-Host "Usage of app: $($appCount)"
+Write-Host "Usage of password: $($passwordCount)"
+Write-Host "Usage of phone: $($phoneCount)"
+Write-Host "Usage of softwareoath: $($softwareoathCount)"
+Write-Host "Usage of tempaccess: $($tempaccessCount)"
+Write-Host "Usage of hellobusiness: $($hellobusinessCount)"
 ```
