@@ -5,7 +5,7 @@
 - [x] 1
 - [x] 2
 - [x] 3
-- [x] 4
+- [ ] 4 (TO DO: Gebruikers die geblokkeerd zijn: Lee)
 - [x] 5
 - [x] 6
 - [x] 7
@@ -99,6 +99,12 @@ ff549021-dbb4-436b-8706-cd1fb89dfa08 Lidia Holloway    LidiaH@25ky3d.onmicrosoft
 40f70424-1c2a-45b7-841e-7c68568a4e62 Jarne Creten                                           o_jcre@25ky3d.onmicrosoft.com
 ff5666f6-60d0-45b9-8dc5-bb929203efc0 Patti Fernandez   PattiF@25ky3d.onmicrosoft.com        PattiF@25ky3d.onmicrosoft.com
 ea3d8841-88e3-4cf8-b541-2b14f89a9853 Pradeep Gupta     PradeepG@25ky3d.onmicrosoft.com      PradeepG@25ky3d.onmicrosoft.com
+```
+
+#### Retrieve Blocked User
+
+```powershell
+Get-MgUser -UserId AlexW@25ky3d.onmicrosoft.com -Select AccountEnabled | Format-List -Property "AccountEnabled"
 ```
 
 #### Audit data

@@ -25,5 +25,48 @@ Deze Sandbox maakt het mogelijk om een testomgeving op te zetten, doordat Micros
 
 % TODO: kijk best naar een andere BP hiervoor
 
+De standaard data-set die werd verkregen na het activeren bestaat uit volgende informatie.
+
+\begin{itemize}
+    \item Naam: MSFT
+    \item Tenant-id: ffa43659-6d7d-4f83-a517-838af35d1353
+    \item Primair domein: 25ky3d.onmicrosoft.com
+    \item Licentie Azure AD Premium P2
+    \item Land: Ierland
+    \item Gegevenslocatie: EU Model Clause compliant datacenters
+    \item Gebruikers: zeventien
+    \item Groepen: zes
+    \item Toepassingen: nul
+    \item Apparaten: nul
+\end{itemize}
+
+In de Proof-of-Concept is het cruciaal om de omgeving realistisch voor te stellen. In een productieomgeving van een klant of bedrijf is de data verschillend in vergelijking met de data die voorlopig wordt gebruikt in de test-omgeving. De test-tenant bevat volgende data per groep zonder aanpassingen.
+
+\begin{itemize}
+    \item Domeinen: Een domein genaamd 25ky3d.onmicrosoft.com.
+    \item Gebruikers: Zeventien members (actieve gebruikers).
+    \begin{itemize}
+        \item Administrator: Een gebruiker genaamd Dylan Pylyser.
+        \item Standaard gebruikers: Zestien willekeurige gebruikers die door Microsoft worden voorzien.
+    \end{itemize}
+    \item Licenties: Alle zeventien gebruikers hebben alle licenties.
+    \item Mailboxes: Alle zeventien gebruikers hebben een mailbox die leeg is.
+    \item \Ac{MFA}: 
+        \begin{itemize}
+            \item \ac{MFA} is in gebruik: De administrator maakt gebruik van \ac{2FA} (wachtwoord + Microsoft Authenticator).
+            \item \Ac{MFA} is niet in gebruik: De standaard gebruikers maken alleen gebruik van een wachtwoord om in te loggen.
+        \end{itemize}
+\end{itemize}
+
+Volgende aanpassingen worden uitgevoerd om de data van een productieomgeving te simuleren.
+
+\begin{itemize}
+    \item Gebruikers: 
+    \begin{itemize}
+        \item Een extra gebruiker genaamd Jarne Creten met Administrator-rechten.
+        \item Een gebruiker genaamd Megan Bowen wordt % TODO: Verder aanvullen
+    \end{itemize}
+\end{itemize}
+
 \section{Uitwerking}
 
