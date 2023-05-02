@@ -5,7 +5,7 @@
 - [x] 1
 - [x] 2
 - [x] 3
-- [ ] 4 (TO DO: Gebruikers die geblokkeerd zijn: Lee)
+- [x] 4
 - [x] 5
 - [x] 6
 - [x] 7
@@ -408,17 +408,16 @@ Import-Csv '.\BlockedLicensedAccounts.csv' | Export-Excel $fileNameExcelOutput -
 ```powershell
 # user = guest
 # user => licenties actief?
+$users = (Get-MgUser -Select UserPrincipalName,AccountEnabled )
+$blocked=@()
 
-$users = (Get-MgUser -Select UserPrincipalName,UserType)
-$guests=@()
-
-foreach ($guest in $users) {
-    if ($guest.UserType -eq "Guest") { $guests += $guest }
+foreach ($user in $users) {
+    if ($user.AccountEnabled -eq $false) { $blocked += $user }
 }
 
-foreach ($guestUser in $guests) {
-    if (Get-MgUserLicenseDetail -UserId $guestUser.UserPrincipalName) { Write-Host "$($guestUser.UserPrincipalName) is Licensed" }
-    else { Write-Host Write-Host "$($guestUser.UserPrincipalName) is not licensed" }
+foreach ($blockedUser in $blocked) {
+    if (Get-MgUserLicenseDetail -UserId $blockedUser.UserPrincipalName) { Write-Host "$($blockedUser.UserPrincipalName) is Blocked and has an active license" }
+    else { Write-Host "$($blockedUser.UserPrincipalName) is Blocked and does not have an license" }
 }
 ```
 
