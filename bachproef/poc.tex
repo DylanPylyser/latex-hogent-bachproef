@@ -2,30 +2,34 @@
 %% Proof-of-Concept
 %%=============================================================================
 
-\chapter{Uitwerking Audit-script met Microsoft Graph PowerShell-module}%
+\chapter{Uitwerking audit-script met Microsoft Graph PowerShell-module}%
 \label{ch:poc}
 
-\section{Opzetten testomgeving}
+% TODO: Bron zoeken over Sandboxes en over De Azure AD tenant?
 
-Voor de Proof-of-Concept werd er gebruikgemaakt van een testomgeving. Deze testomgeving werd opgesteld via een gratis Azure Active Directory developer tenant. \\
+Het tweede deel van de conclusie bestaat uit een praktische uitwerking met Microsoft Graph. De praktische uitwerking wordt uitgevoerd binnen een testomgeving met fictieve data. Deze data simuleert een mogelijke omgeving van een klant waar Easi een audit voor uitvoert. De praktische uitwerking behandeld twintig onderdelen van het audit-script die met PowerShell worden uitgevoerd. % TODO: verder schrijven
 
-Een Azure \ac{AD} developer tenant is een gratis Sandbox-omgeving dat voor 90 dagen beschikbaar wordt gesteld. \\
+\section{Bespreking testomgeving}
 
-Een Sandbox is in IT-termen een omgeving waarin je kan spelen met een of meerdere technologieën zonder dat hier consequenties aan vast hangen. \\
+Voor de Proof-of-Concept wordt er gebruikgemaakt van een testomgeving. Deze testomgeving is een gratis Azure Active Directory tenant dat via het Microsoft 365 Developer Program wordt aangeboden. \\
 
-Deze Sandbox maakt het mogelijk om een testomgeving op te zetten, doordat Microsoft Graph binnen. \\
+Een Azure \ac{AD} developer tenant is een gratis Sandbox-omgeving dat voor 90 dagen beschikbaar wordt gesteld, met een mogelijkheid tot verlenging. Een Sandbox is in \ac{IT}-termen een omgeving waarin je kan spelen met een of meerdere technologieën zonder dat hier consequenties aan vast hangen. \\
 
-% TODO: uitwerken 
+Binnen deze Sandbox kan Microsoft Graph gebruikt worden wanneer dit wordt opgesteld. Zoals vermeld in de literatuurstudie kan Microsoft Graph op twee manieren worden toegepast. Voor de Proof-of-Concept wordt er gebruikgemaakt van de App-only access-methode. Enkele argumenten waarom deze authenticatiemethode wordt toegepast is hieronder te vinden. 
+
+\begin{itemize}
+    \item Er moet niet via een account worden ingelogd, dit bespaard moeite en tijd.
+    \item Alleen de applicatie heeft nood aan de juiste rechten, dit is makkelijker te beheren.
+    \item De applicatie wordt in dit gekoppeld aan een geheime code dat samenwerkt met \ac{MSAL}, dit zorgt voor extra veiligheid.
+\end{itemize}
+
+Een gedetailleerd stappenplan over de opzet van Microsoft Graph binnen de testomgeving wordt weergegeven in ... %TODO: uitschrijven! 
+
+% TODO: Stappen oplijsten + figuren/images toevoegen van elke stap als BIJLAGE? => Zie andere BP's
 
 \subsection{Bespreking Data-set}
 
-% TODO: Bron zoeken over Sandboxes en over De Azure AD tenant
-
-% TODO: Stappen oplijsten + figuren/images toevoegen van elke stap?
-
-% TODO: kijk best naar een andere BP hiervoor
-
-De standaard data-set die werd verkregen na het activeren bestaat uit volgende informatie.
+De standaard data-set die werd verkregen na het activeren van de developer-licentie bestaat uit volgende informatie.
 
 \begin{itemize}
     \item Naam: MSFT
@@ -44,7 +48,7 @@ In de Proof-of-Concept is het cruciaal om de omgeving realistisch voor te stelle
 
 \begin{itemize}
     \item Domeinen: Een domein genaamd 25ky3d.onmicrosoft.com.
-    \item Gebruikers: Zeventien members (actieve gebruikers).
+    \item Gebruikers: Zeventien actieve gebruikers of “Members”.
     \begin{itemize}
         \item Administrator: Een gebruiker genaamd Dylan Pylyser.
         \item Standaard gebruikers: Zestien willekeurige gebruikers die door Microsoft worden voorzien.
@@ -53,8 +57,8 @@ In de Proof-of-Concept is het cruciaal om de omgeving realistisch voor te stelle
     \item Mailboxes: Alle zeventien gebruikers hebben een mailbox die leeg is.
     \item \Ac{MFA}: 
         \begin{itemize}
-            \item \ac{MFA} is in gebruik: De administrator maakt gebruik van \ac{2FA} (wachtwoord + Microsoft Authenticator).
-            \item \Ac{MFA} is niet in gebruik: De standaard gebruikers maken alleen gebruik van een wachtwoord om in te loggen.
+            \item \ac{MFA} is in gebruik: De administrator maakt gebruik van \ac{2FA} (wachtwoord en Microsoft Authenticator).
+            \item \Ac{MFA} is niet in gebruik: De standaard gebruikers maken alleen gebruik van een User principal name en wachtwoord om in te loggen.
         \end{itemize}
 \end{itemize}
 
@@ -64,8 +68,12 @@ Volgende aanpassingen worden uitgevoerd om de data van een productieomgeving te 
     \item Gebruikers: 
     \begin{itemize}
         \item Een extra gebruiker genaamd Jarne Creten met Administrator-rechten.
-        \item Een gebruiker genaamd Megan Bowen wordt % TODO: Verder aanvullen
+        \item Een gebruiker genaamd Megan Bowen wordt gastgebruiker of “Guest”.
+        \item Een gebruiker genaamd Lee Gu wordt geblokkeerd, “Accound status” staat gelijk aan disabled.
     \end{itemize}
+    \item Licenties: De extra gebruiker Jarne Creten krijgt geen licenties toegewezen.
+    \item Mailboxes: De gebruikers Adele, Diego, Johanna, Lynne, Megan, Miriam, Patti en Pradeep ontvangen drie mails waardoor de mailboxes meer gevuld zijn dan voordien.
+    \item \ac{MFA}: De gebruikers Adele en Jarne maken gebruik van de Microsoft Authenticator applicatie om in te loggen waardoor \ac{MFA} actief is.
 \end{itemize}
 
 \section{Uitwerking}
