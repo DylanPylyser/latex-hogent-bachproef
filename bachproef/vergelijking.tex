@@ -46,7 +46,15 @@ Op vlak van onderdelen, wordt het volgende opgemerkt bij het vergelijken. Azure 
 
 
 
-% \subsection{Versies}
+\subsection{PowerShell-versies}
+
+% TODO: Laten nakijken door Jarne
+
+Azure \ac{AD} Graph en Microsoft Graph maken gebruik van PowerShell-modules. Deze PowerShell-modules worden vernieuwd aan de hand van versies die nieuwe of stabiele elementen toevoegen (of verwijderen) aan de PowerShell-modules. \\
+
+Azure \ac{AD} Graph werkt met twee soorten PowerShell-modules, namelijk MSOnline en AzureAD. MSOnline is de eerste versie, waarbij AzureAD de verbeterde versie is van MSOnline voor het beheren van Azure \ac{AD}. \\
+
+Bij Microsoft Graph zijn er op dit moment twee versies beschikbaar. Versie 1.0 dat de stabiele versie voorstelt. Daarnaast bestaat ook de beta-versie, vandaag de dag voorgesteld als versie 2.0, dat de nadruk legt op nieuwe elementen die nog in ontwikkeling zijn. \\ 
 
 % ---
 % Section
@@ -99,9 +107,9 @@ Met de migratie van Azure \ac{AD} Graph naar Microsoft Graph, wordt er veronders
     \label{AADMSG}
 \end{table}
 
-Uit de blijkt dat Microsoft Graph de meerderheid van de Azure \ac{AD} data-objecten overneemt. Toch worden er enkele verschillen opgemerkt uit deze migratie. Zowel de Application Proxy Application Management en Application Proxy Connector Management vallen weg. Daarnaast is er een commando weggehaald uit het AzureAD en Contacts data-object. Vervolgens zijn er twee commando's minder bij het Devices data-object. Finaal zijn er 21 commando's weggehaald uit het MSOnline data-object in Microsoft Graph. \\
+Uit \ref{AADMSG} blijkt dat Microsoft Graph de meerderheid van de Azure \ac{AD} data-objecten overneemt. Toch worden er enkele verschillen opgemerkt uit deze migratie. Zowel de Application Proxy Application Management en Application Proxy Connector Management vallen weg. Daarnaast is er een commando weggehaald uit het AzureAD en Contacts data-object. Vervolgens zijn er twee commando's minder bij het Devices data-object. Finaal zijn er 21 commando's weggehaald uit het MSOnline data-object in Microsoft Graph. \\
 
-Naast de data-objecten bevat Microsoft Graph meer dependencies, dit wordt weergegeven in Tabel \ref{AADT}. Dit wilt zeggen dat Microsoft Graph meer Microsoft-entiteiten kan aanspreken dan de Azure \ac{AD} PowerShell-module. Azure \ac{AD} is dan ook gefocust op het beheren van Azure \ac{AD}, terwijl Microsoft Graph vandaag de dag ook Microsoft Teams, Outlook, To Do en andere entiteiten kan aanspreken naast Azure \ac{AD}.
+Naast de data-objecten bevat Microsoft Graph meer dependencies, dit wordt weergegeven in Tabel \ref{AADT}. Dit wilt zeggen dat Microsoft Graph meer Microsoft-entiteiten kan aanspreken dan de Azure \ac{AD} PowerShell-module. Azure \ac{AD} is dan ook gefocust op het beheren van Azure \ac{AD}, terwijl Microsoft Graph vandaag de dag ook Microsoft Teams, Outlook, To Do en andere entiteiten kan aanspreken naast Azure \ac{AD}. 
 
 % ---
 % Section
@@ -109,22 +117,31 @@ Naast de data-objecten bevat Microsoft Graph meer dependencies, dit wordt weerge
 
 \section{Gebruik}
 
-\subsection{Authenticatiemethodes}
+\subsection{Toegangsmogelijkheden}
 
-Idee: Via welke methodes kan men zich inloggen? 
+%Idee: Via welke methodes kan men zich inloggen? 
 
-Vb. Is er een verschil? Wordt er MFA ondersteund? ... (Gaat nog niet in detail over veiligheid -> zie Security)
+%Vb. Is er een verschil? Wordt er MFA ondersteund? ... (Gaat nog niet in detail over veiligheid -> zie Security)
 
-\subsection{Omgeving}
+Voor beide technologieën bestaan de twee dezelfde toegangsmogelijkheden, namelijk delegated en app-only. Er zijn geen verschillen aan te merken voor de toegangsmogelijkheden. \\
 
-Idee: Waar of hoe kan men de technologie aanspreken of gebruiken?
+De enige opmerking dat er kan gegeven worden, maar buiten de scope van de vergelijking valt, is dat \ac{ADAL} niet meer ondersteunt wordt op 30 juni 2023. Wanneer er wordt gebruikgemaakt van een library, bijvoorbeeld voor app-only access met secrets, dan kan dit via \ac{MSAL}.
 
-Vb. Moet die manueel gebeuren? Is dit ook mogelijk via scripts? Kan dit via PowerShell of moet je in Azure zitten...
+\subsection{Ondersteunende programmeertalen}
+
+% TODO: Is dit nog relevant? Want veel VERSCHILLENDE info over gevonden, niet zeker...
+
+% Idee: Waar of hoe kan men de technologie aanspreken of gebruiken?
+
+% Vb. Moet die manueel gebeuren? Is dit ook mogelijk via scripts? Kan dit via PowerShell of moet je in Azure zitten...
 
 % manueel werk, script werk... => verschil van werking, eventueel PowerShell aantoetsen, Java? ...
 
+Naast de toegangsmogelijkheden is het ook nodig om te weten met welke programmeertalen of methodes beide technologieën kunnen aangesproken worden. In dit onderdeel worden \Ac{HTTP}, \Ac{JSON} en \Ac{XML} niet beschouwd als programmeertalen. \\
 
+Bij het oude kan er worden gebruikgemaakt van de programmeertalen C\#, Java, JavaScript, ObjC, PHP, Python, Ruby. Als tweede de MSOnline en AzureAD PowerShell-modules om Azure \ac{AD} Graph aan te sturen met PowerShell. \\
 
+Bij het nieuwe gaat dit verder dan alleen \ac{HTTP} en PowerShell. Aan de hand van de Microsoft Graph \ac{SDK} kunnen ook de programmeertalen C\#, Go, Java, JavaScript en PHP gebruikt worden. \\
 
 % ---
 % Section
@@ -132,11 +149,21 @@ Vb. Moet die manueel gebeuren? Is dit ook mogelijk via scripts? Kan dit via Powe
 
 \section{Security}
 
-\subsection{Veiligheid van authenticatiemethodes}
+\subsection{Veiligheid van de toegangsmogelijkheden}
 
-Idee: In dit onderdeel wordt er dieper in gegaan op vlak van de mogelijke authenticatiemethodes en hoe sterk ze zijn.
+De eerste methode is de gedelegeerde of interactieve manier. Deze methode maakt gebruik van een interactie van een gebruiker om de data te kunnen raadplegen. Hier ligt dus de nadruk op de gebruiker die wilt inloggen. \\
 
-Vb. MFA is sterker dan alleen een wachtwoord...
+De gebruiker die de actie uitvoert heeft bepaalde rechten verkregen. Dit kan gaan van leesrechten, maar ook om schrijfrechten. De veiligheid van de data wordt bepaald door twee factoren. \\
+
+Enerzijds de rechten van de gebruiker. Een beheerder heeft normalerwijze veel rechten om beheertaken te kunnen uitvoeren, zoals het lezen of schrijven van data. Wanneer er wordt ingelogd met een beheerder zijn de mogelijke consequenties ook groter, ten opzichte van een gebruiker die alleen maar data kan opvragen. \\ 
+
+Anderzijds de getroffen methodes om het aanmelden mogelijk te maken. Als de gebruiker alleen maar een naam en wachtwoord moet meegeven, is de kans op een inbreuk groter dan bij een gebruiker die gebruikmaakt van \ac{2FA} of \Ac{MFA}. \\
+
+De tweede methode is de geprogrammeerde manier of niet-interactieve manier. Deze methode maakt geen of minder gebruik van interacties in tegenstelling tot de eerste manier. De nadruk ligt op de applicatie die gebruikt wordt om toegang te verschaffen. \\
+
+De applicatie heeft net zoals een gebruiker rechten die kunnen worden ingesteld. Deze applicatie staat los van de gebruikers en kan alleen worden aangepast door een gebruiker die toegang heeft tot het domein. \\
+
+Een applicatie kan niet gebruikmaken van \ac{MFA}, doordat er geen interacties plaatsvinden. In plaats daarvan is het mogelijk om gebruik te maken van secrets. Het principe van een secret is dat de waarde alleen bij het aanmaken wordt weergegeven, daarna kan het niet meer worden opgevraagd.
 
 \subsection{Gebruik van rechten}
 
@@ -144,4 +171,6 @@ Vb. MFA is sterker dan alleen een wachtwoord...
 
 % Vb. Leg PoLP dieper uit, wat kan het tegenhouden, waarom wordt het toegepast...
 
+Beide technologieën maken gebruik van rechten tot groepen van data. Standaard krijgt een gebruiker geen rechten en moeten deze worden verkregen via een gemachtigde gebruiker. Door deze aanpak wordt het “Principle of Least Privilege” toegepast. \\
 
+Azure \ac{AD} kan minder Microsoft-entiteiten aanspreken in vergelijking met Microsoft Graph. 

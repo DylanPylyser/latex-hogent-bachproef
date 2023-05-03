@@ -266,19 +266,29 @@ Vervolgens voert de \ac{API} de nodige autorisaties uit via permissie scopes. Di
 
 De permissie scopes worden gebruikt om te controleren of een gebruiker toegang heeft tot een bepaalde map of locatie. Een ontwikkelaar moet in dit scenario de juiste permissie scopes gebruiken om over de vereiste rechten te beschikken voor een actie. \\
 
-Wanneer er wordt aangemeld, krijgt de gebruiker de mogelijkheid om toestemming te geven of de applicatie in kwestie de mapgegevens van de gebruiker mag benutten. Tijdens het toestaan worden de permissie scopes meegegeven die de ontwikkelaar heeft ingesteld. Een opsomming van de mogelijk permissie scopes binnen de Azure \ac{AD} Graph \ac{API} bevindt zich hieronder. 
+Wanneer er wordt aangemeld, krijgt de gebruiker de mogelijkheid om toestemming te geven of de applicatie in kwestie de mapgegevens van de gebruiker mag benutten. Tijdens het toestaan worden de permissie scopes meegegeven die de ontwikkelaar heeft ingesteld. Een opsomming van de mogelijk permissie scopes binnen de Azure \ac{AD} Graph \ac{API} bevindt zich in Tabel \ref{psaad}. 
 
-\begin{itemize}
-    \item User.Read: Rechten om aan te melden en het gebruikersprofiel te lezen.
-    \item User.Readbasic.All: Rechten om de basisprofielen van alle gebruikers te lezen.
-    \item User.Read.All: Rechten om het volledige profiel van alle gebruikers te lezen.
-    \item Group.Read.All: Rechten om alle groepen te lezen.
-    \item Group.ReadWrite.All: Rechten om alle groepen te lezen en te bewerken
-    \item Device.ReadWrite.All: Rechten om alle apparaten te lezen en te bewerken.
-    \item Directory.Read.All: Rechten om alle mapgegevens te lezen.
-    \item Directory.ReadWrite.All: Rechten om alle mapgegevens te lezen en te bewerken.
-    \item Directory.AccessAsUser.All: Rechten om in de map toe treden als de aangemelde gebruiker.
-\end{itemize}
+\begin{table}
+    \footnotesize
+    \centering
+    \begin{tabular}{ |c|c| } 
+        \hline
+        \textbf{Scope} & \textbf{Beschrijving} \\
+        \hline
+        User.Read & Rechten om aan te melden en het gebruikersprofiel te lezen. \\
+        User.ReadBasic.All & Rechten om de basisprofielen van alle gebruikers te lezen. \\
+        User.Read.All & Rechten om het volledige profiel van alle gebruikers te lezen. \\
+        Group.Read.All & Rechten om alle groepen te lezen. \\
+        Group.ReadWrite.All & Rechten om alle groepen te lezen en te bewerken. \\
+        Device.ReadWrite.All & Rechten om alle apparaten te lezen en te bewerken. \\
+        Directory.Read.All & Rechten om alle mapgegevens te lezen. \\
+        Directory.ReadWrite.All & Rechten om alle mapgegevens te lezen en te bewerken. \\
+        Directory.AccessAsUser.All & Rechten om in de map toe treden als de aangemelde gebruiker. \\
+        \hline
+    \end{tabular}
+    \caption[Tabel Azure \ac{AD} Graph Permission scopes]{Tabel met de beschikbare permissie scopes bijhorende beschrijving door \textcite{Microsoft2016a}.}
+    \label{psaad}
+\end{table}
 
 Het gebruik van permissie scopes komt overeen met een gekend veiligheidsprincipe binnen de \ac{IT}. “Principle of Least Privilege”, of “Beginsel van de minste voorrechten” in het Nederlands, staat voor het toekennen van een minimum aan rechten \autocite{Saltzer1975}. 
 
