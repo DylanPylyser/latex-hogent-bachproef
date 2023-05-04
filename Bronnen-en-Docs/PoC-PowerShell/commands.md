@@ -3,12 +3,12 @@
 ## Voorbereiding
 
 - [x] 1
-- [x] 2
+- [x] 2 TODO: herwerken output
 - [x] 3
 - [x] 4
 - [x] 5
 - [x] 6
-- [x] 7
+- [x] 7 TODO: Filteren op Lee (geblokkeerd) ipv Op guests
 - [x] 8
 - [x] 9
 - [ ] 10 (MAIL)
@@ -16,7 +16,7 @@
 - [ ] 12 (MAIL)
 - [ ] 13 (MAIL)
 - [ ] 14 (MAIL)
-- [x] 15
+- [x] 15 TODO: 2 aparte groepen maken, degene met de UPN en degene zonder mail (bv. Jarne)
 - [ ] 16 (MAIL)
 - [ ] 17 (MAIL)
 - [ ] 18 (MAIL)
@@ -1183,7 +1183,7 @@ foreach ($upn in $upnArray) {
 }
 ```
 
-#### Pivot 20 (STATUS: COUNT IMPLEMENTEREN!)
+#### Pivot 20 (STATUS: CHECK!)
 
 **MS Graph**
 

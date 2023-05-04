@@ -27,7 +27,10 @@ Op Figuur \ref{bfe} bij Azure \ac{AD} Graph, wordt er gebruikgemaakt van “wind
 Op vlak van onderdelen, wordt het volgende opgemerkt bij het vergelijken. Azure \ac{AD} Graph werkt met vier onderdelen: Tenant ID, Resource, (\ac{API}) Version en optionele OData query-parameters. Terwijl Microsoft Graph maar drie onderdelen gebruikt. de Tenant ID wordt uit het eindpunt geschrapt. Daarnaast worden de onderdelen “version” en “resource” van plaats gewisseld. De optionele query-parameters zijn in beide aanwezig. 
 
 
-% TODO: Invullen wanneer er tijd over is
+
+
+\subsection{Request en Response}% TODO: Invullen wanneer er tijd over is
+
 % !!! Idee: Alle HTTP-verzoeken uitvoeren, zien dat dit hetzelfde is en de resultaten opschrijven (zie hieronder voor voorbeeld)
 
 % https://graphexplorer.azurewebsites.net/#
@@ -39,8 +42,6 @@ Op vlak van onderdelen, wordt het volgende opgemerkt bij het vergelijken. Azure 
 % Resultaat... Helemaal meegeven
 
 % VERGLIJKING !!!
-
-% \subsection{Request en Response}
 
 %Voor dit onderdeel wordt er gebruikgemaakt van de Graph Explorer die zowel het oude %als het nieuwe aanbiedt.
 
@@ -115,9 +116,7 @@ Naast de data-objecten bevat Microsoft Graph meer dependencies, dit wordt weerge
 % Section
 % ---
 
-\section{Gebruik}
-
-\subsection{Toegangsmogelijkheden}
+\section{Toegangsmogelijkheden}
 
 %Idee: Via welke methodes kan men zich inloggen? 
 
@@ -127,21 +126,6 @@ Voor beide technologieën bestaan de twee dezelfde toegangsmogelijkheden, nameli
 
 De enige opmerking dat er kan gegeven worden, maar buiten de scope van de vergelijking valt, is dat \ac{ADAL} niet meer ondersteunt wordt op 30 juni 2023. Wanneer er wordt gebruikgemaakt van een library, bijvoorbeeld voor app-only access met secrets, dan kan dit via \ac{MSAL}.
 
-\subsection{Ondersteunende programmeertalen}
-
-% TODO: Is dit nog relevant? Want veel VERSCHILLENDE info over gevonden, niet zeker...
-
-% Idee: Waar of hoe kan men de technologie aanspreken of gebruiken?
-
-% Vb. Moet die manueel gebeuren? Is dit ook mogelijk via scripts? Kan dit via PowerShell of moet je in Azure zitten...
-
-% manueel werk, script werk... => verschil van werking, eventueel PowerShell aantoetsen, Java? ...
-
-Naast de toegangsmogelijkheden is het ook nodig om te weten met welke programmeertalen of methodes beide technologieën kunnen aangesproken worden. In dit onderdeel worden \Ac{HTTP}, \Ac{JSON} en \Ac{XML} niet beschouwd als programmeertalen. \\
-
-Bij het oude kan er worden gebruikgemaakt van de programmeertalen C\#, Java, JavaScript, ObjC, PHP, Python, Ruby. Als tweede de MSOnline en AzureAD PowerShell-modules om Azure \ac{AD} Graph aan te sturen met PowerShell. \\
-
-Bij het nieuwe gaat dit verder dan alleen \ac{HTTP} en PowerShell. Aan de hand van de Microsoft Graph \ac{SDK} kunnen ook de programmeertalen C\#, Go, Java, JavaScript en PHP gebruikt worden. \\
 
 % ---
 % Section
@@ -173,4 +157,6 @@ Een applicatie kan niet gebruikmaken van \ac{MFA}, doordat er geen interacties p
 
 Beide technologieën maken gebruik van rechten tot groepen van data. Standaard krijgt een gebruiker geen rechten en moeten deze worden verkregen via een gemachtigde gebruiker. Door deze aanpak wordt het “Principle of Least Privilege” toegepast. \\
 
-Azure \ac{AD} kan minder Microsoft-entiteiten aanspreken in vergelijking met Microsoft Graph. 
+Azure \ac{AD} kan minder Microsoft-entiteiten aanspreken in vergelijking met Microsoft Graph. Dit leidt tot minder beschikbare permissie scopes, zoals te zien is in Tabel .... \\
+
+Microsoft Graph % TODO: tabel maken over alle permission scopes van MS Graph zoals gedaan bij SVZ 

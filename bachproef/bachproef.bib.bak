@@ -540,4 +540,20 @@
   urldate = {2023-04-27},
 }
 
+@Online{Microsoft2016a,
+  author  = {Microsoft},
+  date    = {2016-09-06},
+  title   = {Permission scopes | Graph API concepts},
+  url     = {https://learn.microsoft.com/en-gb/previous-versions/azure/ad/graph/howto/azure-ad-graph-api-permission-scopes},
+  urldate = {2023-05-03},
+}
+
+@Online{https://learn.microsoft.com/en-us/graph/permissions-reference,
+  author  = {Microsoft},
+  date    = {2023-04-12},
+  title   = {Microsoft Graph permissions reference},
+  url     = {https://learn.microsoft.com/en-us/graph/permissions-reference},
+  urldate = {2023-05-03},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}

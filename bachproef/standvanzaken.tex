@@ -252,8 +252,7 @@ De tweede methode is door een niet-interactieve of geprogrammeerde manier. Deze 
 
 Azure Active Directory-tokens bevatten informatie over de applicatie, de gebruiker, authenticatie en de rechten die een applicatie mag uitvoeren op de bijhorende directory \autocite{Microsoft2015}. \\
 
-Deze tokens bevinden zich in de autorisatieheader van een verzoek.
-Een afgekort voorbeeld hiervan is te zien op Figuur \ref{ahtoken}. \\
+Deze tokens bevinden zich in de autorisatieheader van een verzoek. Een afgekort voorbeeld hiervan is te zien op Figuur \ref{ahtoken}. \\
 
 \begin{figure}[h]
     \begin{verbatim}Authorization: Bearer eyJ0eX ... FWSXfwtQ
@@ -268,25 +267,26 @@ De permissie scopes worden gebruikt om te controleren of een gebruiker toegang h
 
 Wanneer er wordt aangemeld, krijgt de gebruiker de mogelijkheid om toestemming te geven of de applicatie in kwestie de mapgegevens van de gebruiker mag benutten. Tijdens het toestaan worden de permissie scopes meegegeven die de ontwikkelaar heeft ingesteld. Een opsomming van de mogelijk permissie scopes binnen de Azure \ac{AD} Graph \ac{API} bevindt zich in Tabel \ref{psaad}. 
 
-\begin{table}
-    \footnotesize
+\begin{table}[ht]
     \centering
-    \begin{tabular}{ |c|c| } 
+    \begin{adjustbox}{width=1\textwidth}
+    \begin{tabular}{ |c|c|c| }
         \hline
-        \textbf{Scope} & \textbf{Beschrijving} \\
+        \textbf{Scope} & \textbf{Beschrijving} & \textbf{Type} \\
         \hline
-        User.Read & Rechten om aan te melden en het gebruikersprofiel te lezen. \\
-        User.ReadBasic.All & Rechten om de basisprofielen van alle gebruikers te lezen. \\
-        User.Read.All & Rechten om het volledige profiel van alle gebruikers te lezen. \\
-        Group.Read.All & Rechten om alle groepen te lezen. \\
-        Group.ReadWrite.All & Rechten om alle groepen te lezen en te bewerken. \\
-        Device.ReadWrite.All & Rechten om alle apparaten te lezen en te bewerken. \\
-        Directory.Read.All & Rechten om alle mapgegevens te lezen. \\
-        Directory.ReadWrite.All & Rechten om alle mapgegevens te lezen en te bewerken. \\
-        Directory.AccessAsUser.All & Rechten om in de map toe treden als de aangemelde gebruiker. \\
+        User.Read & Rechten om aan te melden en het gebruikersprofiel te lezen. & Delegated \\
+        User.ReadBasic.All & Rechten om de basisprofielen van alle gebruikers te lezen. & Delegated \\
+        User.Read.All & Rechten om het volledige profiel van alle gebruikers te lezen. & Delegated \\
+        Group.Read.All & Rechten om alle groepen te lezen. & Delegated \\
+        Group.ReadWrite.All & Rechten om alle groepen te lezen en te bewerken. & Delegated \\
+        Device.ReadWrite.All & Rechten om alle apparaten te lezen en te bewerken. & App-only \\
+        Directory.Read.All & Rechten om alle mapgegevens te lezen. & App-only, Delegated \\
+        Directory.ReadWrite.All & Rechten om alle mapgegevens te lezen en te bewerken. & App-only, Delegated \\
+        Directory.AccessAsUser.All & Rechten om in de map toe treden als de aangemelde gebruiker. & Delegated \\
         \hline
     \end{tabular}
-    \caption[Tabel Azure \ac{AD} Graph Permission scopes]{Tabel met de beschikbare permissie scopes bijhorende beschrijving door \textcite{Microsoft2016a}.}
+    \end{adjustbox}
+    \caption[Tabel Azure \ac{AD} Graph Permission scopes]{Tabel met de beschikbare permissie scopes, bijhorende beschrijving en scope-type door \textcite{Microsoft2016a}.}
     \label{psaad}
 \end{table}
 
@@ -602,7 +602,29 @@ Binnen Microsoft Graph zijn er twee mogelijkheden om toegang te verschaffen tot 
 
 De eerste methode, delegated access, staat voor het toegang hebben namens de gebruiker. Dit is mogelijk wanneer een gebruiker zich aanmeldt bij een applicatie. Hierdoor geeft de gebruiker toestemming. Vervolgens kan Microsoft Graph in naam van de gebruiker een actie uitvoeren. Zowel de applicatie als de gebruiker moet over de juiste machtigingen beschikken om het verzoek te laten doorgaan. \\
 
-Een ander woord voor gedelegeerde machtigingen zijn scopes. Deze scopes maken gebruik van OAuth2-permissies. Dit concept werd al reeds besproken bij Azure \ac{AD} Graph. \\
+Een ander woord voor gedelegeerde machtigingen zijn scopes. Deze scopes maken gebruik van OAuth2-permissies. Microsoft Graph biedt voor bepaalde onderdelen permission scopes aan die de rechten van een gebruiker of applicatie bepalen. In Tabel \ref{psmsg} wordt een overzicht gegeven van alle permissie scope onderdelen of resources die Microsoft Graph aanbiedt, met uitzondering van de preview of niet-stabiele permissies.
+
+\begin{table}[ht]
+    \centering
+    \begin{adjustbox}{width=1\textwidth}
+        \begin{tabular}{ |c|c| }
+            \hline
+            \textbf{Permission resource scope} & \textbf{Type} \\
+            \hline
+            Access review & Application, Delegated \\
+            Administrative unit & Application, Delegated \\
+            Analytics & Delegated \\
+            AppCatalog & Application, Delegated \\
+            Application & Application, Delegated \\
+            Audit log  & Application, Delegated \\
+            BitLocker recovery key & Delegated \\
+            Bookings & Application, Delegated \\
+            \hline
+        \end{tabular}
+    \end{adjustbox}
+    \caption[Tabel Microsoft Graph Permission scopes]{Tabel met de beschikbare stabiele permissie scopes en scope-type door \textcite{Microsoft2023p}.}
+    \label{psmsg}
+\end{table}
 
 App-only access is de tweede methode. Dit principe werkt zonder een gebruiker om met gegevens te interageren. Dit principe komt eerder voor bij automatische taken (bv. een back-up) of achtergronddiensten (bv. daemons). Dit principe is aan te raden wanneer een gebruiker niet mag inloggen of de vereiste gegevens via meerdere gebruikers worden toegewezen. \\
 
