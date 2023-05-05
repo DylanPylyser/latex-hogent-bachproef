@@ -3,12 +3,12 @@
 ## Voorbereiding
 
 - [x] 1
-- [x] 2 TODO: herwerken output
+- [x] 2
 - [x] 3
 - [x] 4
 - [x] 5
 - [x] 6
-- [x] 7 TODO: Filteren op Lee (geblokkeerd) ipv Op guests
+- [x] 7
 - [x] 8
 - [x] 9
 - [ ] 10 (MAIL)
@@ -16,7 +16,7 @@
 - [ ] 12 (MAIL)
 - [ ] 13 (MAIL)
 - [ ] 14 (MAIL)
-- [x] 15 TODO: 2 aparte groepen maken, degene met de UPN en degene zonder mail (bv. Jarne)
+- [x] 15
 - [ ] 16 (MAIL)
 - [ ] 17 (MAIL)
 - [ ] 18 (MAIL)
@@ -321,8 +321,32 @@ Import-Csv '.\AccountsOverview.csv' | Export-Excel $fileNameExcelOutput -Autosiz
 **MS Graph**
 
 ```ps1
-Get-MgUser -Select "UserType"
-Get-MgUser | Format-List -Property "OnPremisesSyncEnabled"
+
+$users = (Get-MgUser -Select UserPrincipalName,OnPremisesSyncEnabled,UserType)
+$syncedCount = $cloudCount = $memberCount = $guestCount = 0
+
+foreach ($user in $users) {
+    Write-Host "$($user.UserPrincipalName)`n==="
+    if ($user.OnPremisesSyncEnabled) {
+      Write-Host "Account Type: Synced`n"
+      $syncedCount++
+    }
+    else {
+      Write-Host "Account Type: Cloud"
+      $cloudCount++
+      if ($($user.UserType) -eq "Guest") {
+          Write-Host "User Type: Guest`n"
+          $guestCount++
+      }
+      else {
+          Write-Host "User Type: Member`n"
+          $memberCount++
+      }
+    }
+}
+
+Write-Host "Summary:`n======`nCloud: $($cloudCount)`n   Guest: $($GuestCount)`n   Member: $($memberCount)`nSynced: $($syncedCount)`nTOTAL: $($users.count)"
+
 ```
 
 #### Pivot 3 (Status: Check!)
@@ -672,7 +696,7 @@ $results
 # Actieve accounts => Account = member
 # Met MFA = false => Filteren op MFAstatus = Disabled
 
-$allUsers = (Get-MgUser -Select UserPrincipalName,UserType)
+$allUsers = (Get-MgUser -Select UserPrincipalName,AccountEnabled)
 $licensedUsers=@()
 $users=@()
 $results=@()
@@ -682,8 +706,8 @@ foreach ($licensedUser in $allUsers) {
     if (Get-MgUserLicenseDetail -UserId $licensedUser.UserPrincipalName) { $licensedUsers += $licensedUser }
 }
 
-foreach ($member in $licensedUsers) {
-    if ($member.UserType -eq "Member") { $users += $member }
+foreach ($enabledUser in $licensedUsers) {
+    if ($enabledUser.AccountEnabled -eq "$false") { $users += $enabledUser }
 }
 
 foreach ($user in $users) {
@@ -1135,27 +1159,35 @@ MS Graph heeft geen ondersteuning voor het opvragen van mailbox statistieken, he
 **MS Graph**
 
 ```powershell
-$upnArray = @()
-$count = 0
+$users = (Get-MgUser -Select UserPrincipalName, Mail)
+$SMTPgroup1Count = $SMTPotherCount = 0
+$SMTPmatch1 = "\.onmicrosoft\.com$"
+$SMTPgroup1 = $SMTPothers = @()
 
-# Get all users from the MgUser command and loop through them
-Get-MgUser | ForEach-Object {
-    # Add the user principal name to the array
-    $upnArray += $_.UserPrincipalName
+foreach ($user in $users) {
+  if (($user.Mail) -match $SMTPmatch1) {
+    $SMTPgroup1 += $user
+    $SMTPgroup1Count++
+  }
+  else {
+    $SMTPothers += $user
+    $SMTPotherCount++
+  }
 }
 
-foreach ($upn in $upnArray) {
-   $cmd = (Get-MgUser -UserID $upn -Select Mail)
-   if (($cmd.Mail) -match "\.onmicrosoft\.com$")
-   {
-    $count++
-   }
+Write-Host "Summary:`n======="
+Write-Host "SMTP: .onmicrosoft.com"
+foreach ($SMTPgroup1User in $SMTPgroup1) {
+    Write-Host "   UPN: $($SMTPgroup1User.UserPrincipalName) - MAIL: $($SMTPgroup1User.Mail)"
 }
-
-
-Write-Host "=== RESULTS ==="
-Write-Host "$count users have '.onmicrosoft.com' in their mailaddress"
-Write-host "There are in total $($upnArray.Count) users"
+Write-Host "   ---`n   TOTAL: $($SMTPgroup1.count)`n"
+Write-Host "SMTP: Others"
+foreach ($SMTPotherUser in $SMTPothers) {
+    if ($SMTPotherUser.Mail) { Write-Host "   UPN: $($SMTPotherUser.UserPrincipalName) - MAIL: $($SMTPotherUser.Mail)" }
+    else { Write-Host "   UPN: $($SMTPotherUser.UserPrincipalName) - MAIL: Not available"}
+}
+Write-Host "   ---`n   TOTAL: $($SMTPothers.count)"
+Write-host "GRAND TOTAL: $($users.count)"
 ```
 
 #### Pivot 16 (STATUS: TODO MAIL!)
