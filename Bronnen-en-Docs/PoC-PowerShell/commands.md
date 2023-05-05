@@ -267,7 +267,8 @@ Import-Csv '.\domainOverview.csv' | Export-Excel $fileNameExcelOutput -Autosize 
 **MS Graph**
 
 ```powershell
-Get-MgDomain
+$cmd = (Get-MgDomain -DomainId "25ky3d.onmicrosoft.com")
+
 ```
 
 #### Pivot 2 (STATUS: Check!)
