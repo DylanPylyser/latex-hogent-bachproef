@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+    \PYG{n+nt}{\PYGZdq{}cache\PYGZhy{}control\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}no\PYGZhy{}cache\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}client\PYGZhy{}request\PYGZhy{}id\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}dce37693\PYGZhy{}434c\PYGZhy{}e47b\PYGZhy{}0cf5\PYGZhy{}b08bc11752fb\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}content\PYGZhy{}type\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}application/json;odata.metadata=minimal;}
+\PYG{l+s+s2}{        odata.streaming=true;IEEE754Compatible=false;charset=utf\PYGZhy{}8\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}location\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}https://graph.microsoft.com/v2/ffa43659\PYGZhy{}...\PYGZhy{}838af35d1353/directoryObjects/}
+\PYG{l+s+s2}{        bc521ac5\PYGZhy{}...\PYGZhy{}c1c52ffe3ee7/Microsoft.DirectoryServices.User\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}request\PYGZhy{}id\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}fab6e8dc\PYGZhy{}c90c\PYGZhy{}4377\PYGZhy{}a54f\PYGZhy{}b67034f3a07e\PYGZdq{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+    \PYG{n+nt}{\PYGZdq{}odata.metadata\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}https://graph.windows.net/ffa43659\PYGZhy{}...\PYGZhy{}838af35d1353/\PYGZdl{}metadata\PYGZsh{}domains\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}value\PYGZdq{}}\PYG{p}{:} \PYG{p}{[}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n+nt}{\PYGZdq{}authenticationType\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Managed\PYGZdq{}}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}availabilityStatus\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}isAdminManaged\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{true}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}isDefault\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{true}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}isDefaultForCloudRedirections\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{false}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}isInitial\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{true}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}isRoot\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{true}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}isVerified\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{true}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}25ky3d.onmicrosoft.com\PYGZdq{}}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}supportedServices\PYGZdq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Email\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}OfficeCommunicationsOnline\PYGZdq{}}\PYG{p}{],}
+        \PYG{n+nt}{\PYGZdq{}forceDeleteState\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}state\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}passwordValidityPeriodInDays\PYGZdq{}}\PYG{p}{:} \PYG{l+m+mi}{2147483647}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}passwordNotificationWindowInDays\PYGZdq{}}\PYG{p}{:} \PYG{l+m+mi}{14}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{p}{]}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

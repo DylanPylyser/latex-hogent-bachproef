@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+    \PYG{n+nt}{\PYGZdq{}cache\PYGZhy{}control\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}no\PYGZhy{}cache\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}client\PYGZhy{}request\PYGZhy{}id\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}82bc7ed4\PYGZhy{}db42\PYGZhy{}414f\PYGZhy{}8260\PYGZhy{}73754bca7ce1\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}content\PYGZhy{}length\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}504\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}content\PYGZhy{}type\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}application/json; odata=minimalmetadata; streaming=true; charset=utf\PYGZhy{}8\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}expires\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}1\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}ocp\PYGZhy{}aad\PYGZhy{}session\PYGZhy{}key\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}fdBtvCAl\PYGZhy{}...\PYGZus{}n1UQvQe9reWesQHDTlUo\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}pragma\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}no\PYGZhy{}cache\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}request\PYGZhy{}id\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}dfd33cc1\PYGZhy{}ca0e\PYGZhy{}4964\PYGZhy{}ae48\PYGZhy{}0d3f6f222514\PYGZdq{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

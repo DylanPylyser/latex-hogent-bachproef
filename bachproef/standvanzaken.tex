@@ -27,8 +27,6 @@ In dit hoofdstuk wordt de state-of-the-art van dit onderzoek diepgaand besproken
 
 Microsoft administration bestaat uit twee kernwoorden die bekend zijn binnen de \ac{IT}-wereld. Microsoft staat voor het Amerikaanse technologiebedrijf en de producten die het aanbiedt \autocite{Warner2019}. Het woord administration, oftewel administratie in het Nederlands, staat voor het beheren van iets \autocite{Burgess2003}. Vanuit het woord administration volgde het woord administrator, dat duidt op een persoon die een of meerdere instanties beheert. Kortom, Microsoft administration staat voor het beheren van Microsoft-instanties en -producten (bv. Windows en Azure). 
 
-% TODO: bv. & IT afkorting ergens noteren over zorgen dat dit hierboven komt en dan een “ac” erover maken 
-
 \subsection{Administration in de jaren tachtig en negentig}
 
 % Taalcheck OK
@@ -602,29 +600,8 @@ Binnen Microsoft Graph zijn er twee mogelijkheden om toegang te verschaffen tot 
 
 De eerste methode, delegated access, staat voor het toegang hebben namens de gebruiker. Dit is mogelijk wanneer een gebruiker zich aanmeldt bij een applicatie. Hierdoor geeft de gebruiker toestemming. Vervolgens kan Microsoft Graph in naam van de gebruiker een actie uitvoeren. Zowel de applicatie als de gebruiker moet over de juiste machtigingen beschikken om het verzoek te laten doorgaan. \\
 
-Een ander woord voor gedelegeerde machtigingen zijn scopes. Deze scopes maken gebruik van OAuth2-permissies. Microsoft Graph biedt voor bepaalde onderdelen permission scopes aan die de rechten van een gebruiker of applicatie bepalen. In Tabel \ref{psmsg} wordt een overzicht gegeven van alle permissie scope onderdelen of resources die Microsoft Graph aanbiedt, met uitzondering van de preview of niet-stabiele permissies.
+Een ander woord voor gedelegeerde machtigingen zijn scopes. Deze scopes maken gebruik van OAuth2-permissies. Microsoft Graph biedt voor bepaalde onderdelen permission scopes aan die de rechten van een gebruiker of applicatie bepalen. Door \textcite{Microsoft2023p} wordt er een overzicht gegeven van alle permissie scope onderdelen of resources die Microsoft Graph op dit moment aanbiedt. \\
 
-\begin{table}[ht]
-    \centering
-    \begin{adjustbox}{width=1\textwidth}
-        \begin{tabular}{ |c|c| }
-            \hline
-            \textbf{Permission resource scope} & \textbf{Type} \\
-            \hline
-            Access review & Application, Delegated \\
-            Administrative unit & Application, Delegated \\
-            Analytics & Delegated \\
-            AppCatalog & Application, Delegated \\
-            Application & Application, Delegated \\
-            Audit log  & Application, Delegated \\
-            BitLocker recovery key & Delegated \\
-            Bookings & Application, Delegated \\
-            \hline
-        \end{tabular}
-    \end{adjustbox}
-    \caption[Tabel Microsoft Graph Permission scopes]{Tabel met de beschikbare stabiele permissie scopes en scope-type door \textcite{Microsoft2023p}.}
-    \label{psmsg}
-\end{table}
 
 App-only access is de tweede methode. Dit principe werkt zonder een gebruiker om met gegevens te interageren. Dit principe komt eerder voor bij automatische taken (bv. een back-up) of achtergronddiensten (bv. daemons). Dit principe is aan te raden wanneer een gebruiker niet mag inloggen of de vereiste gegevens via meerdere gebruikers worden toegewezen. \\
 

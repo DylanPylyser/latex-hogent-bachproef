@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+    \PYG{n+nt}{\PYGZdq{}accountEnabled\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{true}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}displayName\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Alex Wu\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}mailNickname\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}AlexW\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}passwordProfile\PYGZdq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+        \PYG{n+nt}{\PYGZdq{}password\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Test1234\PYGZdq{}}\PYG{p}{,}
+        \PYG{n+nt}{\PYGZdq{}forceChangePasswordNextLogin\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{false}
+    \PYG{p}{\PYGZcb{},}
+    \PYG{n+nt}{\PYGZdq{}userPrincipalName\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Alex@25ky3d.onmicrosoft.com\PYGZdq{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

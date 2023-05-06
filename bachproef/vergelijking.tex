@@ -5,7 +5,7 @@
 \chapter{Vergelijking oud en nieuw}%
 \label{ch:vergelijking}
 
-De eerste helft van de conclusie wordt gestaafd aan de hand van een vergelijkende studie. Azure \ac{AD} Graph en PowerShell wordt vergeleken met Microsoft Graph met bijhorende PowerShell-module. In de vergelijking worden beide technologieën aangesproken als het “oude” en het “nieuwe”. 
+De eerste helft van de conclusie wordt gestaafd aan de hand van een vergelijkende studie. Azure \ac{AD} Graph met bijhorende PowerShell-modules wordt vergeleken met Microsoft Graph met bijhorende PowerShell-modules. In de vergelijking worden beide technologieën aangesproken als het “oude” en het “nieuwe”. 
 
 \section{Werking van de API}
 
@@ -16,7 +16,7 @@ De eerste helft van de conclusie wordt gestaafd aan de hand van een vergelijkend
 
   
 
-\subsection{Soorten HTTP-verzoek}
+\subsection{HTTP-verzoeken}
 
 Zowel Azure \ac{AD} Graph als Microsoft Graph ondersteunen vijf soorten \ac{HTTP}-verzoeken. Deze vijf zijn GET, POST, PATCH, PUT en DELETE. 
 
@@ -24,26 +24,28 @@ Zowel Azure \ac{AD} Graph als Microsoft Graph ondersteunen vijf soorten \ac{HTTP
 
 Op Figuur \ref{bfe} bij Azure \ac{AD} Graph, wordt er gebruikgemaakt van “windows” in de \ac{URL}. In vergelijking met Microsoft Graph, dat op Figuur \ref{RAM} te vinden is, komt het woord “microsoft” voor in de \ac{URL}. \\
 
-Op vlak van onderdelen, wordt het volgende opgemerkt bij het vergelijken. Azure \ac{AD} Graph werkt met vier onderdelen: Tenant ID, Resource, (\ac{API}) Version en optionele OData query-parameters. Terwijl Microsoft Graph maar drie onderdelen gebruikt. de Tenant ID wordt uit het eindpunt geschrapt. Daarnaast worden de onderdelen “version” en “resource” van plaats gewisseld. De optionele query-parameters zijn in beide aanwezig. 
+Op vlak van onderdelen, wordt het volgende opgemerkt bij het vergelijken. Azure \ac{AD} Graph werkt met vier onderdelen: Tenant ID, Resource, (\ac{API}) Version en optionele OData query-parameters. Terwijl Microsoft Graph maar drie onderdelen gebruikt. De Tenant ID wordt uit het eindpunt geschrapt. Daarnaast worden de onderdelen “version” en “resource” van plaats gewisseld. De optionele query-parameters zijn in beide aanwezig. 
 
 
 
 
-\subsection{Request en Response}% TODO: !!!
+\subsection{Request en Response} % TODO: in bijlage !!!
 
-% !!! Idee: Alle HTTP-verzoeken uitvoeren, zien dat dit hetzelfde is en de resultaten opschrijven (zie hieronder voor voorbeeld)
+Voor dit onderdeel wordt er gebruikgemaakt van de Graph Explorer. Beide technologieën bieden deze functie aan om de \ac{API} te testen. Voor Azure \ac{AD} Graph kan dit via “https://graphexplorer.azurewebsites.net/”. Voor Microsoft Graph kan dit via “https://developer.microsoft.com/en-us/graph/graph-explorer”. \\
 
-% https://graphexplorer.azurewebsites.net/#
-% GET: https://graph.windows.net/ffa43659-6d7d-4f83-a517-838af35d1353/domains
-% Resultaat... Helemaal meegeven
+In dit onderdeel worden er vier HTTP-verzoeken gedaan op basis van de verschillende HTTP-verzoeken die in beide technologieën aanwezig zijn. De verzoeken die worden gebruikt zijn GET, POST, PATCH en DELETE. PUT wordt niet ondersteund in de Azure \ac{AD} Graph Explorer, deze wordt dus niet in de vergelijking opgenomen. \\
 
-% Dit hetzelfde voor MS Graph: https://developer.microsoft.com/en-us/graph/graph-explorer
-% GET: https://graph.microsoft.com/v1.0/domains
-% Resultaat... Helemaal meegeven
+Het verzoek of request, en het antwoord of response worden op beide Graph Explorers uitgevoerd en vergeleken. De data uit de vergelijking wordt voorzien door de testomgeving van de Proof-of-Concept. De uitleg over de testomgeving met bijhorende data is te vinden in het volgende hoofdstuk. \\
 
-% VERGLIJKING !!!
+\subsubsection{Verzoek 1: informatie opvragen over het domein}
 
-%Voor dit onderdeel wordt er gebruikgemaakt van de Graph Explorer die zowel het oude %als het nieuwe aanbiedt.
+Voor Azure \ac{AD} Graph worden volgende eigenschappen meegegeven.
+
+\begin{itemize}
+    \item Verzoek: GET
+    \item URL: https://graph.windows.net/25ky3d.onmicrosoft.com
+    \item api-version: 1.6
+\end{itemize}
 
 
 
@@ -74,11 +76,11 @@ Bij Microsoft Graph zijn er op dit moment twee versies beschikbaar. Versie 1.0 d
 Met de migratie van Azure \ac{AD} Graph naar Microsoft Graph, wordt er verondersteld dat alle aanspreekbare data-objecten worden overgenomen. Wanneer het overzicht van data-objecten bij Azure \ac{AD} PowerShell naast dat van Microsoft Graph wordt gezet, ontstaat volgend overzicht dat te vinden is in Tabel \ref{AADMSG}. \\
 
 \begin{table}
-    \tiny
     \centering
+    \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{ |c|c||c|c| } 
         \hline
-        \textbf{Azure AD data-object} & \textbf{Aantal commando's} & \textbf{Microsoft Graph data-object} & \textbf{Aantal commando's} \\
+        \textbf{Azure AD Graph data-object} & \textbf{Aantal commando's} & \textbf{Microsoft Graph data-object} & \textbf{Aantal commando's} \\
         \hline
         Administrative Units & 9 & Administrative Units & 9 \\ 
         Application Proxy Application Management & 8 & / & / \\
@@ -104,13 +106,62 @@ Met de migratie van Azure \ac{AD} Graph naar Microsoft Graph, wordt er veronders
         Users & 30 & Users & 30 \\ 
         \hline
     \end{tabular}
+    \end{adjustbox}
     \caption[Tabel migratie Azure AD data-objecten naar Microsoft Graph]{Tabel met overzicht van alle ondersteunende data-objecten bij de migratie van Azure \ac{AD} PowerShell naar Microsoft Graph uit documentatie van \textcite{Microsoft2023l}}
     \label{AADMSG}
 \end{table}
 
-Uit \ref{AADMSG} blijkt dat Microsoft Graph de meerderheid van de Azure \ac{AD} data-objecten overneemt. Toch worden er enkele verschillen opgemerkt uit deze migratie. Zowel de Application Proxy Application Management en Application Proxy Connector Management vallen weg. Daarnaast is er een commando weggehaald uit het AzureAD en Contacts data-object. Vervolgens zijn er twee commando's minder bij het Devices data-object. Finaal zijn er 21 commando's weggehaald uit het MSOnline data-object in Microsoft Graph. \\
+Uit Tabel \ref{AADMSG} blijkt dat Microsoft Graph 17 van de 22 Azure \ac{AD} data-objecten volledig overneemt. Er zijn dus enkele verschillen aanwezig door deze migratie. Zowel de Application Proxy Application Management en Application Proxy Connector Management vallen weg. Daarnaast is er een commando weggehaald uit het AzureAD en Contacts data-object. Vervolgens zijn er twee commando's minder bij het Devices data-object. Finaal zijn er 21 commando's weggehaald uit het MSOnline data-object in Microsoft Graph. \\
 
-Naast de data-objecten bevat Microsoft Graph meer dependencies, dit wordt weergegeven in Tabel \ref{AADT}. Dit wilt zeggen dat Microsoft Graph meer Microsoft-entiteiten kan aanspreken dan de Azure \ac{AD} PowerShell-module. Azure \ac{AD} is dan ook gefocust op het beheren van Azure \ac{AD}, terwijl Microsoft Graph vandaag de dag ook Microsoft Teams, Outlook, To Do en andere entiteiten kan aanspreken naast Azure \ac{AD}. 
+In het specifiek gaat het om volgende commando's die vandaag de dag niet maar aanwezig zijn in Microsoft Graph.
+
+\begin{itemize}
+    \item Azure AD
+    \begin{itemize}
+        \item Get-AzureADApplicationProxyConnectorGroupMember
+    \end{itemize}
+    \item Certificate Authorities
+    \begin{itemize}
+        \item New-AzureADTrustedCertificateAuthority
+        \item Remove-AzureADTrustedCertificateAuthority
+        \item Set-AzureADTrustedCertificateAuthority
+    \end{itemize}
+    \item Contacts
+    \begin{itemize}
+        \item Remove-AzureADContactManager
+    \end{itemize}
+    \item Devices
+    \begin{itemize}
+        \item Add-AzureADDeviceRegisteredUser
+        \item Remove-AzureADDeviceRegisteredUser
+    \end{itemize}
+    \item MSOnline
+    \begin{itemize}
+        \item Add-MsolForeignGroupToRole
+        \item Confirm-MsolEmailVerifiedDomain
+        \item Convert-MsolFederatedUser
+        \item Get-MsolCompanyAllowedDataLocation
+        \item Get-MsolDirSyncConfiguration
+        \item Get-MsolDirSyncFeatures
+        \item Get-MsolFederationProperty
+        \item Get-MsolHasObjectsWithDirSyncProvisioningErrors
+        \item Get-MsolPartnerInformation
+        \item New-MsolFederatedDomain
+        \item New-MsolWellKnownGroup
+        \item Remove-MsolFederatedDomain
+        \item Remove-MsolForeignGroupFromRole
+        \item Reset-MsolStrongAuthenticationMethodByUpn
+        \item Set-MsolADFSContext
+        \item Set-MsolCompanyAllowedDataLocation
+        \item Set-MsolCompanyMultiNationalEnabled
+        \item Set-MsolDirSyncConfiguration
+        \item Set-MsolDirSyncFeature
+        \item Set-MsolPartnerInformation
+        \item Update-MsolFederatedDomain    
+    \end{itemize}
+\end{itemize}
+
+Naast de data-objecten bevat Microsoft Graph meer dependencies, dit wordt weergegeven in Tabel \ref{MSGDT}. Dit wilt zeggen dat Microsoft Graph meer Microsoft-entiteiten kan aanspreken dan de Azure \ac{AD} PowerShell-modules. 
 
 % ---
 % Section
@@ -122,9 +173,9 @@ Naast de data-objecten bevat Microsoft Graph meer dependencies, dit wordt weerge
 
 %Vb. Is er een verschil? Wordt er MFA ondersteund? ... (Gaat nog niet in detail over veiligheid -> zie Security)
 
-Voor beide technologieën bestaan de twee dezelfde toegangsmogelijkheden, namelijk delegated en app-only. Er zijn geen verschillen aan te merken voor de toegangsmogelijkheden. \\
+Voor beide technologieën bestaan de twee dezelfde toegangsmogelijkheden, namelijk Delegated en App-only. Er zijn geen verschillen aan te merken voor de toegangsmogelijkheden. \\
 
-De enige opmerking dat er kan gegeven worden, maar buiten de scope van de vergelijking valt, is dat \ac{ADAL} niet meer ondersteunt wordt op 30 juni 2023. Wanneer er wordt gebruikgemaakt van een library, bijvoorbeeld voor app-only access met secrets, dan kan dit via \ac{MSAL}.
+De enige opmerking dat er kan gegeven worden, maar buiten de scope van dit onderdeel van de vergelijking valt, is dat \ac{ADAL} niet meer ondersteunt wordt op 30 juni 2023. Wanneer er wordt gebruikgemaakt van een library om in te loggen, bijvoorbeeld voor App-only access met secrets, dan kan dit via \ac{MSAL}.
 
 
 % ---
@@ -157,6 +208,31 @@ Een applicatie kan niet gebruikmaken van \ac{MFA}, doordat er geen interacties p
 
 Beide technologieën maken gebruik van rechten tot groepen van data. Standaard krijgt een gebruiker geen rechten en moeten deze worden verkregen via een gemachtigde gebruiker. Door deze aanpak wordt het “Principle of Least Privilege” toegepast. \\
 
-Azure \ac{AD} kan minder Microsoft-entiteiten aanspreken in vergelijking met Microsoft Graph. Dit leidt tot minder beschikbare permissie scopes, zoals te zien is in Tabel .... \\
+De migratie van Azure \ac{AD} Graph naar Microsoft Graph op vlak van permissie scopes wordt weergegeven in Tabel \ref{AADMSGPS}. Deze tabel focust zich alleen op de overgang van Azure \ac{AD} scopes naar Microsoft Graph. Microsoft Graph heeft meer permissie scopes dan in de tabel wordt voorgesteld. \\
 
-Microsoft Graph % TODO: tabel maken over alle permission scopes van MS Graph zoals gedaan bij SVZ 
+Het onderdeel “A/D” staat voor de beschikbaarheid van de permissie als Application of App-only en Delegated of interactief. \\
+
+\begin{table}
+    \centering
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{ |c|c||c|c|c| } 
+        \hline
+        \textbf{Azure AD scope} & \textbf{A/D} & \textbf{Microsoft Graph permissie domein} & \textbf{Microsoft Graph scope} & \textbf{A/D} \\
+        \hline
+        User.Read & D & User permissions & User.Read & D \\
+        User.ReadBasic.All & D & User permissions & User.ReadBasic.All & D \\
+        User.Read.All & D & User permissions & User.Read.All & A/D \\
+        Group.Read.All & D & Group permissions & Group.Read.All & A/D \\
+        Group.ReadWrite.All & D & Group permissions & Group.ReadWrite.All & A/D \\
+        Device.ReadWrite.All & A & Device permissions & Device.ReadWrite.All & A \\
+        Directory.Read.All & A/D & Directory permissions & Directory.Read.All & A/D \\
+        Directory.ReadWrite.All & A/D & Directory permissions & Directory.ReadWrite.All & A/D \\
+        Directory.AccessAsUser.All & D & Directory permissions & Directory.AccessAsUser.All & D \\ 
+        \hline
+    \end{tabular}
+    \end{adjustbox}
+    \caption[Tabel migratie Azure AD permissie scopes naar Microsoft Graph]{Tabel met overzicht van alle ondersteunende permissie scopes bij de migratie van Azure \ac{AD} PowerShell naar Microsoft Graph uit Tabel \ref{psaad} en documentatie van \textcite{Microsoft2023p}}
+    \label{AADMSGPS}
+\end{table}
+
+Tabel \ref{AADMSGPS} geeft weer dat er geen veranderingen zijn gebeurd op vlak van de scopes. Microsoft Graph biedt de extra mogelijkheid door het op te splitsen per domein. Daarnaast heeft Microsoft Graph drie extra scopes Application en Delegated-access gemaakt. \\

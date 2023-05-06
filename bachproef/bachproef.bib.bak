@@ -548,12 +548,27 @@
   urldate = {2023-05-03},
 }
 
-@Online{https://learn.microsoft.com/en-us/graph/permissions-reference,
+@Online{Microsoft2023p,
   author  = {Microsoft},
   date    = {2023-04-12},
   title   = {Microsoft Graph permissions reference},
   url     = {https://learn.microsoft.com/en-us/graph/permissions-reference},
   urldate = {2023-05-03},
+}
+
+@Article{Guzman2016,
+  author       = {Guzmán, Marco and Castro, Christian and Madrid, Sofia and Olavarria, Christian and Leiva, Miguel and Muñoz, Daniel and Jaramillo, Elizabeth and Laukkanen, Anne-Maria},
+  date         = {2016-11},
+  journaltitle = {Journal of Voice},
+  title        = {Air Pressure and Contact Quotient Measures During Different Semioccluded Postures in Subjects With Different Voice Conditions},
+  doi          = {10.1016/j.jvoice.2015.09.010},
+  issn         = {0892-1997},
+  number       = {6},
+  pages        = {759.e1--759.e10},
+  url          = {https://doi.org/10.1016/j.jvoice.2015.09.010},
+  volume       = {30},
+  comment      = {doi: 10.1016/j.jvoice.2015.09.010},
+  publisher    = {Elsevier},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

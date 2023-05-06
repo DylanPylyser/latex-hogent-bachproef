@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+    \PYG{n+nt}{\PYGZdq{}@odata.context\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}https://graph.microsoft.com/v1.0/\PYGZdl{}metadata\PYGZsh{}users/\PYGZdl{}entity\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}id\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}bc521ac5\PYGZhy{}ab90\PYGZhy{}4427\PYGZhy{}880d\PYGZhy{}c1c52ffe3ee7\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}businessPhones\PYGZdq{}}\PYG{p}{:} \PYG{p}{[],}
+    \PYG{n+nt}{\PYGZdq{}displayName\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Alex Wu\PYGZdq{}}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}givenName\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}jobTitle\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}mail\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}mobilePhone\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}officeLocation\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}preferredLanguage\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}surname\PYGZdq{}}\PYG{p}{:} \PYG{k+kc}{null}\PYG{p}{,}
+    \PYG{n+nt}{\PYGZdq{}userPrincipalName\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Alex@25ky3d.onmicrosoft.com\PYGZdq{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
