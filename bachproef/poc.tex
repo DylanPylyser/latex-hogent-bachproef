@@ -13,13 +13,13 @@ Het tweede deel van de conclusie bestaat uit een praktische uitwerking met Micro
 
 Voor de Proof-of-Concept wordt er gebruikgemaakt van een testomgeving. Deze testomgeving is een gratis Azure Active Directory tenant dat via het Microsoft 365 Developer Program wordt aangeboden. \\
 
-Een Azure \ac{AD} developer tenant is een gratis Sandbox-omgeving dat voor 90 dagen beschikbaar wordt gesteld, met een mogelijkheid tot verlenging. Een Sandbox is in \ac{IT}-termen een omgeving waarin je kan spelen met een of meerdere technologieën zonder dat hier consequenties aan vast hangen. \\
+Een Azure \ac{AD} developer tenant is een gratis Sandbox-omgeving die voor 90 dagen beschikbaar wordt gesteld, met een mogelijkheid tot verlenging. Een Sandbox is in \ac{IT}-termen een omgeving waarin je kan spelen met één of meerdere technologieën, zonder dat hier consequenties aan vast hangen. \\
 
-Binnen deze Sandbox kan Microsoft Graph gebruikt worden wanneer dit wordt opgesteld. Zoals vermeld in de literatuurstudie kan Microsoft Graph op twee manieren worden toegepast. Voor de Proof-of-Concept wordt er gebruikgemaakt van de App-only access-methode. Enkele argumenten waarom deze authenticatiemethode wordt toegepast is hieronder te vinden. 
+Binnen deze Sandbox kan Microsoft Graph gebruikt worden wanneer dit wordt opgesteld. Zoals vermeld in de literatuurstudie kan Microsoft Graph op twee manieren worden toegepast. Voor de Proof-of-Concept wordt er gebruikgemaakt van de App-only access-methode. Enkele argumenten waarom deze authenticatiemethode wordt toegepast zijn hieronder te vinden. 
 
 \begin{itemize}
     \item Er moet niet via een account worden ingelogd, dit bespaard moeite en tijd.
-    \item Alleen de applicatie heeft nood aan de juiste rechten, dit is makkelijker te beheren.
+    \item Enkel de applicatie heeft nood aan de juiste rechten, dit is makkelijker te beheren.
     \item De applicatie wordt in dit gekoppeld aan een geheime code dat samenwerkt met \ac{MSAL}, dit zorgt voor extra veiligheid.
 \end{itemize}
 
@@ -77,4 +77,6 @@ Volgende aanpassingen worden uitgevoerd om de data van een productieomgeving te 
 \end{itemize}
 
 \section{Uitwerking}
+
+% TODO: Spreek alle onderdelen (regions aan en werk in 3 delen): Verwacht resultaat, script, output
 

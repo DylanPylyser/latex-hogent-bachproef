@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} Haalt een lijst van alle gebruikers op die beschikbaar zijn in de Office 365\PYGZhy{}omgeving.}
+\PYG{c}{\PYGZsh{} Het slaat de UserPrincipalName, OnPremisesSyncEnabled en UserType van elke gebruiker op in de variabele \PYGZdl{}users.}
+\PYG{n+nv}{\PYGZdl{}users} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUser} \PYG{n}{\PYGZhy{}Select} \PYG{n}{UserPrincipalName}\PYG{p}{,}\PYG{n}{OnPremisesSyncEnabled}\PYG{p}{,}\PYG{n}{UserType}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Initialiseert de tellers voor de verschillende soorten gebruikers.}
+\PYG{n+nv}{\PYGZdl{}syncedCount} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}cloudCount} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}memberCount} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}guestCount} \PYG{p}{=} \PYG{n}{0}
+
+\PYG{c}{\PYGZsh{} Begint een loop waarin elk gebruiker in de \PYGZdl{}users variabele wordt verwerkt.}
+\PYG{c}{\PYGZsh{} Voor elke gebruiker wordt de UserPrincipalName getoond en gecontroleerd of het account gesynchroniseerd is,}
+\PYG{c}{\PYGZsh{} met on\PYGZhy{}premises Active Directory of alleen in de cloud bestaat.}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}user} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}users}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)}\PYG{l+s+se}{`n}\PYG{l+s+s2}{===\PYGZdq{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{OnPremisesSyncEnabled}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}Account Type: Synced}\PYG{l+s+se}{`n}\PYG{l+s+s2}{\PYGZdq{}}
+        \PYG{n+nv}{\PYGZdl{}syncedCount}\PYG{p}{++}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else} \PYG{p}{\PYGZob{}}
+        \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}Account Type: Cloud\PYGZdq{}}
+        \PYG{n+nv}{\PYGZdl{}cloudCount}\PYG{p}{++}
+        \PYG{k}{if} \PYG{p}{(\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{UserType}\PYG{p}{)} \PYG{o}{\PYGZhy{}eq} \PYG{l+s+s2}{\PYGZdq{}Guest\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}User Type: Guest}\PYG{l+s+se}{`n}\PYG{l+s+s2}{\PYGZdq{}}
+            \PYG{n+nv}{\PYGZdl{}guestCount}\PYG{p}{++}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{else} \PYG{p}{\PYGZob{}}
+            \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}User Type: Member}\PYG{l+s+se}{`n}\PYG{l+s+s2}{\PYGZdq{}}
+            \PYG{n+nv}{\PYGZdl{}memberCount}\PYG{p}{++}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}=== Summary ===\PYGZdq{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}Cloud: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}cloudCount}\PYG{p}{)}\PYG{l+s+se}{`n}\PYG{l+s+s2}{   Guest: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}GuestCount}\PYG{p}{)}\PYG{l+s+se}{`n}\PYG{l+s+s2}{   Member: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}memberCount}\PYG{p}{)}\PYG{l+s+se}{`n}\PYG{l+s+s2}{Synced: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}syncedCount}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{Write\PYGZhy{}host} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{GRAND TOTAL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}users}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\end{Verbatim}

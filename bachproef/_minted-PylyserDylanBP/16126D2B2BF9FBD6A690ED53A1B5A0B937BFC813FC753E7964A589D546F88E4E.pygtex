@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} Applicatie\PYGZhy{}ID van de Azure AD\PYGZhy{}toepassing.}
+\PYG{n+nv}{\PYGZdl{}AppId} \PYG{p}{=} \PYG{l+s+s1}{\PYGZsq{}c508b8a1\PYGZhy{}a1cd\PYGZhy{}4979\PYGZhy{}a51e\PYGZhy{}ddbcba517f89\PYGZsq{}}
+
+\PYG{c}{\PYGZsh{} ID van de Azure AD\PYGZhy{}tenant waar de toepassing is geregistreerd.}
+\PYG{n+nv}{\PYGZdl{}TenantId} \PYG{p}{=} \PYG{l+s+s1}{\PYGZsq{}ffa43659\PYGZhy{}6d7d\PYGZhy{}4f83\PYGZhy{}a517\PYGZhy{}838af35d1353\PYGZsq{}}
+
+\PYG{c}{\PYGZsh{} Het clientgeheim voor de toepassing.}
+\PYG{n+nv}{\PYGZdl{}ClientSecret} \PYG{p}{=} \PYG{l+s+s1}{\PYGZsq{}lKI8Q\PYGZti{}a7\PYGZti{}aZa.2O\PYGZus{}xX7b5LMdFEtiqFqNgXntObgP\PYGZsq{}}
+
+\PYG{c}{\PYGZsh{} De MSAL PowerShell\PYGZhy{}module om een toegangstoken te verkrijgen voor de toepassing.}
+\PYG{n+nv}{\PYGZdl{}Token} \PYG{p}{=} \PYG{n+nb}{Get\PYGZhy{}MsalToken} \PYG{n}{\PYGZhy{}TenantId} \PYG{n+nv}{\PYGZdl{}TenantId} \PYG{n}{\PYGZhy{}ClientId} \PYG{n+nv}{\PYGZdl{}AppId} \PYG{p}{`}
+    \PYG{n}{\PYGZhy{}ClientSecret} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}ClientSecret} \PYG{p}{|} \PYG{n+nb}{ConvertTo\PYGZhy{}SecureString} \PYG{n}{\PYGZhy{}AsPlainText} \PYG{n}{\PYGZhy{}Force}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Verbinding maken met de Microsoft Graph API via de toegangstoken.}
+\PYG{n+nb}{Connect\PYGZhy{}Graph} \PYG{n}{\PYGZhy{}AccessToken} \PYG{n+nv}{\PYGZdl{}Token}\PYG{p}{.}\PYG{n}{AccessToken}
+\end{Verbatim}

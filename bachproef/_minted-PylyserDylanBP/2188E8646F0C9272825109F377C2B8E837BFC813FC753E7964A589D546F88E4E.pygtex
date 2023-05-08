@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} Haalt een lijst van alle domeinen op die beschikbaar zijn in de Office 365\PYGZhy{}omgeving.}
+\PYG{c}{\PYGZsh{} Sla de Id en de AvailabilityStatus op van elk domein op in de variabele \PYGZdl{}domains.}
+\PYG{n+nv}{\PYGZdl{}domains} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgDomain} \PYG{n}{\PYGZhy{}Select} \PYG{n}{Id}\PYG{p}{,}\PYG{n}{AvailabilityStatus}\PYG{p}{)}
+
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}=== Domains ===\PYGZdq{}}
+
+\PYG{c}{\PYGZsh{} Maakt een loop waarin elk domein in de \PYGZdl{}domains variabele wordt verwerkt.}
+\PYG{c}{\PYGZsh{} Voor elk domein controleert de loop of de AvailabilityStatus waarde van het domein beschikbaar is of niet.}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}domain} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}domains}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}domain}\PYG{p}{.}\PYG{n}{AvailabilityStatus}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}} \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}Domain: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}domain}\PYG{p}{.}\PYG{n}{Id}\PYG{p}{)}\PYG{l+s+s2}{ \PYGZhy{} Status: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}domain}\PYG{p}{.}\PYG{n}{AvailabilityStatus}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else} \PYG{p}{\PYGZob{}} \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}Domain: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}domain}\PYG{p}{.}\PYG{n}{Id}\PYG{p}{)}\PYG{l+s+s2}{ \PYGZhy{} Status: Not available\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}GRAND TOTAL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}domains}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\end{Verbatim}

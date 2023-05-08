@@ -8,7 +8,8 @@ $TenantId = 'ffa43659-6d7d-4f83-a517-838af35d1353'
 $ClientSecret = 'lKI8Q~a7~aZa.2O_xX7b5LMdFEtiqFqNgXntObgP'
 
 # De MSAL PowerShell-module om een toegangstoken te verkrijgen voor de toepassing.
-$Token = Get-MsalToken -TenantId $TenantId -ClientId $AppId -ClientSecret ($ClientSecret | ConvertTo-SecureString -AsPlainText -Force)
+$Token = Get-MsalToken -TenantId $TenantId -ClientId $AppId -ClientSecret `
+    ($ClientSecret | ConvertTo-SecureString -AsPlainText -Force)
 
 # Verbinding maken met de Microsoft Graph API via de toegangstoken.
 Connect-Graph -AccessToken $Token.AccessToken

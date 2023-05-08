@@ -1,0 +1,30 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} Haalt een lijst van alle gebruikers op die beschikbaar zijn in de Office 365\PYGZhy{}omgeving.}
+\PYG{c}{\PYGZsh{} Het slaat de UserPrincipalName en AccountEnabled van elke gebruiker op in de variabele \PYGZdl{}users.}
+\PYG{n+nv}{\PYGZdl{}users} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUser} \PYG{n}{\PYGZhy{}Select} \PYG{n}{UserPrincipalName}\PYG{p}{,}\PYG{n}{AccountEnabled}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Initialiseert de variabelen \PYGZdl{}blockedUsers en \PYGZdl{}blockedUsersActiveLicenses als lege arrays.}
+\PYG{n+nv}{\PYGZdl{}blockedUsersActiveLicenses} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}blockedUsers} \PYG{p}{=} \PYG{p}{@()}
+
+\PYG{c}{\PYGZsh{} Doorloopt de lijst met gebruikers in \PYGZdl{}users.}
+\PYG{c}{\PYGZsh{} Het plaatst geblokkeerde gebruikers in de \PYGZdl{}blockedUsers array als hun AccountEnabled\PYGZhy{}waarde \PYGZdq{}false\PYGZdq{} is}
+\PYG{p}{(}\PYG{n}{wat} \PYG{n}{betekent} \PYG{n}{dat} \PYG{n}{het} \PYG{n}{account} \PYG{n}{is} \PYG{n}{geblokkeerd}\PYG{p}{).}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}user} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}users}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{AccountEnabled} \PYG{o}{\PYGZhy{}eq} \PYG{n+nv}{\PYGZdl{}false}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}blockedUsers} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}user} \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}freeUsers} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}user} \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}=== Blocked Users ===\PYGZdq{}}
+
+\PYG{c}{\PYGZsh{} Toont informatie over elke geblokkeerde gebruiker en controleert of ze al dan niet actieve licenties hebben.}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}blockedUser} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}blockedUsers}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUserLicenseDetail} \PYG{n}{\PYGZhy{}UserId} \PYG{n+nv}{\PYGZdl{}blockedUser}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}blockedUser}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)}\PYG{l+s+s2}{ \PYGZhy{} Licenses: ACTIVE\PYGZdq{}}
+        \PYG{n+nv}{\PYGZdl{}blockedUsersActiveLicenses} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}blockedUser}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else} \PYG{p}{\PYGZob{}} \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}blockedUser}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)}\PYG{l+s+s2}{ \PYGZhy{} Licenses: NOT ACTIVE\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{Active License Total: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}blockedUsersActiveLicenses}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{GRANT TOTAL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}blockedUsers}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\end{Verbatim}

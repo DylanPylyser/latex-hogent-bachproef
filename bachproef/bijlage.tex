@@ -3,7 +3,7 @@
 
 \clearpage
 
-\section{Query 1: Opvragen domeinen}
+\section{Query 1: Domeinen opvragen}
 
 \subsection{Azure AD Graph}
 
@@ -508,4 +508,442 @@ Geen response beschikbaar. Bij een DELETE-request wordt er bij een succesvolle v
 \chapter{Audit-script PowerShell-scripts}%
 \label{ch:PowerShell-scripts}
 
-Hier komen de 20 onderdelen + connect MS Graph scripts
+\clearpage
+
+\section{Connecteer met Microsoft Graph}
+
+\subsection{PowerShell-script: connectMSgraph.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+# Applicatie-ID van de Azure AD-toepassing.
+$AppId = 'c508b8a1-a1cd-4979-a51e-ddbcba517f89'
+
+# ID van de Azure AD-tenant waar de toepassing is geregistreerd.
+$TenantId = 'ffa43659-6d7d-4f83-a517-838af35d1353'
+
+# Het clientgeheim voor de toepassing.
+$ClientSecret = 'lKI8Q~a7~aZa.2O_xX7b5LMdFEtiqFqNgXntObgP'
+
+# De MSAL PowerShell-module om een toegangstoken te verkrijgen voor de toepassing.
+$Token = Get-MsalToken -TenantId $TenantId -ClientId $AppId `
+    -ClientSecret ($ClientSecret | ConvertTo-SecureString -AsPlainText -Force)
+
+# Verbinding maken met de Microsoft Graph API via de toegangstoken.
+Connect-Graph -AccessToken $Token.AccessToken
+    \end{minted}
+    \caption[connectMSGraph.ps1]{PowerShell-script om te connecteren met Microsoft Graph als applicatie aan de hand van \ac{MSAL}.}
+    \label{PSQ0}
+\end{listing}
+
+\subsection{Output}
+
+\begin{verbatim}
+Welcome To Microsoft Graph!
+\end{verbatim}
+
+\clearpage
+
+\section{Region 1: Aantal aanwezige domeinen binnen de Office 365-omgeving}
+
+\subsection{PowerShell-script: connectMSgraph.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+# Haalt een lijst van alle domeinen op die beschikbaar zijn in de Office 365-omgeving.
+# Sla de Id en de AvailabilityStatus op van elk domein op in de variabele $domains.
+$domains = (Get-MgDomain -Select Id,AvailabilityStatus)
+
+Write-Host "=== Domains ==="
+
+# Maakt een loop waarin elk domein in de $domains variabele wordt verwerkt. 
+# Voor elk domein controleert de loop of de AvailabilityStatus waarde van het domein beschikbaar is of niet.
+foreach ($domain in $domains) {
+    if ($domain.AvailabilityStatus) 
+        { Write-Host "Domain: $($domain.Id) - Status: $($domain.AvailabilityStatus)" }
+    else { Write-Host "Domain: $($domain.Id) - Status: Not available" }
+}
+
+Write-Host "GRAND TOTAL: $($domains.count)"
+    \end{minted}
+    \caption[connectMSGraph.ps1]{...}
+    \label{PSQ1}
+\end{listing}
+
+\subsection{Output}
+
+\begin{verbatim}
+=== Domains ===
+Domain: 25ky3d.onmicrosoft.com - Status: Not available
+GRAND TOTAL: 1
+\end{verbatim}
+
+\clearpage
+
+\section{Region 2: Aantal gebruikers binnen de omgeving, onderverdeeld in interne en externe gebruikers}
+
+\subsection{PowerShell-script: region2.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+# Haalt een lijst van alle gebruikers op die beschikbaar zijn in de Office 365-omgeving.
+# Het slaat de UserPrincipalName, OnPremisesSyncEnabled en UserType van elke gebruiker op in de variabele $users.
+$users = (Get-MgUser -Select UserPrincipalName,OnPremisesSyncEnabled,UserType)
+
+# Initialiseert de tellers voor de verschillende soorten gebruikers.
+$syncedCount = $cloudCount = $memberCount = $guestCount = 0
+
+# Begint een loop waarin elk gebruiker in de $users variabele wordt verwerkt. 
+# Voor elke gebruiker wordt de UserPrincipalName getoond en gecontroleerd of het account gesynchroniseerd is,
+# met on-premises Active Directory of alleen in de cloud bestaat.
+foreach ($user in $users) {
+    Write-Host "$($user.UserPrincipalName)`n==="
+    if ($user.OnPremisesSyncEnabled) {
+        Write-Host "Account Type: Synced`n"
+        $syncedCount++
+    }
+    else {
+        Write-Host "Account Type: Cloud"
+        $cloudCount++
+        if ($($user.UserType) -eq "Guest") {
+            Write-Host "User Type: Guest`n"
+            $guestCount++
+        }
+        else {
+            Write-Host "User Type: Member`n"
+            $memberCount++
+        }
+    }
+}
+
+Write-Host "=== Summary ==="
+Write-Host "Cloud: $($cloudCount)`n   Guest: $($GuestCount)`n   Member: $($memberCount)`nSynced: $($syncedCount)"
+Write-host "---`nGRAND TOTAL: $($users.count)"
+    \end{minted}
+    \caption[region2.ps1]{...}
+    \label{PSQ2}
+\end{listing}
+
+\subsection{Output}
+
+\begin{tiny}
+\begin{verbatim}
+AdeleV@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+Administrator@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+AlexW@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+DiegoS@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+GradyA@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+HenriettaM@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+IsaiahL@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+JohannaL@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+JoniS@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+LeeG@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+LidiaH@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+LynneR@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+MeganB@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Guest
+
+MiriamG@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+NestorW@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+o_jcre@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+PattiF@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+PradeepG@25ky3d.onmicrosoft.com
+===
+Account Type: Cloud
+User Type: Member
+
+=== Summary ===
+Cloud: 18
+   Guest: 1
+   Member: 17
+Synced: 0
+---
+GRAND TOTAL: 18
+\end{verbatim}
+\end{tiny}
+
+\clearpage
+
+\section{Region 3: Aantal gebruikers die geblokkeerd zijn}
+
+\subsection{PowerShell-script: region3.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+# Haalt een lijst van alle gebruikers op die beschikbaar zijn in de Office 365-omgeving. 
+# Het slaat de UserPrincipalName en AccountEnabled van elke gebruiker op in de variabele $users
+$users = (Get-MgUser -Select UserPrincipalName,AccountEnabled)
+
+# Initialiseert de variabelen $blockedUsers en $freeUsers als lege arrays.
+$blockedUsers = $freeUsers = @()
+
+# Doorloopt de lijst met gebruikers in $users.
+# Het plaatst de gebruikers in de $blockedUsers array als hun AccountEnabled-waarde "false" is
+# (wat betekent dat het account is geblokkeerd).
+# Anders plaatst het de gebruikers in de $freeUsers array als hun AccountEnabled-waarde "true" is
+# (wat betekent dat het account niet is geblokkeerd).
+foreach ($user in $users) {
+    if ($user.AccountEnabled -eq $false) { $blockedUsers += $user }
+    else { $freeUsers += $user }
+}
+
+Write-Host "=== Account blocked? ==="
+
+# Toont een samenvatting van het aantal geblokkeerde en actieve gebruikersaccounts,
+# evenals de gebruikersnamen van elke geblokkeerde en actieve gebruiker.
+Write-Host "TRUE: $($blockedUsers.count)"
+foreach ($blockedUser in $blockedUsers) {
+    Write-Host "   $($blockedUser.UserPrincipalName)"
+}
+Write-Host "FALSE: $($freeUsers.count)"
+foreach ($freeUser in $freeUsers) {
+    Write-Host "   $($freeUser.UserPrincipalName)"
+}
+
+Write-Host "---`nGRAND TOTAL: $($users.count)"
+    \end{minted}
+    \caption[region3.ps1]{...}
+    \label{PSQ3}
+\end{listing}
+
+\subsection{Output}
+
+\begin{scriptsize}
+\begin{verbatim}
+=== Account blocked? ===
+TRUE: 1
+   LeeG@25ky3d.onmicrosoft.com
+FALSE: 17
+   AdeleV@25ky3d.onmicrosoft.com
+   Administrator@25ky3d.onmicrosoft.com
+   AlexW@25ky3d.onmicrosoft.com
+   DiegoS@25ky3d.onmicrosoft.com
+   GradyA@25ky3d.onmicrosoft.com
+   HenriettaM@25ky3d.onmicrosoft.com
+   IsaiahL@25ky3d.onmicrosoft.com
+   JohannaL@25ky3d.onmicrosoft.com
+   JoniS@25ky3d.onmicrosoft.com
+   LidiaH@25ky3d.onmicrosoft.com
+   LynneR@25ky3d.onmicrosoft.com
+   MeganB@25ky3d.onmicrosoft.com
+   MiriamG@25ky3d.onmicrosoft.com
+   NestorW@25ky3d.onmicrosoft.com
+   o_jcre@25ky3d.onmicrosoft.com
+   PattiF@25ky3d.onmicrosoft.com
+   PradeepG@25ky3d.onmicrosoft.com
+---
+GRAND TOTAL: 18
+\end{verbatim}
+\end{scriptsize}
+
+\clearpage
+
+\section{Region 4: Aantal geblokkeerde gebruikers met actieve licenties}
+
+\subsection{PowerShell-script: region4.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+# Haalt een lijst van alle gebruikers op die beschikbaar zijn in de Office 365-omgeving.
+# Het slaat de UserPrincipalName en AccountEnabled van elke gebruiker op in de variabele $users.
+$users = (Get-MgUser -Select UserPrincipalName,AccountEnabled)
+
+# Initialiseert de variabelen $blockedUsers en $blockedUsersActiveLicenses als lege arrays.
+$blockedUsersActiveLicenses = $blockedUsers = @()
+
+# Doorloopt de lijst met gebruikers in $users.
+# Het plaatst geblokkeerde gebruikers in de $blockedUsers array als hun AccountEnabled-waarde "false" is 
+(wat betekent dat het account is geblokkeerd).
+foreach ($user in $users) {
+    if ($user.AccountEnabled -eq $false) { $blockedUsers += $user }
+    else { $freeUsers += $user }
+}
+
+Write-Host "=== Blocked Users ==="
+
+# Toont informatie over elke geblokkeerde gebruiker en controleert of ze al dan niet actieve licenties hebben.
+foreach ($blockedUser in $blockedUsers) {
+    if (Get-MgUserLicenseDetail -UserId $blockedUser.UserPrincipalName) { 
+        Write-Host "$($blockedUser.UserPrincipalName) - Licenses: ACTIVE"
+        $blockedUsersActiveLicenses += $blockedUser
+    }
+    else { Write-Host "$($blockedUser.UserPrincipalName) - Licenses: NOT ACTIVE" }
+}
+
+Write-Host "`nActive License Total: $($blockedUsersActiveLicenses.count)"
+Write-Host "---`nGRANT TOTAL: $($blockedUsers.count)"
+    \end{minted}
+    \caption[region4.ps1]{...}
+    \label{PSQ4}
+\end{listing}
+
+\subsection{Output}
+
+\begin{scriptsize}
+    \begin{verbatim}
+=== Blocked Users ===
+LeeG@25ky3d.onmicrosoft.com - Licenses: ACTIVE
+
+Active Licenses Total: 1
+---
+GRANT TOTAL: 1
+    \end{verbatim}
+\end{scriptsize}
+
+\clearpage
+
+\section{Region 5: Aantal geblokkeerde gebruikers met actieve licenties}
+
+\subsection{PowerShell-script: region5.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+# Maakt een lege array aan voor de administrators
+$adminUsers = @()
+
+# Haalt de lijst van gebruikers op die de rol "Global Administrator" hebben
+$admins = (Get-MgDirectoryRole -DirectoryRoleId "e26351ad-20e7-4446-8954-ed9411376217" -ExpandProperty "Members")
+
+# Loopt door alle gebruikers in de "Global Administrator" rol
+# Haalt de gebruiker op uit de lijst van gebruikers en voeg de gebruiker toe aan de array van administrateurs
+foreach ($adminId in $admins.Members.Id) {
+    $adminUsers += (Get-MgUser -UserId $adminId -Select UserPrincipalName,AccountEnabled)
+}
+
+# Loopt door de administrateurs en laat hun naam en status van hun account zien
+Write-Host "=== Administrators ==="
+foreach ($adminUser in $adminUsers) {
+    Write-Host "$($adminUser.UserPrincipalName) - Account Enabled: $($adminUser.AccountEnabled)"
+}
+
+Write-Host "---`nGRAND TOTAL: $($adminUsers.count)"
+    \end{minted}
+    \caption[region5.ps1]{...}
+    \label{PSQ5}
+\end{listing}
+
+\subsection{Output}
+
+\begin{scriptsize}
+    \begin{verbatim}
+=== Administrators ===
+Administrator@25ky3d.onmicrosoft.com - Account Enabled: True
+o_jcre@25ky3d.onmicrosoft.com - Account Enabled: True
+---
+GRAND TOTAL: 2
+    \end{verbatim}
+\end{scriptsize}

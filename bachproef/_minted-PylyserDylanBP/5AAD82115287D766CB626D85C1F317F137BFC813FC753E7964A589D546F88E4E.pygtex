@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} Maakt een lege array aan voor de administrators}
+\PYG{n+nv}{\PYGZdl{}adminUsers} \PYG{p}{=} \PYG{p}{@()}
+
+\PYG{c}{\PYGZsh{} Haalt de lijst van gebruikers op die de rol \PYGZdq{}Global Administrator\PYGZdq{} hebben}
+\PYG{n+nv}{\PYGZdl{}admins} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgDirectoryRole} \PYG{n}{\PYGZhy{}DirectoryRoleId} \PYG{l+s+s2}{\PYGZdq{}e26351ad\PYGZhy{}20e7\PYGZhy{}4446\PYGZhy{}8954\PYGZhy{}ed9411376217\PYGZdq{}} \PYG{n}{\PYGZhy{}ExpandProperty} \PYG{l+s+s2}{\PYGZdq{}Members\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Loopt door alle gebruikers in de \PYGZdq{}Global Administrator\PYGZdq{} rol}
+\PYG{c}{\PYGZsh{} Haalt de gebruiker op uit de lijst van gebruikers en voeg de gebruiker toe aan de array van administrateurs}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}adminId} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}admins}\PYG{p}{.}\PYG{n}{Members}\PYG{p}{.}\PYG{n}{Id}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n+nv}{\PYGZdl{}adminUsers} \PYG{p}{+=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUser} \PYG{n}{\PYGZhy{}UserId} \PYG{n+nv}{\PYGZdl{}adminId} \PYG{n}{\PYGZhy{}Select} \PYG{n}{UserPrincipalName}\PYG{p}{,}\PYG{n}{AccountEnabled}\PYG{p}{)}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c}{\PYGZsh{} Loopt door de administrateurs en laat hun naam en status van hun account zien}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}=== Administrators ===\PYGZdq{}}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}adminUser} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}adminUsers}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}adminUser}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)}\PYG{l+s+s2}{ \PYGZhy{} Account Enabled: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}adminUser}\PYG{p}{.}\PYG{n}{AccountEnabled}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{GRAND TOTAL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}adminUsers}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\end{Verbatim}
