@@ -21,7 +21,7 @@
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\scriptsize,
         linenos
@@ -61,7 +61,7 @@
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\scriptsize,
         linenos
@@ -98,7 +98,7 @@
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\scriptsize,
         linenos
@@ -134,7 +134,7 @@
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\scriptsize,
         linenos
@@ -172,7 +172,7 @@
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\scriptsize,
         linenos
@@ -201,7 +201,7 @@
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\tiny,
         linenos
@@ -276,7 +276,7 @@
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\scriptsize,
         linenos
@@ -313,7 +313,7 @@
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\scriptsize,
         linenos
@@ -342,7 +342,7 @@
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\scriptsize,
         linenos
@@ -373,7 +373,7 @@
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\scriptsize,
         linenos
@@ -413,7 +413,7 @@
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\scriptsize,
         linenos
@@ -449,7 +449,7 @@ Geen response beschikbaar. Bij een PATCH-request wordt er bij een succesvolle ve
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\scriptsize,
         linenos
@@ -518,7 +518,7 @@ Geen response beschikbaar. Bij een DELETE-request wordt er bij een succesvolle v
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\tiny,
         linenos
@@ -560,7 +560,7 @@ Welcome To Microsoft Graph!
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\tiny,
         linenos
@@ -604,7 +604,7 @@ GRAND TOTAL: 1
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\tiny,
         linenos
@@ -762,7 +762,7 @@ GRAND TOTAL: 18
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\tiny,
         linenos
@@ -844,7 +844,7 @@ GRAND TOTAL: 18
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\tiny,
         linenos
@@ -898,7 +898,7 @@ GRANT TOTAL: 1
 
 \clearpage
 
-\section{Region 5: Aantal geblokkeerde gebruikers met actieve licenties}
+\section{Region 5: Overzicht en telling van gebruikers met administrator-privileges}
 
 \subsection{PowerShell-script: region5.ps1}
 
@@ -906,7 +906,7 @@ GRANT TOTAL: 1
     \begin{minted}
         [
         frame=lines,
-        framesep=2mm,
+        framesep=1.2mm,
         baselinestretch=1.2,
         fontsize=\tiny,
         linenos
@@ -947,3 +947,1106 @@ o_jcre@25ky3d.onmicrosoft.com - Account Enabled: True
 GRAND TOTAL: 2
     \end{verbatim}
 \end{scriptsize}
+
+\clearpage
+
+\section{Region 6: Overzicht en telling van gebruikers met MFA}
+
+\subsection{PowerShell-script: region6.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=1.2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+$results = $users = $MFAdisabled = $MFAenabled = @()
+# Haalt alle gebruikers op uit de Microsoft 365-omgeving, selecteert alleen de properties UserPrincipalName en UserType.
+$allUsers = (Get-MgUser -Select UserPrincipalName,UserType)
+# Loopt door alle gebruikers en voeg alleen de leden toe aan de $users array
+foreach ($member in $allUsers) { if ($member.UserType -eq "Member") { $users += $member } }
+# Maakt een nieuw PSCustomObject met de gewenste properties en initialiseert ze als "-" of "_".
+foreach ($user in $users) { $resultObject = [PSCustomObject]@{
+        user               = "-"
+        MFAstatus          = "_"
+        email              = "-"
+        fido2              = "-"
+        app                = "-"
+        password           = "-"
+        phone              = "-"
+        softwareoath       = "-"
+        tempaccess         = "-"
+        hellobusiness      = "-"
+    }
+    # Haalt de MFA-data op van de huidige gebruiker en slaat deze op in $MFAData.
+    $MFAData = (Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName)
+    $resultObject.user = $user.UserPrincipalName;
+    # Loopt door alle methodes in $MFAData en stelt de bijbehorende properties in voor $resultObject.
+    ForEach ($method in $MFAData) { Switch ($method.AdditionalProperties["@odata.type"]) {
+            # Voor elke methode stelt het de overeenkomstige property in op $true en de MFA-status op "Enabled".
+            "#microsoft.graph.emailAuthenticationMethod"  {
+                $resultObject.email = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.fido2AuthenticationMethod"  {
+                $resultObject.fido2 = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"  {
+                $resultObject.app = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.passwordAuthenticationMethod"  {
+                $resultObject.password = $true
+                # Wanneer alleen het wachtwoord is ingesteld, is MFA uitgeschakeld.
+                if ($resultObject.MFAstatus -ne "Enabled") { $resultObject.MFAstatus = "Disabled" }
+            }
+            "#microsoft.graph.phoneAuthenticationMethod"  {
+                $resultObject.phone = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.softwareOathAuthenticationMethod"  {
+                $resultObject.softwareoath = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.temporaryAccessPassAuthenticationMethod"  {
+                $resultObject.tempaccess = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
+                $resultObject.hellobusiness = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+        }
+    } $results += $resultObject;
+}
+# Loopt door $results en sorteert de resultaatobjecten op basis van hun MFA-status.
+foreach ($result in $results) {
+    if ($result.MFAstatus -eq "Disabled") { $MFAdisabled += $result }
+    else { $MFAenabled += $result }
+}
+Write-Host "=== Summary ==="
+Write-Host "MFA Disabled (Member): $($MFAdisabled.count) - $([math]::Round((($MFAdisabled.count/$results.count)*100),2))%"
+Write-Host "MFA Enabled (Member): $($MFAenabled.count) - $([math]::Round((($MFAenabled.count/$results.count)*100),2))%"
+Write-Host "---`nGRANT TOTAL: $($results.count) - 100%"
+    \end{minted}
+    \caption[region6.ps1]{...}
+    \label{PSQ6}
+\end{listing}
+
+\clearpage
+
+\subsection{Output}
+
+\begin{scriptsize}
+    \begin{verbatim}
+=== Summary ===
+MFA Disabled (Member): 14 - 82.35%
+MFA Enabled (Member): 3 - 17.65%
+---
+GRANT TOTAL: 17 - 100%
+PS D:\HoGent Documenten AJ 22-23\Bachelorproef\latex-hogent-bachproef> 
+    \end{verbatim}
+\end{scriptsize}
+
+\clearpage 
+
+\section{Region 7: Aantal gelicenseerde, actieve accounts waarbij MFA niet aanwezig is}
+
+\subsection{PowerShell-script: region7.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=1.2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+$licensedUsers = $users = $results = $disabledMFAusers = @()
+# Haalt alle gebruikers op in de Microsoft 365-omgeving, selecteert UserPrincipalName en AccountEnabled.
+$allUsers = (Get-MgUser -Select UserPrincipalName,AccountEnabled)
+# Doorloopt elke gebruiker in $allUsers, en controleert of de gebruiker een licentie heeft voor Microsoft 365.
+foreach ($licensedUser in $allUsers) { 
+    if (Get-MgUserLicenseDetail -UserId $licensedUser.UserPrincipalName) { $licensedUsers += $licensedUser } }
+# Doorloopt elke gebruiker in $licensedUsers, en controleert of de AccountEnabled eigenschap 'true' is.
+foreach ($enabledUser in $licensedUsers) { if ($enabledUser.AccountEnabled -eq $true) { $users += $enabledUser } }
+# Maakt een nieuw PSCustomObject met de gewenste properties en initialiseert ze als "-" of "_".
+foreach ($user in $users) { $resultObject = [PSCustomObject]@{
+        user               = "-"
+        MFAstatus          = "_"
+        email              = "-"
+        fido2              = "-"
+        app                = "-"
+        password           = "-"
+        phone              = "-"
+        softwareoath       = "-"
+        tempaccess         = "-"
+        hellobusiness      = "-"
+    }
+    # Haalt de MFA-data op van de huidige gebruiker en slaat deze op in $MFAData.
+    $MFAData = (Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName)
+    $resultObject.user = $user.UserPrincipalName;
+    ForEach ($method in $MFAData) { Switch ($method.AdditionalProperties["@odata.type"]) {
+            # Voor elke methode stelt het de overeenkomstige property in op $true en de MFA-status op "Enabled".
+            "#microsoft.graph.emailAuthenticationMethod"  {
+                $resultObject.email = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.fido2AuthenticationMethod"                   {
+                $resultObject.fido2 = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"  {
+                $resultObject.app = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.passwordAuthenticationMethod"                {
+                $resultObject.password = $true
+                # Wanneer alleen het wachtwoord is ingesteld, is MFA uitgeschakeld.
+                if ($resultObject.MFAstatus -ne "Enabled") { $resultObject.MFAstatus = "Disabled" }
+            }
+            "#microsoft.graph.phoneAuthenticationMethod"  {
+                $resultObject.phone = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.softwareOathAuthenticationMethod"  {
+                $resultObject.softwareoath = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.temporaryAccessPassAuthenticationMethod"  {
+                $resultObject.tempaccess = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
+                $resultObject.hellobusiness = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+        }
+    } $results += $resultObject;
+}
+# loopt door elk object in de $results array en controleert of MFAstatus gelijk is aan "Disabled".
+foreach ($disabledMFA in $results) { if ($disabledMFA.MFAstatus -eq "Disabled") { $disabledMFAusers += $disabledMFA } }
+$disabledMFAusers
+Write-Host "=== Summary ===`nMFA Disabled (Licensed + Account Enabled): $($disabledMFAusers.count)"
+    \end{minted}
+    \caption[region7.ps1]{...}
+    \label{PSQ7}
+\end{listing}
+
+\subsection{Output}
+
+\begin{tiny}
+    \begin{verbatim}
+user          : AlexW@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : DiegoS@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : GradyA@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : HenriettaM@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : IsaiahL@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : JohannaL@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : JoniS@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : LidiaH@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : LynneR@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : MeganB@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : MiriamG@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : NestorW@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : PattiF@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : PradeepG@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+=== Summary ===
+MFA Disabled (Licensed + Account Enabled): 14
+    \end{verbatim}
+\end{tiny}
+
+\clearpage
+
+\section{Region 8: Aantal externe accounts waarbij MFA uitstaat}
+
+\subsection{PowerShell-script: region8.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=1.2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+$results = $users = @()
+# Haalt alle gebruikers op en selecteert hun UserPrincipalName en UserType.
+$allUsers = (Get-MgUser -Select UserPrincipalName,UserType)
+# Loopt door elke gebruiker en voeg ze toe aan de $users array als ze een "Guest" zijn
+foreach ($member in $allUsers) { if ($member.UserType -eq "Guest") { $users += $member } }
+# Maakt een nieuw PSCustomObject met de gewenste properties en initialiseert ze als "-" of "_".
+foreach ($user in $users) { $resultObject = [PSCustomObject]@{
+        user               = "-"
+        MFAstatus          = "_"
+        email              = "-"
+        fido2              = "-"
+        app                = "-"
+        password           = "-"
+        phone              = "-"
+        softwareoath       = "-"
+        tempaccess         = "-"
+        hellobusiness      = "-"
+    }
+    # Haalt de MFA-data op van de huidige gebruiker en slaat deze op in $MFAData.
+    $MFAData = (Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName)
+    $resultObject.user = $user.UserPrincipalName;
+    ForEach ($method in $MFAData) { Switch ($method.AdditionalProperties["@odata.type"]) {
+            # Voor elke methode stelt het de overeenkomstige property in op $true en de MFA-status op "Enabled".
+            "#microsoft.graph.emailAuthenticationMethod"  {
+                $resultObject.email = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.fido2AuthenticationMethod"                   {
+                $resultObject.fido2 = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"  {
+                $resultObject.app = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.passwordAuthenticationMethod"                {
+                $resultObject.password = $true
+                # Wanneer alleen het wachtwoord is ingesteld, is MFA uitgeschakeld.
+                if($resultObject.MFAstatus -ne "Enabled") { $resultObject.MFAstatus = "Disabled" }
+            }
+            "#microsoft.graph.phoneAuthenticationMethod"  {
+                $resultObject.phone = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.softwareOathAuthenticationMethod"  {
+                $resultObject.softwareoath = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.temporaryAccessPassAuthenticationMethod"  {
+                $resultObject.tempaccess = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
+                $resultObject.hellobusiness = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+        }
+    } $results += $resultObject;
+}
+# Toont de resultaten van het object.
+$results
+Write-Host "=== Summary ===`nMFA Disabled (Guest): $($results.count)"
+    \end{minted}
+    \caption[region8.ps1]{...}
+    \label{PSQ8}
+\end{listing}
+
+\subsection{Output}
+
+\begin{scriptsize}
+    \begin{verbatim}
+user          : MeganB@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+=== Summary ===
+MFA Disabled (Guest): 1
+    \end{verbatim}
+\end{scriptsize}
+
+\clearpage
+
+\section{Region 9: Overzicht van accounts met administrator-priviliges, onderverdeeld in gebruik van MFA}
+
+\subsection{PowerShell-script: region9.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=1.2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+$licensedUsers = $users = $results = $disabledMFAusers = @()
+# Haalt alle gebruikers op in de Microsoft 365-omgeving, selecteert UserPrincipalName en AccountEnabled.
+$allUsers = (Get-MgUser -Select UserPrincipalName,AccountEnabled)
+# Doorloopt elke gebruiker in $allUsers, en controleert of de gebruiker een licentie heeft voor Microsoft 365.
+foreach ($licensedUser in $allUsers) { 
+    if (Get-MgUserLicenseDetail -UserId $licensedUser.UserPrincipalName) { $licensedUsers += $licensedUser } }
+# Doorloopt elke gebruiker in $licensedUsers, en controleert of de AccountEnabled eigenschap 'True' is.
+foreach ($enabledUser in $licensedUsers) { if ($enabledUser.AccountEnabled -eq $True) { $users += $enabledUser } }
+# Maakt een nieuw PSCustomObject met de gewenste properties en initialiseert ze als "-" of "_".
+foreach ($user in $users) { $resultObject = [PSCustomObject]@{
+        user               = "-"
+        MFAstatus          = "_"
+        email              = "-"
+        fido2              = "-"
+        app                = "-"
+        password           = "-"
+        phone              = "-"
+        softwareoath       = "-"
+        tempaccess         = "-"
+        hellobusiness      = "-"
+    }
+    # Haalt de MFA-data op van de huidige gebruiker en slaat deze op in $MFAData.
+    $MFAData = (Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName)
+    $resultObject.user = $user.UserPrincipalName;
+    ForEach ($method in $MFAData) { Switch ($method.AdditionalProperties["@odata.type"]) {
+            # Voor elke methode stelt het de overeenkomstige property in op $true en de MFA-status op "Enabled".
+            "#microsoft.graph.emailAuthenticationMethod"  {
+                $resultObject.email = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.fido2AuthenticationMethod"                   {
+                $resultObject.fido2 = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"  {
+                $resultObject.app = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.passwordAuthenticationMethod"                {
+                $resultObject.password = $true
+                # Wanneer alleen het wachtwoord is ingesteld, is MFA uitgeschakeld.
+                if ($resultObject.MFAstatus -ne "Enabled") { $resultObject.MFAstatus = "Disabled" }
+            }
+            "#microsoft.graph.phoneAuthenticationMethod"  {
+                $resultObject.phone = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.softwareOathAuthenticationMethod"  {
+                $resultObject.softwareoath = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.temporaryAccessPassAuthenticationMethod"  {
+                $resultObject.tempaccess = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+            "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
+                $resultObject.hellobusiness = $true
+                $resultObject.MFAstatus = "Enabled"
+            }
+        }
+    } $results += $resultObject;
+}
+# loopt door elk object in de $results array en controleert of MFAstatus gelijk is aan "Disabled".
+foreach ($disabledMFA in $results) { if ($disabledMFA.MFAstatus -eq "Disabled") { $disabledMFAusers += $disabledMFA } }
+$disabledMFAusers
+Write-Host "=== Summary ===`nMFA Disabled (Licensed + Account Enabled): $($disabledMFAusers.count)"
+    \end{minted}
+    \caption[region9.ps1]{...}
+    \label{PSQ9}
+\end{listing}
+
+\subsection{Output}
+
+\begin{scriptsize}
+    \begin{verbatim}
+user          : Administrator@25ky3d.onmicrosoft.com
+MFAstatus     : Enabled
+email         : -
+fido2         : -
+app           : True
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : o_jcre@25ky3d.onmicrosoft.com
+MFAstatus     : Enabled
+email         : -
+fido2         : -
+app           : True
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+=== Summary ===
+MFA Enabled: 2
+   Administrator@25ky3d.onmicrosoft.com
+   o_jcre@25ky3d.onmicrosoft.com
+MFA Disabled: 0
+---
+GRAND TOTAL: 2
+    \end{verbatim}
+\end{scriptsize}
+
+\clearpage
+
+\section{Region 15: Overzicht van accounts met als primair SMTP-adresdomein “.onmicrosoft.com”}
+
+\subsection{PowerShell-script: region15.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=1.2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+# Haalt de UPN en de e-mailadressen van alle gebruikers op en sla ze op in de variabele $users
+$users = (Get-MgUser -Select UserPrincipalName, Mail)   
+
+# Initialiseert de tellers $SMTPgroup1Count en $SMTPotherCount
+$SMTPgroup1Count = $SMTPotherCount = 0   
+
+# Definieert de regex die overeenkomt met het gewenste e-maildomein
+$SMTPmatch1 = "\.onmicrosoft\.com$" 
+
+# Initialiseer lege arrays voor de twee SMTP-categorieën
+$SMTPgroup1 = $SMTPothers = @()   
+
+# Loopt door de lijst van gebruikers en voor elke gebruiker wordt er gecontroleerd of de Mail eigenschap eindigt op ".onmicrosoft.com". 
+# Indien ja, voeg de gebruiker toe aan de $SMTPgroup1 array. 
+# Indien nee, voeg de gebruiker toe aan de $SMTPothers array.
+foreach ($user in $users) {
+    if (($user.Mail) -match $SMTPmatch1) {  
+        $SMTPgroup1 += $user   
+        $SMTPgroup1Count++ 
+    }
+    else {
+        $SMTPothers += $user   
+        $SMTPotherCount++   
+    }
+}
+
+Write-Host "=== Summary ==="
+
+# Toont de gebruikers die behoren tot SMTPgroup1
+Write-Host "SMTP: .onmicrosoft.com"
+foreach ($SMTPgroup1User in $SMTPgroup1) {   
+    Write-Host "   UPN: $($SMTPgroup1User.UserPrincipalName) - MAIL: $($SMTPgroup1User.Mail)"
+}
+Write-Host "   ---`n   TOTAL: $($SMTPgroup1.count)`n"
+
+# Toont de gebruikers die behoren tot SMTPothers
+Write-Host "SMTP: Others"
+foreach ($SMTPotherUser in $SMTPothers) {   
+    if ($SMTPotherUser.Mail) { Write-Host "   UPN: $($SMTPotherUser.UserPrincipalName) - MAIL: $($SMTPotherUser.Mail)" }
+    else { Write-Host "   UPN: $($SMTPotherUser.UserPrincipalName) - MAIL: Not available"}
+}
+Write-Host "   ---`n   TOTAL: $($SMTPothers.count)"
+
+Write-host "---`nGRAND TOTAL: $($users.count)"
+    \end{minted}
+    \caption[region15.ps1]{...}
+    \label{PSQ15}
+\end{listing}
+
+\clearpage
+
+\subsection{Output}
+
+\begin{scriptsize}
+    \begin{verbatim}
+=== Summary ===
+SMTP: .onmicrosoft.com
+   UPN: AdeleV@25ky3d.onmicrosoft.com - MAIL: AdeleV@25ky3d.onmicrosoft.com
+   UPN: Administrator@25ky3d.onmicrosoft.com - MAIL: Administrator@25ky3d.onmicrosoft.com
+   UPN: AlexW@25ky3d.onmicrosoft.com - MAIL: AlexW@25ky3d.onmicrosoft.com
+   UPN: DiegoS@25ky3d.onmicrosoft.com - MAIL: DiegoS@25ky3d.onmicrosoft.com
+   UPN: GradyA@25ky3d.onmicrosoft.com - MAIL: GradyA@25ky3d.onmicrosoft.com
+   UPN: HenriettaM@25ky3d.onmicrosoft.com - MAIL: HenriettaM@25ky3d.onmicrosoft.com
+   UPN: IsaiahL@25ky3d.onmicrosoft.com - MAIL: IsaiahL@25ky3d.onmicrosoft.com
+   UPN: JohannaL@25ky3d.onmicrosoft.com - MAIL: JohannaL@25ky3d.onmicrosoft.com
+   UPN: JoniS@25ky3d.onmicrosoft.com - MAIL: JoniS@25ky3d.onmicrosoft.com
+   UPN: LeeG@25ky3d.onmicrosoft.com - MAIL: LeeG@25ky3d.onmicrosoft.com
+   UPN: LidiaH@25ky3d.onmicrosoft.com - MAIL: LidiaH@25ky3d.onmicrosoft.com
+   UPN: LynneR@25ky3d.onmicrosoft.com - MAIL: LynneR@25ky3d.onmicrosoft.com
+   UPN: MeganB@25ky3d.onmicrosoft.com - MAIL: MeganB@25ky3d.onmicrosoft.com
+   UPN: MiriamG@25ky3d.onmicrosoft.com - MAIL: MiriamG@25ky3d.onmicrosoft.com
+   UPN: NestorW@25ky3d.onmicrosoft.com - MAIL: NestorW@25ky3d.onmicrosoft.com
+   UPN: PattiF@25ky3d.onmicrosoft.com - MAIL: PattiF@25ky3d.onmicrosoft.com
+   UPN: PradeepG@25ky3d.onmicrosoft.com - MAIL: PradeepG@25ky3d.onmicrosoft.com
+   ---
+   TOTAL: 17
+
+SMTP: Others
+   UPN: o_jcre@25ky3d.onmicrosoft.com - MAIL: Not available
+   ---
+   TOTAL: 1
+---
+GRAND TOTAL: 18
+    \end{verbatim}
+\end{scriptsize}
+
+\clearpage
+
+\section{Region 19: Overzicht verschillende types van licenties en het aantal personen met dit licentietype}
+
+\subsection{PowerShell-script: region19.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=1.2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+$upnArray = @()
+$licenseCounts = @{}
+
+# Haalt alle gebruikers op en doorloopt de gebruikers één voor één.
+# Voegt de User Principal Name toe aan de array.
+Get-MgUser | ForEach-Object {
+    $upnArray += $_.UserPrincipalName
+}
+
+# Doorloopt elke gebruiker uit de array en haalt de licentiedetails op.
+# Het slaat dit op in $cmd, $servicePlans slaat de service plans op uit $cmd.
+# De service plannen worden opgeteld in een lijst aan de hand van een hash-tabel.
+# De tabel houdt het aantal licenties per gebruiker bij en sorteert dit alfabetisch. 
+foreach ($upn in $upnArray) {
+    $cmd = (Get-MgUserLicenseDetail -UserID $upn)
+    $servicePlans = $cmd.ServicePlans
+    foreach ($license in $servicePlans.ServicePlanName) {
+        if ($licenseCounts.ContainsKey($license)) {
+            $licenseCounts[$license]++
+        } 
+        else {
+            $licenseCounts[$license] = 1
+        }
+    }
+}
+
+Write-Host "=== Summary ==="
+foreach ($licenseName in $licenseCounts.Keys | Sort-Object) {
+    Write-Host "$($licenseName): $($licenseCounts[$licenseName])"
+}
+    \end{minted}
+    \caption[region19.ps1]{...}
+    \label{PSQ19}
+\end{listing}
+
+\clearpage
+
+\begin{tiny}
+    \begin{verbatim}
+=== Summary ===
+AAD_PREMIUM: 17
+AAD_PREMIUM_P2: 17
+ADALLOM_S_O365: 17
+ADALLOM_S_STANDALONE: 17
+ATA: 17
+ATP_ENTERPRISE: 17
+BI_AZURE_P2: 17
+BPOS_S_TODO_3: 17
+CDS_O365_P3: 17
+COMMUNICATIONS_COMPLIANCE: 17
+COMMUNICATIONS_DLP: 17
+Content_Explorer: 17
+CUSTOMER_KEY: 17
+DATA_INVESTIGATIONS: 17
+Deskless: 17
+DYN365_CDS_O365_P3: 17
+EQUIVIO_ANALYTICS: 17
+EXCEL_PREMIUM: 17
+EXCHANGE_ANALYTICS: 17
+EXCHANGE_S_ENTERPRISE: 17
+FLOW_O365_P3: 17
+FORMS_PLAN_E5: 17
+GRAPH_CONNECTORS_SEARCH_INDEX: 17
+INFO_GOVERNANCE: 17
+INSIDER_RISK: 17
+INSIDER_RISK_MANAGEMENT: 17
+INTUNE_A: 17
+INTUNE_O365: 17
+LOCKBOX_ENTERPRISE: 17
+M365_ADVANCED_AUDITING: 17
+MCOEV: 17
+MCOSTANDARD: 17
+MFA_PREMIUM: 17
+MICROSOFT_COMMUNICATION_COMPLIANCE: 17
+MICROSOFT_SEARCH: 17
+MICROSOFTBOOKINGS: 17
+MIP_S_CLP1: 17
+MIP_S_CLP2: 17
+MIP_S_Exchange: 17
+ML_CLASSIFICATION: 17
+MTP: 17
+Nucleus: 17
+OFFICESUBSCRIPTION: 17
+PAM_ENTERPRISE: 17
+POWER_VIRTUAL_AGENTS_O365_P3: 17
+POWERAPPS_O365_P3: 17
+PROJECT_O365_P3: 17
+PROJECTWORKMANAGEMENT: 17
+RECORDS_MANAGEMENT: 17
+RMS_S_ENTERPRISE: 17
+RMS_S_PREMIUM: 17
+RMS_S_PREMIUM2: 17
+SAFEDOCS: 17
+SHAREPOINTENTERPRISE: 17
+SHAREPOINTWAC: 17
+STREAM_O365_E5: 17
+SWAY: 17
+TEAMS1: 17
+THREAT_INTELLIGENCE: 17
+VIVA_LEARNING_SEEDED: 17
+WHITEBOARD_PLAN3: 17
+YAMMER_ENTERPRISE: 17
+    \end{verbatim}
+\end{tiny}
+
+\clearpage
+
+\section{Region 20: Overzicht van de verschillende MFA-methodes met het aantal gebruikers}
+
+\subsection{PowerShell-script: region20.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=1.2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+$results=@()
+$users = (Get-MgUser -All)
+$emailCount = $fido2Count = $appCount = $passwordCount = $phoneCount = 0
+$softwareoathCount = $tempaccessCount = $hellobusinessCount = 0
+# Maakt een nieuw PSCustomObject met de gewenste properties en initialiseert ze als "-" of "_".
+foreach ($user in $users) { $resultObject = [PSCustomObject]@{
+        user               = "-"
+        MFAstatus          = "_"
+        email              = "-"
+        fido2              = "-"
+        app                = "-"
+        password           = "-"
+        phone              = "-"
+        softwareoath       = "-"
+        tempaccess         = "-"
+        hellobusiness      = "-"
+    }
+    # Haalt de MFA-data op van de huidige gebruiker en slaat deze op in $MFAData.
+    $MFAData = (Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName)
+    $resultObject.user = $user.UserPrincipalName;
+    # Loopt door alle methodes in $MFAData en stelt de bijbehorende properties in voor $resultObject.
+    ForEach ($method in $MFAData) { Switch ($method.AdditionalProperties["@odata.type"]) {
+            # Voor elke methode stelt het de overeenkomstige property in op $true en de MFA-status op "Enabled".      
+            "#microsoft.graph.emailAuthenticationMethod"  {
+                $resultObject.email = $true
+                $resultObject.MFAstatus = "Enabled" }
+            "#microsoft.graph.fido2AuthenticationMethod"                   {
+                $resultObject.fido2 = $true
+                $resultObject.MFAstatus = "Enabled" }
+            "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"  {
+                $resultObject.app = $true
+                $resultObject.MFAstatus = "Enabled" }
+            "#microsoft.graph.passwordAuthenticationMethod"                {
+                $resultObject.password = $true
+                # Wanneer alleen het wachtwoord is ingesteld, is MFA uitgeschakeld.
+                if($resultObject.MFAstatus -ne "Enabled") { $resultObject.MFAstatus = "Disabled" } }
+            "#microsoft.graph.phoneAuthenticationMethod"  {
+                $resultObject.phone = $true
+                $resultObject.MFAstatus = "Enabled" }
+            "#microsoft.graph.softwareOathAuthenticationMethod"  {
+                $resultObject.softwareoath = $true
+                $resultObject.MFAstatus = "Enabled" }
+            "#microsoft.graph.temporaryAccessPassAuthenticationMethod"  {
+                $resultObject.tempaccess = $true
+                $resultObject.MFAstatus = "Enabled" }
+            "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
+                $resultObject.hellobusiness = $true
+                $resultObject.MFAstatus = "Enabled" }
+        }
+    } $results += $resultObject;
+}
+# Doorloopt de lijst van gebruikers en telt het aantal gebruikers voor elk type MFA-methode die is ingeschakeld.
+ForEach ($MFAusers in $results) { ForEach ($MFAuser in $MFAusers) {
+        if ($MFAuser.email -eq "True") { $emailCount++ }
+        if ($MFAuser.fido2 -eq "True") { $fido2Count++ }
+        if ($MFAuser.app -eq "True") { $appCount++ }
+        if ($MFAuser.password -eq "True") { $passwordCount++ }
+        if ($MFAuser.phone -eq "True") { $phoneCount++ }
+        if ($MFAuser.softwareoath -eq "True") { $softwareoathCount++ }
+        if ($MFAuser.tempaccess -eq "True") { $tempaccessCount++ }
+        if ($MFAuser.hellobusiness -eq "True") { $hellobusinessCount++ }
+} } $results
+Write-Host "=== Summary ==="
+Write-Host "Email: $($emailCount)`nFIDO2: $($fido2Count)`nApp: $($appCount)"
+Write-Host "Password: $($passwordCount)`nPhone: $($phoneCount)`nSoftware OATH: $($softwareoathCount)"
+Write-Host "Temporary Access: $($tempaccessCount)`nHello for Business: $($hellobusinessCount)"
+    \end{minted}
+    \caption[region20.ps1]{...}
+    \label{PSQ20}
+\end{listing}
+
+\begin{tiny}
+    \begin{verbatim}
+user          : AdeleV@25ky3d.onmicrosoft.com
+MFAstatus     : Enabled
+email         : -
+fido2         : -
+app           : True
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : Administrator@25ky3d.onmicrosoft.com
+MFAstatus     : Enabled
+email         : -
+fido2         : -
+app           : True
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : AlexW@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : DiegoS@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : GradyA@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : HenriettaM@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : IsaiahL@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : JohannaL@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : JoniS@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : LeeG@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : LidiaH@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : LynneR@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : MeganB@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : MiriamG@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : NestorW@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : o_jcre@25ky3d.onmicrosoft.com
+MFAstatus     : Enabled
+email         : -
+fido2         : -
+app           : True
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : PattiF@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+user          : PradeepG@25ky3d.onmicrosoft.com
+MFAstatus     : Disabled
+email         : -
+fido2         : -
+app           : -
+password      : True
+phone         : -
+softwareoath  : -
+tempaccess    : -
+hellobusiness : -
+
+=== Summary ===
+Email: 0
+FIDO2: 0
+App: 3
+Password: 18
+Phone: 0
+Software OATH: 0
+Temporary Access: 0
+Hello for Business: 0
+    \end{verbatim}
+\end{tiny}

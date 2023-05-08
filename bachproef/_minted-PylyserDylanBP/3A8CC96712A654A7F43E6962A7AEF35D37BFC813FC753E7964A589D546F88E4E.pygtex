@@ -1,0 +1,71 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nv}{\PYGZdl{}results} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}users} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}MFAdisabled} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}MFAenabled} \PYG{p}{=} \PYG{p}{@()}
+\PYG{c}{\PYGZsh{} Haalt alle gebruikers op uit de Microsoft 365\PYGZhy{}omgeving, selecteert alleen de properties UserPrincipalName en UserType.}
+\PYG{n+nv}{\PYGZdl{}allUsers} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUser} \PYG{n}{\PYGZhy{}Select} \PYG{n}{UserPrincipalName}\PYG{p}{,}\PYG{n}{UserType}\PYG{p}{)}
+\PYG{c}{\PYGZsh{} Loopt door alle gebruikers en voeg alleen de leden toe aan de \PYGZdl{}users array}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}member} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}allUsers}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}member}\PYG{p}{.}\PYG{n}{UserType} \PYG{o}{\PYGZhy{}eq} \PYG{l+s+s2}{\PYGZdq{}Member\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}users} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}member} \PYG{p}{\PYGZcb{}} \PYG{p}{\PYGZcb{}}
+\PYG{c}{\PYGZsh{} Maakt een nieuw PSCustomObject met de gewenste properties en initialiseert ze als \PYGZdq{}\PYGZhy{}\PYGZdq{} of \PYGZdq{}\PYGZus{}\PYGZdq{}.}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}user} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}users}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}resultObject} \PYG{p}{=} \PYG{n+no}{[PSCustomObject]}\PYG{p}{@\PYGZob{}}
+        \PYG{n}{user}               \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{MFAstatus}          \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZdq{}}
+        \PYG{n}{email}              \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{fido2}              \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{app}                \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{password}           \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{phone}              \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{softwareoath}       \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{tempaccess}         \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{hellobusiness}      \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{c}{\PYGZsh{} Haalt de MFA\PYGZhy{}data op van de huidige gebruiker en slaat deze op in \PYGZdl{}MFAData.}
+    \PYG{n+nv}{\PYGZdl{}MFAData} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUserAuthenticationMethod} \PYG{n}{\PYGZhy{}UserId} \PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)}
+    \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{user} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{;}
+    \PYG{c}{\PYGZsh{} Loopt door alle methodes in \PYGZdl{}MFAData en stelt de bijbehorende properties in voor \PYGZdl{}resultObject.}
+    \PYG{k}{ForEach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}method} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}MFAData}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{Switch} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}method}\PYG{p}{.}\PYG{n}{AdditionalProperties}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}@odata.type\PYGZdq{}}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+            \PYG{c}{\PYGZsh{} Voor elke methode stelt het de overeenkomstige property in op \PYGZdl{}true en de MFA\PYGZhy{}status op \PYGZdq{}Enabled\PYGZdq{}.}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.emailAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{email} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.fido2AuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{fido2} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.microsoftAuthenticatorAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{app} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.passwordAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{password} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{c}{\PYGZsh{} Wanneer alleen het wachtwoord is ingesteld, is MFA uitgeschakeld.}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{o}{\PYGZhy{}ne} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Disabled\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.phoneAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{phone} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.softwareOathAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{softwareoath} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.temporaryAccessPassAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{tempaccess} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.windowsHelloForBusinessAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{hellobusiness} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}} \PYG{n+nv}{\PYGZdl{}results} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{c}{\PYGZsh{} Loopt door \PYGZdl{}results en sorteert de resultaatobjecten op basis van hun MFA\PYGZhy{}status.}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}result} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}results}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}result}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{o}{\PYGZhy{}eq} \PYG{l+s+s2}{\PYGZdq{}Disabled\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}MFAdisabled} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}result} \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}MFAenabled} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}result} \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}=== Summary ===\PYGZdq{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}MFA Disabled (Member): }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}MFAdisabled}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{ \PYGZhy{} }\PYG{p}{\PYGZdl{}(}\PYG{n+no}{[math]}\PYG{p}{::}\PYG{n}{Round}\PYG{p}{(((}\PYG{n+nv}{\PYGZdl{}MFAdisabled}\PYG{p}{.}\PYG{n}{count}\PYG{p}{/}\PYG{n+nv}{\PYGZdl{}results}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)*}\PYG{n}{100}\PYG{p}{),}\PYG{n}{2}\PYG{p}{))}\PYG{l+s+s2}{\PYGZpc{}\PYGZdq{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}MFA Enabled (Member): }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}MFAenabled}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{ \PYGZhy{} }\PYG{p}{\PYGZdl{}(}\PYG{n+no}{[math]}\PYG{p}{::}\PYG{n}{Round}\PYG{p}{(((}\PYG{n+nv}{\PYGZdl{}MFAenabled}\PYG{p}{.}\PYG{n}{count}\PYG{p}{/}\PYG{n+nv}{\PYGZdl{}results}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)*}\PYG{n}{100}\PYG{p}{),}\PYG{n}{2}\PYG{p}{))}\PYG{l+s+s2}{\PYGZpc{}\PYGZdq{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{GRANT TOTAL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}results}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{ \PYGZhy{} 100\PYGZpc{}\PYGZdq{}}
+\end{Verbatim}

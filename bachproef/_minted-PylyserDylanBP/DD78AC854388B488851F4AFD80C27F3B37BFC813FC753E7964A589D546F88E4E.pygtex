@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nv}{\PYGZdl{}upnArray} \PYG{p}{=} \PYG{p}{@()}
+\PYG{n+nv}{\PYGZdl{}licenseCounts} \PYG{p}{=} \PYG{p}{@\PYGZob{}\PYGZcb{}}
+
+\PYG{c}{\PYGZsh{} Haalt alle gebruikers op en doorloopt de gebruikers één voor één.}
+\PYG{c}{\PYGZsh{} Voegt de User Principal Name toe aan de array.}
+\PYG{n+nb}{Get\PYGZhy{}MgUser} \PYG{p}{|} \PYG{k}{ForEach}\PYG{n}{\PYGZhy{}Object} \PYG{p}{\PYGZob{}}
+    \PYG{n+nv}{\PYGZdl{}upnArray} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}\PYGZus{}}\PYG{p}{.}\PYG{n}{UserPrincipalName}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c}{\PYGZsh{} Doorloopt elke gebruiker uit de array en haalt de licentiedetails op.}
+\PYG{c}{\PYGZsh{} Het slaat dit op in \PYGZdl{}cmd, \PYGZdl{}servicePlans slaat de service plans op uit \PYGZdl{}cmd.}
+\PYG{c}{\PYGZsh{} De service plannen worden opgeteld in een lijst aan de hand van een hash\PYGZhy{}tabel.}
+\PYG{c}{\PYGZsh{} De tabel houdt het aantal licenties per gebruiker bij en sorteert dit alfabetisch.}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}upn} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}upnArray}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n+nv}{\PYGZdl{}cmd} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUserLicenseDetail} \PYG{n}{\PYGZhy{}UserID} \PYG{n+nv}{\PYGZdl{}upn}\PYG{p}{)}
+    \PYG{n+nv}{\PYGZdl{}servicePlans} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}cmd}\PYG{p}{.}\PYG{n}{ServicePlans}
+    \PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}license} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}servicePlans}\PYG{p}{.}\PYG{n}{ServicePlanName}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}licenseCounts}\PYG{p}{.}\PYG{n}{ContainsKey}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}license}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}licenseCounts}\PYG{p}{[}\PYG{n+nv}{\PYGZdl{}license}\PYG{p}{]++}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{else} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}licenseCounts}\PYG{p}{[}\PYG{n+nv}{\PYGZdl{}license}\PYG{p}{]} \PYG{p}{=} \PYG{n}{1}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}=== Summary ===\PYGZdq{}}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}licenseName} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}licenseCounts}\PYG{p}{.}\PYG{n}{Keys} \PYG{p}{|} \PYG{n+nb}{Sort\PYGZhy{}Object}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}licenseName}\PYG{p}{)}\PYG{l+s+s2}{: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}licenseCounts}\PYG{p}{[}\PYG{n+nv}{\PYGZdl{}licenseName}\PYG{p}{])}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

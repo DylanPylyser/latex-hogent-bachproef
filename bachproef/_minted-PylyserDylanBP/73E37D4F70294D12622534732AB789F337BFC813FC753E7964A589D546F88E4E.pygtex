@@ -1,0 +1,46 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} Haalt de UPN en de e\PYGZhy{}mailadressen van alle gebruikers op en sla ze op in de variabele \PYGZdl{}users}
+\PYG{n+nv}{\PYGZdl{}users} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUser} \PYG{n}{\PYGZhy{}Select} \PYG{n}{UserPrincipalName}\PYG{p}{,} \PYG{n}{Mail}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Initialiseert de tellers \PYGZdl{}SMTPgroup1Count en \PYGZdl{}SMTPotherCount}
+\PYG{n+nv}{\PYGZdl{}SMTPgroup1Count} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}SMTPotherCount} \PYG{p}{=} \PYG{n}{0}
+
+\PYG{c}{\PYGZsh{} Definieert de regex die overeenkomt met het gewenste e\PYGZhy{}maildomein}
+\PYG{n+nv}{\PYGZdl{}SMTPmatch1} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZbs{}.onmicrosoft\PYGZbs{}.com\PYGZdl{}\PYGZdq{}}
+
+\PYG{c}{\PYGZsh{} Initialiseer lege arrays voor de twee SMTP\PYGZhy{}categorieën}
+\PYG{n+nv}{\PYGZdl{}SMTPgroup1} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}SMTPothers} \PYG{p}{=} \PYG{p}{@()}
+
+\PYG{c}{\PYGZsh{} Loopt door de lijst van gebruikers en voor elke gebruiker wordt er gecontroleerd of de Mail eigenschap eindigt op \PYGZdq{}.onmicrosoft.com\PYGZdq{}.}
+\PYG{c}{\PYGZsh{} Indien ja, voeg de gebruiker toe aan de \PYGZdl{}SMTPgroup1 array.}
+\PYG{c}{\PYGZsh{} Indien nee, voeg de gebruiker toe aan de \PYGZdl{}SMTPothers array.}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}user} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}users}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{((}\PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{Mail}\PYG{p}{)} \PYG{o}{\PYGZhy{}match} \PYG{n+nv}{\PYGZdl{}SMTPmatch1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{n+nv}{\PYGZdl{}SMTPgroup1} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}user}
+        \PYG{n+nv}{\PYGZdl{}SMTPgroup1Count}\PYG{p}{++}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else} \PYG{p}{\PYGZob{}}
+        \PYG{n+nv}{\PYGZdl{}SMTPothers} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}user}
+        \PYG{n+nv}{\PYGZdl{}SMTPotherCount}\PYG{p}{++}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}=== Summary ===\PYGZdq{}}
+
+\PYG{c}{\PYGZsh{} Toont de gebruikers die behoren tot SMTPgroup1}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}SMTP: .onmicrosoft.com\PYGZdq{}}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}SMTPgroup1User} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}SMTPgroup1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}   UPN: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}SMTPgroup1User}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)}\PYG{l+s+s2}{ \PYGZhy{} MAIL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}SMTPgroup1User}\PYG{p}{.}\PYG{n}{Mail}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}   \PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{   TOTAL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}SMTPgroup1}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+se}{`n}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c}{\PYGZsh{} Toont de gebruikers die behoren tot SMTPothers}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}SMTP: Others\PYGZdq{}}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}SMTPotherUser} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}SMTPothers}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}SMTPotherUser}\PYG{p}{.}\PYG{n}{Mail}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}   UPN: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}SMTPotherUser}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)}\PYG{l+s+s2}{ \PYGZhy{} MAIL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}SMTPotherUser}\PYG{p}{.}\PYG{n}{Mail}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else} \PYG{p}{\PYGZob{}} \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}   UPN: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}SMTPotherUser}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)}\PYG{l+s+s2}{ \PYGZhy{} MAIL: Not available\PYGZdq{}}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}   \PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{   TOTAL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}SMTPothers}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{n+nb}{Write\PYGZhy{}host} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{GRAND TOTAL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}users}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\end{Verbatim}

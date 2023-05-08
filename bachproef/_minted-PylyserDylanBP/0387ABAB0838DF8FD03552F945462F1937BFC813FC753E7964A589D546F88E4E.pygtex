@@ -1,0 +1,68 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nv}{\PYGZdl{}results}\PYG{p}{=@()}
+\PYG{n+nv}{\PYGZdl{}users} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUser} \PYG{n}{\PYGZhy{}All}\PYG{p}{)}
+\PYG{n+nv}{\PYGZdl{}emailCount} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}fido2Count} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}appCount} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}passwordCount} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}phoneCount} \PYG{p}{=} \PYG{n}{0}
+\PYG{n+nv}{\PYGZdl{}softwareoathCount} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}tempaccessCount} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}hellobusinessCount} \PYG{p}{=} \PYG{n}{0}
+\PYG{c}{\PYGZsh{} Maakt een nieuw PSCustomObject met de gewenste properties en initialiseert ze als \PYGZdq{}\PYGZhy{}\PYGZdq{} of \PYGZdq{}\PYGZus{}\PYGZdq{}.}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}user} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}users}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}resultObject} \PYG{p}{=} \PYG{n+no}{[PSCustomObject]}\PYG{p}{@\PYGZob{}}
+        \PYG{n}{user}               \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{MFAstatus}          \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZdq{}}
+        \PYG{n}{email}              \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{fido2}              \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{app}                \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{password}           \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{phone}              \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{softwareoath}       \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{tempaccess}         \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+        \PYG{n}{hellobusiness}      \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{c}{\PYGZsh{} Haalt de MFA\PYGZhy{}data op van de huidige gebruiker en slaat deze op in \PYGZdl{}MFAData.}
+    \PYG{n+nv}{\PYGZdl{}MFAData} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUserAuthenticationMethod} \PYG{n}{\PYGZhy{}UserId} \PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)}
+    \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{user} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{;}
+    \PYG{c}{\PYGZsh{} Loopt door alle methodes in \PYGZdl{}MFAData en stelt de bijbehorende properties in voor \PYGZdl{}resultObject.}
+    \PYG{k}{ForEach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}method} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}MFAData}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{Switch} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}method}\PYG{p}{.}\PYG{n}{AdditionalProperties}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}@odata.type\PYGZdq{}}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+            \PYG{c}{\PYGZsh{} Voor elke methode stelt het de overeenkomstige property in op \PYGZdl{}true en de MFA\PYGZhy{}status op \PYGZdq{}Enabled\PYGZdq{}.}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.emailAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{email} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.fido2AuthenticationMethod\PYGZdq{}}                   \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{fido2} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.microsoftAuthenticatorAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{app} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.passwordAuthenticationMethod\PYGZdq{}}                \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{password} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{c}{\PYGZsh{} Wanneer alleen het wachtwoord is ingesteld, is MFA uitgeschakeld.}
+                \PYG{k}{if}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{o}{\PYGZhy{}ne} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Disabled\PYGZdq{}} \PYG{p}{\PYGZcb{}} \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.phoneAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{phone} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.softwareOathAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{softwareoath} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.temporaryAccessPassAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{tempaccess} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+            \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.windowsHelloForBusinessAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{hellobusiness} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
+                \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}} \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}} \PYG{n+nv}{\PYGZdl{}results} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{c}{\PYGZsh{} Doorloopt de lijst van gebruikers en telt het aantal gebruikers voor elk type MFA\PYGZhy{}methode die is ingeschakeld.}
+\PYG{k}{ForEach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}MFAusers} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}results}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{ForEach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}MFAuser} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}MFAusers}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}MFAuser}\PYG{p}{.}\PYG{n}{email} \PYG{o}{\PYGZhy{}eq} \PYG{l+s+s2}{\PYGZdq{}True\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}emailCount}\PYG{p}{++} \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}MFAuser}\PYG{p}{.}\PYG{n}{fido2} \PYG{o}{\PYGZhy{}eq} \PYG{l+s+s2}{\PYGZdq{}True\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}fido2Count}\PYG{p}{++} \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}MFAuser}\PYG{p}{.}\PYG{n}{app} \PYG{o}{\PYGZhy{}eq} \PYG{l+s+s2}{\PYGZdq{}True\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}appCount}\PYG{p}{++} \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}MFAuser}\PYG{p}{.}\PYG{n}{password} \PYG{o}{\PYGZhy{}eq} \PYG{l+s+s2}{\PYGZdq{}True\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}passwordCount}\PYG{p}{++} \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}MFAuser}\PYG{p}{.}\PYG{n}{phone} \PYG{o}{\PYGZhy{}eq} \PYG{l+s+s2}{\PYGZdq{}True\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}phoneCount}\PYG{p}{++} \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}MFAuser}\PYG{p}{.}\PYG{n}{softwareoath} \PYG{o}{\PYGZhy{}eq} \PYG{l+s+s2}{\PYGZdq{}True\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}softwareoathCount}\PYG{p}{++} \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}MFAuser}\PYG{p}{.}\PYG{n}{tempaccess} \PYG{o}{\PYGZhy{}eq} \PYG{l+s+s2}{\PYGZdq{}True\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}tempaccessCount}\PYG{p}{++} \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}MFAuser}\PYG{p}{.}\PYG{n}{hellobusiness} \PYG{o}{\PYGZhy{}eq} \PYG{l+s+s2}{\PYGZdq{}True\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}hellobusinessCount}\PYG{p}{++} \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}} \PYG{p}{\PYGZcb{}} \PYG{n+nv}{\PYGZdl{}results}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}=== Summary ===\PYGZdq{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}Email: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}emailCount}\PYG{p}{)}\PYG{l+s+se}{`n}\PYG{l+s+s2}{FIDO2: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}fido2Count}\PYG{p}{)}\PYG{l+s+se}{`n}\PYG{l+s+s2}{App: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}appCount}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}Password: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}passwordCount}\PYG{p}{)}\PYG{l+s+se}{`n}\PYG{l+s+s2}{Phone: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}phoneCount}\PYG{p}{)}\PYG{l+s+se}{`n}\PYG{l+s+s2}{Software OATH: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}softwareoathCount}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}Temporary Access: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}tempaccessCount}\PYG{p}{)}\PYG{l+s+se}{`n}\PYG{l+s+s2}{Hello for Business: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}hellobusinessCount}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\end{Verbatim}
