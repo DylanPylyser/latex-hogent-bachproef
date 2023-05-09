@@ -33,21 +33,21 @@ Op vlak van onderdelen, wordt het volgende opgemerkt bij het vergelijken. Azure 
 
 Voor dit onderdeel wordt er gebruikgemaakt van de Graph Explorer. Beide technologieën bieden deze functie aan om de \ac{API} te testen. Voor Azure \ac{AD} Graph kan dit via “https://graphexplorer.azurewebsites.net/”. Voor Microsoft Graph kan dit via “https://developer.microsoft.com/en-us/graph/graph-explorer”. \\
 
-In dit onderdeel worden er vier HTTP-verzoeken gedaan op basis van de verschillende HTTP-verzoeken die in beide technologieën aanwezig zijn. De verzoeken die worden gebruikt zijn GET, POST, PATCH en DELETE. PUT wordt niet ondersteund in de Azure \ac{AD} Graph Explorer, deze wordt dus niet in de vergelijking opgenomen. \\
+In dit onderdeel worden er vier HTTP-verzoeken uitgevoerd op basis van de verschillende \ac{HTTP}-verzoeken die in beide technologieën aanwezig zijn. De verzoeken die worden gebruikt zijn GET, POST, PATCH en DELETE. PUT wordt niet ondersteund in de Azure \ac{AD} Graph Explorer, deze wordt dus niet in de vergelijking opgenomen. \\
 
-Het verzoek of request, en het antwoord of response worden op beide Graph Explorers uitgevoerd en vergeleken. De data uit de vergelijking wordt voorzien door de testomgeving van de Proof-of-Concept. De uitleg over de testomgeving met bijhorende data is te vinden in het volgende hoofdstuk. \\
+Het verzoek en het antwoord worden op beide Graph Explorers uitgevoerd en vergeleken. De data uit de vergelijking wordt voorzien door de testomgeving van de Proof-of-Concept. De uitleg over de testomgeving met bijhorende data is te vinden in het volgende hoofdstuk. 
 
-\subsubsection{Verzoek 1: informatie opvragen over het domein}
+\subsubsection{Bespreking van de uitgevoerde queries}
 
-Voor Azure \ac{AD} Graph worden volgende eigenschappen meegegeven.
+De resultaten bij het uitvoeren van de vier queries wordt hieronder besproken met bijhorende gegevens uit Bijlage \ref{ch:HTTP-queries}. \\
 
-\begin{itemize}
-    \item Verzoek: GET
-    \item URL: https://graph.windows.net/25ky3d.onmicrosoft.com
-    \item api-version: 1.6
-\end{itemize}
+Bij het opstellen van een verzoek voor beide \Ac{API}'s, is te merken dat de \Ac{URL} en \Ac{API}-version worden omgedraaid. Daarnaast is de \Ac{URL} bij Azure \ac{AD} Graph langer, door het gebruik van de tenant-id. Beide zaken werden benoemd in de literatuurstudie. \\
 
+Bij het eerste verzoek zijn er lichte verschillen aan te merken. De response body, zie Listing \ref{Q1AADRB} en \ref{Q1MSGRB}, wordt anders weergegeven bij beide \ac{API}'s. Bovendien is de response header bij Microsoft Graph kleiner dan bij het oude. Dit wordt weergegeven op Listing \ref{Q1AADRH} en \ref{Q1MSGRH}. \\
 
+Het tweede verzoek maakt gebruik van een request body waar een opvallend verschil is aan te merken tussen de twee. Het verschil is te zien bij Listing \ref{Q2AADRQB} en \ref{Q2MSGRQB}. Het oude maakt gebruik van de “forceChangePasswordNextLogin”, terwijl Microsoft Graph “forceChangePasswordNextSignin” gebruikt als parameter. Vervolgens is de response body bij Microsoft Graph veel kleiner. De response body van beide wordt weergegeven bij Listing \ref{Q2AADRB} en \ref{Q2MSGRB}. Ook is bij deze query de reponse header kleiner bij het nieuwe dan bij het oude. Dit wordt voorgesteld bij Listing \ref{Q2AADRH} en \ref{Q2MSGRH}. \\
+
+Bij de derde query zijn beide request bodies hetzelfde. Beide request bodies worden voorgesteld in Listing \ref{Q3AADRQB} en \ref{Q3MSGRQB}. De resterende onderdelen bij de derde en vierde query zijn gelijkaardig aan elkaar.
 
 \subsection{PowerShell-versies}
 
