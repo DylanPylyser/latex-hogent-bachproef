@@ -429,9 +429,13 @@
 
 \subsubsection{Response}
 
-Geen response beschikbaar. Bij een PATCH-request wordt er bij een succesvolle verwerking geen response meegegeven. Als bewijs dat de query werd uitgevoerd wordt volgende screenshot meegegeven. 
+Geen response beschikbaar. Bij een PATCH-request wordt er bij een succesvolle verwerking geen response meegegeven. Als bewijs dat de query werd uitgevoerd kan Figuur \ref{Q3Proof} geraadpleegd worden. Op de foto is te zien dat de gebruiker “Alex Wu” wordt aangepast naar “Alex A. Wu”. \\ 
 
-% TODO: instert photo
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{Q3Proof.png}
+    \caption[Query 3: Bewijs van uitvoering]{Het resultaat van de uitgevoerde derde query in de testomgeving.}
+    \label{Q3Proof}
+\end{figure}
 
 \subsection{Microsoft Graph}
 
@@ -465,7 +469,7 @@ Geen response beschikbaar. Bij een PATCH-request wordt er bij een succesvolle ve
 
 \subsubsection{Response}
 
-Geen response beschikbaar. Bij een PATCH-request wordt er bij een succesvolle verwerking geen response meegegeven. Als bewijs dat de query werd uitgevoerd kan ... geraadpleegd worden. % TODO ... vervangen met verwijzing naar vorige onderdeel 
+Geen response beschikbaar. Bij een PATCH-request wordt er bij een succesvolle verwerking geen response meegegeven. Als bewijs dat de query werd uitgevoerd kan Figuur \ref{Q3Proof} geraadpleegd worden. Op de foto is te zien dat de gebruiker “Alex Wu” wordt aangepast naar “Alex A. Wu”. \\
 
 \clearpage
 
@@ -483,9 +487,13 @@ Geen response beschikbaar. Bij een PATCH-request wordt er bij een succesvolle ve
 
 \subsubsection{Response}
 
-Geen response beschikbaar. Bij een DELETE-request wordt er bij een succesvolle verwerking geen response meegegeven. Als bewijs dat de query werd uitgevoerd wordt volgende screenshot meegegeven. 
+Geen response beschikbaar. Bij een DELETE-request wordt er bij een succesvolle verwerking geen response meegegeven. Als bewijs dat de query werd uitgevoerd kan Figuur \ref{Q4Proof} geraadpleegd worden. Op de foto is te zien dat de gebruiker “Alex A. Wu” niet wordt weergegeven wanneer er alfabetisch wordt gesorteerd op de gebruikers. \\ 
 
-% TODO: instert photo
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{Q4Proof.png}
+    \caption[Query 4: Bewijs van uitvoering]{Het resultaat van de uitgevoerde vierde query in de testomgeving.}
+    \label{Q4Proof}
+\end{figure}
 
 \subsection{Microsoft Graph}
 
@@ -499,7 +507,7 @@ Geen response beschikbaar. Bij een DELETE-request wordt er bij een succesvolle v
 
 \subsubsection{Response}
 
-Geen response beschikbaar. Bij een DELETE-request wordt er bij een succesvolle verwerking geen response meegegeven. Als bewijs dat de query werd uitgevoerd kan ... geraadpleegd worden. % TODO ... vervangen met verwijzing naar vorige onderdeel
+Geen response beschikbaar. Bij een DELETE-request wordt er bij een succesvolle verwerking geen response meegegeven. Als bewijs dat de query werd uitgevoerd kan Figuur \ref{Q4Proof} geraadpleegd worden. Op de foto is te zien dat de gebruiker “Alex A. Wu” niet wordt weergegeven wanneer er alfabetisch wordt gesorteerd op de gebruikers. 
 
 % ---
 % CHAPTER
@@ -510,7 +518,7 @@ Geen response beschikbaar. Bij een DELETE-request wordt er bij een succesvolle v
 
 \clearpage
 
-\section{Connecteer met Microsoft Graph}
+\section{Connectie met Microsoft Graph}
 
 \subsection{PowerShell-script: connectMSgraph.ps1}
 
@@ -552,9 +560,9 @@ Welcome To Microsoft Graph!
 
 \clearpage
 
-\section{Region 1: Aantal aanwezige domeinen binnen de Office 365-omgeving}
+\section{Functie 1: Aantal aanwezige domeinen binnen de Office 365-omgeving}
 
-\subsection{PowerShell-script: connectMSgraph.ps1}
+\subsection{PowerShell-script: functie1.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -596,9 +604,9 @@ GRAND TOTAL: 1
 
 \clearpage
 
-\section{Region 2: Aantal gebruikers binnen de omgeving, onderverdeeld in interne en externe gebruikers}
+\section{Functie 2: Aantal gebruikers binnen de omgeving, onderverdeeld in interne en externe gebruikers}
 
-\subsection{PowerShell-script: region2.ps1}
+\subsection{PowerShell-script: functie2.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -644,7 +652,7 @@ Write-Host "=== Summary ==="
 Write-Host "Cloud: $($cloudCount)`n   Guest: $($GuestCount)`n   Member: $($memberCount)`nSynced: $($syncedCount)"
 Write-host "---`nGRAND TOTAL: $($users.count)"
     \end{minted}
-    \caption[region2.ps1]{...}
+    \caption[functie2.ps1]{...}
     \label{PSQ2}
 \end{listing}
 
@@ -754,9 +762,9 @@ GRAND TOTAL: 18
 
 \clearpage
 
-\section{Region 3: Aantal gebruikers die geblokkeerd zijn}
+\section{Functie 3: Aantal gebruikers die geblokkeerd zijn}
 
-\subsection{PowerShell-script: region3.ps1}
+\subsection{PowerShell-script: functie3.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -800,7 +808,7 @@ foreach ($freeUser in $freeUsers) {
 
 Write-Host "---`nGRAND TOTAL: $($users.count)"
     \end{minted}
-    \caption[region3.ps1]{...}
+    \caption[functie3.ps1]{...}
     \label{PSQ3}
 \end{listing}
 
@@ -836,9 +844,9 @@ GRAND TOTAL: 18
 
 \clearpage
 
-\section{Region 4: Aantal geblokkeerde gebruikers met actieve licenties}
+\section{Functie 4: Aantal geblokkeerde gebruikers met actieve licenties}
 
-\subsection{PowerShell-script: region4.ps1}
+\subsection{PowerShell-script: functie4.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -879,7 +887,7 @@ foreach ($blockedUser in $blockedUsers) {
 Write-Host "`nActive License Total: $($blockedUsersActiveLicenses.count)"
 Write-Host "---`nGRANT TOTAL: $($blockedUsers.count)"
     \end{minted}
-    \caption[region4.ps1]{...}
+    \caption[functie4.ps1]{...}
     \label{PSQ4}
 \end{listing}
 
@@ -898,9 +906,9 @@ GRANT TOTAL: 1
 
 \clearpage
 
-\section{Region 5: Overzicht en telling van administrators met hun account status}
+\section{Functie 5: Overzicht en telling van administrators met hun account status}
 
-\subsection{PowerShell-script: region5.ps1}
+\subsection{PowerShell-script: functie5.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -932,7 +940,7 @@ foreach ($adminUser in $adminUsers) {
 
 Write-Host "---`nGRAND TOTAL: $($adminUsers.count)"
     \end{minted}
-    \caption[region5.ps1]{...}
+    \caption[functie5.ps1]{...}
     \label{PSQ5}
 \end{listing}
 
@@ -950,9 +958,9 @@ GRAND TOTAL: 2
 
 \clearpage
 
-\section{Region 6: Overzicht en telling van gebruikers met MFA}
+\section{Functie 6: Overzicht en telling van gebruikers met MFA}
 
-\subsection{PowerShell-script: region6.ps1}
+\subsection{PowerShell-script: functie6.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -1034,7 +1042,7 @@ Write-Host "MFA Disabled (Member): $($MFAdisabled.count) - $([math]::Round((($MF
 Write-Host "MFA Enabled (Member): $($MFAenabled.count) - $([math]::Round((($MFAenabled.count/$results.count)*100),2))%"
 Write-Host "---`nGRANT TOTAL: $($results.count) - 100%"
     \end{minted}
-    \caption[region6.ps1]{...}
+    \caption[functie6.ps1]{...}
     \label{PSQ6}
 \end{listing}
 
@@ -1055,9 +1063,9 @@ PS D:\HoGent Documenten AJ 22-23\Bachelorproef\latex-hogent-bachproef>
 
 \clearpage 
 
-\section{Region 7: Aantal gelicenseerde, actieve accounts waarbij MFA niet aanwezig is}
+\section{Functie 7: Aantal gelicenseerde, actieve accounts waarbij MFA niet aanwezig is}
 
-\subsection{PowerShell-script: region7.ps1}
+\subsection{PowerShell-script: functie7.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -1136,7 +1144,7 @@ foreach ($disabledMFA in $results) { if ($disabledMFA.MFAstatus -eq "Disabled") 
 $disabledMFAusers
 Write-Host "=== Summary ===`nMFA Disabled (Licensed + Account Enabled): $($disabledMFAusers.count)"
     \end{minted}
-    \caption[region7.ps1]{...}
+    \caption[functie7.ps1]{...}
     \label{PSQ7}
 \end{listing}
 
@@ -1305,9 +1313,9 @@ MFA Disabled (Licensed + Account Enabled): 14
 
 \clearpage
 
-\section{Region 8: Aantal externe accounts waarbij MFA uitstaat}
+\section{Functie 8: Aantal externe accounts waarbij MFA uitstaat}
 
-\subsection{PowerShell-script: region8.ps1}
+\subsection{PowerShell-script: functie8.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -1382,7 +1390,7 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
 $results
 Write-Host "=== Summary ===`nMFA Disabled (Guest): $($results.count)"
     \end{minted}
-    \caption[region8.ps1]{...}
+    \caption[functie8.ps1]{...}
     \label{PSQ8}
 \end{listing}
 
@@ -1408,9 +1416,9 @@ MFA Disabled (Guest): 1
 
 \clearpage
 
-\section{Region 9: Overzicht van accounts met administrator-priviliges, onderverdeeld in gebruik van MFA}
+\section{Functie 9: Overzicht van accounts met administrator-priviliges, onderverdeeld in gebruik van MFA}
 
-\subsection{PowerShell-script: region9.ps1}
+\subsection{PowerShell-script: functie9.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -1489,7 +1497,7 @@ foreach ($disabledMFA in $results) { if ($disabledMFA.MFAstatus -eq "Disabled") 
 $disabledMFAusers
 Write-Host "=== Summary ===`nMFA Disabled (Licensed + Account Enabled): $($disabledMFAusers.count)"
     \end{minted}
-    \caption[region9.ps1]{...}
+    \caption[functie9.ps1]{...}
     \label{PSQ9}
 \end{listing}
 
@@ -1531,9 +1539,9 @@ GRAND TOTAL: 2
 
 \clearpage
 
-\section{Region 15: Overzicht van accounts met als primair SMTP-adresdomein “.onmicrosoft.com”}
+\section{Functie 15: Overzicht van accounts met als primair SMTP-adresdomein “.onmicrosoft.com”}
 
-\subsection{PowerShell-script: region15.ps1}
+\subsection{PowerShell-script: functie15.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -1590,7 +1598,7 @@ Write-Host "   ---`n   TOTAL: $($SMTPothers.count)"
 
 Write-host "---`nGRAND TOTAL: $($users.count)"
     \end{minted}
-    \caption[region15.ps1]{...}
+    \caption[functie15.ps1]{...}
     \label{PSQ15}
 \end{listing}
 
@@ -1633,9 +1641,9 @@ GRAND TOTAL: 18
 
 \clearpage
 
-\section{Region 19: Overzicht verschillende types van licenties en het aantal personen met dit licentietype}
+\section{Functie 19: Overzicht verschillende types van licenties en het aantal personen met dit licentietype}
 
-\subsection{PowerShell-script: region19.ps1}
+\subsection{PowerShell-script: functie19.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -1678,7 +1686,7 @@ foreach ($licenseName in $licenseCounts.Keys | Sort-Object) {
     Write-Host "$($licenseName): $($licenseCounts[$licenseName])"
 }
     \end{minted}
-    \caption[region19.ps1]{...}
+    \caption[functie19.ps1]{...}
     \label{PSQ19}
 \end{listing}
 
@@ -1754,9 +1762,9 @@ YAMMER_ENTERPRISE: 17
 
 \clearpage
 
-\section{Region 20: Overzicht van de verschillende MFA-methodes met het aantal gebruikers}
+\section{Functie 20: Overzicht van de verschillende MFA-methodes met het aantal gebruikers}
 
-\subsection{PowerShell-script: region20.ps1}
+\subsection{PowerShell-script: functie20.ps1}
 
 \begin{listing}[!h]
     \begin{minted}
@@ -1835,7 +1843,7 @@ Write-Host "Email: $($emailCount)`nFIDO2: $($fido2Count)`nApp: $($appCount)"
 Write-Host "Password: $($passwordCount)`nPhone: $($phoneCount)`nSoftware OATH: $($softwareoathCount)"
 Write-Host "Temporary Access: $($tempaccessCount)`nHello for Business: $($hellobusinessCount)"
     \end{minted}
-    \caption[region20.ps1]{...}
+    \caption[functie20.ps1]{...}
     \label{PSQ20}
 \end{listing}
 

@@ -556,4 +556,12 @@
   urldate = {2023-05-03},
 }
 
+@Online{Allen2023,
+  author  = {Allen, Robert},
+  date    = {2023-04-13},
+  title   = {Get MFA Status with PowerShell (Script Included)},
+  url     = {https://activedirectorypro.com/mfa-status-powershell/},
+  urldate = {2023-04-20},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
