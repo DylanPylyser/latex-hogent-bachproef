@@ -26,5 +26,5 @@
 \PYG{p}{\PYGZcb{}}
 
 \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{Active License Total: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}blockedUsersActiveLicenses}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
-\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{GRANT TOTAL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}blockedUsers}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{GRAND TOTAL: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}blockedUsers}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
 \end{Verbatim}

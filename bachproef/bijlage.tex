@@ -885,7 +885,7 @@ foreach ($blockedUser in $blockedUsers) {
 }
 
 Write-Host "`nActive License Total: $($blockedUsersActiveLicenses.count)"
-Write-Host "---`nGRANT TOTAL: $($blockedUsers.count)"
+Write-Host "---`nGRAND TOTAL: $($blockedUsers.count)"
     \end{minted}
     \caption[functie4.ps1]{...}
     \label{PSQ4}
@@ -900,7 +900,7 @@ LeeG@25ky3d.onmicrosoft.com - Licenses: ACTIVE
 
 Active Licenses Total: 1
 ---
-GRANT TOTAL: 1
+GRAND TOTAL: 1
     \end{verbatim}
 \end{scriptsize}
 
@@ -958,7 +958,7 @@ GRAND TOTAL: 2
 
 \clearpage
 
-\section{Functie 6: Overzicht en telling van gebruikers met MFA}
+\section{Functie 6: Overzicht en telling van de interne gebruikers met MFA}
 
 \subsection{PowerShell-script: functie6.ps1}
 
@@ -1040,7 +1040,7 @@ foreach ($result in $results) {
 Write-Host "=== Summary ==="
 Write-Host "MFA Disabled (Member): $($MFAdisabled.count) - $([math]::Round((($MFAdisabled.count/$results.count)*100),2))%"
 Write-Host "MFA Enabled (Member): $($MFAenabled.count) - $([math]::Round((($MFAenabled.count/$results.count)*100),2))%"
-Write-Host "---`nGRANT TOTAL: $($results.count) - 100%"
+Write-Host "---`nGRAND TOTAL: $($results.count) - 100%"
     \end{minted}
     \caption[functie6.ps1]{...}
     \label{PSQ6}
@@ -1056,7 +1056,7 @@ Write-Host "---`nGRANT TOTAL: $($results.count) - 100%"
 MFA Disabled (Member): 14 - 82.35%
 MFA Enabled (Member): 3 - 17.65%
 ---
-GRANT TOTAL: 17 - 100%
+GRAND TOTAL: 17 - 100%
 PS D:\HoGent Documenten AJ 22-23\Bachelorproef\latex-hogent-bachproef> 
     \end{verbatim}
 \end{scriptsize}
@@ -1430,14 +1430,10 @@ MFA Disabled (Guest): 1
         linenos
         ]  
         {powershell}
-$licensedUsers = $users = $results = $disabledMFAusers = @()
-# Haalt alle gebruikers op in de Microsoft 365-omgeving, selecteert UserPrincipalName en AccountEnabled.
-$allUsers = (Get-MgUser -Select UserPrincipalName,AccountEnabled)
-# Doorloopt elke gebruiker in $allUsers, en controleert of de gebruiker een licentie heeft voor Microsoft 365.
-foreach ($licensedUser in $allUsers) { 
-    if (Get-MgUserLicenseDetail -UserId $licensedUser.UserPrincipalName) { $licensedUsers += $licensedUser } }
-# Doorloopt elke gebruiker in $licensedUsers, en controleert of de AccountEnabled eigenschap 'True' is.
-foreach ($enabledUser in $licensedUsers) { if ($enabledUser.AccountEnabled -eq $True) { $users += $enabledUser } }
+$users = $results = $MFAenabled = $MFAdisabled = @()
+# Haal de leden van de beheerdersrol op en sla deze op in $admins
+$admins = (Get-MgDirectoryRole -DirectoryRoleId "e26351ad-20e7-4446-8954-ed9411376217" -ExpandProperty "Members")
+foreach ($adminId in $admins.Members.Id) { $users += (Get-MgUser -Select UserPrincipalName,UserType -UserId $adminId) }
 # Maakt een nieuw PSCustomObject met de gewenste properties en initialiseert ze als "-" of "_".
 foreach ($user in $users) { $resultObject = [PSCustomObject]@{
         user               = "-"
@@ -1458,44 +1454,43 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
             # Voor elke methode stelt het de overeenkomstige property in op $true en de MFA-status op "Enabled".
             "#microsoft.graph.emailAuthenticationMethod"  {
                 $resultObject.email = $true
-                $resultObject.MFAstatus = "Enabled"
-            }
+                $resultObject.MFAstatus = "Enabled" }
             "#microsoft.graph.fido2AuthenticationMethod"                   {
                 $resultObject.fido2 = $true
-                $resultObject.MFAstatus = "Enabled"
-            }
+                $resultObject.MFAstatus = "Enabled" }
             "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"  {
                 $resultObject.app = $true
-                $resultObject.MFAstatus = "Enabled"
-            }
+                $resultObject.MFAstatus = "Enabled" }
             "#microsoft.graph.passwordAuthenticationMethod"                {
                 $resultObject.password = $true
                 # Wanneer alleen het wachtwoord is ingesteld, is MFA uitgeschakeld.
-                if ($resultObject.MFAstatus -ne "Enabled") { $resultObject.MFAstatus = "Disabled" }
+                if($resultObject.MFAstatus -ne "Enabled") { $resultObject.MFAstatus = "Disabled" }
             }
             "#microsoft.graph.phoneAuthenticationMethod"  {
                 $resultObject.phone = $true
-                $resultObject.MFAstatus = "Enabled"
-            }
+                $resultObject.MFAstatus = "Enabled" }
             "#microsoft.graph.softwareOathAuthenticationMethod"  {
                 $resultObject.softwareoath = $true
-                $resultObject.MFAstatus = "Enabled"
-            }
+                $resultObject.MFAstatus = "Enabled" }
             "#microsoft.graph.temporaryAccessPassAuthenticationMethod"  {
                 $resultObject.tempaccess = $true
-                $resultObject.MFAstatus = "Enabled"
-            }
+                $resultObject.MFAstatus = "Enabled" }
             "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
                 $resultObject.hellobusiness = $true
-                $resultObject.MFAstatus = "Enabled"
-            }
+                $resultObject.MFAstatus = "Enabled" }
         }
     } $results += $resultObject;
-}
-# loopt door elk object in de $results array en controleert of MFAstatus gelijk is aan "Disabled".
-foreach ($disabledMFA in $results) { if ($disabledMFA.MFAstatus -eq "Disabled") { $disabledMFAusers += $disabledMFA } }
-$disabledMFAusers
-Write-Host "=== Summary ===`nMFA Disabled (Licensed + Account Enabled): $($disabledMFAusers.count)"
+} 
+$results # Toont de resultaten van het object.
+Write-Host "=== Summary ==="
+foreach ($result in $results) {
+    if ($result.MFAstatus -eq "Enabled") { $MFAenabled += $result}
+    else { $MFAdisabled += $result} }
+Write-Host "MFA Enabled: $($MFAenabled.count)"
+foreach ($MFAenabledUser in $MFAenabled) { Write-Host "   $($MFAenabledUser.user)" }
+Write-Host "MFA Disabled: $($MFAdisabled.count)"
+foreach ($MFAdisabledUser in $MFAdisabled) { Write-Host "   $($MFAdisabledUser.user)" }
+Write-Host "---`nGRAND TOTAL: $($results.count)"
     \end{minted}
     \caption[functie9.ps1]{...}
     \label{PSQ9}

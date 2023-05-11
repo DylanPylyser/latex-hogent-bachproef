@@ -564,4 +564,20 @@
   urldate = {2023-04-20},
 }
 
+@WWW{Microsoft2023q,
+  author  = {Microsoft},
+  date    = {2023},
+  title   = {Microsoft 365 Developer Program},
+  url     = {https://developer.microsoft.com/en-us/microsoft-365/dev-program},
+  urldate = {2023-03-14},
+}
+
+@Online{Terlisten2022,
+  author  = {Terlisten, Patrick},
+  date    = {2022-07-22},
+  title   = {Use app-only authentication with the Microsoft Graph PowerShell SDK},
+  url     = {https://www.vcloudnine.de/use-app-only-authentication-with-the-microsoft-graph-powershell-sdk/},
+  urldate = {2023-05-01},
+}
+
 @Comment{jabref-meta: databaseType:biblatex;}
