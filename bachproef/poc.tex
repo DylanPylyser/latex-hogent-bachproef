@@ -84,7 +84,7 @@ Het opzetten van de effectieve connectie gebeurd via Listing \ref{PSQ0}. Dit Pow
 
 % TODO: Spreek alle onderdelen (functies aan en werk in 3 delen): Verwacht resultaat, script, output
 
-De twintig functies waar het auditing-script van gebruikmaakt wordt in dit onderdeel besproken. Er wordt gebruikgemaakt van de testomgeving-data om de scripts te testen. \\
+De twintig functies waar het auditing-script van gebruikmaakt wordt in dit onderdeel besproken. Er wordt gebruikgemaakt van de testomgeving-data om de scripts te testen. Alle scripts zijn gemaakt om met versie 1.25 te werken van Microsoft Graph PowerShell. \\
 
 Alle functies in verband met \ac{MFA} maken gebruik van een reeds bestaand script van \textcite{Allen2023}. Dit script wordt omgevormd tijdens de uitwerking, maar dient als basis om deze functies uit te werken.
 
@@ -98,47 +98,65 @@ Na het uitvoeren van Listing \ref{PSQ1} komt alleen het domein overeen met de ve
 
 De tweede functie van het audit-script is het weergeven van alle gebruikers met hun account-type. Naast het weergeven wordt er ook een onderverdeling gemaakt tussen interne “Members” en externe “Guests” gebruikers. Er wordt verwacht dat er een externe gebruiker aanwezig is van de 18 gebruikers. Bovendien zijn alle gebruikers alleen beschikbaar in de cloud, en hebben ze geen connectie \ac{On-prem}. \\
 
-Het script in Listing \ref{PSQ2} maakt gebruik van “get-MgUser”. Uit het commando “get-MgUser” worden de “UserPrincipalName”, “OnPremisesSyncenabled” en “UserType” gehaald.  Na het uitvoeren van het script komt de output overeen met de verwachtingen. Deze functie kan worden omgezet met Microsoft Graph. \\
+Het script in Listing \ref{PSQ2} maakt gebruik van “get-MgUser”. Uit het commando “get-MgUser” worden de “UserPrincipalName”, “OnPremisesSyncenabled” en “UserType” gehaald.  Na het uitvoeren van het script komt de output overeen met de verwachtingen. Deze functie kan worden omgezet met de Microsoft Graph PowerShell-modules. \\
 
 \subsubsection{Functie 3: Aantal gebruikers die geblokkeerd zijn}
 
 De derde functie van het audit-script is het aantal gebruikers die geblokkeerd zijn weergeven. De verwachting is dat er een account wordt weergegeven dat geblokkeerd is. \\
 
-Dit script, te vinden in Listing \ref{PSQ3}, maakt gebruik van “get-MgUser”. Door het gebruik van “AccountEnabled” kan er worden achterhaald of het account geblokkeerd is. Na het uitvoeren van het script komt de output overeen met de verwachtingen. De derde functie kan worden omgezet met Microsoft Graph. 
+Dit script, te vinden in Listing \ref{PSQ3}, maakt gebruik van “get-MgUser”. Door het gebruik van “AccountEnabled” kan er worden achterhaald of het account geblokkeerd is. Na het uitvoeren van het script komt de output overeen met de verwachtingen. De derde functie kan worden omgezet met de Microsoft Graph PowerShell-modules. 
 
 \subsubsection{Functie 4: Aantal geblokkeerde gebruikers met actieve licenties}
 
 De vierde functie gaat over het aantal geblokkeerde gebruikers met een actieve licentie. Er wordt verwacht dat de geblokkeerde gebruiker actieve licenties heeft. \\
 
-Listing \ref{PSQ4} bevat het script voor dit onderdeel. Het script combineert het opvragen van gebruikers met het opvragen van de licenties. De output van het script bevestigt dat er 1 geblokkeerde gebruiker actieve licenties heeft. Het is met Microsoft Graph mogelijk om deze functie om te zetten.
+Listing \ref{PSQ4} bevat het script voor dit onderdeel. Het script combineert het opvragen van gebruikers met het opvragen van de licenties. De output van het script bevestigt dat er 1 geblokkeerde gebruiker actieve licenties heeft. Het is met de Microsoft Graph PowerShell-modules mogelijk om deze functie om te zetten.
 
 \subsubsection{Functie 5: Overzicht en telling van administrators met hun account status}
 
 Functie vijf bevat een overzicht en telling van de administrators binnen de omgeving met account status. De verwachtingen zijn dat de 2 administrators worden weergegeven met een actieve account status. \\
 
-Na het uitvoeren van Listing \ref{PSQ5} zijn de twee beheerders te zien met een actieve account status. Het PowerShell-script filtert de administrators uit de lijst van gebruikers door middel van hun “UserId”. Om de juiste filtering toe te passen worden eerst de gebruikers met een administrator-rol opgevraagd, vooraleer de filtering op alle gebruikers plaatsvindt. Deze functie is succesvol omgezet met Microsoft Graph.
+Na het uitvoeren van Listing \ref{PSQ5} zijn de twee beheerders te zien met een actieve account status. Het PowerShell-script filtert de administrators uit de lijst van gebruikers door middel van hun “UserId”. Om de juiste filtering toe te passen worden eerst de gebruikers met een administrator-rol opgevraagd, vooraleer de filtering op alle gebruikers plaatsvindt. Deze functie is succesvol omgezet met de Microsoft Graph PowerShell-modules.
 
 \subsubsection{Functie 6: Overzicht en telling van de interne gebruikers met MFA}
 
 De zesde functie focust zich op het geven van een overzicht en telling van de interne gebruikers met \ac{MFA}. Met de data uit de testomgeving wordt er verwacht dat van de 17 interne gebruikers maar 3 gebruikers \ac{2FA} of \ac{MFA} toepassen. \\
 
-Het script in Listing \ref{PSQ6} overloopt alle gebruikers met bijhorende \ac{MFA}-instellingen. Het verzamelt alle \ac{MFA}-gegevens in een object, dit object wordt daarna gebruikt om een telling uit te voeren omtrent het gebruik van\ac{MFA}. De output van het script komt overeen met de verwachtingen. Deze functie kan dus worden omgezet met Microsoft Graph. 
+Het script in Listing \ref{PSQ6} overloopt alle gebruikers met bijhorende \ac{MFA}-instellingen. Het verzamelt alle \ac{MFA}-gegevens in een object, dit object wordt daarna gebruikt om een telling uit te voeren omtrent het gebruik van \ac{MFA}. De output van het script komt overeen met de verwachtingen. Deze functie kan dus worden omgezet met de Microsoft Graph PowerShell-modules. 
 
 \subsubsection{Functie 7: Aantal gelicenseerde, actieve accounts waarbij MFA niet aanwezig is}
 
 De zevende functie geeft alle actieve gebruikers weer die minstens een licentie hebben maar geen \ac{MFA} toepassen. Er wordt verwacht dat er 14 van de 17 actieve gelicenseerde gebruikers geen \ac{MFA} toepast. \\
 
-Listing \ref{PSQ7} is gelijkaardig aan de vorige functie op vlak van PowerShell-code, maar filtert op de niet-geblokkeerde accounts met actieve licenties. Na het uitvoeren van dit script komen de resultaten overeen met de verwachtingen. De zevende functie kan worden omgezet met Microsoft Graph.
+Listing \ref{PSQ7} is gelijkaardig aan de vorige functie op vlak van PowerShell-code, maar filtert op de niet-geblokkeerde accounts met actieve licenties. Na het uitvoeren van dit script komen de resultaten overeen met de verwachtingen. De zevende functie kan worden omgezet met de Microsoft Graph PowerShell-modules.
 
 \subsection{Functie 8: Aantal externe accounts waarbij MFA uitstaat}
 
 De achtste functie focust zich op een andere doelgroep, namelijk de “Guest”-accounts binnen de omgeving. Er is maar een externe gebruiker aanwezig in de testomgeving. Er verwacht dat het PowerShell-script aangeeft dat de enige externe gebruiker geen \ac{MFA} gebruikt. \\
 
-Het script in Listing \ref{PSQ8} filtert op de externe gebruikers en haalt de \ac{MFA}-gegevens op. De output van het script geeft dezelfde resultaten weer zoals verwacht werd. De achteste functie kan met Microsoft Graph omgezet worden.
+Het script in Listing \ref{PSQ8} filtert op de externe gebruikers en haalt de \ac{MFA}-gegevens op. De output van het script geeft dezelfde resultaten weer zoals verwacht werd. De achtste functie kan met de Microsoft Graph PowerShell-module omgezet worden.
 
 \subsection{Functie 9: Overzicht van accounts met administrator-priviliges, onderverdeeld in gebruik van MFA}
 
 De negende functie heeft betrekking op de \ac{MFA}-instellingen van beheerders binnen de testomgeving. Er zijn 2 administrators aanwezig, waarbij beide gebruikers \ac{MFA} toepassen. Er wordt verwacht dat het PowerShell-script hetzelfde weergeeft. \\
 
-Het negende PowerShell-script, dat in Listing \ref{PSQ9} te vinden is, filtert op de administrators. % TODO: verder schrijven!!!
+Het negende PowerShell-script, dat in Listing \ref{PSQ9} te vinden is, filtert op de twee administrators. Dit is een andere scenario dan de vorige \ac{MFA}-scripts. De output dat het PowerShell-script geeft komt overeen met de verwachtingen. De negende functie kan worden omgezet met de Microsoft Graph PowerShell-modules.
+
+\subsection{Functie 10: Groottes van elke type mailbox}
+
+De tiende functie beschrijft de groottes van elk type mailbox. Microsoft Graph ondersteunt niet de nodige commando's binnen de PowerShell-modules met versie 1.25. \\
+
+Een mogelijke oplossing is het gebruikmaken van gecodeerde \ac{HTTP}-verzoeken om de groottes op te vragen. De uitwerking met \ac{HTTP}-verzoeken binnen PowerShell valt buiten de scope van de Proof-of-Concept. De tiende functie kan vandaag de dag niet worden omgezet met de Microsoft Graph PowerShell-modules.
+
+\subsection{Functie 11: Groottes van elke mailbox, gerangschikt van groot naar klein}
+
+De elfde functie geeft een overzicht van elke mailbox gesorteerd op grootte. Microsoft Graph ondersteunt niet de nodige commando's binnen de PowerShell-modules met versie 1.25. \\ 
+
+Een mogelijke oplossing is het gebruikmaken van gecodeerde \ac{HTTP}-verzoeken om de groottes op te vragen en te sorteren op de grootte. De uitwerking met \ac{HTTP}-verzoeken binnen PowerShell valt buiten de scope van de Proof-of-Concept. De elfde functie kan vandaag de dag niet worden omgezet met behulp van de Microsoft Graph PowerShell-modules.
+
+\subsection{Functie 12: Onderverdeling van gebruikersmailboxes op basis van grootte}
+
+De twaalde functie rangschikt de mailboxes van de gebruikers op hun grootte. Het verschil met de vorige functie is dat de mailboxes in een bereik worden geplaatst, zodat de grootste mailboxes in een verzameling thuis horen. Microsoft Graph ondersteunt niet de nodige commando's binnen de PowerShell-modules met versie 1.25. \\ 
+
+Een mogelijke oplossing is het gebruikmaken van gecodeerde \ac{HTTP}-verzoeken. Daarna kunnen de groottes worden opgevraagd, en verzameld in een bepaald bereik. De uitwerking met \ac{HTTP}-verzoeken binnen PowerShell valt buiten de scope van de Proof-of-Concept. De twaalfde functie kan vandaag de dag niet worden omgezet met behulp van de Microsoft Graph PowerShell-modules.
 
