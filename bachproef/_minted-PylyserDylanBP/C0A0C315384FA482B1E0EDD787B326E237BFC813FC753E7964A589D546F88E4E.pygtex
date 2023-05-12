@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nv}{\PYGZdl{}mailboxes} \PYG{p}{=} \PYG{p}{@()}
+
+\PYG{c}{\PYGZsh{} De \PYGZdl{}users variabele wordt gevuld met gebruikersdata.}
+\PYG{n+nv}{\PYGZdl{}users} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUser} \PYG{n}{\PYGZhy{}Select} \PYG{l+s+s2}{\PYGZdq{}Mail\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} De \PYGZdl{}domains variabele wordt gevuld met domeinen.}
+\PYG{n+nv}{\PYGZdl{}domains} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgDomain} \PYG{n}{\PYGZhy{}Select} \PYG{l+s+s2}{\PYGZdq{}Id\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Loopt door elk domein in \PYGZdl{}domains.}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}domain} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}domains}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{c}{\PYGZsh{} Maakt een regex\PYGZhy{}patroon dat overeenkomt met het huidige domein.}
+    \PYG{n+nv}{\PYGZdl{}domainRegex} \PYG{p}{=} \PYG{n+no}{[regex]}\PYG{p}{::}\PYG{n}{Escape}\PYG{p}{(}\PYG{n+nv}{\PYGZdl{}domain}\PYG{p}{.}\PYG{n}{Id}\PYG{p}{)}
+    \PYG{c}{\PYGZsh{} Loopt door elk gebruikersobject in \PYGZdl{}users}
+    \PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}user} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}users}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{c}{\PYGZsh{} Controleert of het e\PYGZhy{}mailadres van de huidige gebruiker overeenkomt met het regex\PYGZhy{}patroon.}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{Mail} \PYG{o}{\PYGZhy{}match} \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}domainRegex\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{n+nv}{\PYGZdl{}mailboxes} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{Mail}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}=== Summary ===\PYGZdq{}}
+
+\PYG{c}{\PYGZsh{} Loopt door elk domein in \PYGZdl{}domains en elk e\PYGZhy{}mailadres in de \PYGZdl{}mailboxes array}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}domain} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}domains}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}Domain: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}domain}\PYG{p}{.}\PYG{n}{id}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+    \PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}mailbox} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}mailboxes}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}   }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}mailbox}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}   \PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{l+s+se}{`n}\PYG{l+s+s2}{   Mailboxes: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}mailboxes}\PYG{p}{.}\PYG{n}{count}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

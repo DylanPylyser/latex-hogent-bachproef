@@ -1534,6 +1534,84 @@ GRAND TOTAL: 2
 
 \clearpage
 
+\section{Functie 14: Onderverdeling van hoeveelheid mailboxen per domein}
+
+\subsection{PowerShell-script: functie14.ps1}
+
+\begin{listing}[!h]
+    \begin{minted}
+        [
+        frame=lines,
+        framesep=1.2mm,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]  
+        {powershell}
+$mailboxes = @()
+
+# De $users variabele wordt gevuld met gebruikersdata.
+$users = (Get-MgUser -Select "Mail")
+
+# De $domains variabele wordt gevuld met domeinen.
+$domains = (Get-MgDomain -Select "Id")
+
+# Loopt door elk domein in $domains.
+foreach ($domain in $domains) {
+    # Maakt een regex-patroon dat overeenkomt met het huidige domein.
+    $domainRegex = [regex]::Escape($domain.Id)
+    # Loopt door elk gebruikersobject in $users
+    foreach ($user in $users) {
+        # Controleert of het e-mailadres van de huidige gebruiker overeenkomt met het regex-patroon.
+        if ($user.Mail -match "$domainRegex") {
+            $mailboxes += $user.Mail
+        }
+    }
+}
+
+Write-Host "=== Summary ==="
+
+# Loopt door elk domein in $domains en elk e-mailadres in de $mailboxes array
+foreach ($domain in $domains) {
+    Write-Host "Domain: $($domain.id)"
+    foreach ($mailbox in $mailboxes) {
+        Write-Host "   $($mailbox)"
+    }
+    Write-Host "   ---`n   Mailboxes: $($mailboxes.count)"
+}
+    \end{minted}
+    \caption[functie14.ps1]{...}
+    \label{PSQ14}
+\end{listing}
+
+\subsection{Output}
+
+\begin{scriptsize}
+    \begin{verbatim}
+=== Summary ===
+Domain: 25ky3d.onmicrosoft.com
+   AdeleV@25ky3d.onmicrosoft.com
+   Administrator@25ky3d.onmicrosoft.com
+   AlexW@25ky3d.onmicrosoft.com
+   DiegoS@25ky3d.onmicrosoft.com
+   GradyA@25ky3d.onmicrosoft.com
+   HenriettaM@25ky3d.onmicrosoft.com
+   IsaiahL@25ky3d.onmicrosoft.com
+   JohannaL@25ky3d.onmicrosoft.com
+   JoniS@25ky3d.onmicrosoft.com
+   LeeG@25ky3d.onmicrosoft.com
+   LidiaH@25ky3d.onmicrosoft.com
+   LynneR@25ky3d.onmicrosoft.com
+   MeganB@25ky3d.onmicrosoft.com
+   MiriamG@25ky3d.onmicrosoft.com
+   NestorW@25ky3d.onmicrosoft.com
+   PattiF@25ky3d.onmicrosoft.com
+   PradeepG@25ky3d.onmicrosoft.com
+   ---
+   Mailboxes: 17
+    \end{verbatim}
+\end{scriptsize}
+
 \section{Functie 15: Overzicht van accounts met als primair SMTP-adresdomein “.onmicrosoft.com”}
 
 \subsection{PowerShell-script: functie15.ps1}
