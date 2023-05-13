@@ -76,13 +76,13 @@ Volgende aanpassingen worden uitgevoerd om de data van een productieomgeving te 
 
 \subsection{Microsoft Graph activeren via een applicatie}
 
-Voor het activeren van Microsoft Graph is er een stappenplan voorzien om dit uit te voeren. \\ % TODO: aanvullen met alle stappen in bijlagen! \\
+Om een app-only authenticatie op te zetten me Microsoft Graph wordt er gebruikgemaakt van een stappenplan uit de blog van \textcite{Terlisten2022}. Het stappenplan begint met het registreren van een applicatie. Daarna worden er Microsoft Graph \Ac{API}-permissies toegevoegd voor de applicatie. Vervolgens wordt er een client secret gegenereerd. Als laatste wordt er connectie gemaakt met de Microsoft Graph \Ac{API}. \\
 
-Het opzetten van de effectieve connectie gebeurd via Listing \ref{PSQ0}. Dit PowerShell-script is uitgewerkt door \textcite{Terlisten2022}. Het script maakt gebruik van vier variabelen, namelijk “AppId”, “TenantId”, “ClientSecret” en “Token”. De eerste drie variabelen zijn nodig om de toepassing te kunnen aanspreken. De vierde variabele haalt een \ac{MSAL}-token op. Deze token wordt gebruikt om op een veilige manier in te loggen op de tenant met Microsoft Graph. In PowerShell wordt dit vertaald met het commando “Connect-Graph” met de optie “-AccessToken”. 
+Het opzetten van de effectieve connectie gebeurd via Listing \ref{PSQ0}. Dit PowerShell-script is ook uitgewerkt door \textcite{Terlisten2022}. Het script maakt gebruik van vier variabelen, namelijk “AppId”, “TenantId”, “ClientSecret” en “Token”. De eerste drie variabelen zijn nodig om de toepassing te kunnen aanspreken. De vierde variabele haalt een \ac{MSAL}-token op. Deze token wordt gebruikt om op een veilige manier in te loggen op de tenant met Microsoft Graph. In PowerShell wordt dit vertaald met het commando “Connect-Graph” met de optie “-AccessToken”. \\
+
+Dit onderzoek maakt gebruik van een client secret, maar in de praktijk is het aanbevolen om te werken met certificaten in plaats van een client secret \autocite{Terlisten2022}.
 
 \subsection{Uitwerking onderdelen van het audit-script}
-
-% TODO: Spreek alle onderdelen (functies aan en werk in 3 delen): Verwacht resultaat, script, output
 
 De twintig functies waar het auditing-script van gebruikmaakt wordt in dit onderdeel besproken. Er wordt gebruikgemaakt van de testomgeving-data om de scripts te testen. Alle scripts zijn gemaakt om met versie 1.25 te werken van Microsoft Graph PowerShell. \\
 
@@ -92,7 +92,7 @@ Alle functies in verband met \ac{MFA} maken gebruik van een reeds bestaand scrip
 
 De eerste functie is het opvragen van de domeinen binnen de Office 365-omgeving. Met het gebruik van de testomgeving-data wordt er verwacht dat er een domein genaamd “25ky3d.onmicrosoft.com” te zien is met een status in de aard van “Available” of “Working”. \\
 
-Na het uitvoeren van Listing \ref{PSQ1} komt alleen het domein overeen met de verwachtingen. Het opvragen van de status is niet mogelijk en wordt aangeduid met “Not available” in het script, omdat er geen gegevens aanwezig zijn. Deze functie kan deels worden omgezet met Microsoft Graph.
+Na het uitvoeren van Listing \ref{PSQ1} komt alleen het domein overeen met de verwachtingen. Het opvragen van de status is niet mogelijk en wordt aangeduid met “Not available” in het script, omdat er geen gegevens aanwezig zijn. Deze functie kan deels worden omgezet met de Microsoft Graph PowerShell-modules.
 
 \subsubsection{Functie 2: Aantal gebruikers binnen de omgeving, onderverdeeld in interne en extene gebruikers}
 
@@ -206,6 +206,7 @@ Listing \ref{PSQ19} bevat het omgevormde script met output. Het doorloopt alle g
 
 \subsection{Functie 20: Overzicht verschillende methodes waarop MFA wordt gebruikt met hoeveelheid gebruikers, onderverdeeld op basis van methode}
 
-In het laatste script ligt de focus op de verschillende \ac{MFA}-methodes met het aantal gebruikers per methode. Er wordt verwacht dat elke gebruiker kan inloggen via een wachtwoord. Bovendien zijn er 3 gebruikers die een applicatie (Microsoft Authenticator) gebruiken als extra authenticatiemethode. \\
+In de laatste functie ligt de focus op de verschillende \ac{MFA}-methodes met het aantal gebruikers per methode. Er wordt verwacht dat elke gebruiker kan inloggen via een wachtwoord. Bovendien zijn er 3 gebruikers die een applicatie (Microsoft Authenticator) gebruiken als extra authenticatiemethode. \\
 
-Het laatste script, dat in Listing Listing \ref{PSQ20} te vinden is, bevestigt de verwachtingen. De output geeft 18 gebruikers van wachtwoorden en 3 gebruikers de applicatie weer als authenticatiemethode. Deze laatste functie kan dus worden omgezet met Microsoft Graph PowerShell-modules.
+Het laatste script, dat in Listing \ref{PSQ20} te vinden is, bevestigt de verwachtingen. De output geeft 18 gebruikers van wachtwoorden en 3 gebruikers de applicatie weer als authenticatiemethode. Deze laatste functie kan dus worden omgezet met 
+Microsoft Graph PowerShell-modules.

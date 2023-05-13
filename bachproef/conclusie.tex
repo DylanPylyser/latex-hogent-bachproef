@@ -14,6 +14,13 @@
 % Heeft het onderzoek geleid tot nieuwe vragen die uitnodigen tot verder 
 %onderzoek?
 
+In dit onderzoek wordt er een antwoord gegeven op de onderzoeksvraag: “Is Microsoft Graph klaar om de beheertaken die mogelijk waren met Azure AD Graph over te nemen?” Om een antwoord te geven op deze vraag, werden beide technologieën tegenover elkaar gezet op vier onderdelen. Bovendien is er een praktische uitwerking uitgevoerd om een bestaand auditing-script om te vormen van Azure \Ac{AD} Graph naar Microsoft Graph met behulp van PowerShell-modules. \\
+
+Uit de vergelijkende studie over de werking van de \Ac{API} blijkt het volgende. Om te beginnen behoudt Microsoft Graph dezelfde basis als Azure \Ac{AD} Graph voor de \Ac{API}. De mogelijke \Ac{HTTP}-verzoeken binnen de \Ac{API} zijn hetzelfde. Vervolgens verschillen de eindpunten niet significant, maar het eindpunt van Microsoft Graph wordt wel anders aangesproken. Bovendien bevatten de request en responses tussen beide lichte verschillen. Microsoft Graph verwerkt opvallend minder data voor dezelfde queries. Microsoft Graph ondersteunt niet altijd dezelfde properties die in Azure \Ac{AD} Graph voorkomen, maar in het merendeel van de gevallen wel. Als laatste heeft Azure \Ac{AD} Graph twee stabiele versies voor PowerShell, terwijl Microsoft Graph nog steeds in ontwikkeling is en maar een stabiele versie bevat voor PowerShell. \\
+
+Voor de resterende drie onderdelen uit de vergelijkende studie kan het volgende besloten worden. Microsoft Graph heeft niet alle Azure \Ac{AD} Graph data-objecten overgenomen, wat leidt tot afsterving van bepaalde data-objecten binnen Azure \Ac{AD}. Microsoft Graph gaat wel verder dan alleen Azure \Ac{AD} en kan verschillende Microsoft-entiteiten aanspreken zoals Outlook, Teams en meer. Beide technologieën ondersteunen dezelfde toegangsmogelijkheden, namelijk een gedelegeerde en geautomatiseerde manier. Op vlak van Security bevat Microsoft Graph meer permissies dan Azure \Ac{AD} Graph. Enerzijds is dit een voordeel, doordat een gebruiker nauwkeuriger rechten kan krijgen. Anderzijds is dit een nadeel, meer permissies en entiteiten zorgen voor een complexer beheer van de rechten. Dit kan leiden tot fouten of misbruik van de rechten of permissies. \\ 
+
+Uit de Proof-of-Concept blijkt dat het volledige auditing-script niet kan worden omgezet van Azure \ac{AD} Graph PowerShell-modules naar Microsoft Graph PowerShell-modules. 
 
 % ONDERDEEL: Azure \ac{AD} is dan ook gefocust op het beheren van Azure \ac{AD}, terwijl Microsoft Graph vandaag de dag ook Microsoft Teams, Outlook, To Do en andere entiteiten kan aanspreken naast Azure \ac{AD}. 
 
