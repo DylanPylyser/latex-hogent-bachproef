@@ -590,7 +590,7 @@ foreach ($domain in $domains) {
 
 Write-Host "GRAND TOTAL: $($domains.count)"
     \end{minted}
-    \caption[connectMSGraph.ps1]{...}
+    \caption[functie1.ps1]{Microsoft Graph PowerShell-script dat het aantal aanwezige domeinen binnen de omgeving weergeeft.}
     \label{PSQ1}
 \end{listing}
 
@@ -652,7 +652,7 @@ Write-Host "=== Summary ==="
 Write-Host "Cloud: $($cloudCount)`n   Guest: $($GuestCount)`n   Member: $($memberCount)`nSynced: $($syncedCount)"
 Write-host "---`nGRAND TOTAL: $($users.count)"
     \end{minted}
-    \caption[functie2.ps1]{...}
+    \caption[functie2.ps1]{Microsoft Graph PowerShell-script dat het aantal gebruikers binnen de omgeving onderverdeeld in interne en externe gebruikers.}
     \label{PSQ2}
 \end{listing}
 
@@ -808,7 +808,7 @@ foreach ($freeUser in $freeUsers) {
 
 Write-Host "---`nGRAND TOTAL: $($users.count)"
     \end{minted}
-    \caption[functie3.ps1]{...}
+    \caption[functie3.ps1]{Microsoft Graph PowerShell-script dat het aantal gebruikers die geblokkeerd zijn weergeeft.}
     \label{PSQ3}
 \end{listing}
 
@@ -887,7 +887,7 @@ foreach ($blockedUser in $blockedUsers) {
 Write-Host "`nActive License Total: $($blockedUsersActiveLicenses.count)"
 Write-Host "---`nGRAND TOTAL: $($blockedUsers.count)"
     \end{minted}
-    \caption[functie4.ps1]{...}
+    \caption[functie4.ps1]{Microsoft Graph PowerShell-script dat het aantal geblokkeerde gebruikers met actieve licenties weergeeft.}
     \label{PSQ4}
 \end{listing}
 
@@ -940,7 +940,7 @@ foreach ($adminUser in $adminUsers) {
 
 Write-Host "---`nGRAND TOTAL: $($adminUsers.count)"
     \end{minted}
-    \caption[functie5.ps1]{...}
+    \caption[functie5.ps1]{Microsoft Graph PowerShell-script dat een overzicht weergeeft en een telling van de administrators met hun account status uitvoert.}
     \label{PSQ5}
 \end{listing}
 
@@ -1042,7 +1042,7 @@ Write-Host "MFA Disabled (Member): $($MFAdisabled.count) - $([math]::Round((($MF
 Write-Host "MFA Enabled (Member): $($MFAenabled.count) - $([math]::Round((($MFAenabled.count/$results.count)*100),2))%"
 Write-Host "---`nGRAND TOTAL: $($results.count) - 100%"
     \end{minted}
-    \caption[functie6.ps1]{...}
+    \caption[functie6.ps1]{Microsoft Graph PowerShell-script dat een overzicht weergeeft en een telling van de interne gebruikers met \ac{MFA} uitvoert.}
     \label{PSQ6}
 \end{listing}
 
@@ -1083,8 +1083,8 @@ $allUsers = (Get-MgUser -Select UserPrincipalName,AccountEnabled)
 # Doorloopt elke gebruiker in $allUsers, en controleert of de gebruiker een licentie heeft voor Microsoft 365.
 foreach ($licensedUser in $allUsers) { 
     if (Get-MgUserLicenseDetail -UserId $licensedUser.UserPrincipalName) { $licensedUsers += $licensedUser } }
-# Doorloopt elke gebruiker in $licensedUsers, en controleert of de AccountEnabled eigenschap 'true' is.
-foreach ($enabledUser in $licensedUsers) { if ($enabledUser.AccountEnabled -eq $true) { $users += $enabledUser } }
+# Doorloopt elke gebruiker in $licensedUsers, en controleert of de AccountEnabled eigenschap 'True' is.
+foreach ($enabledUser in $licensedUsers) { if ($enabledUser.AccountEnabled -eq $True) { $users += $enabledUser } }
 # Maakt een nieuw PSCustomObject met de gewenste properties en initialiseert ze als "-" of "_".
 foreach ($user in $users) { $resultObject = [PSCustomObject]@{
         user               = "-"
@@ -1096,8 +1096,7 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
         phone              = "-"
         softwareoath       = "-"
         tempaccess         = "-"
-        hellobusiness      = "-"
-    }
+        hellobusiness      = "-" }
     # Haalt de MFA-data op van de huidige gebruiker en slaat deze op in $MFAData.
     $MFAData = (Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName)
     $resultObject.user = $user.UserPrincipalName;
@@ -1135,8 +1134,7 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
             "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
                 $resultObject.hellobusiness = $true
                 $resultObject.MFAstatus = "Enabled"
-            }
-        }
+        } }
     } $results += $resultObject;
 }
 # loopt door elk object in de $results array en controleert of MFAstatus gelijk is aan "Disabled".
@@ -1144,9 +1142,11 @@ foreach ($disabledMFA in $results) { if ($disabledMFA.MFAstatus -eq "Disabled") 
 $disabledMFAusers
 Write-Host "=== Summary ===`nMFA Disabled (Licensed + Account Enabled): $($disabledMFAusers.count)"
     \end{minted}
-    \caption[functie7.ps1]{...}
+    \caption[functie7.ps1]{Microsoft Graph PowerShell-script dat het aantal gelicenseerde, actieve accounts waarbij MFA niet aanwezig is weergeeft.}
     \label{PSQ7}
 \end{listing}
+
+\clearpage
 
 \subsection{Output}
 
@@ -1390,7 +1390,7 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
 $results
 Write-Host "=== Summary ===`nMFA Disabled (Guest): $($results.count)"
     \end{minted}
-    \caption[functie8.ps1]{...}
+    \caption[functie8.ps1]{Microsoft Graph PowerShell-script dat het aantal externe accounts waarbij MFA uitstaat weergeeft.}
     \label{PSQ8}
 \end{listing}
 
@@ -1492,7 +1492,7 @@ Write-Host "MFA Disabled: $($MFAdisabled.count)"
 foreach ($MFAdisabledUser in $MFAdisabled) { Write-Host "   $($MFAdisabledUser.user)" }
 Write-Host "---`nGRAND TOTAL: $($results.count)"
     \end{minted}
-    \caption[functie9.ps1]{...}
+    \caption[functie9.ps1]{Microsoft Graph PowerShell-script dat een overzicht geeft van de accounts met administrator-priviliges, onderverdeeld in gebruik van MFA.}
     \label{PSQ9}
 \end{listing}
 
@@ -1580,7 +1580,7 @@ foreach ($domain in $domains) {
     Write-Host "   ---`n   Mailboxes: $($mailboxes.count)"
 }
     \end{minted}
-    \caption[functie14.ps1]{...}
+    \caption[functie14.ps1]{Microsoft Graph PowerShell-script dat een onderverdeling weergeeft van de hoeveelheid mailboxen per domein.}
     \label{PSQ14}
 \end{listing}
 
@@ -1671,7 +1671,7 @@ Write-Host "   ---`n   TOTAL: $($SMTPothers.count)"
 
 Write-host "---`nGRAND TOTAL: $($users.count)"
     \end{minted}
-    \caption[functie15.ps1]{...}
+    \caption[functie15.ps1]{Microsoft Graph PowerShell-script dat een overzicht geeft van accounts met als primair \ac{SMTP}-adresdomein “.onmicrosoft.com”}
     \label{PSQ15}
 \end{listing}
 
@@ -1759,7 +1759,7 @@ foreach ($licenseName in $licenseCounts.Keys | Sort-Object) {
     Write-Host "$($licenseName): $($licenseCounts[$licenseName])"
 }
     \end{minted}
-    \caption[functie19.ps1]{...}
+    \caption[functie19.ps1]{Microsoft Graph PowerShell-script dat een overzicht geeft van de verschillende types van licenties en het aantal personen weergeeft met dit licentietype.}
     \label{PSQ19}
 \end{listing}
 
@@ -1918,7 +1918,7 @@ Write-Host "Email: $($emailCount)`nFIDO2: $($fido2Count)`nApp: $($appCount)"
 Write-Host "Password: $($passwordCount)`nPhone: $($phoneCount)`nSoftware OATH: $($softwareoathCount)"
 Write-Host "Temporary Access: $($tempaccessCount)`nHello for Business: $($hellobusinessCount)"
     \end{minted}
-    \caption[functie20.ps1]{...}
+    \caption[functie20.ps1]{Microsoft Graph PowerShell-script dat een overzicht geeft van de verschillende MFA-methodes met het aantal gebruikers.}
     \label{PSQ20}
 \end{listing}
 

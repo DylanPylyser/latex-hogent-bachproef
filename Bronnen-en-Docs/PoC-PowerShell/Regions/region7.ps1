@@ -17,8 +17,7 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
       phone              = "-"
       softwareoath       = "-"
       tempaccess         = "-"
-      hellobusiness      = "-"
-  }
+      hellobusiness      = "-" }
   # Haalt de MFA-data op van de huidige gebruiker en slaat deze op in $MFAData.
   $MFAData = (Get-MgUserAuthenticationMethod -UserId $user.UserPrincipalName)
   $resultObject.user = $user.UserPrincipalName;
@@ -56,8 +55,7 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
               "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"  {
               $resultObject.hellobusiness = $true
               $resultObject.MFAstatus = "Enabled"
-            }
-      }
+            } }
   } $results += $resultObject;
 }
 # loopt door elk object in de $results array en controleert of MFAstatus gelijk is aan "Disabled".

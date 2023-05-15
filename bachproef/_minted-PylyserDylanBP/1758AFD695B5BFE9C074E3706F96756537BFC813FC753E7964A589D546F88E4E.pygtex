@@ -5,8 +5,8 @@
 \PYG{c}{\PYGZsh{} Doorloopt elke gebruiker in \PYGZdl{}allUsers, en controleert of de gebruiker een licentie heeft voor Microsoft 365.}
 \PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}licensedUser} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}allUsers}\PYG{p}{)} \PYG{p}{\PYGZob{}}
     \PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUserLicenseDetail} \PYG{n}{\PYGZhy{}UserId} \PYG{n+nv}{\PYGZdl{}licensedUser}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}licensedUsers} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}licensedUser} \PYG{p}{\PYGZcb{}} \PYG{p}{\PYGZcb{}}
-\PYG{c}{\PYGZsh{} Doorloopt elke gebruiker in \PYGZdl{}licensedUsers, en controleert of de AccountEnabled eigenschap \PYGZsq{}true\PYGZsq{} is.}
-\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}enabledUser} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}licensedUsers}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}enabledUser}\PYG{p}{.}\PYG{n}{AccountEnabled} \PYG{o}{\PYGZhy{}eq} \PYG{n+nv}{\PYGZdl{}true}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}users} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}enabledUser} \PYG{p}{\PYGZcb{}} \PYG{p}{\PYGZcb{}}
+\PYG{c}{\PYGZsh{} Doorloopt elke gebruiker in \PYGZdl{}licensedUsers, en controleert of de AccountEnabled eigenschap \PYGZsq{}True\PYGZsq{} is.}
+\PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}enabledUser} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}licensedUsers}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}enabledUser}\PYG{p}{.}\PYG{n}{AccountEnabled} \PYG{o}{\PYGZhy{}eq} \PYG{n+nv}{\PYGZdl{}True}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}users} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}enabledUser} \PYG{p}{\PYGZcb{}} \PYG{p}{\PYGZcb{}}
 \PYG{c}{\PYGZsh{} Maakt een nieuw PSCustomObject met de gewenste properties en initialiseert ze als \PYGZdq{}\PYGZhy{}\PYGZdq{} of \PYGZdq{}\PYGZus{}\PYGZdq{}.}
 \PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}user} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}users}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}resultObject} \PYG{p}{=} \PYG{n+no}{[PSCustomObject]}\PYG{p}{@\PYGZob{}}
         \PYG{n}{user}               \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
@@ -18,8 +18,7 @@
         \PYG{n}{phone}              \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
         \PYG{n}{softwareoath}       \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
         \PYG{n}{tempaccess}         \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
-        \PYG{n}{hellobusiness}      \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}}
-    \PYG{p}{\PYGZcb{}}
+        \PYG{n}{hellobusiness}      \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}} \PYG{p}{\PYGZcb{}}
     \PYG{c}{\PYGZsh{} Haalt de MFA\PYGZhy{}data op van de huidige gebruiker en slaat deze op in \PYGZdl{}MFAData.}
     \PYG{n+nv}{\PYGZdl{}MFAData} \PYG{p}{=} \PYG{p}{(}\PYG{n+nb}{Get\PYGZhy{}MgUserAuthenticationMethod} \PYG{n}{\PYGZhy{}UserId} \PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{)}
     \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{user} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}user}\PYG{p}{.}\PYG{n}{UserPrincipalName}\PYG{p}{;}
@@ -57,8 +56,7 @@
             \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.windowsHelloForBusinessAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
                 \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{hellobusiness} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
                 \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}
-            \PYG{p}{\PYGZcb{}}
-        \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}} \PYG{p}{\PYGZcb{}}
     \PYG{p}{\PYGZcb{}} \PYG{n+nv}{\PYGZdl{}results} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{;}
 \PYG{p}{\PYGZcb{}}
 \PYG{c}{\PYGZsh{} loopt door elk object in de \PYGZdl{}results array en controleert of MFAstatus gelijk is aan \PYGZdq{}Disabled\PYGZdq{}.}
