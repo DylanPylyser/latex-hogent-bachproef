@@ -24,7 +24,7 @@ Zowel Azure \ac{AD} Graph als Microsoft Graph ondersteunen vijf soorten \ac{HTTP
 
 Op Figuur \ref{bfe} bij Azure \ac{AD} Graph, wordt er gebruikgemaakt van “windows” in de \ac{URL}. In vergelijking met Microsoft Graph, dat op Figuur \ref{RAM} te vinden is, komt het woord “microsoft” voor in de \ac{URL}. \\
 
-Op vlak van onderdelen, wordt het volgende opgemerkt bij het vergelijken. Azure \ac{AD} Graph werkt met vier onderdelen: Tenant ID, Resource, (\ac{API}) Version en optionele OData query-parameters. Terwijl Microsoft Graph maar drie onderdelen gebruikt. De Tenant ID wordt uit het eindpunt geschrapt. Daarnaast worden de onderdelen “version” en “resource” van plaats gewisseld. De optionele query-parameters zijn in beide aanwezig. 
+Op vlak van onderdelen, wordt het volgende opgemerkt bij het vergelijken. Azure \ac{AD} Graph werkt met vier onderdelen: Tenant ID, Resource, (\ac{API}) Version en optionele OData query-parameters. Terwijl het nieuwe maar drie onderdelen gebruikt. De Tenant ID wordt uit het eindpunt geschrapt. Daarnaast worden de onderdelen “version” en “resource” van plaats gewisseld. De optionele query-parameters zijn in beide aanwezig. 
 
 
 
@@ -43,9 +43,9 @@ De resultaten bij het uitvoeren van de vier queries wordt hieronder besproken me
 
 Bij het opstellen van een verzoek voor beide \Ac{API}'s, is te merken dat de \Ac{URL} en \Ac{API}-version worden omgedraaid. Daarnaast is de \Ac{URL} bij Azure \ac{AD} Graph langer, door het gebruik van de tenant-id. Beide zaken werden benoemd in de literatuurstudie. \\
 
-Bij het eerste verzoek zijn er lichte verschillen aan te merken. De response body, zie Listing \ref{Q1AADRB} en \ref{Q1MSGRB}, wordt anders weergegeven bij beide \ac{API}'s. Bovendien is de response header bij Microsoft Graph kleiner dan bij het oude. Dit wordt weergegeven op Listing \ref{Q1AADRH} en \ref{Q1MSGRH}. \\
+Bij het eerste verzoek zijn er lichte verschillen aan te merken. De response body, zie Listing \ref{Q1AADRB} en \ref{Q1MSGRB}, wordt anders weergegeven bij beide \ac{API}'s. Bovendien is de response header bij het nieuwe kleiner dan bij het oude. Dit wordt weergegeven op Listing \ref{Q1AADRH} en \ref{Q1MSGRH}. \\
 
-Het tweede verzoek maakt gebruik van een request body waar een opvallend verschil is aan te merken tussen de twee. Het verschil is te zien bij Listing \ref{Q2AADRQB} en \ref{Q2MSGRQB}. Het oude maakt gebruik van de “forceChangePasswordNextLogin”, terwijl Microsoft Graph “forceChangePasswordNextSignin” gebruikt als parameter. Vervolgens is de response body bij Microsoft Graph veel kleiner. De response body van beide wordt weergegeven bij Listing \ref{Q2AADRB} en \ref{Q2MSGRB}. Ook is bij deze query de reponse header kleiner bij het nieuwe dan bij het oude. Dit wordt voorgesteld bij Listing \ref{Q2AADRH} en \ref{Q2MSGRH}. \\
+Het tweede verzoek maakt gebruik van een request body waar een opvallend verschil is aan te merken tussen de twee. Het verschil is te zien bij Listing \ref{Q2AADRQB} en \ref{Q2MSGRQB}. Het oude maakt gebruik van de “forceChangePasswordNextLogin”, terwijl het nieuwe “forceChangePasswordNextSignin” gebruikt als parameter. Vervolgens is de response body bij Microsoft Graph veel kleiner. De response body van beide wordt weergegeven bij Listing \ref{Q2AADRB} en \ref{Q2MSGRB}. Ook is bij deze query de reponse header kleiner bij het nieuwe dan bij het oude. Dit wordt voorgesteld bij Listing \ref{Q2AADRH} en \ref{Q2MSGRH}. \\
 
 Bij de derde query zijn beide request bodies hetzelfde. Beide request bodies worden voorgesteld in Listing \ref{Q3AADRQB} en \ref{Q3MSGRQB}. De resterende onderdelen bij de derde en vierde query zijn gelijkaardig aan elkaar.
 
@@ -57,8 +57,9 @@ Azure \ac{AD} Graph en Microsoft Graph maken gebruik van PowerShell-modules. Dez
 
 Azure \ac{AD} Graph werkt met twee soorten PowerShell-modules, namelijk MSOnline en AzureAD. MSOnline is de eerste versie, waarbij AzureAD de verbeterde versie is van MSOnline voor het beheren van Azure \ac{AD}. \\
 
-Bij Microsoft Graph zijn er op dit moment twee versies beschikbaar. Versie 1.0 dat de stabiele versie voorstelt. Daarnaast bestaat ook de beta-versie, vandaag de dag voorgesteld als versie 2.0, dat de nadruk legt op nieuwe elementen die nog in ontwikkeling zijn. \\ 
+Bij Microsoft Graph zijn er op dit moment twee versies beschikbaar. Versie 1.0 die de stabiele versie voorstelt. Daarnaast bestaat ook de beta-versie, vandaag de dag voorgesteld als versie 2.0, die de nadruk legt op nieuwe elementen die nog in ontwikkeling zijn. \\ 
 
+% TODO: Eventueel toelichten welke features in 2.0 toegevoegd (zullen) worden?
 % ---
 % Section
 % ---
@@ -111,9 +112,9 @@ Met de migratie van Azure \ac{AD} Graph naar Microsoft Graph, wordt er veronders
     \label{AADMSG}
 \end{table}
 
-Uit Tabel \ref{AADMSG} blijkt dat Microsoft Graph 17 van de 22 Azure \ac{AD} data-objecten volledig overneemt. Er zijn dus enkele verschillen aanwezig door deze migratie. Zowel de Application Proxy Application Management en Application Proxy Connector Management vallen weg. Daarnaast is er een commando weggehaald uit het AzureAD en Contacts data-object. Vervolgens zijn er twee commando's minder bij het Devices data-object. Finaal zijn er 21 commando's weggehaald uit het MSOnline data-object in Microsoft Graph. \\
+Uit Tabel \ref{AADMSG} blijkt dat Microsoft Graph 17 van de 22 Azure \ac{AD} data-objecten overneemt. Er zijn dus enkele verschillen aanwezig door deze migratie. Zowel de Application Proxy Application Management en Application Proxy Connector Management vallen weg. Daarnaast is er een commando weggehaald uit het AzureAD en Contacts data-object. Vervolgens zijn er twee commando's minder bij het Devices data-object. Finaal zijn er 21 commando's weggehaald uit het MSOnline data-object in Microsoft Graph. \\
 
-In het specifiek gaat het om volgende commando's die vandaag de dag niet maar aanwezig zijn in Microsoft Graph.
+In het specifiek gaat het om volgende commando's die vandaag de dag niet meer aanwezig zijn in Microsoft Graph.
 
 \begin{itemize}
     \item Azure AD
@@ -188,13 +189,13 @@ De enige opmerking dat er kan gegeven worden, maar buiten de scope van dit onder
 
 De eerste methode is de gedelegeerde of interactieve manier. Deze methode maakt gebruik van een interactie van een gebruiker om de data te kunnen raadplegen. Hier ligt dus de nadruk op de gebruiker die wilt inloggen. \\
 
-De gebruiker die de actie uitvoert heeft bepaalde rechten verkregen. Dit kan gaan van leesrechten, maar ook om schrijfrechten. De veiligheid van de data wordt bepaald door twee factoren. \\
+De gebruiker die de actie uitvoert heeft bepaalde rechten verkregen. Dit kan gaan over leesrechten, maar ook over schrijfrechten. De veiligheid van de data wordt bepaald door twee factoren. \\
 
-Enerzijds de rechten van de gebruiker. Een beheerder heeft normalerwijze veel rechten om beheertaken te kunnen uitvoeren, zoals het lezen of schrijven van data. Wanneer er wordt ingelogd met een beheerder zijn de mogelijke consequenties ook groter, ten opzichte van een gebruiker die alleen maar data kan opvragen. \\ 
+Ten eerste, de rechten van de gebruiker. Een beheerder heeft normalerwijze veel rechten om beheertaken te kunnen uitvoeren, zoals het lezen of schrijven van data. Wanneer er wordt ingelogd met een beheerder zijn de mogelijke consequenties ook groter, ten opzichte van een gebruiker die alleen maar data kan opvragen. \\ 
 
-Anderzijds de getroffen methodes om het aanmelden mogelijk te maken. Als de gebruiker alleen maar een naam en wachtwoord moet meegeven, is de kans op een inbreuk groter dan bij een gebruiker die gebruikmaakt van \ac{2FA} of \Ac{MFA}. \\
+Ten tweede, de getroffen methodes om het aanmelden mogelijk te maken. Als de gebruiker alleen maar een naam en wachtwoord moet meegeven, is de kans op een inbreuk groter dan bij een gebruiker die gebruikmaakt van \ac{2FA} of \Ac{MFA}. \\
 
-De tweede methode is de geprogrammeerde manier of niet-interactieve manier. Deze methode maakt geen of minder gebruik van interacties in tegenstelling tot de eerste manier. De nadruk ligt op de applicatie die gebruikt wordt om toegang te verschaffen. \\
+De tweede methode is de geprogrammeerde manier of niet-interactieve manier. Deze methode maakt geen of minder gebruik van interacties in tegenstelling tot de eerste manier. De nadruk ligt op een applicatie die gebruikt wordt om toegang te verschaffen. \\
 
 De applicatie heeft net zoals een gebruiker rechten die kunnen worden ingesteld. Deze applicatie staat los van de gebruikers en kan alleen worden aangepast door een gebruiker die toegang heeft tot het domein. \\
 
@@ -212,7 +213,7 @@ De migratie van Azure \ac{AD} Graph naar Microsoft Graph op vlak van permissie s
 
 Het onderdeel “A/D” staat voor de beschikbaarheid van de permissie als Application of App-only en Delegated of interactief. \\
 
-% TODO: tabel op juiste pagina zetten
+% TODO: Mini conclusie schrijven!
 
 \begin{table}
     \centering
