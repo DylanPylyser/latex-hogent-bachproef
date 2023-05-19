@@ -15,35 +15,37 @@ Om een antwoord te vinden op deze onderzoeksvraag, worden de volgende stappen ge
 
 Als eerste wordt het onderzoeksdomein volledig gekaderd aan de hand van een literaire stand van zaken. Na het verzamelen en verwerken van alle literaire studies, volgt de vergelijking tussen het oude en het nieuwe. Zoals reeds vermeld wordt de PowerShell-module en \ac{API} van Azure \ac{AD} uitgefaseerd. Azure \ac{AD} wordt gezien als het “oude”. De nieuwe Microsoft Graph, de vervanger van Azure \ac{AD}, wordt gezien in de vergelijking als het “nieuwe”. \\
 
-De vergelijking tussen de twee bevat de eerste helft van het antwoord op de onderzoeksvraag. In deze vergelijking wordt er gekeken naar vier onderdelen.
+De vergelijking tussen de twee bevat de eerste helft van het antwoord op de onderzoeksvraag. In deze vergelijking wordt er gekeken naar vier onderdelen of criteria's. 
 
 \begin{itemize}
-    \item Logica: Hoe worden de gegevens van start tot eind verwerkt?
-    \item Data-objecten: Welke data-objecten kunnen worden aangesproken?
-    \item Gebruik: Hoe wordt er geauthenticeerd en geautoriseerd? Waar en hoe maken we gebruik van deze technologie?
-    \item Security: Hoe wordt er geauthenticeerd, en is deze authenticatiemethode veilig? Wordt er gebruikgemaakt van rechten om misbruik tegen te gaan?
+    \item Werking van de \ac{API}: Wat zijn de mogelijke \Ac{HTTP}-verzoeken? Uit welke onderdelen bestaat het eindpunt? Zijn er verschillen aanwezig in requests en reponses tijdens het uitvoeren van een query? Welke PowerShell-versies zijn er?
+    \item Aanspreekbare data-objecten en dependencies: Welke data-objecten kunnen worden aangesproken? Bevat de technologie bepaalde afhankelijkheden?
+    \item Toegangsmogelijkheden: Hoe wordt er toegang verschaft tot de technologie? 
+    \item Security: Zijn de toegangsmogelijkheden veilig? Wordt er gebruikgemaakt van rechten om misbruik tegen te gaan?
 \end{itemize}
 
 Met deze vier onderdelen wordt de vergelijking tussen het oude en het nieuwe uitgevoerd. Deze vergelijking wordt aan de hand van de verwerkte literatuur toegepast. \\
 
-Om de tweede helft van het antwoord te geven op de onderzoeksvraag wordt de casus praktisch uitgewerkt in een Proof-of-Concept. Het verouderde Audit-script van Easi, dat geschreven is in PowerShell, maakt gebruik van de verouderde modules. Dit script wordt vernieuwd door middel van Microsoft Graph. Door dit script te herwerken wordt er op een praktisch manier aangetoond wat vandaag de dag wel en niet mogelijk is met Microsoft Graph. \\
+Om de tweede helft van het antwoord te geven op de onderzoeksvraag wordt de casus praktisch uitgewerkt in een Proof-of-Concept. Het verouderde auditing-script van Easi, dat geschreven is in PowerShell, maakt gebruik van de verouderde modules. Dit script wordt vernieuwd door middel van de modernere Microsoft Graph PowerShell-modules. Door dit script te herwerken wordt er op een praktisch manier aangetoond wat vandaag de dag wel en niet mogelijk is met Microsoft Graph. \\
 
-Tijdens de uitwerking van de Proof-of-Concept wordt er gewerkt met een zes stappenplan. \\
+Tijdens de uitwerking van de Proof-of-Concept wordt er gewerkt met een vijf-stappenplan. Als eerste, het bekijken en beschrijven van de startende data-set na het activeren van de licentie. Als tweede, de data-set aanpassen naar een nagebootste klantenomgeving. Deze nabootsing wordt op basis van een intern document binnen Easi uitgevoerd. Daarna, het aanmaken van een Microsoft Graph-applicatie. Vervolgens, het maken van een PowerShell-script om de testomgeving aan te spreken. Als laatste, het omvormen van het verouderde PowerShell-script dat Easi gebruikt.
 
-Om dit script zo efficiënt mogelijk te herwerken, worden twintig kleinere onderdelen van dit script behandeld. Deze twintig onderdelen maken gebruik van de uitfaserende Azure \ac{AD} PowerShell-module. Hieronder worden de twintig onderdelen opgesomd met een korte beschrijving. 
+Om dit script zo efficiënt mogelijk te herwerken, worden twintig kleinere onderdelen van dit script behandeld. Deze twintig onderdelen of functies maken gebruik van de uitfaserende Azure \ac{AD} PowerShell-module. Hieronder worden de twintig functies opgesomd met een korte beschrijving. 
 
 \begin{enumerate}
-    \item Alle aanwezige domeinen binnen de Office 365-omgeving.
-    \item Aantal gebruikers binnen de omgeving, onderverdeeld in interne en externe gebruikers.
+    \item Aantal aanwezige domeinen binnen de Office 365-omgeving.
+    \item Aantal gebruikers binnen de omgeving, onderverdeeld in interne
+    en extene gebruikers.
     \item Aantal gebruikers die geblokkeerd zijn.
     \item Aantal geblokkeerde gebruikers met actieve licenties.
-    \item Overzicht en telling van gebruikers met administrator-privileges.
-    \item Overzicht en telling van gebruikers met \ac{MFA}.
-    \item Aantal gelicenseerde, actieve accounts waarbij \ac{MFA} uitstaat.
+    \item Overzicht en telling van administrators met hun account status.
+    \item Overzicht en telling van de interne gebruikers met \ac{MFA}.
+    \item Aantal gelicenseerde, actieve accounts waarbij \ac{MFA} niet aanwezig is.
     \item Aantal externe accounts waarbij \ac{MFA} uitstaat.
-    \item Overzicht van accounts met administrator-priviliges, onderverdeeld in gebruik van \ac{MFA}.
+    \item Overzicht van accounts met administrator-priviliges,
+    onderverdeeld in gebruik van \ac{MFA}.
     \item Groottes van elk type mailbox.
-    \item Groottes van elke mailbox, gerankschikt van groot naar klein.
+    \item Groottes van elke mailbox, gerangschikt van groot naar klein.
     \item Onderverdeling van gebruikersmailboxen op basis van grootte.
     \item Onderverdeling van gedeelde mailboxen op basis van grootte.
     \item Onderverdeling van hoeveelheid mailboxen per domein.
@@ -55,7 +57,7 @@ Om dit script zo efficiënt mogelijk te herwerken, worden twintig kleinere onder
     \item Overzicht verschillende methodes waarop \ac{MFA} wordt gebruikt met hoeveelheid gebruikers, onderverdeeld op basis van methode.
 \end{enumerate}
 
-Binnen deze twintig onderdelen zijn er vijf groepen van data. Dit zijn de vijf soorten waar op gefocust wordt wanneer klanten een audit uitvoeren door Easi. De vijf groepen van data worden hieronder weergegeven. 
+Binnen deze twintig onderdelen zijn er vijf groepen van data. Dit zijn de vijf soorten data dat worden nagekeken wanneer klanten een audit uitvoeren door Easi. De vijf groepen worden hieronder weergegeven. 
 
 \begin{itemize}
     \item Domeinen

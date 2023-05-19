@@ -108,7 +108,7 @@ Met de migratie van Azure \ac{AD} Graph naar Microsoft Graph, wordt er veronders
         \hline
     \end{tabular}
     \end{adjustbox}
-    \caption[Tabel migratie Azure AD data-objecten naar Microsoft Graph]{Tabel met overzicht van alle ondersteunende data-objecten bij de migratie van Azure \ac{AD} PowerShell naar Microsoft Graph uit documentatie van \textcite{Microsoft2023l}}
+    \caption[Tabel migratie Azure AD data-objecten naar Microsoft Graph]{Tabel met overzicht van alle ondersteunende data-objecten bij de migratie van Azure \ac{AD} PowerShell naar Microsoft Graph uit documentatie van \textcite{Microsoft2023l}.}
     \label{AADMSG}
 \end{table}
 
@@ -207,15 +207,11 @@ Een applicatie kan niet gebruikmaken van \ac{MFA}, doordat er geen interacties p
 
 % Vb. Leg PoLP dieper uit, wat kan het tegenhouden, waarom wordt het toegepast...
 
-Beide technologieën maken gebruik van rechten tot groepen van data. Standaard krijgt een gebruiker geen rechten en moeten deze worden verkregen via een gemachtigde gebruiker. Door deze aanpak wordt het “Principle of Least Privilege” toegepast. \\
+Beide technologieën maken gebruik van rechten om groepen van data te kunnen aanspreken. Standaard krijgt een gebruiker geen rechten en moeten deze worden verkregen via een gemachtigde gebruiker. Door deze aanpak wordt het “Principle of Least Privilege” toegepast. \\
 
-De migratie van Azure \ac{AD} Graph naar Microsoft Graph op vlak van permissie scopes wordt weergegeven in Tabel \ref{AADMSGPS}. Deze tabel focust zich alleen op de overgang van Azure \ac{AD} scopes naar Microsoft Graph. Microsoft Graph heeft meer permissie scopes dan in de tabel wordt voorgesteld. \\
+De migratie van Azure \ac{AD} Graph naar Microsoft Graph op vlak van permissie scopes wordt weergegeven in een tabel. Deze tabel focust zich alleen op de overgang van Azure \ac{AD} scopes naar Microsoft Graph. Microsoft Graph heeft meer permissie scopes dan in het overzicht wordt voorgesteld. Het onderdeel “A/D” dat in het overzicht te vinden is, staat voor de beschikbaarheid van de permissie als Application of App-only en Delegated of interactief. Het overzicht is te vinden in Tabel \ref{AADMSGPS}. \\
 
-Het onderdeel “A/D” staat voor de beschikbaarheid van de permissie als Application of App-only en Delegated of interactief. \\
-
-% TODO: Mini conclusie schrijven!
-
-\begin{table}
+\begin{table}[h!]
     \centering
     \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{ |c|c||c|c|c| } 
@@ -234,8 +230,10 @@ Het onderdeel “A/D” staat voor de beschikbaarheid van de permissie als Appli
         \hline
     \end{tabular}
     \end{adjustbox}
-    \caption[Tabel migratie Azure AD permissie scopes naar Microsoft Graph]{Tabel met overzicht van alle ondersteunende permissie scopes bij de migratie van Azure \ac{AD} PowerShell naar Microsoft Graph uit Tabel \ref{psaad} en documentatie van \textcite{Microsoft2023p}}
+    \caption[Tabel migratie Azure AD permissie scopes naar Microsoft Graph]{Tabel met overzicht van alle ondersteunende permissie scopes bij de migratie van Azure \ac{AD} PowerShell naar Microsoft Graph uit Tabel \ref{psaad} en documentatie van \textcite{Microsoft2023p}.}
     \label{AADMSGPS}
 \end{table}
 
 Tabel \ref{AADMSGPS} geeft weer dat er geen veranderingen zijn gebeurd op vlak van de scopes. Microsoft Graph biedt de extra mogelijkheid door het op te splitsen per domein. Daarnaast heeft Microsoft Graph drie extra scopes Application en Delegated-access gemaakt. \\
+
+Na het vergelijken van alle criteria's zijn volgende zaken op te merken. De werking van de \Ac{API} is in het algemeen gelijklopend, maar bevat kleine merkbare verschillen. Microsoft Graph neemt niet alle data-objecten over van Azure \ac{AD} Graph, maar heeft wel meer dependencies of afhankelijkheden. Door een toename in dependencies kan de nieuwe technologie meer Microsoft-entiteiten aanspreken. Op vlak van toegangsmogelijkheden zijn beide technologieën hetzelfde. Wat betreft de security heeft het nieuwe meer afhankelijkheden en dus meer beschikbare rechten, ten opzichte van het oude. Dit kan zowel een voor- als nadeel zijn voor de nieuwe technologie.
