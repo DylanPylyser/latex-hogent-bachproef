@@ -604,12 +604,19 @@
   urldate = {2023-04-11},
 }
 
-@Online{,
+@Online{Microsoft2022e,
   author  = {Microsoft},
   date    = {2022-07-01},
   title   = {Microsoft Graph REST API v1.0 endpoint reference},
   url     = {https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0},
   urldate = {2023-05-20},
+}
+
+@Online{Microsofta,
+  author  = {Microsoft},
+  title   = {MSOnline},
+  url     = {https://learn.microsoft.com/en-us/powershell/module/msonline/?view=azureadps-1.0},
+  urldate = {2023-04-12},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

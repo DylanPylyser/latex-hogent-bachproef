@@ -31,7 +31,7 @@ Microsoft administration bestaat uit twee kernwoorden die bekend zijn binnen de 
 
 % Taalcheck OK
 
-Het beheren van systemen kan omvat worden in enkele taken, hieronder volgt een lijst van frequente taken tussen het jaar 1980 en 2000 \autocite{Frisch2002}.
+Het beheren van systemen kan omvat worden in enkele taken, hieronder volgt een lijst van frequente taken tussen het jaar 1980 en 2000 \autocite{Frisch2002}. Deze taken zijn vandaag de dag nog steeds herkenbaar als dagdagelijkse taken van een systeembeheerder.
 
 \begin{itemize}
     \item Toevoegen van nieuwe gebruikers en toestellen
@@ -42,9 +42,7 @@ Het beheren van systemen kan omvat worden in enkele taken, hieronder volgt een l
     \item De veiligheid van de systemen garanderen
     \item Het beheren en installeren van updates
     \item Het automatiseren van taken
-\end{itemize}
-
-Deze taken zijn vandaag de dag nog steeds herkenbaar als dagdagelijkse taken van een systeembeheerder. 
+\end{itemize} 
 
 \subsection{Microsoft administration via Windows}
 
@@ -90,9 +88,7 @@ Het gebruik van cloud computing en cloudservices heeft vele voordelen. De volgen
 
 % Taalcheck
 
-De evolutie van \ac{On-prem} naar de cloud heeft invloed op de huidige stand van zaken binnen Microsoft administration. Microsoft administratie staat in voor het beheren van Microsoft-entiteiten. Door een verschuiving van \ac{On-prem} naar cloudomgevingen, wordt de nadruk stilaan gelegd op het beheren van bepaalde entiteiten via cloudtoepassingen. \\
-
-Deze nadruk valt op wanneer de productenlijst van Microsoft Azure wordt geraadpleegd \autocite{Microsoft2023b}. Dit is een lijst die steeds verder wordt uitgebreid met nieuwe technologieën. \\
+De evolutie van \ac{On-prem} naar de cloud heeft invloed op de huidige stand van zaken binnen Microsoft administration. Microsoft-administratie staat in voor het beheren van Microsoft-entiteiten. Door een verschuiving van \ac{On-prem} naar cloudomgevingen, wordt de nadruk stilaan gelegd op het beheren van bepaalde entiteiten via cloudtoepassingen. Deze nadruk valt op wanneer de productenlijst van Microsoft Azure wordt geraadpleegd \autocite{Microsoft2023b}. Dit is een lijst die steeds verder wordt uitgebreid met nieuwe technologieën. \\
 
 Een praktisch voorbeeld van een entiteit, of een groep van entiteiten, dat via de cloud kan beheerd worden is Azure Active Directory \autocite{Microsoft2023c}. Azure Active Directory kan gebruikt worden als alternatief voor Active Directory voor bepaalde onderdelen. Active Directory is kortweg een opslagplaats die een focus heeft op On-premises-instanties. Active Directory en Azure Active Directory worden in het volgende onderdeel verder besproken.
 
@@ -170,7 +166,7 @@ Azure AD PowerShell ondersteunt volgende data-objecten met een specifiek aantal 
         Users & 30 \\ 
         \hline
     \end{tabular}
-    \caption[Tabel Azure AD en MSonline data-objecten]{Tabel met overzicht van alle ondersteunende data-objecten van Azure \ac{AD} en MSOnline met bijhorende commando's binnen Azure \ac{AD} PowerShell.}
+    \caption[Tabel Azure AD en MSonline data-objecten]{Tabel met overzicht van alle ondersteunende data-objecten van Azure \ac{AD} door \textcite{Microsoft2023i} en MSOnline met bijhorende commando's binnen Azure \ac{AD} PowerShell door \textcite{Microsofta}.}
     \label{AADT}
 \end{table}
 
@@ -522,13 +518,11 @@ De migratie naar \ac{MSAL} brengt voordelen met zich mee, dat \ac{ADAL} niet kan
 
 \subsection{Microsoft Graph toepassingen}
 
-Microsoft Graph bestaat uit drie toepassingen. \\
+Microsoft Graph bestaat uit drie toepassingen \autocite{Microsoft2023d}. \\
 
-De eerste toepassing is de Microsoft Graph \Ac{API}. Dit is een eindpunt dat kan aangesproken worden via “https://graph.microsoft.com” dat Microsoft-entiteiten binnen de cloud kan aanspreken. Dit onderdeel wordt later dieper besproken. \\
+De eerste toepassing is de Microsoft Graph \Ac{API} \autocite{Microsoft2022e}. Dit is een eindpunt dat kan aangesproken worden via “https://graph.microsoft.com” dat Microsoft-entiteiten binnen de cloud kan aanspreken. Dit onderdeel wordt later dieper besproken. \\
 
-De tweede toepassing is Microsoft Graph connectors. Deze Graph-connectoren werken in de ingaande richting. Door het gebruik van deze connectoren, kunnen gegevens buiten de Microsoft-cloud worden gestuurd naar Graph en bijhorende toepassingen. \\
-
-Door het gebruik van deze connectors vermindert de overhead, doordat de informatie bereikbaar is. Deze bereikbaarheid is te danken aan het gebruik van eindpunten zoals SharePoint, Office.com of Bing.com dat de connectors ondersteunen. Op Figuur \ref{MSGC} wordt de werking van Connectors geïllustreerd. \\
+De tweede toepassing is Microsoft Graph connectors \autocite{Microsoft2022f}. Deze Graph-connectoren werken in de ingaande richting. Door het gebruik van deze connectoren, kunnen gegevens buiten de Microsoft-cloud worden gestuurd naar Graph en bijhorende toepassingen. Dit vermindert de overhead, doordat de informatie bereikbaar is. De bereikbaarheid is te danken aan het gebruik van eindpunten zoals SharePoint, Office.com of Bing.com dat de connectors ondersteunen. Op Figuur \ref{MSGC} wordt de werking van Connectors geïllustreerd. 
 
 \begin{figure}[!h]
     \includegraphics[width=\textwidth]{GraphConnectors.png}
@@ -536,7 +530,7 @@ Door het gebruik van deze connectors vermindert de overhead, doordat de informat
     \label{MSGC}
 \end{figure}
 
-Als laatste worden er een set van tools aangeboden via Microsoft Graph Data Connect. Deze tools kunnen gebruikt worden om applicaties te ontwikkelen voor analyse, intelligentie en bedrijfsprocesoptimalisatie met Microsoft 365-data. Deze data wordt geïntegreerd binnen Azure, zodat de reken- en opslagcapaciteiten van het cloudplatform worden gebruikt. Een voorstelling van Data Connect is te zien op Figuur \ref{MSGDC}. \\
+Als laatste worden er een set van tools aangeboden via Microsoft Graph Data Connect \autocite{Microsoft2022c}. Deze tools kunnen gebruikt worden om applicaties te ontwikkelen voor analyse, intelligentie en bedrijfsprocesoptimalisatie met Microsoft 365-data. Deze data wordt geïntegreerd binnen Azure, zodat de reken- en opslagcapaciteiten van het cloudplatform worden gebruikt. Een voorstelling van Data Connect is te zien op Figuur \ref{MSGDC}. 
 
 \begin{figure}[!h]
     \includegraphics[width=\textwidth]{GraphDataConnect.png}
@@ -546,7 +540,7 @@ Als laatste worden er een set van tools aangeboden via Microsoft Graph Data Conn
 
 \subsection{Authenticatie en Autorisatie}
 
-Vooraleer er een token wordt uitgegeven, moet een applicatie geregistreerd zijn in het Microsoft identity platform \autocite{Microsoft2022b}. Bovendien moet de applicatie beschikken over de juiste machtigingen om Microsoft Graph te mogen gebruiken. \\
+Vooraleer er een token wordt uitgegeven, moet een applicatie geregistreerd zijn in het Microsoft identity platform \autocite{Microsoft2022b}. Bovendien moet de applicatie beschikken over de juiste machtigingen om Microsoft Graph te mogen gebruiken. 
 
 \subsubsection{Toegangsmogelijkheden}
 
@@ -1008,7 +1002,7 @@ Microsoft Graph PowerShell ondersteunt een lijst van dependencies \autocite{Micr
         Windows Updates \\
         \hline
     \end{tabular}
-    \caption[Tabel Microsoft Graph dependencies]{Tabel met overzicht van alle ondersteunende dependencies tot aan versie 1.23 binnen Microsoft Graph PowerShell.}
+    \caption[Tabel Microsoft Graph dependencies]{Tabel met overzicht van alle ondersteunende dependencies tot aan versie 1.23 binnen Microsoft Graph PowerShell door \textcite{Microsoft2023k}.}
     \label{MSGDT}
 \end{table}
 
@@ -1045,7 +1039,7 @@ Door de uitfasering van Azure \ac{AD} PowerShell, worden de data-objecten van de
         Users & 30 \\ 
         \hline
     \end{tabular}
-    \caption[Tabel geïntegreerde data-objecten]{Tabel met overzicht van alle geïntegreerde data-objecten met bijhorende commando's binnen Microsoft Graph PowerShell.}
+    \caption[Tabel geïntegreerde data-objecten]{Tabel met overzicht van alle geïntegreerde data-objecten met bijhorende commando's binnen Microsoft Graph PowerShell door \textcite{Microsoft2023l}.}
     \label{MSGDOT}
 \end{table}
 
