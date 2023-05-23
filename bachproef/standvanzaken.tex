@@ -58,7 +58,7 @@ Binnen Windows 2000 server zijn er administratieve tools zoals Microsoft Managem
 
 In het begin van de eenentwintigste eeuw werden systemen en servers zoals Windows 2000 server met een focus op \ac{On-prem} onderhouden \autocite{Microsoft2022a}. \ac{On-prem} betekent dat software en hardware, zoals computers en servers, op locaties staan dat eigendom is van het bedrijf en lokaal worden toegepast \autocite{Gastermann2015}. Hierbij wordt de systeemadministratie door systeembeheerders lokaal aangepakt. Ter illustratie, in dit scenario focust de automatisatie via PowerShell zich op de lokale entiteiten binnen het bedrijf. Databanken, mailservers, \ac{DNS}-servers en andere instanties worden lokaal aangesproken en geautomatiseerd indien nodig. \\
 
-Rond het jaar 2006 evolueerde de On-premises-aanpak naar een cloud-aanpak \autocite{Hayes2008}. \ac{EC2} van Amazon is een van de grondleggers binnen de cloudservices \autocite{Qian2009}. Deze inventie van Amazon heeft sindsdien invloed op de huidige marktleiderspositie van AWS in cloud computing \autocite{Vailshery2022}. Op de tweede plaats bevindt zich de cloudservice van Microsoft, genaamd Azure.
+Rond het jaar 2006 evolueerde de On-premises-aanpak naar een cloud-aanpak \autocite{Hayes2008}. \ac{EC2} van Amazon is een van de grondleggers binnen de cloudservices \autocite{Qian2009}. Deze inventie van Amazon heeft sindsdien invloed op de huidige marktleiderspositie van AWS in cloud computing. Op de tweede plaats bevindt zich de cloudservice van Microsoft, genaamd Azure \autocite{Vailshery2022}.
 
 
 
@@ -114,9 +114,9 @@ Naast de Azure \ac{AD} PowerShell-module, is er de MSOnline PowerShell-module \a
 
 \subsubsection{Ondersteunende data-objecten}
 
-PowerShell heeft verschillende soorten commando's voor het toevoegen, verwijderen of lezen van iets. Wanneer een commando de functie heeft om iets op te vragen, dan kan dit bijvoorbeeld een “Get”-commando zijn zoals “Get-MgUser”. \\
+PowerShell heeft verschillende soorten commando's voor het toevoegen, verwijderen of lezen van iets. Wanneer een commando de functie heeft om iets op te vragen, dan kan dit bijvoorbeeld een “Get”-commando zijn zoals “Get-AzureADUser” \autocite{Microsoft2023i}. \\
 
-Binnen Azure AD PowerShell zijn er twaalf soorten commando's, namelijk:
+Binnen Azure AD PowerShell zijn er twaalf soorten commando's die voorkomen uit de lijst van \textcite{Microsoft2023i}, namelijk:
 
 \begin{itemize}
     \item Add: Toevoegen.
@@ -133,7 +133,7 @@ Binnen Azure AD PowerShell zijn er twaalf soorten commando's, namelijk:
     \item Update: Bijwerken.
 \end{itemize}
 
-Azure AD PowerShell ondersteunt volgende data-objecten met een specifiek aantal uitvoerbare commando's \autocite{Microsoft2023i}. Per data-object zijn er een of meerdere soorten PowerShell-commando's, in de tabel wordt alleen het aantal commando's weergegeven. Een overzicht van alle ondersteunde data-objecten met het aantal commando's wordt weergeven in Tabel \ref{AADT}. 
+Azure AD PowerShell ondersteunt verschillende data-objecten met een specifiek aantal uitvoerbare commando's \autocite{Microsoft2023i}. Per data-object zijn er een of meerdere soorten PowerShell-commando's, in de tabel wordt alleen het aantal commando's weergegeven. Een overzicht van alle ondersteunde data-objecten met het aantal commando's wordt weergeven in Tabel \ref{AADT}. 
 
 \begin{table}
     \small
@@ -172,9 +172,7 @@ Azure AD PowerShell ondersteunt volgende data-objecten met een specifiek aantal 
 
 \subsection{Wat is Azure Active Directory Graph?}
 
-% TODO: uitleggen wat MSOnline is ??? (niet hier maar ergens anders)
-
-De communicatie tussen Azure \ac{AD} en de Azure \ac{AD} PowerShell-module gebeurd via een \ac{API}. Deze \ac{API} is een \ac{REST} \ac{API} die Graph wordt genoemd. \\ 
+De communicatie tussen Azure \ac{AD} en een client (bijvoorbeeld Azure \ac{AD} PowerShell-modules) gebeurd via een \ac{API}. Deze \ac{API} is een \ac{REST} \ac{API} die Graph wordt genoemd \autocite{Microsoft2015}. \\ 
 
 De naam “Graph” is afgeleid uit het wiskundige figuur van een graaf. Een graaf is een verzameling van punten die wel of niet met elkaar zijn verbonden \autocite{Denaux2022}. Een voorbeeld van een wiskundige graaf is te zien op Figuur \ref{mga}. \\
 
@@ -196,11 +194,9 @@ Azure \ac{AD} Graph heeft een soortgelijke betekenis als dat van een wiskundige 
 
 % TODO: Bronnen (zie word onder Azure AD Graph API)
 
-% TODO: Schrijf verder vanuit de bron van weareminky, dit is de makkelijkste manier
-
 De Azure \ac{AD} Graph \ac{API} is een OData 3.0-compatibele dienst om objecten zoals gebruikers, groepen en contactpersonen in een tenant te lezen en te wijzigen \autocite{Microsoft2016}. \\
 
-Een tenant kan vergeleken worden met een appartementencomplex \autocite{Saxton2015}. Binnen dit complex zijn meerdere appartementen. In elk appartement heb je bijvoorbeeld een badkamer, slaapkamer, living en balkon. Deze uitleg wordt gevisualiseerd op Figuur \ref{rlt}. \\
+Een tenant kan vergeleken worden met een appartementencomplex. Binnen dit complex zijn meerdere appartementen. In elk appartement heb je bijvoorbeeld een badkamer, slaapkamer, living en balkon \autocite{Saxton2015}. Deze uitleg wordt gevisualiseerd op Figuur \ref{rlt}. \\
 
 \begin{figure}[!h]
     \includegraphics[width=50mm, scale=0.5]{RealTenant.png}
@@ -208,7 +204,7 @@ Een tenant kan vergeleken worden met een appartementencomplex \autocite{Saxton20
     \label{rlt}
 \end{figure}
 
-In dit scenario met Microsoft is (in \ac{IT}-termen) het complex de Microsoft Office 365-datacenters. Het appartement stelt de tenant of de organisatie in het algemeen voor. Deze tenant-omgeving bevat bijvoorbeeld abonnementen, gebruikers, domeinen en groepen. De tenant wordt gezien als een huurder van de omgeving. Dit concept wordt gevisualiseerd op Figuur \ref{mst}. \\
+In dit scenario met Microsoft is (in \ac{IT}-termen) het complex de Microsoft Office 365-datacenters. Het appartement stelt de tenant of de organisatie in het algemeen voor. Deze tenant-omgeving bevat bijvoorbeeld abonnementen, gebruikers, domeinen en groepen. De tenant wordt gezien als een huurder van de omgeving \autocite{Saxton2015}. Dit concept wordt gevisualiseerd op Figuur \ref{mst}. \\
 
 \begin{figure}[h!]
     \includegraphics[width=50mm, scale=0.5]{MSTenant.png}
@@ -893,15 +889,11 @@ Het tweede soort dat antwoorden kan aanpassen zijn de normale queryparameters \a
 
 \subsubsection{Tools om de Microsoft Graph API te testen}
 
-De werking van Microsoft Graph API kan worden getest in een demo-omgeving. Deze omgeving wordt Graph Explorer genoemd en wordt voorzien door \textcite{Microsoft2023h}. Hierin kunnen verzoeken worden getest met of zonder Microsoft-tenant. \\ % TODO: CHECKPOINT
-
-Daarnaast kan de API ook worden getest via Postman. Postman is een collaboratief \ac{API}-platform dat los van Microsoft staat \autocite{Postman2023}.
-
-% TODO: \subsubsection{MSAL ...}
+Microsoft Graph raad twee tools aan om de \Ac{API} te testen \autocite{Microsoft2023vv}. De werking van de Microsoft Graph \Ac{API} kan worden getest in een demo-omgeving. Deze omgeving wordt “Graph Explorer” genoemd en wordt voorzien door \textcite{Microsoft2023h}. Hierin kunnen verzoeken worden getest met of zonder Microsoft-tenant. Daarnaast kan de \Ac{API} ook worden getest via Postman. Postman is een collaboratief \ac{API}-platform dat los van Microsoft staat \autocite{Postman2023}.
 
 \subsection{Microsoft Graph met PowerShell}
 
-Microsoft Graph kan worden aangestuurd met PowerShell \autocite{Microsoft2023j}. Deze PowerShell-integratie zit in de Microsoft Graph PowerShell \ac{SDK}. Een \ac{SDK} bestaat uit een verzameling van tools dat instaan voor het maken van bepaalde software of hardware \autocite{RedHat2020}. Deze PowerShell \ac{SDK} stelt de \ac{API} van Microsoft Graph bloot. Door deze blootstelling kan PowerShell de \ac{API} gebruiken, beheren en automatiseren.
+Microsoft Graph kan worden aangestuurd met PowerShell. Deze PowerShell-integratie zit in de Microsoft Graph PowerShell \ac{SDK} \autocite{Microsoft2023j}. Een \ac{SDK} bestaat uit een verzameling van tools die instaan voor het maken van bepaalde software of hardware \autocite{RedHat2020}. Deze PowerShell \ac{SDK} stelt de \ac{API} van Microsoft Graph bloot. Door deze blootstelling kan PowerShell de \ac{API} gebruiken, beheren en automatiseren.
 
 \subsubsection{Ondersteunende dependencies}
 

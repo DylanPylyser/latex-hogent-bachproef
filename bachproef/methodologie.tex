@@ -28,9 +28,9 @@ Met deze vier onderdelen wordt de vergelijking tussen het oude en het nieuwe uit
 
 Om de tweede helft van het antwoord te geven op de onderzoeksvraag wordt de casus praktisch uitgewerkt in een Proof-of-Concept. Het verouderde auditing-script van Easi, dat geschreven is in PowerShell, maakt gebruik van de verouderde modules. Dit script wordt vernieuwd door middel van de modernere Microsoft Graph PowerShell-modules. Door dit script te herwerken wordt er op een praktisch manier aangetoond wat vandaag de dag wel en niet mogelijk is met Microsoft Graph. \\
 
-Tijdens de uitwerking van de Proof-of-Concept wordt er gewerkt met een vijf-stappenplan. Als eerste, het bekijken en beschrijven van de startende data-set na het activeren van de licentie. Als tweede, de data-set aanpassen naar een nagebootste klantenomgeving. Deze nabootsing wordt op basis van een intern document binnen Easi uitgevoerd. Daarna, het aanmaken van een Microsoft Graph-applicatie. Vervolgens, het maken van een PowerShell-script om de testomgeving aan te spreken. Als laatste, het omvormen van het verouderde PowerShell-script dat Easi gebruikt.
+Tijdens de praktische uitwerking wordt er gewerkt met een vijf-stappenplan. Als eerste, het bekijken en beschrijven van de startende data-set na het activeren van de licentie. Als tweede, de data-set aanpassen naar een nagebootste klantenomgeving. Deze nabootsing wordt op basis van een intern document binnen Easi uitgevoerd. Daarna, het aanmaken van een Microsoft Graph-applicatie. Vervolgens, het maken van een PowerShell-script om de testomgeving aan te spreken. Als laatste, het omvormen van het verouderde PowerShell-script dat Easi gebruikt. \\
 
-Om dit script zo efficiënt mogelijk te herwerken, worden twintig kleinere onderdelen van dit script behandeld. Deze twintig onderdelen of functies maken gebruik van de uitfaserende Azure \ac{AD} PowerShell-module. Hieronder worden de twintig functies opgesomd met een korte beschrijving. 
+Om dit script zo efficiënt mogelijk te herwerken, worden twintig onderdelen van dit script behandeld. Deze twintig onderdelen of functies maken gebruik van de uitfaserende Azure \ac{AD} PowerShell-module. Hieronder worden de twintig functies opgesomd met een korte beschrijving. 
 
 \begin{enumerate}
     \item Aantal aanwezige domeinen binnen de Office 365-omgeving.
@@ -57,7 +57,7 @@ Om dit script zo efficiënt mogelijk te herwerken, worden twintig kleinere onder
     \item Overzicht verschillende methodes waarop \ac{MFA} wordt gebruikt met hoeveelheid gebruikers, onderverdeeld op basis van methode.
 \end{enumerate}
 
-Binnen deze twintig onderdelen zijn er vijf groepen van data. Dit zijn de vijf soorten data dat worden nagekeken wanneer klanten een audit uitvoeren door Easi. De vijf groepen worden hieronder weergegeven. 
+Binnen deze twintig onderdelen zijn er vijf groepen van data. Dit zijn de vijf soorten data die worden nagekeken wanneer klanten een Office 365-audit uitvoeren door Easi. De vijf groepen worden hieronder weergegeven. 
 
 \begin{itemize}
     \item Domeinen
@@ -69,7 +69,7 @@ Binnen deze twintig onderdelen zijn er vijf groepen van data. Dit zijn de vijf s
 
 Tijdens de praktische uitwerking wordt er gebruikgemaakt van de Microsoft Graph PowerShell-modules. In het specifiek, de meest recente versie van de eerste stabiele uitrol dat beschikbaar is tijdens de uitvoering van dit onderzoek, namelijk versie 1.25 \autocite{Microsoft2023k}. De mogelijkheid is reëel dat er tijdens of na de uitwerking een recentere versie zal worden uitgegeven door Microsoft. Er wordt niet afgeweken van versie 1.25 met bijhorende modules in dit onderzoek. \\  
 
-Wanneer het onderdeel kan worden uitgevoerd via de PowerShell-modules van Microsoft Graph, dan wordt er een PowerShell-script uitgewerkt voor dat onderdeel. Dit bewijst dat Microsoft Graph kan gebruikt worden voor de vervanging van Azure \ac{AD} en MSonline van het audit-script. \\
+Wanneer het onderdeel kan worden uitgevoerd via de PowerShell-modules van Microsoft Graph, dan wordt er een PowerShell-script uitgewerkt voor dat onderdeel. Dit bewijst dat Microsoft Graph kan gebruikt worden voor de vervanging van Azure \ac{AD} en MSOnline van het audit-script. \\
 
 Als een onderdeel niet kan worden uitgevoerd via de Microsoft Graph PowerShell-modules, dan wordt er dieper gekeken naar het bijhorende domein. Er wordt uitgezocht dat het domein wel of niet ondersteund wordt door de PowerShell-modules van Microsoft Graph. Een mogelijk alternatief wordt besproken, maar de uitwerking hiervan valt buiten de scope van dit onderzoek. \\
 
