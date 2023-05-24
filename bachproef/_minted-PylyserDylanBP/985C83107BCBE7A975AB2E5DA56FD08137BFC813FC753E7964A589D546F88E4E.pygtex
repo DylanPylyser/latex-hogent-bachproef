@@ -37,7 +37,6 @@
             \PYG{p}{\PYGZcb{}}
             \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.passwordAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
                 \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{password} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
-                \PYG{c}{\PYGZsh{} Wanneer alleen het wachtwoord is ingesteld, is MFA uitgeschakeld.}
                 \PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{o}{\PYGZhy{}ne} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Disabled\PYGZdq{}} \PYG{p}{\PYGZcb{}}
             \PYG{p}{\PYGZcb{}}
             \PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}microsoft.graph.phoneAuthenticationMethod\PYGZdq{}}  \PYG{p}{\PYGZob{}}
@@ -56,8 +55,7 @@
                 \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{hellobusiness} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}true}
                 \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{.}\PYG{n}{MFAstatus} \PYG{p}{=} \PYG{l+s+s2}{\PYGZdq{}Enabled\PYGZdq{}}
             \PYG{p}{\PYGZcb{}}
-        \PYG{p}{\PYGZcb{}}
-    \PYG{p}{\PYGZcb{}} \PYG{n+nv}{\PYGZdl{}results} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}} \PYG{p}{\PYGZcb{}} \PYG{n+nv}{\PYGZdl{}results} \PYG{p}{+=} \PYG{n+nv}{\PYGZdl{}resultObject}\PYG{p}{;}
 \PYG{p}{\PYGZcb{}}
 \PYG{c}{\PYGZsh{} Loopt door \PYGZdl{}results en sorteert de resultaatobjecten op basis van hun MFA\PYGZhy{}status.}
 \PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}result} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}results}\PYG{p}{)} \PYG{p}{\PYGZob{}}

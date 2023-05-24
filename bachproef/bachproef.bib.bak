@@ -663,8 +663,16 @@
   title   = {Understanding metadata},
   pages   = {7--10},
   volume  = {23},
-  journal = {Washington DC, United States: National Information Standards Organization (http://www. niso. org/publications/press/UnderstandingMetadata. pdf)},
+  journal = {Washington DC, United States: National Information Standards Organization (http://www.niso.org/publications/press/UnderstandingMetadata.pdf)},
   year    = {2017},
+}
+
+@Online{Microsoft2023w,
+  author  = {Microsoft},
+  date    = {2023-05-23},
+  title   = {What's new in Microsoft Graph},
+  url     = {https://learn.microsoft.com/en-us/graph/whats-new-overview},
+  urldate = {2023-05-24},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

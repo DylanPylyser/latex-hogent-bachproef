@@ -1010,7 +1010,6 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
             }
             "#microsoft.graph.passwordAuthenticationMethod"  {
                 $resultObject.password = $true
-                # Wanneer alleen het wachtwoord is ingesteld, is MFA uitgeschakeld.
                 if ($resultObject.MFAstatus -ne "Enabled") { $resultObject.MFAstatus = "Disabled" }
             }
             "#microsoft.graph.phoneAuthenticationMethod"  {
@@ -1029,8 +1028,7 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
                 $resultObject.hellobusiness = $true
                 $resultObject.MFAstatus = "Enabled"
             }
-        }
-    } $results += $resultObject;
+        } } $results += $resultObject;
 }
 # Loopt door $results en sorteert de resultaatobjecten op basis van hun MFA-status.
 foreach ($result in $results) {
