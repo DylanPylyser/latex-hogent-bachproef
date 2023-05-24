@@ -62,7 +62,7 @@ Rond het jaar 2006 evolueerde de On-premises-aanpak naar een cloud-aanpak \autoc
 
 
 
-\subsection{De impact van cloud computing op systeem administratie}
+\subsection{Verschuiving van On-premises naar de cloud}
 
 % Taalcheck OK
 
@@ -82,9 +82,7 @@ Het gebruik van cloud computing en cloudservices heeft vele voordelen. De volgen
     \item Mogelijkheid om gebruikers te doen samenwerken in documenten en projecten.
 \end{itemize}
 
-
-
-\subsection{Verschuiving van On-premises naar de cloud}
+\subsection{De impact van cloud computing op Microsoft administration}
 
 % Taalcheck
 
@@ -108,9 +106,9 @@ Azure \ac{AD} PowerShell voor Graph, kortweg Azure \ac{AD} PowerShell, is een mo
 
 PowerShell staat gekend voor zijn breed scala aan informatie dat het kan verkrijgen. Dit breed scala gaat van systemen, servers, randapparatuur, mobiele apparaten tot gegevensgestuurde toepassingen zoals Active Directory \autocite{Hosmer2019}. Vandaag de dag ondersteunt PowerShell meer dan 11.350 unieke modules en scripts via de PowerShell Gallary, waaronder de Azure \ac{AD} PowerShell module \autocite{Microsoft2023a}. \\
 
-Door het gebruik van Azure \ac{AD} in combinatie met PowerShell, wordt er gebruikgemaakt van het beste van de twee werelden. Een gecentraliseerd beheerplatform automatisch doen werken brengt bijkomende voordelen voor de maker. Uit onderzoek van \textcite{Breton2003} zijn enkele voordelen van automatisatie minder stress, tijdbesparing en een lagere kans op menselijke fouten. \\
+Door het gebruik van Azure \ac{AD} in combinatie met PowerShell kan het gecentraliseerd beheerplatform automatisch of geautomatiseerd werken. Dit zorgt voor bijkomende voordelen voor de beheerder. Uit onderzoek van \textcite{Breton2003} zijn enkele voordelen van automatisatie minder stress, tijdbesparing en een kleinere kans op menselijke fouten. \\
 
-Naast de Azure \ac{AD} PowerShell-module, is er de MSOnline PowerShell-module \autocite{Prigent2019}. MSOnline is de voorganger van de AzureAD-module. MSOnline is de eerste versie, in vergelijking met AzureAD dat de tweede versie is. MSOnline heeft dezelfde functie als AzureAD en biedt de mogelijkheid aan om via PowerShell Azure \ac{AD} te kunnen aanspreken.
+Naast de Azure \ac{AD} PowerShell-module, is er de MSOnline PowerShell-module. MSOnline is de voorganger van de AzureAD-module. MSOnline is de eerste versie, in vergelijking met AzureAD dat de tweede versie is. MSOnline heeft dezelfde functie als AzureAD en biedt de mogelijkheid aan om via PowerShell Azure \ac{AD} te kunnen aanspreken \autocite{Prigent2019}.
 
 \subsubsection{Ondersteunende data-objecten}
 
@@ -895,9 +893,13 @@ Microsoft Graph raad twee tools aan om de \Ac{API} te testen \autocite{Microsoft
 
 Microsoft Graph kan worden aangestuurd met PowerShell. Deze PowerShell-integratie zit in de Microsoft Graph PowerShell \ac{SDK} \autocite{Microsoft2023j}. Een \ac{SDK} bestaat uit een verzameling van tools die instaan voor het maken van bepaalde software of hardware \autocite{RedHat2020}. Deze PowerShell \ac{SDK} stelt de \ac{API} van Microsoft Graph bloot. Door deze blootstelling kan PowerShell de \ac{API} gebruiken, beheren en automatiseren.
 
+\subsubsection{Beschikbare versies}
+
+Er zijn twee Microsoft Graph versies aanwezig die ook voorkomen in de PowerShell-modules. De eerste stabiele versie (v1.0) en de preview-versie (beta). De stabiele versie bevat alle commando's en mogelijkheden die voor productieomgevingen gemaakt zijn. De beta-versie heeft eerder een testfunctie en wordt niet aangeraden voor productieomgevingen. Het bevat nieuwe concepten die eerst door gebruikers of geïnteresseerden worden getest \autocite{Microsoft2022e}. Dit kan enerzijds gaan om een uitbreiding van de huidige mogelijkheden zoals Directory management of Microsoft Teams, anderzijds om een nieuw concept zoals Education assignments en simulaties van cyberaanvallen \autocite{Microsoft2023w}
+
 \subsubsection{Ondersteunende dependencies}
 
-Microsoft Graph PowerShell ondersteunt een lijst van dependencies \autocite{Microsoft2023k}. Een overzicht van alle ondersteunde dependencies is te vinden in Tabel \ref{MSGDT}. 
+Microsoft Graph PowerShell ondersteunt een lijst van dependencies \autocite{Microsoft2023k}. Een overzicht van alle ondersteunde dependencies tot aan versie 1.23 is te vinden in Tabel \ref{MSGDT}. 
 
 \begin{table} % TODO: bron toevoegen aan tabellen
     \small
