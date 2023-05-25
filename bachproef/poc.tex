@@ -132,7 +132,7 @@ Na het uitvoeren van Listing \ref{PSQ1} komt alleen het domein overeen met de ve
 
 \subsubsection{Functie 2: Aantal gebruikers binnen de omgeving, onderverdeeld in interne en extene gebruikers}
 
-De tweede functie van het audit-script is het weergeven van alle gebruikers met hun account-type. Naast het weergeven wordt er ook een onderverdeling gemaakt tussen interne “Members” en externe “Guests” gebruikers. Er wordt verwacht dat er een externe gebruiker aanwezig is van de 18 gebruikers. Bovendien zijn alle gebruikers alleen beschikbaar in de cloud, en hebben ze geen connectie \ac{On-prem}. \\
+De tweede functie van het audit-script is het weergeven van alle gebruikers met hun account-type. Naast het weergeven wordt er ook een onderverdeling gemaakt tussen interne “Members” en externe “Guests” gebruikers. Er wordt verwacht dat er een externe gebruiker aanwezig is van de 18 gebruikers. Bovendien zijn alle gebruikers alleen beschikbaar in de cloud, en hebben ze geen connectie \ac{on-prem}. \\
 
 Het script in Listing \ref{PSQ2} maakt gebruik van “get-MgUser”. Uit het commando “get-MgUser” worden de “UserPrincipalName”, “OnPremisesSyncenabled” en “UserType” gehaald.  Na het uitvoeren van het script komt de output overeen met de verwachtingen. Deze functie kan worden omgezet met de Microsoft Graph PowerShell-modules. \\
 

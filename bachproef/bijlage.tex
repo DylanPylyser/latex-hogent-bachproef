@@ -966,8 +966,8 @@ GRAND TOTAL: 2
     \begin{minted}
         [
         frame=lines,
-        framesep=1.2mm,
-        baselinestretch=1.2,
+        framesep=1.1mm,
+        baselinestretch=1.1,
         fontsize=\tiny,
         linenos
         ]  
@@ -1010,6 +1010,7 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
             }
             "#microsoft.graph.passwordAuthenticationMethod"  {
                 $resultObject.password = $true
+                # Wanneer alleen het wachtwoord is ingesteld, is MFA uitgeschakeld.
                 if ($resultObject.MFAstatus -ne "Enabled") { $resultObject.MFAstatus = "Disabled" }
             }
             "#microsoft.graph.phoneAuthenticationMethod"  {
@@ -1028,17 +1029,18 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
                 $resultObject.hellobusiness = $true
                 $resultObject.MFAstatus = "Enabled"
             }
-        } } $results += $resultObject;
+        }
+    } 
+    $results += $resultObject;
 }
 # Loopt door $results en sorteert de resultaatobjecten op basis van hun MFA-status.
 foreach ($result in $results) {
-    if ($result.MFAstatus -eq "Disabled") { $MFAdisabled += $result }
-    else { $MFAenabled += $result }
+    if ($result.MFAstatus -eq "Disabled") { $MFAdisabled += $result } else { $MFAenabled += $result }
 }
 Write-Host "=== Summary ==="
 Write-Host "MFA Disabled (Member): $($MFAdisabled.count) - $([math]::Round((($MFAdisabled.count/$results.count)*100),2))%"
 Write-Host "MFA Enabled (Member): $($MFAenabled.count) - $([math]::Round((($MFAenabled.count/$results.count)*100),2))%"
-Write-Host "---`nGRAND TOTAL: $($results.count) - 100%"
+Write-Host "---`nGRANT TOTAL: $($results.count) - 100%"
     \end{minted}
     \caption[functie6.ps1]{Microsoft Graph PowerShell-script dat een overzicht weergeeft en een telling van de interne gebruikers met \ac{MFA} uitvoert.}
     \label{PSQ6}

@@ -61,8 +61,7 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
 }
 # Loopt door $results en sorteert de resultaatobjecten op basis van hun MFA-status.
 foreach ($result in $results) {
-  if ($result.MFAstatus -eq "Disabled") { $MFAdisabled += $result }
-  else { $MFAenabled += $result }
+  if ($result.MFAstatus -eq "Disabled") { $MFAdisabled += $result } else { $MFAenabled += $result }
 }
 Write-Host "=== Summary ==="
 Write-Host "MFA Disabled (Member): $($MFAdisabled.count) - $([math]::Round((($MFAdisabled.count/$results.count)*100),2))%"

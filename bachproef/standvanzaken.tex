@@ -48,7 +48,7 @@ Het beheren van systemen kan omvat worden in enkele taken, hieronder volgt een l
 
 % Taalcheck OK
 
-Sinds de opkomst van Windows-systemen zoals Windows 2000 server, zijn er mogelijkheden om administratieve taken uit te voeren binnen netwerkinfrastructuren \autocite{Tulloch2001}. \\
+Sinds de opkomst van Windows-systemen zoals Windows 2000 Server, zijn er mogelijkheden om administratieve taken uit te voeren binnen netwerkinfrastructuren \autocite{Tulloch2001}. \\
 
 Binnen Windows 2000 server zijn er administratieve tools zoals Microsoft Management Console, Event Viewer en Active Directory Domains and Trusts-instellingen beschikbaar. Deze tools dienen om de taken van een administrator te vergemakkelijken, door een overzicht te brengen van alle data in dat specifieke onderdeel \autocite{Sibisi2022}. Door het gebruik van deze administratieve tools kan een administrator Microsoft-entiteiten waaronder Windows-toestellen beheren om zijn taken mee uit te voeren. 
 
@@ -56,19 +56,19 @@ Binnen Windows 2000 server zijn er administratieve tools zoals Microsoft Managem
 
 % Taalcheck OK
 
-In het begin van de eenentwintigste eeuw werden systemen en servers zoals Windows 2000 server met een focus op \ac{On-prem} onderhouden \autocite{Microsoft2022a}. \ac{On-prem} betekent dat software en hardware, zoals computers en servers, op locaties staan dat eigendom is van het bedrijf en lokaal worden toegepast \autocite{Gastermann2015}. Hierbij wordt de systeemadministratie door systeembeheerders lokaal aangepakt. Ter illustratie, in dit scenario focust de automatisatie via PowerShell zich op de lokale entiteiten binnen het bedrijf. Databanken, mailservers, \ac{DNS}-servers en andere instanties worden lokaal aangesproken en geautomatiseerd indien nodig. \\
+In het begin van de eenentwintigste eeuw werden systemen en servers zoals Windows 2000 Server met een focus op \ac{on-prem} onderhouden \autocite{Microsoft2022a}. On-premises betekent dat software en hardware, zoals computers en servers, op locaties staan dat eigendom is van het bedrijf en lokaal worden toegepast \autocite{Gastermann2015}. Hierbij wordt de systeemadministratie door systeembeheerders lokaal aangepakt. Ter illustratie, in dit scenario focust de automatisatie via PowerShell zich op de lokale entiteiten binnen het bedrijf. Databanken, mailservers, \ac{DNS}-servers en andere instanties worden lokaal aangesproken en geautomatiseerd indien nodig. \\
 
-Rond het jaar 2006 evolueerde de On-premises-aanpak naar een cloud-aanpak \autocite{Hayes2008}. \ac{EC2} van Amazon is een van de grondleggers binnen de cloudservices \autocite{Qian2009}. Deze inventie van Amazon heeft sindsdien invloed op de huidige marktleiderspositie van AWS in cloud computing. Op de tweede plaats bevindt zich de cloudservice van Microsoft, genaamd Azure \autocite{Vailshery2022}.
+Rond het jaar 2006 evolueerde de on-premises-aanpak naar een cloud-aanpak \autocite{Hayes2008}. \ac{EC2} van Amazon is een van de grondleggers binnen de cloudservices \autocite{Qian2009}. Deze inventie van Amazon heeft sindsdien invloed op de huidige marktleiderspositie van AWS in cloud computing. Op de tweede plaats bevindt zich de cloudservice van Microsoft, genaamd Azure \autocite{Vailshery2022}.
 
 
 
-\subsection{Verschuiving van On-premises naar de cloud}
+\subsection{Verschuiving van on-premises naar de cloud}
 
 % Taalcheck OK
 
 Cloud computing heeft een brede betekenis. Het is in feite een technologiemodel dat gebruikt wordt om middelen en diensten beschikbaar te stellen op het internet, of de cloud. \autocite{Haag2009} \\
 
-De migratie van \ac{On-prem} naar de cloud is geen toeval. Eenenveertig procent van de bedrijven uit de \ac{EU} maakt gebruik van cloud computing in 2021 \autocite{EU2021}. \\
+De migratie van \ac{on-prem} naar de cloud is geen toeval. Eenenveertig procent van de bedrijven uit de \ac{EU} maakt gebruik van cloud computing in 2021 \autocite{EU2021}. \\
 
 Het gebruik van cloud computing en cloudservices heeft vele voordelen. De volgende lijst bevat enkele voordelen van cloud computing. De lijst is samengesteld uit onderzoek van \textcite{Aljabre2012}, \textcite{Rittinghouse2016}.
 
@@ -84,11 +84,11 @@ Het gebruik van cloud computing en cloudservices heeft vele voordelen. De volgen
 
 \subsection{De impact van cloud computing op Microsoft administration}
 
-% Taalcheck
+% Taalcheck OK
 
-De evolutie van \ac{On-prem} naar de cloud heeft invloed op de huidige stand van zaken binnen Microsoft administration. Microsoft-administratie staat in voor het beheren van Microsoft-entiteiten. Door een verschuiving van \ac{On-prem} naar cloudomgevingen, wordt de nadruk stilaan gelegd op het beheren van bepaalde entiteiten via cloudtoepassingen. Deze nadruk valt op wanneer de productenlijst van Microsoft Azure wordt geraadpleegd \autocite{Microsoft2023b}. Dit is een lijst die steeds verder wordt uitgebreid met nieuwe technologieën. \\
+De evolutie van \ac{on-prem} naar de cloud heeft invloed op de huidige stand van zaken binnen Microsoft administration. Microsoft-administratie staat in voor het beheren van Microsoft-entiteiten. Door een verschuiving van \ac{on-prem} naar cloudomgevingen ligt stilaan de nadruk op het beheren van bepaalde entiteiten via cloudtoepassingen. Deze nadruk valt op wanneer de productenlijst van Microsoft Azure wordt geraadpleegd \autocite{Microsoft2023b}. Dit is een lijst die steeds verder  uitbreidt met nieuwe technologieën. \\
 
-Een praktisch voorbeeld van een entiteit, of een groep van entiteiten, dat via de cloud kan beheerd worden is Azure Active Directory \autocite{Microsoft2023c}. Azure Active Directory kan gebruikt worden als alternatief voor Active Directory voor bepaalde onderdelen. Active Directory is kortweg een opslagplaats die een focus heeft op On-premises-instanties. Active Directory en Azure Active Directory worden in het volgende onderdeel verder besproken.
+Een praktisch voorbeeld van een entiteit, of een groep van entiteiten, dat via de cloud kan beheerd worden is Azure Active Directory \autocite{Microsoft2023c}. Azure Active Directory kan gebruikt worden als alternatief voor Active Directory voor bepaalde onderdelen. Active Directory is kortweg een opslagplaats die een focus heeft op on-premises-instanties. Active Directory en Azure Active Directory worden in het volgende onderdeel verder besproken.
 
 % ---
 % Volgende onderdeel
@@ -96,21 +96,27 @@ Een praktisch voorbeeld van een entiteit, of een groep van entiteiten, dat via d
 
 \section{Wat is Azure Active Directory?}
 
-\ac{AD} is een centrale en gemeenschappelijke opslagplaats voor informatie geïntroduceerd door Microsoft \autocite{Allen2003}. De eerste versie van \ac{AD} is gemaakt voor de Windows 2000 server-editie. Deze opslagplaats bevat allerlei informatie binnen een netwerk, zoals gebruikers, groepen, computers, applicaties, bestanden en printers. Deze informatie kan worden opgevraagd en beheerd. \\
+% Taal OK
+
+\ac{AD} is een centrale en gemeenschappelijke opslagplaats voor informatie geïntroduceerd door Microsoft \autocite{Allen2003}. De eerste versie van \ac{AD} is gemaakt voor de Windows 2000 Server-editie. Deze opslagplaats bevat allerlei informatie binnen een netwerk, zoals gebruikers, groepen, computers, applicaties, bestanden en printers. Deze informatie kan worden opgevraagd en beheerd. \\
 
 Azure \ac{AD} is een modernere aanpak van Active Directory binnen de cloud dat ontstaan is in 2008 \autocite{Chappell2008}. Azure \ac{AD} is een gecentraliseerd beheerplatform van Microsoft voor gebruikers en apparaten in netwerken die een verbinding hebben met de Azure-clouddienst \autocite{Mayank2019}. Middelen, waaronder gebruikers en apparaten, kunnen vanuit Azure \ac{AD} beheerd worden met bijhorende netwerkauthenticatie. Het dient als een centraal punt van informatie, waarbij details over alle middelen in het netwerk worden opgeslagen.
 
 \subsection{Azure Active Directory PowerShell-modules} 
 
+% Taal OK
+
 Azure \ac{AD} PowerShell voor Graph, kortweg Azure \ac{AD} PowerShell, is een module binnen PowerShell die gebruikt kan worden om Azure \ac{AD} te beheren \autocite{Microsoft2023}. PowerShell is een oplossing van Microsoft voor taakautomatisering via een \ac{CLI} \autocite{Microsoft2022}. \\
 
-PowerShell staat gekend voor zijn breed scala aan informatie dat het kan verkrijgen. Dit breed scala gaat van systemen, servers, randapparatuur, mobiele apparaten tot gegevensgestuurde toepassingen zoals Active Directory \autocite{Hosmer2019}. Vandaag de dag ondersteunt PowerShell meer dan 11.350 unieke modules en scripts via de PowerShell Gallary, waaronder de Azure \ac{AD} PowerShell module \autocite{Microsoft2023a}. \\
+PowerShell staat bekend voor zijn breed scala aan informatie dat het kan verkrijgen. Dit breed scala gaat van systemen, servers, randapparatuur, mobiele apparaten tot gegevensgestuurde toepassingen zoals Active Directory \autocite{Hosmer2019}. Vandaag de dag ondersteunt PowerShell meer dan 11.350 modules en scripts via de PowerShell Gallary, waaronder de Azure \ac{AD} PowerShell module \autocite{Microsoft2023a}. \\
 
 Door het gebruik van Azure \ac{AD} in combinatie met PowerShell kan het gecentraliseerd beheerplatform automatisch of geautomatiseerd werken. Dit zorgt voor bijkomende voordelen voor de beheerder. Uit onderzoek van \textcite{Breton2003} zijn enkele voordelen van automatisatie minder stress, tijdbesparing en een kleinere kans op menselijke fouten. \\
 
 Naast de Azure \ac{AD} PowerShell-module, is er de MSOnline PowerShell-module. MSOnline is de voorganger van de AzureAD-module. MSOnline is de eerste versie, in vergelijking met AzureAD dat de tweede versie is. MSOnline heeft dezelfde functie als AzureAD en biedt de mogelijkheid aan om via PowerShell Azure \ac{AD} te kunnen aanspreken \autocite{Prigent2019}.
 
 \subsubsection{Ondersteunende data-objecten}
+
+% Taal OK
 
 PowerShell heeft verschillende soorten commando's voor het toevoegen, verwijderen of lezen van iets. Wanneer een commando de functie heeft om iets op te vragen, dan kan dit bijvoorbeeld een “Get”-commando zijn zoals “Get-AzureADUser” \autocite{Microsoft2023i}. \\
 
@@ -131,7 +137,7 @@ Binnen Azure AD PowerShell zijn er twaalf soorten commando's die voorkomen uit d
     \item Update: Bijwerken.
 \end{itemize}
 
-Azure AD PowerShell ondersteunt verschillende data-objecten met een specifiek aantal uitvoerbare commando's \autocite{Microsoft2023i}. Per data-object zijn er een of meerdere soorten PowerShell-commando's, in de tabel wordt alleen het aantal commando's weergegeven. Een overzicht van alle ondersteunde data-objecten met het aantal commando's wordt weergeven in Tabel \ref{AADT}. 
+Azure AD PowerShell ondersteunt verschillende data-objecten met een specifiek aantal uitvoerbare commando's \autocite{Microsoft2023i}. Per data-object zijn er één of meerdere soorten PowerShell-commando's, in de tabel wordt alleen het aantal commando's weergegeven. Een overzicht van alle ondersteunde data-objecten met het aantal commando's wordt weergeven in Tabel \ref{AADT}. 
 
 \begin{table}
     \small
@@ -170,7 +176,9 @@ Azure AD PowerShell ondersteunt verschillende data-objecten met een specifiek aa
 
 \subsection{Wat is Azure Active Directory Graph?}
 
-De communicatie tussen Azure \ac{AD} en een client (bijvoorbeeld Azure \ac{AD} PowerShell-modules) gebeurd via een \ac{API}. Deze \ac{API} is een \ac{REST} \ac{API} die Graph wordt genoemd \autocite{Microsoft2015}. \\ 
+% Taal OK
+
+Azure \ac{AD} en een client (bijvoorbeeld Azure \ac{AD} PowerShell-modules) communiceren via een \ac{API}. Deze \ac{API} is een \ac{REST} \ac{API} die Graph wordt genoemd \autocite{Microsoft2015}. \\ 
 
 De naam “Graph” is afgeleid uit het wiskundige figuur van een graaf. Een graaf is een verzameling van punten die wel of niet met elkaar zijn verbonden \autocite{Denaux2022}. Een voorbeeld van een wiskundige graaf is te zien op Figuur \ref{mga}. \\
 
@@ -188,13 +196,15 @@ Azure \ac{AD} Graph heeft een soortgelijke betekenis als dat van een wiskundige 
     \label{gms}
 \end{figure}
 
+
+
 \subsubsection{Achterliggende werking van Azure Active Directory Graph API}
 
-% TODO: Bronnen (zie word onder Azure AD Graph API)
+% Taal OK
 
 De Azure \ac{AD} Graph \ac{API} is een OData 3.0-compatibele dienst om objecten zoals gebruikers, groepen en contactpersonen in een tenant te lezen en te wijzigen \autocite{Microsoft2016}. \\
 
-Een tenant kan vergeleken worden met een appartementencomplex. Binnen dit complex zijn meerdere appartementen. In elk appartement heb je bijvoorbeeld een badkamer, slaapkamer, living en balkon \autocite{Saxton2015}. Deze uitleg wordt gevisualiseerd op Figuur \ref{rlt}. \\
+Een tenant is vergelijkbaar een appartementencomplex. Binnen dit complex zijn meerdere appartementen. In elk appartement heb je bijvoorbeeld een badkamer, slaapkamer, living en balkon \autocite{Saxton2015}. Deze uitleg wordt gevisualiseerd op Figuur \ref{rlt}. \\
 
 \begin{figure}[!h]
     \includegraphics[width=50mm, scale=0.5]{RealTenant.png}
@@ -214,13 +224,15 @@ Het OData-protocol dient voor interacties met gegevens via \ac{REST}-webdiensten
 
 Door het gebruik van \ac{REST}-eindpunten kunnen \ac{HTTP}-verzoeken verstuurd worden om bewerkingen uit te voeren met de service. De Azure \ac{AD} Graph \ac{API} heeft een eigen demo-omgeving genaamd Azure \ac{AD} Graph Explorer, waarin bepaalde functies en bewerkingen worden getest \autocite{Microsoft}. \\
 
-Het proces van Graph gaat van start wanneer een applicatie een verzoek doet. Dit verzoek moet een token bevatten. Deze token wordt gegeven door Azure \ac{AD} en bewijst dat de gebruiker de juiste machtigingen heeft om de gevraagde data te raadplegen.
+Het proces van Graph gaat van start wanneer een applicatie een verzoek doet. Dit verzoek moet een token bevatten. Azure \ac{AD} geeft deze token en bewijst dat de gebruiker de juiste machtigingen heeft om de gevraagde data te raadplegen \autocite{Microsoft2015}.
 
 
 
 \subsubsection{Authenticatie via libraries}
 
-Vooraleer de autorisatie kan plaatsvinden, moet er eerst worden geauthenticeerd. Dit gebeurd via een tool genaamd \ac{ADAL} of de modernere \ac{MSAL} van \textcite{Microsoft2022d}. \\
+% Taal OK
+
+Vooraleer de autorisatie kan plaatsvinden, moet er eerst worden geauthenticeerd. Dit gebeurt via een tool genaamd \ac{ADAL} of de modernere \ac{MSAL} van \textcite{Microsoft2022d}. \\
 
 \ac{ADAL} en \ac{MSAL} worden gebruikt voor verificatie- en autorisatiefunctionaliteiten \autocite{Ooms2022}. Beide technologieën dienen om te kunnen authenticeren met de Graph \ac{API}. \\ 
 
@@ -228,15 +240,17 @@ Er zijn twee methodes om te verbinden met de Graph \ac{API}. \\
 
 De eerste is door middel van een gedelegeerde of interactieve manier \autocite{Microsoft2023u}. Er wordt bijvoorbeeld gebruikgemaakt van een prompt waarbij de gebruikersnaam (of mailadres) en het wachtwoord wordt gevraagd \autocite{Bertocci2015}. Bovendien kan er gevraagd worden om een \ac{2FA}- of \ac{MFA}-methode toe te passen. Dit gaat gepaard met het account waarop de gebruiker wilt inloggen, indien dit geactiveerd is. \\
 
-Het gebruik van \ac{2FA} of \ac{MFA} is veiliger dan alleen het gebruik van een naam en wachtwoord, bevestigt het onderzoek van \textcite{Gunson2011} en \textcite{Banyal2013}. Het wordt sterk aangeraden om minstens \ac{2FA} toe te passen bij het gebruik van een gedelegeerde methode. \\
+Het gebruik van \ac{2FA} of \ac{MFA} is veiliger dan enkel het gebruik van een naam en wachtwoord, bevestigt het onderzoek van \textcite{Gunson2011} en \textcite{Banyal2013}. Het wordt sterk aangeraden om minstens \ac{2FA} toe te passen bij het gebruik van een gedelegeerde methode. \\
 
-De tweede methode is door een niet-interactieve of geprogrammeerde manier \autocite{Microsoft2023t}. Deze methode maakt bijvoorbeeld gebruik van secrets of tokens die aan de registratie van een applicatie zijn gekoppeld. Deze registratie gebeurd in Azure. 
+De tweede methode is door een niet-interactieve of geprogrammeerde manier \autocite{Microsoft2023t}. Deze methode maakt bijvoorbeeld gebruik van secrets of tokens die aan de registratie van een applicatie zijn gekoppeld. Deze registratie gebeurt in Azure. 
 
 
 
 \subsubsection{Autorisatie door middel van tokens}
 
-Azure Active Directory-tokens bevatten informatie over de applicatie, de gebruiker, authenticatie en de rechten die een applicatie mag uitvoeren op de bijhorende directory \autocite{Microsoft2015}. Deze tokens bevinden zich in de autorisatieheader van een verzoek. Een afgekort voorbeeld hiervan is te zien op Figuur \ref{ahtoken}. \\
+% Taal OK
+
+Tokens van Azure Active Directory bevatten informatie over de applicatie, de gebruiker, authenticatie en de rechten die een applicatie mag uitvoeren op de bijhorende directory \autocite{Microsoft2015}. Deze tokens bevinden zich in de autorisatieheader van een verzoek. Een afgekort voorbeeld hiervan is te zien op Figuur \ref{ahtoken}. \\
 
 \begin{figure}[h]
     \scriptsize
@@ -249,7 +263,7 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
 
 Vervolgens voert de \ac{API} de nodige autorisaties uit via permissie scopes. Dit zijn OAuth 2.0 permissie scopes die aanwezig zijn in het Azure \Ac{AD}-token. OAuth 2.0 is een standaardprotocol voor autorisatie \autocite{OAuth}. \\
 
-De permissie scopes worden gebruikt om te controleren of een gebruiker toegang heeft tot een bepaalde map of locatie \autocite{Microsoft2016a}. Een ontwikkelaar moet in dit scenario de juiste permissie scopes gebruiken om over de vereiste rechten te beschikken voor een actie. Wanneer er wordt aangemeld, krijgt de gebruiker de mogelijkheid om toestemming te geven of de applicatie in kwestie de mapgegevens van de gebruiker mag benutten. Tijdens het toestaan worden de permissie scopes meegegeven die de ontwikkelaar heeft ingesteld. Een opsomming van de mogelijk permissie scopes binnen de Azure \ac{AD} Graph \ac{API} bevindt zich in Tabel \ref{psaad}. \\
+De permissie scopes worden gebruikt om te controleren of een gebruiker toegang heeft tot een bepaalde map of locatie \autocite{Microsoft2016a}. Een ontwikkelaar moet in dit scenario de juiste permissie scopes gebruiken om over de vereiste rechten te beschikken voor een actie. Wanneer er wordt aangemeld, krijgt de gebruiker de mogelijkheid om toestemming te geven of de applicatie in kwestie de gegevens van de gebruiker mag benutten. Tijdens het toestaan worden de permissie scopes meegegeven die de ontwikkelaar heeft ingesteld. Een opsomming van de mogelijk permissie scopes binnen de Azure \ac{AD} Graph \ac{API} bevindt zich in Tabel \ref{psaad}. \\
 
 \begin{table}[ht]
     \centering
@@ -280,6 +294,8 @@ Het gebruik van permissie scopes komt overeen met een gekend veiligheidsprincipe
 
 \subsubsection{Eindpunt adressering}
 
+% Taal OK
+
 Om taken of functies uit te voeren met de Graph \ac{API}, wordt er gebruikgemaakt van \ac{HTTP}-verzoeken \autocite{Microsoft2015}. Deze verzoeken maken gebruik van een bepaalde methode. Een opsomming van de mogelijk methodes wordt hieronder weergegeven met bijhorende betekenis, gebaseerd op het onderzoek van \textcite{Fielding1999}, \textcite{Dusseault2010}.
 
 \begin{itemize}
@@ -308,7 +324,7 @@ De reeds voorgestelde \ac{URL} bestaat uit vier componenten, voorgesteld door \t
     \item Graph \ac{API} version: De versie van de \ac{API} waar het verzoek naar gericht is.
 \end{itemize}
 
-Een praktisch voorbeeld met betrekking tot het oproepen van gebruikersgegevens, wordt weergegeven op Figuur \ref{pfe}. \\
+Een praktisch voorbeeld over het oproepen van gebruikersgegevens, wordt weergegeven op Figuur \ref{pfe}. \\
 
 \begin{figure}[h]
     \scriptsize\begin{verbatim}https://graph.windows.net/contoso.com/users/john@contoso.com/
@@ -321,6 +337,8 @@ $links/manager?api-version=1.6
 
 
 \subsubsection{OData Query Parameters}
+
+% taal OK
 
 Het gebruik van OData-queryparameters in de Graph \ac{API} zorgt ervoor dat een ingelezen verzameling van bronnen kunnen gefilterd, gesorteerd en gepagineerd worden \autocite{Microsoft2015}. Het biedt ondersteuning aan voor de volgende parameters met bijhorende betekenis. De betekenissen staan gedefinieerd in studies van \textcite{Liang2016}, \textcite{Wojcieszyn2014}. 
 
@@ -345,11 +363,13 @@ https://graph.windows.net/contoso.com/groups/
 \label{odqp}
 \end{figure}
 
+
+
 \subsubsection{Request en Response Headers}
 
-% TODO: Bron zoeken voor onderstaande uitleg?
+% Taal OK
 
-De Graph \ac{API} werkt met verzoeken en antwoorden. Een verzoek werkt met een aantal soorten headers en bodies. Drie voorbeelden die \textcite{Microsoft2015} geeft van voorkomende verzoekheaders zijn de volgende:
+De Graph \ac{API} werkt met “requests” (of verzoeken) en “responses” (of antwoorden). Een verzoek werkt met een aantal soorten “headers” (of hoofden) en “bodies” (of lichamen). Drie voorbeelden die \textcite{Microsoft2015} geeft van voorkomende request headers zijn de volgende:
 
 \begin{itemize}
     \item Authorization: Uitgegeven Azure \ac{AD}-token.
@@ -357,7 +377,7 @@ De Graph \ac{API} werkt met verzoeken en antwoorden. Een verzoek werkt met een a
     \item Content-Length: Lengte van het verzoek (in bytes).
 \end{itemize} 
 
-Daarnaast bestaan er ook een aantal antwoordheaders. Hieronder worden een aantal mogelijke antwoordheaders meegegeven met hun betekenis door \textcite{Microsoft2015}.
+Daarnaast bestaan er ook een aantal response headers. Hieronder worden een enkele mogelijke response headers meegegeven met hun betekenis door \textcite{Microsoft2015}.
 
 \begin{itemize}
     \item Content-Type: Mediatype van de inhoud.
@@ -366,7 +386,7 @@ Daarnaast bestaan er ook een aantal antwoordheaders. Hieronder worden een aantal
     \item ocp-aad-session-key: Sleutel die een sessie met de directorydienst identificeert.
 \end{itemize}
 
-Een voorbeeld van antwoordheaders binnen Azure \ac{AD} Graph wordt weergegeven bij Listing \ref{rhaad}. \\
+Een voorbeeld van antwoordheaders binnen Azure \ac{AD} Graph wordt weergegeven bij Figuur \ref{rhaad}. \\
 
 \begin{figure}[h!]
     \scriptsize
@@ -390,11 +410,16 @@ Een voorbeeld van antwoordheaders binnen Azure \ac{AD} Graph wordt weergegeven b
     \label{rhaad}
 \end{figure}
 
+
+
+
 \subsubsection{Request en Response Bodies}
+
+% Taal OK
 
 Request bodies kunnen via \Ac{JSON}- of \ac{XML}-payloads verzonden worden voor POST-, PATCH- en PUT-verzoeken \autocite{Microsoft2015}. Bovendien kunnen antwoorden, bijvoorbeeld van een server, worden teruggestuurd via \ac{JSON} of \ac{XML}. \\
 
-Het woord “payload” staat voor data die via een pakket of transmissie worden gedragen \autocite{Comer2006}. Deze payloads kunnen in de request bodies gespecifieerd worden via de Content-Type verzoekheader en in antwoorden van Accept-verzoekheaders \autocite{Microsoft2015}. Een voorbeeld van een request, met bijhorende request en response body, wordt voorgesteld bij Figuur \ref{hpr}, \ref{hreqb} en \ref{hresb}. \\
+Het woord “payload” staat voor het dragen van data via een pakket of transmissie \autocite{Comer2006}. Deze payloads kunnen in de request bodies gespecifieerd worden via de Content-Type request header en in antwoorden van accept request headers \autocite{Microsoft2015}. Een voorbeeld van een request, met bijhorende request en response body, wordt voorgesteld bij Figuur \ref{hpr}, \ref{hreqb} en \ref{hresb}. \\
 
 \begin{figure}[h!]
     \scriptsize
@@ -459,7 +484,9 @@ POST https://graph.windows.net/myorganization/users?api-version
 
 \section{Wat is Microsoft Graph?}
 
-Microsoft Graph is, net zoals de reeds besproken Azure \Ac{AD} Graph, een centrale \ac{REST} \ac{API} voor Microsoft-entiteiten. Deze technologie is verschillend, maar volgt de uitfaserende Azure \ac{AD} Graph op \autocite{Microsoft2023n}. Microsoft Graph werd door \textcite{Microsoft2015a} in de schijnwerper gezet in 2015. De technologie is gebasseerd op de wiskundige graaf zoals Azure \Ac{AD} Graph. Het logisch concept van Microsoft Graph wordt weergegeven op Figuur \ref{msg}. \\
+% Taal OK
+
+Microsoft Graph is, net zoals de reeds besproken Azure \Ac{AD} Graph, een centrale \ac{REST} \ac{API} voor Microsoft-entiteiten. Deze technologie is verschillend, maar volgt de uitfaserende Azure \ac{AD} Graph op \autocite{Microsoft2023n}. Microsoft Graph werd door \textcite{Microsoft2015a} in de schijnwerper gezet in 2015. De technologie is gebaseerd op de wiskundige graaf zoals Azure \Ac{AD} Graph. Het logisch concept van Microsoft Graph wordt weergegeven op Figuur \ref{msg}. \\
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{MicrosoftGraph.png}
@@ -468,10 +495,12 @@ Microsoft Graph is, net zoals de reeds besproken Azure \Ac{AD} Graph, een centra
 \end{figure}
 
 \subsection{Uitfasering van Azure AD Graph}
+
+% Taal OK
  
 Microsoft Graph heeft bepaalde PowerShell-modules die de Azure \ac{AD} en MSOnline PowerShell-modules kunnen vervangen. Op 30 september 2022 maakte Microsoft bekend dat de uitfasering van de Azure \ac{AD} PowerShell-modules en \ac{ADAL} van start zou gaan op 30 juni 2023 \autocite{Sahay2022}. \\
 
-De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende redenen volgens \textcite{Microsoft2023e}:
+De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende redenen volgens \textcite{Microsoft2023e}.
 
 \begin{itemize}
     \item Het gebruik van Microsoft Graph ligt dubbel zo hoog dan dat van Azure \ac{AD} Graph.
@@ -489,19 +518,19 @@ De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende reden
 
 \subsubsection{Uitfasering van ADAL}
 
-Naast de uitfasering van de Azure \ac{AD} PowerShell-modules, start ook de uitval van \ac{ADAL} op 30 juni 2023 \autocite{Sahay2022}. Zoals reeds besproken in Azure \ac{AD} wordt er gebruikgemaakt van \ac{ADAL} of \ac{MSAL} om met de oude als nieuwe Graph te kunnen verbinden. \\
+% Taal OK
 
-De migratie naar \ac{MSAL} brengt voordelen met zich mee dat \ac{ADAL} niet kan aanbieden verklaard \autocite{Microsoft2023m}. Daarnaast is \ac{MSAL} gebouwd om met het Microsoft identity platform te werken, dat de werking met Microsoft Graph vereenvoudigd.
-
-
+Naast de uitfasering van de Azure \ac{AD} PowerShell-modules, start ook de uitval van \ac{ADAL} op 30 juni 2023 \autocite{Sahay2022}. Zoals reeds besproken in Azure \ac{AD} wordt er gebruikgemaakt van \ac{ADAL} of \ac{MSAL} om met de oude als nieuwe Graph te kunnen verbinden. \textcite{Microsoft2023m} verklaart dat migratie naar \ac{MSAL} voordelen met zich meebrengt dat \ac{ADAL} niet kan aanbieden. Daarnaast is \ac{MSAL} gebouwd om met het Microsoft identity platform te werken. Dit vereenvoudigt de werking met Microsoft Graph.
 
 \subsection{Microsoft Graph toepassingen}
+
+% Taal OK
 
 Microsoft Graph bestaat uit drie toepassingen \autocite{Microsoft2023d}. \\
 
 De eerste toepassing is de Microsoft Graph \Ac{API} \autocite{Microsoft2022e}. Dit is een eindpunt dat kan aangesproken worden via “https://graph.microsoft.com” dat Microsoft-entiteiten binnen de cloud kan aanspreken. Dit onderdeel wordt later dieper besproken. \\
 
-De tweede toepassing is Microsoft Graph connectors \autocite{Microsoft2022f}. Deze Graph-connectoren werken in de ingaande richting. Door het gebruik van deze connectoren, kunnen gegevens buiten de Microsoft-cloud worden gestuurd naar Graph en bijhorende toepassingen. Dit vermindert de overhead, doordat de informatie bereikbaar is. De bereikbaarheid is te danken aan het gebruik van eindpunten zoals SharePoint, Office.com of Bing.com dat de connectors ondersteunen. Op Figuur \ref{MSGC} wordt de werking van Connectors geïllustreerd. \\
+De tweede toepassing is Microsoft Graph connectors \autocite{Microsoft2022f}. Deze Graph-connectoren werken in de ingaande richting. Door het gebruik van deze connectoren, kunnen gegevens buiten de Microsoft-cloud worden gestuurd naar Graph en bijhorende toepassingen. Dit vermindert de overhead, doordat de informatie bereikbaar is. De bereikbaarheid is te danken aan het gebruik van eindpunten zoals SharePoint, Office.com of Bing.com dat de connectors ondersteunen. Op Figuur \ref{MSGC} is de werking van Connectors geïllustreerd. \\
 
 \begin{figure}[!h]
     \includegraphics[width=\textwidth]{GraphConnectors.png}
@@ -509,7 +538,7 @@ De tweede toepassing is Microsoft Graph connectors \autocite{Microsoft2022f}. De
     \label{MSGC}
 \end{figure}
 
-Als laatste worden er een set van tools aangeboden via Microsoft Graph Data Connect \autocite{Microsoft2022c}. Deze tools kunnen gebruikt worden om applicaties te ontwikkelen voor analyse, intelligentie en bedrijfsprocesoptimalisatie met Microsoft 365-data. Deze data wordt geïntegreerd binnen Azure, zodat de reken- en opslagcapaciteiten van het cloudplatform worden gebruikt. Een voorstelling van Data Connect is te zien op Figuur \ref{MSGDC}. 
+Als laatste biedt \textcite{Microsoft2022c} een set van tools aan via Microsoft Graph Data Connect . Deze tools zijn geschikt voor de ontwikkeling van applicaties rond analyse, intelligentie en bedrijfsprocesoptimalisatie met Microsoft 365-data. Deze data wordt geïntegreerd binnen Azure, zodat de reken- en opslagcapaciteiten van het platform worden gebruikt. Een voorstelling van Data Connect is te zien op Figuur \ref{MSGDC}. 
 
 \begin{figure}[!h]
     \includegraphics[width=\textwidth]{GraphDataConnect.png}
@@ -521,9 +550,13 @@ Als laatste worden er een set van tools aangeboden via Microsoft Graph Data Conn
 
 \subsection{Authenticatie en Autorisatie}
 
+% Taal OK
+
 Vooraleer er een token wordt uitgegeven, moet een applicatie geregistreerd zijn in het Microsoft identity platform. Bovendien moet de applicatie beschikken over de juiste machtigingen om Microsoft Graph te mogen gebruiken \autocite{Microsoft2022b}.
 
 \subsubsection{Toegangsmogelijkheden}
+
+% Taal OK
 
 Binnen Microsoft Graph zijn er twee mogelijkheden om toegang te verschaffen tot de gegevens. Dit kan via de gedelegeerde- of App-only-methode \autocite{Microsoft2022b}. Een simpele weergave van wat deze methodes betekenen wordt weergegeven op Figuur \ref{MIPM}. \\
 
@@ -533,13 +566,15 @@ Binnen Microsoft Graph zijn er twee mogelijkheden om toegang te verschaffen tot 
     \label{MIPM}
 \end{figure}
 
-De eerste methode, delegated access, staat voor het toegang hebben namens de gebruiker. Dit is mogelijk wanneer een gebruiker zich aanmeldt bij een applicatie. Hierdoor geeft de gebruiker toestemming. Vervolgens kan Microsoft Graph in naam van de gebruiker een actie uitvoeren. Zowel de applicatie als de gebruiker moet over de juiste machtigingen beschikken om het verzoek te laten doorgaan. Een ander woord voor gedelegeerde machtigingen zijn scopes. Deze scopes maken gebruik van OAuth2-permissies. Microsoft Graph biedt voor bepaalde onderdelen permission scopes aan die de rechten van een gebruiker of applicatie bepalen. Door \textcite{Microsoft2023p} wordt er een overzicht gegeven van alle permissie scope onderdelen of resources die Microsoft Graph op dit moment aanbiedt \autocite{Microsoft2022b}. \\
+De eerste methode, delegated access, staat voor het toegang hebben namens een gebruiker. Dit is wanneer een gebruiker zich aanmeldt bij een applicatie, waardoor de gebruiker toestemming geeft. Vervolgens kan Microsoft Graph in naam van de gebruiker een actie uitvoeren. Zowel de applicatie als de gebruiker moet over de juiste machtigingen beschikken om het verzoek te laten doorgaan. Een ander woord voor gedelegeerde machtigingen zijn scopes. Deze scopes maken gebruik van OAuth2-permissies. Microsoft Graph biedt voor bepaalde onderdelen permission scopes aan die de rechten van een gebruiker of applicatie bepalen. Door \textcite{Microsoft2023p} wordt er een overzicht gegeven van alle permission scopes of resources die Microsoft Graph op dit moment aanbiedt \autocite{Microsoft2022b}. \\
 
-App-only access is de tweede methode. Dit principe werkt zonder een gebruiker om met gegevens te interageren. Dit principe komt eerder voor bij automatische taken (bv. een back-up) of achtergronddiensten (bv. daemons). Dit principe is aan te raden wanneer een gebruiker niet mag inloggen of de vereiste gegevens via meerdere gebruikers worden toegewezen. Bij de tweede methode moet de applicatie over de juiste privileges beschikken. Dit kan via permissies of app-rollen. Een andere manier is via toekennen van eigendomsrechten aan de applicatie \autocite{Microsoft2022b}. 
+App-only access is de tweede methode. Dit principe werkt zonder een gebruiker om met gegevens te interageren. Dit principe komt eerder voor bij automatische taken (bijvoorbeeld een back-up) of achtergronddiensten (bijvoorbeeld daemons). Dit principe is aan te raden wanneer een gebruiker niet mag inloggen, of wanneer de vereiste gegevens via meerdere gebruikers worden toegewezen. Bij deze methode moet de applicatie over de juiste privileges beschikken. Dit kan via permissies of app-rollen. Een andere manier is via het toekennen van eigendomsrechten aan de applicatie \autocite{Microsoft2022b}. 
 
 \subsubsection{Access tokens}
 
-Access tokens worden verkregen wanneer een toepassing of applicatie een authenticatieverzoek doet. Deze tokens worden gebruikt om de \ac{API} aan te spreken. Als extra veiligheidsprincipe worden toegangstokens van het Microsoft-identiteitsplatform uitgerust met claims. Claims bevatten extra informatie dat kan dienen als extra validatiemethode. Deze validatie wordt gebruikt om na te kijken of de instantie wel degelijk over de juiste rechten beschikken om bepaalde acties uit te voeren. Deze tokens worden behandeld als ondoorzichtige strings dat alleen voor de \ac{API} bedoeld zijn \autocite{Microsoft2022b}. Een voorbeeld van een access token is te vinden op Figuur \ref{MSGAT}. \\
+% Taal OK
+
+Access tokens worden verkregen als een toepassing of applicatie een authenticatieverzoek doet. Deze tokens worden gebruikt om de \ac{API} aan te spreken. Als extra veiligheidsprincipe worden toegangstokens van het Microsoft-identiteitsplatform uitgerust met claims. Claims bevatten extra informatie dat kan dienen als extra validatiemethode. Deze validatie wordt gebruikt om na te kijken of de instantie wel degelijk over de juiste rechten beschikken om bepaalde acties uit te voeren. Deze tokens worden behandeld als ondoorzichtige strings dat alleen voor de \ac{API} bedoeld zijn \autocite{Microsoft2022b}. Een voorbeeld van een access token is te vinden op Figuur \ref{MSGAT}. \\
 
 \begin{figure}[h]
     \scriptsize
@@ -550,7 +585,7 @@ eyJ0eXAiOiJKV1QiLCJhb ... lciIUs9DrBLfpCt
     \label{MSGAT}
 \end{figure}
 
-Microsoft Graph wordt aangeroepen door een autorisatieverzoek van een applicatie. De toegangstoken wordt als een Bearer-token gekoppeld aan de Autorisatieheader binnen een \ac{HTTP}-verzoek. Dit concept is gelijkaardig aan dat van een Azure \ac{AD}-token dat al reeds besproken werd \autocite{Microsoft2022b}. Een voorbeeld van een \ac{HTTP}-verzoek met deze onderdelen wordt weergegeven op Figuur \ref{MSGA}. \\
+Microsoft Graph wordt aangeroepen door een autorisatieverzoek van een applicatie. De toegangstoken wordt als een bearer-token gekoppeld aan de authorization header binnen een \ac{HTTP}-verzoek. Dit concept is gelijkaardig aan dat van een Azure \ac{AD}-token dat al besproken werd \autocite{Microsoft2022b}. Een voorbeeld van een \ac{HTTP}-verzoek met deze onderdelen wordt weergegeven op Figuur \ref{MSGA}. \\
 
 \begin{figure}[h]
     \scriptsize
@@ -567,9 +602,11 @@ Om aan access tokens te geraken, bestaan er oplossingen zoals authenticatiebibli
 
 \subsubsection{Toegang hebben op naam van een gebruiker}
 
+% Taal CHECKPOINT
+
 Access tokens regelen de toegang tot het gebruik van Microsoft Graph. Om een access token te verkrijgen via een gebruiker, worden de volgende vijf stappen gehanteerd \autocite{Microsoft2023r}. \\
 
-Als eerste stap moet de applicatie worden geregisteerd bij Azure \ac{AD}. De registratie gebeurd via het onderdeel App Registrations binnen Azure. Wanneer de applicatie geregistreerd is, gaat het Microsoft-identiteitsplatform instaan voor volgende informatie \autocite{Microsoft2023r}. 
+Als eerste stap moet de applicatie worden geregistreerd bij Azure \ac{AD}. De registratie gebeurt via het onderdeel App Registrations binnen Azure. Wanneer de applicatie geregistreerd is, gaat het Microsoft-identiteitsplatform instaan voor volgende informatie \autocite{Microsoft2023r}. 
 
 \begin{itemize}
     \item Application ID: Unieke identificatie.
@@ -577,7 +614,7 @@ Als eerste stap moet de applicatie worden geregisteerd bij Azure \ac{AD}. De reg
     \item Client secret: Wachtwoord of sleutelpaar dat gebruikt wordt voor authenticatie. Dit wordt gebruikt bij webapplicaties.
 \end{itemize}
 
-Als tweede volgt het autoriseren. Dit gebeurd via het Microsoft identity platform. Via dit platform kan een gebruiker aanmelden en toestemming geven. Bij het verkrijgen van toestemming wordt er een code teruggestuurd. Deze code zorgt voor het verlenen van een access token \autocite{Microsoft2023r}. Een voorbeeld van deze terugkerende code wordt weergegeven op Figuur \ref{MSGAR}. \\
+Als tweede volgt het autoriseren. Dit gebeurt via het Microsoft identity platform. Via dit platform kan een gebruiker aanmelden en toestemming geven. Bij het verkrijgen van toestemming wordt er een code teruggestuurd. Deze code zorgt voor het verlenen van een access token \autocite{Microsoft2023r}. Een voorbeeld van deze terugkerende code wordt weergegeven op Figuur \ref{MSGAR}. \\
 
 \begin{figure}[h!]
     \scriptsize
@@ -590,7 +627,7 @@ code=M0ab92efe-b6fd-df08-87dc-2c6500a7f84d
     \label{MSGAR}
 \end{figure}
 
-Daarna moet er een token worden verkregen. Dit gebeurd via een tokenverzoek dat op Figuur \ref{HTR} wordt weergegeven. Na het versturen van dit verzoek volgt er een antwoord met een access token in \ac{JSON}-formaat \autocite{Microsoft2023r}. Dit antwoord wordt voorgesteld op Figuur \ref{HTRES}. \\ 
+Daarna moet er een token worden verkregen. Dit gebeurt via een tokenverzoek dat op Figuur \ref{HTR} wordt weergegeven. Na het versturen van dit verzoek volgt er een antwoord met een access token in \ac{JSON}-formaat \autocite{Microsoft2023r}. Dit antwoord wordt voorgesteld op Figuur \ref{HTRES}. \\ 
 
 \begin{figure}[!h]
     \scriptsize
