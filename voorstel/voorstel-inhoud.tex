@@ -25,7 +25,7 @@ Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat
 
 Naar aanleiding van de snel evoluerende cloudtechnologie, focust Microsoft zich op het bouwen van een ecosysteem dat bestuurd kan worden vanuit zo veel mogelijk platformen \autocite{Parker2021}. \\
 
-Deze visie van Microsoft brengt de volgende verschuiving met zich mee, namelijk het uitfaseren van de bestaande Azure AD (Active Directory) Graph API (Application Programming Interface) en ADAL (Azure AD Authentication Library) \autocite{Sahay2022}. Het uitrollen van Microsoft Graph bij Microsoft 365-tenants staat gepland op 30 juni 2023. \\
+Deze visie van Microsoft brengt de volgende verschuiving met zich mee, namelijk het uitfaseren van de bestaande Azure AD (Active Directory) Graph API (Application Programming Interface) en ADAL (Azure AD Authentication Library) \autocite{Sahay2022}. Het uitrollen van Microsoft Graph bij Microsoft 365 tenants staat gepland op 30 juni 2023. \\
 
 Bij het IT-bedrijf Easi worden courante taken, automatisaties en wederkerende acties door de vooraf vermelde Azure AD PowerShell modules. Door de uitfasering van de Azure AD modules is het bedrijf genoodzaakt om een oplossing te vinden voor dit probleem. \\
 
@@ -64,7 +64,7 @@ Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur v
 
 Microsoft Azure is de voorbije jaren de grootste concurrent van AWS binnen Cloud Computing Services, blijkt uit onderzoek van \textcite{Vailshery2022} en \textcite{SRG2022}. Het platform biedt services in de Cloud aan waaronder Azure Active Directory. Azure AD kan beheerd worden vanuit bijhorende PowerShell modules, echter wordt de ondersteuning voor deze modules stopgezet, zoals vermeld in de introductie. \\
 
-Microsoft 365-applicaties en -diensten hebben een eigen API om data te raadplegen. In projecten of applicaties waarbij  Microsoft 365 services moeten aangesproken worden, kan dit tot problemen leiden. Een voorbeeld hiervan is dat de API van Azure AD andere functies en werkwijzen heeft in vergelijking met een SharePoint API \autocite{VanRousselt2021}. Deze verschillen leiden tot inefficiëntie. Een oplossing is het gebruik van een algemene API die alle services kan aanspreken. \\
+Microsoft 365-applicaties en -diensten hebben een eigen API om data te raadplegen. In projecten of applicaties waarbij  Microsoft 365-services moeten aangesproken worden, kan dit tot problemen leiden. Een voorbeeld hiervan is dat de API van Azure AD andere functies en werkwijzen heeft in vergelijking met een SharePoint API \autocite{VanRousselt2021}. Deze verschillen leiden tot inefficiëntie. Een oplossing is het gebruik van een algemene API die alle services kan aanspreken. \\
 
 Microsoft Graph is een toegangspoort om data te kunnen raadplegen in Microsoft 365-applicaties en -diensten. Graph bevat een universele REST (Representational State Transfer) API dat toegepast kan worden voor deze problemen. De API heeft als doel een eindpunt aan te bieden voor de verschillende applicaties en services, waardoor deze een coherent geheel vormt. \\
 
@@ -96,9 +96,9 @@ Dit onderzoek bestaat uit twee fases. \\
  
 In de eerste fase wordt er een vergelijkende studie uitgevoerd tussen de uitfaserende Azure AD PowerShell modules en Microsoft Graph. Deze twee technologieën worden vergeleken op vlak van achterliggende logica, aanspreekbare data-objecten, gebruik en security. Deze vergelijking verduidelijkt de evolutie van Azure AD naar Graph. \\
 
-Eerst, worden de achterliggende logica van de twee technologieën geanalyseerd. De focus ligt op de werking en communicatie met Microsoft 365 tenants. \\
+Eerst, worden de achterliggende logica van de twee technologieën geanalyseerd. De focus ligt op de werking en communicatie met Microsoft 365-tenants. \\
 
-Ten tweede, worden Microsoft 365 data-objecten onder de loep genomen. Bij dit onderdeel ligt de nadruk op welke Microsoft 365 applicaties en services aanspreekbaar zijn door beide technologieën \\
+Ten tweede, worden Microsoft 365 data-objecten onder de loep genomen. Bij dit onderdeel ligt de nadruk op welke Microsoft 365-applicaties en -services aanspreekbaar zijn door beide technologieën \\
 
 Vervolgens, wordt het gebruik besproken. Dit wilt zeggen, hoe zien beide technologieën eruit op vlak van code en notatie. Een voorbeeld hiervan is hoe een functie gedeclareerd wordt bij beiden. Dit leidt tot meer begrip over de automatisatie en complexiteit van een script. \\
 
@@ -122,6 +122,6 @@ Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het
 
 \end{comment}
 
-Er wordt verwacht dat Microsoft Graph in vergelijking met Azure AD Graph verbeterd is op de vier onderdelen. De logica van Microsoft Graph is anders, echter is de ondersteuning langer door het gebruik van REST. Microsoft Graph ondersteunt meer data-objecten, dus meer Microsoft 365 applicaties en services. Het gebruik van Microsoft Graph is efficiënter en biedt meer schaalbaarheid, door middel van universele functies en minder soorten API’s. De security van Microsoft Graph is veiliger door een Zero Trust-beleid dat wordt toegepast bij het gebruiken van de Microsoft Graph API. \\
+Er wordt verwacht dat Microsoft Graph in vergelijking met Azure AD Graph verbeterd is op de vier onderdelen. De logica van Microsoft Graph is anders, echter is de ondersteuning langer door het gebruik van REST. Microsoft Graph ondersteunt meer data-objecten, dus meer Microsoft 365-applicaties en -services. Het gebruik van Microsoft Graph is efficiënter en biedt meer schaalbaarheid, door middel van universele functies en minder soorten API’s. De security van Microsoft Graph is veiliger door een Zero Trust-beleid dat wordt toegepast bij het gebruiken van de Microsoft Graph API. \\
 
 Vervolgens wordt er verwacht dat Microsoft Graph, op dit moment, niet stabiel genoeg is om alle Azure AD PowerShell modules te vervangen tegen de deadline van 30 juni 2023. Bovendien is Microsoft Graph, op dit moment, niet aan te raden in cruciale productieomgevingen van klanten. Echter wordt er wel verwacht dat Microsoft Graph de Proof-of-Concept in verband met auditing kan uitwerken. Hierdoor is het stabiel genoeg om niet-bedrijfskritische toepassingen uit te werken.

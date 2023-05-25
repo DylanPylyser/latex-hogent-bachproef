@@ -5,27 +5,31 @@
 \chapter{Uitwerking audit-script met Microsoft Graph PowerShell-modules}%
 \label{ch:poc}
 
-% TODO: Bron zoeken over Sandboxes en over De Azure AD tenant?
+% taal ok
 
-Het tweede deel van de conclusie bestaat uit een praktische uitwerking met Microsoft Graph. De praktische uitwerking wordt uitgevoerd binnen een testomgeving met fictieve data. Deze data simuleert een mogelijke omgeving van een klant waar Easi een audit voor uitvoert. De praktische uitwerking behandeld twintig onderdelen van het audit-script die met PowerShell worden uitgevoerd.
+Het tweede deel van de conclusie bestaat uit een praktische uitwerking met Microsoft Graph. De praktische uitwerking wordt uitgevoerd binnen een testomgeving met fictieve data. Deze data simuleert een mogelijke omgeving van een klant waar Easi een audit voor uitvoert. De praktische uitwerking behandelt twintig onderdelen van het audit-script die met PowerShell worden uitgevoerd.
 
 \section{Bespreking testomgeving}
 
+% taal ok
+
 Voor de Proof-of-Concept wordt er gebruikgemaakt van een testomgeving. Deze testomgeving is een gratis Azure Active Directory tenant die via het Microsoft 365 Developer Program wordt aangeboden door \textcite{Microsoft2023q}. \\
 
-Een Azure \ac{AD} developer tenant is een gratis Sandbox-omgeving die voor 90 dagen beschikbaar wordt gesteld, met een mogelijkheid tot verlenging. Een Sandbox is in \ac{IT}-termen een omgeving waarin je kan spelen met één of meerdere technologieën, zonder dat hier consequenties aan vast hangen. \\
+Een Azure \ac{AD} developer tenant is een gratis Sandbox-omgeving die voor 90 dagen beschikbaar is, met een mogelijkheid tot verlenging. Een Sandbox is in \ac{IT}-termen een omgeving waarin je kan spelen met één of meerdere technologieën, zonder dat hier consequenties aan vast hangen. \\
 
-Binnen deze Sandbox kan Microsoft Graph worden gebruikt wanneer dit  geconfigureerd is. Zoals vermeld in de literatuurstudie kan Microsoft Graph op twee manieren worden toegepast. Voor de Proof-of-Concept wordt er gebruikgemaakt van de App-only access-methode. Enkele argumenten waarom deze authenticatiemethode wordt toegepast zijn hieronder te vinden. 
+Binnen deze Sandbox kan Microsoft Graph worden gebruikt wanneer dit  geconfigureerd is. Zoals vermeldt in de literatuurstudie kan Microsoft Graph op twee manieren worden toegepast. Voor de Proof-of-Concept wordt er gebruikgemaakt van de App-only access-methode. Enkele argumenten waarom deze authenticatiemethode wordt toegepast zijn hieronder te vinden. 
 
 \begin{itemize}
-    \item Er moet niet via een account worden ingelogd, dit bespaard moeite, tijd en vermijd de kans op menselijke fouten.
+    \item Er moet niet via een account worden ingelogd. Dit bespaart moeite, tijd en verlaagt de kans op menselijke fouten.
     \item Enkel de applicatie heeft nood aan de juiste rechten, dit is makkelijker te beheren.
     \item De applicatie wordt aan Microsoft Graph gekoppeld via een geheime code dat samenwerkt met \ac{MSAL}, dit zorgt voor extra veiligheid.
 \end{itemize}
 
-\subsection{Bespreking Data-set}
+\subsection{Bespreking Dataset}
 
-De standaard data-set die werd verkregen na het activeren van de developer-licentie bestaat uit volgende informatie.
+% taal ok
+
+De standaard dataset die werd verkregen na het activeren van de developer license bestaat uit volgende informatie.
 
 \begin{itemize}
     \item Naam: MSFT
@@ -63,7 +67,7 @@ Volgende aanpassingen worden uitgevoerd om de data van een productieomgeving te 
 \begin{itemize}
     \item Gebruikers: 
     \begin{itemize}
-        \item Een extra gebruiker genaamd Jarne Creten met Administrator-rechten.
+        \item Een extra gebruiker genaamd Jarne Creten krijgt Administrator-rechten.
         \item Een gebruiker genaamd Megan Bowen wordt gastgebruiker of “Guest”.
         \item Een gebruiker genaamd Lee Gu wordt geblokkeerd, “Accound status” staat gelijk aan disabled.
     \end{itemize}
@@ -76,17 +80,21 @@ Volgende aanpassingen worden uitgevoerd om de data van een productieomgeving te 
 
 \subsection{Microsoft Graph activeren via een applicatie}
 
+% taal ok
+
 Om een app-only authenticatie op te zetten me Microsoft Graph wordt er gebruikgemaakt van een stappenplan uit de blog van \textcite{Terlisten2022}. Het stappenplan begint met het registreren van een applicatie. Daarna worden er Microsoft Graph \Ac{API}-permissies toegevoegd voor de applicatie. Vervolgens wordt er een client secret gegenereerd. Als laatste wordt er connectie gemaakt met de Microsoft Graph \Ac{API}. \\
 
-Het opzetten van de effectieve connectie gebeurd via Listing \ref{PSQ0}. Dit PowerShell-script is ook uitgewerkt door \textcite{Terlisten2022}. Het script maakt gebruik van vier variabelen, namelijk “AppId”, “TenantId”, “ClientSecret” en “Token”. De eerste drie variabelen zijn nodig om de toepassing te kunnen aanspreken. De vierde variabele haalt een \ac{MSAL}-token op. Dit token wordt gebruikt om op een veilige manier in te loggen op de tenant met Microsoft Graph. In PowerShell wordt dit vertaald met het commando “Connect-Graph” met de optie “-AccessToken”. \\
+Het opzetten van de effectieve connectie maakt gebruik van Listing \ref{PSQ0}. Dit PowerShell-script is ook uitgewerkt door \textcite{Terlisten2022}. Het script maakt gebruik van vier variabelen, namelijk “AppId”, “TenantId”, “ClientSecret” en “Token”. De eerste drie variabelen zijn nodig om de toepassing te kunnen aanspreken. De vierde variabele haalt een \ac{MSAL}-token op. Dit token wordt gebruikt om op een veilige manier in te loggen op de tenant met Microsoft Graph. In PowerShell wordt dit vertaald met het commando “Connect-Graph” met de optie “-AccessToken”. \\
 
 Dit onderzoek maakt gebruik van een client secret, maar in de praktijk is het aanbevolen om te werken met certificaten in plaats van een client secret \autocite{Terlisten2022}.
 
 \subsection{Uitwerking onderdelen van het audit-script}
 
-De twintig functies waar het auditing-script van gebruikmaakt wordt in dit onderdeel besproken. De functies maken gebruik van testomgeving-data om de scripts te testen. Alle scripts zijn gemaakt om met versie 1.25 te werken van Microsoft Graph PowerShell. \\
+% taal ok
 
-Alle functies in verband met \ac{MFA} maken gebruik van een reeds bestaand script van \textcite{Allen2023}. Dit script wordt omgevormd tijdens de uitwerking, maar dient als basis om deze functies uit te werken. \\
+De twintig functies van het auditing-script worden in dit onderdeel besproken. De functies maken gebruik van testdata om de scripts te testen. Alle scripts zijn gemaakt om met versie 1.25 te werken van Microsoft Graph PowerShell. \\
+
+Alle functies in verband met \ac{MFA} maken gebruik van een bestaand script van \textcite{Allen2023}. Dit script wordt omgevormd tijdens de uitwerking, maar dient als basis om deze functies uit te werken. \\
 
 Een overzicht van de resultaten van de twintig functies is te vinden in Tabel \ref{POC}. De afkorting “VO” staat voor “volledig omgevormd”. De afkorting “DO” staat voor “deels omgevormd”. De afkorting “NO” staat voor “niet omgevormd”. 
 
@@ -126,17 +134,23 @@ Een overzicht van de resultaten van de twintig functies is te vinden in Tabel \r
 
 \subsubsection{Functie 1: Aantal aanwezige domeinen binnen de Office 365-omgeving}
 
-De eerste functie is het opvragen van de domeinen binnen de Office 365-omgeving. Met het gebruik van de testomgeving-data wordt er verwacht dat er een domein genaamd “25ky3d.onmicrosoft.com” te zien is met een status in de aard van “Available” of “Working”. \\
+% taal ok
+
+De eerste functie is het opvragen van de domeinen binnen de Office 365-omgeving. Met het gebruik van de testdata wordt er verwacht dat er één domein genaamd “25ky3d.onmicrosoft.com” te zien is met een status in de aard van “Available” of “Working”. \\
 
 Na het uitvoeren van Listing \ref{PSQ1} komt alleen het domein overeen met de verwachtingen. Het opvragen van de status is niet mogelijk en wordt aangeduid met “Not available” in het script, omdat er geen gegevens aanwezig zijn. Deze functie kan deels worden omgezet met de Microsoft Graph PowerShell-modules.
 
 \subsubsection{Functie 2: Aantal gebruikers binnen de omgeving, onderverdeeld in interne en extene gebruikers}
 
-De tweede functie van het audit-script is het weergeven van alle gebruikers met hun account-type. Naast het weergeven wordt er ook een onderverdeling gemaakt tussen interne “Members” en externe “Guests” gebruikers. Er wordt verwacht dat er een externe gebruiker aanwezig is van de 18 gebruikers. Bovendien zijn alle gebruikers alleen beschikbaar in de cloud, en hebben ze geen connectie \ac{on-prem}. \\
+% taal ok
+
+De tweede functie van het audit-script is het weergeven van alle gebruikers met hun accounttype. Naast het weergeven wordt er ook een onderverdeling gemaakt tussen interne “Members” en externe “Guests” gebruikers. Er wordt verwacht dat er een externe gebruiker aanwezig is van de achttien gebruikers. Bovendien zijn alle gebruikers alleen beschikbaar in de cloud, en hebben ze geen connectie \ac{on-prem}. \\
 
 Het script in Listing \ref{PSQ2} maakt gebruik van “get-MgUser”. Uit het commando “get-MgUser” worden de “UserPrincipalName”, “OnPremisesSyncenabled” en “UserType” gehaald.  Na het uitvoeren van het script komt de output overeen met de verwachtingen. Deze functie kan worden omgezet met de Microsoft Graph PowerShell-modules. \\
 
 \subsubsection{Functie 3: Aantal gebruikers die geblokkeerd zijn}
+
+% taal ok
 
 De derde functie van het audit-script is het aantal gebruikers die geblokkeerd zijn weergeven. De verwachting is dat er een account wordt weergegeven dat geblokkeerd is. \\
 
@@ -144,29 +158,39 @@ Dit script, te vinden in Listing \ref{PSQ3}, maakt gebruik van “get-MgUser”.
 
 \subsubsection{Functie 4: Aantal geblokkeerde gebruikers met actieve licenties}
 
+% taal ok
+
 De vierde functie gaat over het aantal geblokkeerde gebruikers met een actieve licentie. Er wordt verwacht dat de geblokkeerde gebruiker actieve licenties heeft. \\
 
-Listing \ref{PSQ4} bevat het script voor dit onderdeel. Het script combineert het opvragen van gebruikers met het opvragen van de licenties. De output van het script bevestigt dat er 1 geblokkeerde gebruiker actieve licenties heeft. Het is met de Microsoft Graph PowerShell-modules mogelijk om deze functie om te zetten.
+Listing \ref{PSQ4} bevat het script voor dit onderdeel. Het script combineert het opvragen van gebruikers met het opvragen van de licenties. De output van het script bevestigt dat er één geblokkeerde gebruiker actieve licenties heeft. Het is met de Microsoft Graph PowerShell-modules mogelijk om deze functie om te zetten.
 
 \subsubsection{Functie 5: Overzicht en telling van administrators met hun account status}
 
-Functie vijf bevat een overzicht en telling van de administrators binnen de omgeving met account status. De verwachtingen zijn dat de 2 administrators worden weergegeven met een actieve account status. \\
+% taal ok
 
-Na het uitvoeren van Listing \ref{PSQ5} zijn de twee beheerders te zien met een actieve account status. Het PowerShell-script filtert de administrators uit de lijst van gebruikers door middel van hun “UserId”. Om de juiste filtering toe te passen worden eerst de gebruikers met een administrator-rol opgevraagd, vooraleer de filtering op alle gebruikers plaatsvindt. Deze functie is succesvol omgezet met de Microsoft Graph PowerShell-modules.
+Functie vijf bevat een overzicht en telling van de administrators binnen de omgeving met account status. De verwachtingen zijn dat de twee administrators worden weergegeven met een actieve account status. \\
+
+Na het uitvoeren van Listing \ref{PSQ5} zijn de twee beheerders te zien met een actieve account status. Het PowerShell-script filtert de administrators uit de lijst van gebruikers door middel van hun “UserId”. Om de juiste filtering toe te passen worden eerst de gebruikers met administrator roles opgevraagd, voordat de filtering op alle gebruikers plaatsvindt. Deze functie is succesvol omgezet met de Microsoft Graph PowerShell-modules.
 
 \subsubsection{Functie 6: Overzicht en telling van de interne gebruikers met MFA}
 
-De zesde functie focust zich op het geven van een overzicht en telling van de interne gebruikers met \ac{MFA}. Met de data uit de testomgeving wordt er verwacht dat van de 17 interne gebruikers maar 3 gebruikers \ac{2FA} of \ac{MFA} toepassen. \\
+% taal ok
+
+De zesde functie focust zich op het geven van een overzicht en telling van de interne gebruikers met \ac{MFA}. Met de data uit de testomgeving wordt er verwacht dat van de zeventien interne gebruikers maar drie gebruikers \ac{2FA} of \ac{MFA} toepassen. \\
 
 Het script in Listing \ref{PSQ6} overloopt alle gebruikers met bijhorende \ac{MFA}-instellingen. Het verzamelt alle \ac{MFA}-gegevens in een object, dit object wordt daarna gebruikt om een telling uit te voeren omtrent het gebruik van \ac{MFA}. De output van het script komt overeen met de verwachtingen. Deze functie kan dus worden omgezet met de Microsoft Graph PowerShell-modules. 
 
 \subsubsection{Functie 7: Aantal gelicenseerde, actieve accounts waarbij MFA niet aanwezig is}
 
-De zevende functie geeft alle actieve gebruikers weer die minstens een licentie hebben maar geen \ac{MFA} toepassen. Er wordt verwacht dat er 14 van de 17 actieve gelicenseerde gebruikers geen \ac{MFA} toepast. \\
+% taal ok
+
+De zevende functie geeft alle actieve gebruikers weer die minstens een licentie hebben maar geen \ac{MFA} toepassen. Er wordt verwacht dat er veertien van de zeventien actieve gelicenseerde gebruikers geen \ac{MFA} toepast. \\
 
 Listing \ref{PSQ7} is gelijkaardig aan de vorige functie op vlak van PowerShell-code, maar filtert op de niet-geblokkeerde accounts met actieve licenties. Na het uitvoeren van dit script komen de resultaten overeen met de verwachtingen. De zevende functie kan worden omgezet met de Microsoft Graph PowerShell-modules.
 
 \subsection{Functie 8: Aantal externe accounts waarbij MFA uitstaat}
+
+% taal ok
 
 De achtste functie focust zich op een andere doelgroep, namelijk de “Guest”-accounts binnen de omgeving. Er is maar een externe gebruiker aanwezig in de testomgeving. Er verwacht dat het PowerShell-script aangeeft dat de enige externe gebruiker geen \ac{MFA} gebruikt. \\
 
@@ -174,11 +198,15 @@ Het script in Listing \ref{PSQ8} filtert op de externe gebruikers en haalt de \a
 
 \subsubsection{Functie 9: Overzicht van accounts met administrator-priviliges, onderverdeeld in gebruik van MFA}
 
-De negende functie heeft betrekking op de \ac{MFA}-instellingen van beheerders binnen de testomgeving. Er zijn 2 administrators aanwezig, waarbij beide gebruikers \ac{MFA} toepassen. Er wordt verwacht dat het PowerShell-script hetzelfde weergeeft. \\
+% taal ok
+
+De negende functie heeft betrekking op de \ac{MFA}-instellingen van beheerders binnen de testomgeving. Er zijn twee administrators aanwezig, waarbij beide gebruikers \ac{MFA} toepassen. Er wordt verwacht dat het PowerShell-script hetzelfde weergeeft. \\
 
 Het negende PowerShell-script, dat in Listing \ref{PSQ9} te vinden is, filtert op de twee administrators. Dit is een andere scenario dan de vorige \ac{MFA}-scripts. De output dat het PowerShell-script geeft komt overeen met de verwachtingen. De negende functie kan worden omgezet met de Microsoft Graph PowerShell-modules.
 
 \subsubsection{Functie 10: Groottes van elke type mailbox}
+
+% taal ok
 
 De tiende functie beschrijft de groottes van elk type mailbox. Microsoft Graph ondersteunt niet de nodige commando's binnen de PowerShell-modules met versie 1.25. \\
 
@@ -186,17 +214,23 @@ Een mogelijke oplossing is het gebruikmaken van gecodeerde \ac{HTTP}-verzoeken o
 
 \subsubsection{Functie 11: Groottes van elke mailbox, gerangschikt van groot naar klein}
 
+% taal ok
+
 De elfde functie geeft een overzicht van elke mailbox gesorteerd op grootte. Microsoft Graph ondersteunt vandaag de dag niet de nodige commando's binnen de PowerShell-modules met versie 1.25. \\ 
 
 Een mogelijke oplossing is het gebruikmaken van gecodeerde \ac{HTTP}-verzoeken om de groottes op te vragen en te sorteren op de grootte. De uitwerking met \ac{HTTP}-verzoeken binnen PowerShell valt buiten de scope van de Proof-of-Concept. De elfde functie kan vandaag de dag niet worden omgezet met behulp van de Microsoft Graph PowerShell-modules.
 
 \subsubsection{Functie 12: Onderverdeling van gebruikersmailboxen op basis van grootte}
 
-De twaalde functie rangschikt de mailboxes van de gebruikers op hun grootte. Het verschil met de vorige functie is dat de mailboxes in een bereik worden geplaatst, zodat de grootste mailboxes in een verzameling thuis horen. Microsoft Graph ondersteunt niet de nodige commando's binnen de PowerShell-modules met versie 1.25. \\ 
+% taal ok
 
-Een mogelijke oplossing is het gebruikmaken van gecodeerde \ac{HTTP}-verzoeken. Daarna kunnen de groottes worden opgevraagd, en verzameld in een bepaald bereik. De uitwerking met \ac{HTTP}-verzoeken binnen PowerShell valt buiten de scope van de Proof-of-Concept. De twaalfde functie kan vandaag de dag niet worden omgezet met behulp van de Microsoft Graph PowerShell-modules.
+De twaalfde functie rangschikt de mailboxen van de gebruikers op hun grootte. Het verschil met de vorige functie is dat de mailboxen in een bereik worden geplaatst, zodat de grootste mailboxen in een verzameling thuishoren. Microsoft Graph ondersteunt niet de nodige commando's binnen de PowerShell-modules met versie 1.25. \\ 
+
+Een mogelijke oplossing is het gebruikmaken van gecodeerde \ac{HTTP}-verzoeken. Daarna kunnen de groottes worden opgevraagd en in een bereik worden verzameld. De uitwerking met \ac{HTTP}-verzoeken binnen PowerShell valt buiten de scope van de Proof-of-Concept. De twaalfde functie kan vandaag de dag niet worden omgezet met behulp van de Microsoft Graph PowerShell-modules.
 
 \subsubsection{Functie 13: Onderverdeling van gedeelde mailboxen op basis van grootte}
+
+% taal ok
 
 De dertiende functie doet hetzelfde als de twaalfde functie, maar focust zich op de gedeelde mailboxen. Microsoft Graph ondersteunt niet de nodige PowerShell-commando's in de modules. \\
 
@@ -204,19 +238,25 @@ Een mogelijkheid om dit op te vragen is via gecodeerde \ac{HTTP}-verzoeken. Het 
 
 \subsubsection{Functie 14: Onderverdeling van hoeveelheid mailboxen per domein}
 
-De veertiende functie overloopt alle domeinen en houdt de hoeveelheid mailboxen per domein bij. Er wordt verwacht dat er in het enige domein 17 persoonlijke mailboxes te zien zijn in de output. \\
+% taal ok
 
-In Listing \ref{PSQ14} worden de 17 persoonlijke mailboxes van het domein weergegeven. Dit is langs de ene kant wat er verwacht werd. Langs de andere kant biedt Microsoft Graph alleen maar ondersteuning aan voor persoonlijke mailboxen. \\
+De veertiende functie overloopt alle domeinen en houdt de hoeveelheid mailboxen per domein bij. Er wordt verwacht dat er in het domein zeventien persoonlijke mailboxen te zien zijn in de output. \\
+
+In Listing \ref{PSQ14} worden de zeventien persoonlijke mailboxen van het domein weergegeven. Dit is aan de ene kant wat er verwacht werd, aan de andere kant biedt Microsoft Graph alleen maar ondersteuning aan voor persoonlijke mailboxen. \\
 
 Wanneer een omgeving gebruikmaakt van een ander type, zoals een gedeelde mailbox, dan neemt de functie dat niet op. Dit zorgt ervoor dat de functie niet compleet is. De veertiende functie kan dus deels worden omgezet met de Microsoft Graph PowerShell-modules.
 
 \subsubsection{Functie 15: Overzicht van accounts met als primair SMTP-adresdomein “.onmicrosoft.com”}
 
-In de vijftiende functie wordt er gekeken naar de account met als primair \Ac{SMTP}-adresdomein “.onmicrosoft.com”. Er wordt verwacht dat 17 van de 18 gebruikers een “.onmicrosoft.com” adresdomein bevatten. \\
+% taal ok
 
-Het script uit Listing \ref{PSQ15} geeft weer dat er 17 van de 18 gebruikers zijn die gebruikmaken van “.onmicrosoft.com”. Dit bevestigt dat deze functie met de Microsoft Graph PowerShell-modules kan worden omgevormd.
+In de vijftiende functie wordt er gekeken naar de account met als primair \Ac{SMTP}-adresdomein “.onmicrosoft.com”. Er wordt verwacht dat zeventien van de achttien gebruikers een “.onmicrosoft.com” adresdomein bevatten. \\
+
+Het script uit Listing \ref{PSQ15} geeft weer dat er zeventien van de achttien gebruikers zijn die gebruikmaken van “.onmicrosoft.com”. Dit bevestigt dat deze functie met de Microsoft Graph PowerShell-modules kan worden omgevormd.
 
 \subsubsection{Functie 16: Overzicht gedeelde mailboxen, onderverdeeld in aanwezigheid van een licentie}
+
+% taal ok
 
 De zestiende functie maakt een overzicht van de gedeelde mailboxen met een licentie. Microsoft Graph ondersteunt niet de nodige PowerShell-commando's in de modules. \\
 
@@ -224,25 +264,32 @@ Via gecodeerde \ac{HTTP}-verzoeken is het mogelijk om deze functie te doen werke
 
 \subsubsection{Functie 17: Overzicht van verborgen mailboxen}
 
+% taal ok
+
 In de zeventiende functie staan de verborgen mailboxen centraal. De functie zorgt ervoor dat de output een overzicht geeft van de verborgen mailboxen. Microsoft Graph ondersteunt niet de nodige commando's binnen de PowerShell-modules met versie 1.25. \\ 
 
 Een mogelijke oplossing is het gebruikmaken van gecodeerde \ac{HTTP}-verzoeken. De verzoeken filteren op verborgen mailboxen en weergeven valt buiten de scope. Vandaag de dag ondersteunt Microsoft Graph de omvorming van deze functie niet met de PowerShell-modules.
 
 \subsubsection{Functie 18: Overzicht van SMTP-forwarding}
 
-Naast de mailbox-types, is het mogelijk om mails door te sturen. In de achttiende functie staat dit principe centraal. \Ac{SMTP}-forwarding wordt niet ondersteunt met de Microsoft Graph PowerShell-modules. \\
+% taal ok
+
+Naast de soorten mailboxen, is het mogelijk om mails door te sturen. In de achttiende functie staat dit principe centraal. \Ac{SMTP}-forwarding wordt niet ondersteund met de Microsoft Graph PowerShell-modules. \\
 
 Ook hierbij is het mogelijk om \Ac{HTTP}-verzoeken te gebruiken. Dit valt niet binnen de scope van het onderzoek. Microsoft Graph kan vandaag de dag deze functie niet omvormen met de PowerShell-modules.
 
 \subsubsection{Functie 19: Overzicht verschillende types van licenties en het aantal personen met dit licentietype}
 
-De voorlaatste functie maakt een overzicht van de verschillende licentietypes en telt het aantal gebruikers per licentie op. De verwachting is dat alle mogelijke licenties 17 gebruikers hebben, doordat een gebruiker geen licenties heeft binnen het domein. \\
+% taal ok
 
-Listing \ref{PSQ19} bevat het omgevormde script met output. Het doorloopt alle gebruikers en telt het voorkomen van de licenties op. Dit stemt overeen met de verwachtingen, omdat het aantal van elke licentie 17 bedraagt in de output. De voorlaatste functie kan worden omgezet met de Microsoft Graph PowerShell-modules.
+De voorlaatste functie maakt een overzicht van de licentietypes en telt het aantal gebruikers per licentie op. De verwachting is dat alle mogelijke licenties zeventien gebruikers hebben, doordat een gebruiker geen licenties heeft binnen het domein. \\
+
+Listing \ref{PSQ19} bevat het omgevormde script met output. Het doorloopt alle gebruikers en telt het voorkomen van de licenties op. Dit stemt overeen met de verwachtingen, omdat het aantal van elke licentie zeventien bedraagt in de output. De voorlaatste functie kan worden omgezet met de Microsoft Graph PowerShell-modules.
 
 \subsubsection{Functie 20: Overzicht verschillende methodes waarop MFA wordt gebruikt met hoeveelheid gebruikers, onderverdeeld op basis van methode}
 
-In de laatste functie ligt de focus op de verschillende \ac{MFA}-methodes met het aantal gebruikers per methode. Er wordt verwacht dat elke gebruiker kan inloggen via een wachtwoord. Bovendien zijn er 3 gebruikers die een applicatie (Microsoft Authenticator) gebruiken als extra authenticatiemethode. \\
+% taal ok
 
-Het laatste script, dat in Listing \ref{PSQ20} te vinden is, bevestigt de verwachtingen. De output geeft 18 gebruikers van wachtwoorden en 3 gebruikers de applicatie weer als authenticatiemethode. Deze laatste functie kan dus worden omgezet met 
-Microsoft Graph PowerShell-modules.
+In de laatste functie ligt de focus op de \ac{MFA}-methodes met het aantal gebruikers per methode. Er wordt verwacht dat elke gebruiker kan inloggen via een wachtwoord. Bovendien zijn er drie gebruikers die een applicatie (Microsoft Authenticator) gebruiken als extra authenticatiemethode. \\
+
+Het laatste script, dat in Listing \ref{PSQ20} te vinden is, heeft de verwachtingen bevestigd. De output geeft achttien gebruikers van wachtwoorden en drie gebruikers de applicatie weer als authenticatiemethode. Deze laatste functie kan dus worden omgezet met Microsoft Graph PowerShell-modules.

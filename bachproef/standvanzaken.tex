@@ -188,14 +188,7 @@ De naam “Graph” is afgeleid uit het wiskundige figuur van een graaf. Een gra
     \label{mga}
 \end{figure}
 
-Azure \ac{AD} Graph heeft een soortgelijke betekenis als dat van een wiskundige graaf. Graph staat in voor de verbindingen tussen de entiteiten dat het ondersteunt, in dit geval Microsoft-entiteiten \autocite{Kokkarinen2022}. In het logo van Azure \ac{AD} komt een graaf voor dat het principe van de verbindingen voorstelt op Figuur \ref{gms}. \\
-
-\begin{figure}[h!]
-    \includegraphics[width=45mm, scale=0.45]{GraphMicrosoft.png}
-    \caption[Logo Azure Active Directory]{Voorstelling van het logo van Azure \Ac{AD} met een graaf door \textcite{Microsoftb}.}
-    \label{gms}
-\end{figure}
-
+Azure \ac{AD} Graph heeft een soortgelijke betekenis als dat van een wiskundige graaf. Graph staat in voor de verbindingen tussen de entiteiten dat het ondersteunt, in dit geval Microsoft-entiteiten \autocite{Kokkarinen2022}. In het logo van \textcite{Microsoftb} Azure \ac{AD} komt een graaf voor dat het principe van de verbindingen voorstelt. \\
 
 
 \subsubsection{Achterliggende werking van Azure Active Directory Graph API}
@@ -538,7 +531,7 @@ De tweede toepassing is Microsoft Graph connectors \autocite{Microsoft2022f}. De
     \label{MSGC}
 \end{figure}
 
-Als laatste biedt \textcite{Microsoft2022c} een set van tools aan via Microsoft Graph Data Connect . Deze tools zijn geschikt voor de ontwikkeling van applicaties rond analyse, intelligentie en bedrijfsprocesoptimalisatie met Microsoft 365-data. Deze data wordt geïntegreerd binnen Azure, zodat de reken- en opslagcapaciteiten van het platform worden gebruikt. Een voorstelling van Data Connect is te zien op Figuur \ref{MSGDC}. 
+Als laatste biedt \textcite{Microsoft2022c} een set van tools aan via Microsoft Graph Data Connect. Deze tools zijn geschikt voor de ontwikkeling van applicaties rond analyse, intelligentie en bedrijfsprocesoptimalisatie met Microsoft 365-data. Deze data wordt geïntegreerd binnen Azure, zodat de reken- en opslagcapaciteiten van het platform worden gebruikt. Een voorstelling van Data Connect is te zien op Figuur \ref{MSGDC}. 
 
 \begin{figure}[!h]
     \includegraphics[width=\textwidth]{GraphDataConnect.png}
@@ -602,11 +595,11 @@ Om aan access tokens te geraken, bestaan er oplossingen zoals authenticatiebibli
 
 \subsubsection{Toegang hebben op naam van een gebruiker}
 
-% Taal CHECKPOINT
+% Taal OK
 
 Access tokens regelen de toegang tot het gebruik van Microsoft Graph. Om een access token te verkrijgen via een gebruiker, worden de volgende vijf stappen gehanteerd \autocite{Microsoft2023r}. \\
 
-Als eerste stap moet de applicatie worden geregistreerd bij Azure \ac{AD}. De registratie gebeurt via het onderdeel App Registrations binnen Azure. Wanneer de applicatie geregistreerd is, gaat het Microsoft-identiteitsplatform instaan voor volgende informatie \autocite{Microsoft2023r}. 
+Als eerste stap moet de applicatie worden geregistreerd bij Azure \ac{AD}. De registratie gebeurt via het onderdeel “App Registrations” binnen Azure. Wanneer de applicatie geregistreerd is, gaat het Microsoft-identiteitsplatform instaan voor volgende informatie \autocite{Microsoft2023r}. 
 
 \begin{itemize}
     \item Application ID: Unieke identificatie.
@@ -627,7 +620,7 @@ code=M0ab92efe-b6fd-df08-87dc-2c6500a7f84d
     \label{MSGAR}
 \end{figure}
 
-Daarna moet er een token worden verkregen. Dit gebeurt via een tokenverzoek dat op Figuur \ref{HTR} wordt weergegeven. Na het versturen van dit verzoek volgt er een antwoord met een access token in \ac{JSON}-formaat \autocite{Microsoft2023r}. Dit antwoord wordt voorgesteld op Figuur \ref{HTRES}. \\ 
+Daarna volgt het verkrijgen van een token. Dit gebeurt via een tokenverzoek dat op Figuur \ref{HTR} is weergegeven. Na het versturen van dit verzoek volgt er een antwoord met een access token in \ac{JSON}-formaat \autocite{Microsoft2023r}. Een voorbeeld van dit antwoord is te zien op Figuur \ref{HTRES}. \\ 
 
 \begin{figure}[!h]
     \scriptsize
@@ -662,7 +655,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
     \label{HTRES}
 \end{figure}
 
-Vervolgens wordt de verkregen token gebruikt om Microsoft Graph op te roepen. Het toegankstoken wordt in de autorisatieheader van een verzoek geplaatst \autocite{Microsoft2023r}. Dit werd al reeds voorgesteld op Figuur \ref{MSGA}. \\
+Vervolgens wordt de verkregen token gebruikt om Microsoft Graph op te roepen. Het toegangstoken wordt in de autorisatieheader van een verzoek geplaatst \autocite{Microsoft2023r}. Dit is gelijkaardig aan de voorgestelling op Figuur \ref{MSGA}. \\
 
 Als laatste volgt het gebruik van een refresh token. Een refresh token ververst de duur van een toegangstoken, doordat een toegangstoken kan vervallen \autocite{Microsoft2023r}. Een verzoek en antwoord, met het gebruik van refresh tokens, is te vinden op Figuur \ref{MSGRTR} en \ref{MSGRTRES}.
 
@@ -702,13 +695,15 @@ client_id=11111111-1111-1111-1111-111111111111
 
 \subsubsection{Toegang hebben zonder een gebruiker}
 
+% Taal OK
+
 De tweede manier om een access token te verkrijgen, is zonder het gebruik van een user. Dit zijn de volgende vijf stappen gehanteerd volgens \textcite{Microsoft2023s}. \\
 
 De eerste stap is het registreren van een applicatie \autocite{Microsoft2023s}. Dit komt overeen met de uitleg die in de eerste manier werd beschreven. \\
 
 Vervolgens moeten de permissies van Microsoft Graph worden geconfigureerd. Dit is nodig zodat een applicatie zonder toestemming een token mag aanvragen. Dit kan geconfigureerd worden onder “Request \ac{API} permission” bij het registratieportaal voor applicaties binnen Azure \autocite{Microsoft2023s}. \\
 
-De derde stap omvat het verkrijgen van toegang door de beheerder. Het verkijgen van toegang door een beheerder kan gebeuren op twee manieren. De eerste manier is via Azure, door het gebruik van het portaal. De andere optie is via het Microsoft identity platform door middel van een verzoek naar het adminconsent-eindpunt \autocite{Microsoft2023s}. Een bijhorend voorbeeld van een verzoek en antwoord wordt weergegeven op \ref{MSGRAR} en \ref{MSGRARES}. \\
+De derde stap omvat het verkrijgen van toegang door de beheerder. Het verkrijgen van toegang door een beheerder kan gebeuren op twee manieren. De eerste manier is via Azure, door het gebruik van het portaal. De andere optie is via het Microsoft identity platform door middel van een verzoek naar het “/adminconsent”-eindpunt \autocite{Microsoft2023s}. Een bijhorend voorbeeld van een verzoek en antwoord wordt weergegeven op \ref{MSGRAR} en \ref{MSGRARES}. \\
 
 \begin{figure}[!h]
     \scriptsize
@@ -718,7 +713,7 @@ GET https://login.microsoftonline.com/{tenant}/adminconsent
 &state=12345
 &redirect_uri=https://localhost/myapp/permissions
     \end{verbatim}    
-    \caption[Voorbeeld Adminconsent request Microsoft Graph]{Een voorbeeld van een verzoek voor toestemming van de beheerder via \ac{HTTP} binnen Microsoft Graph door \textcite{Microsoft2023s}.}
+    \caption[Voorbeeld “/adminconsent” request Microsoft Graph]{Een voorbeeld van een verzoek voor toestemming van de beheerder via \ac{HTTP} binnen Microsoft Graph door \textcite{Microsoft2023s}.}
     \label{MSGRAR}
 \end{figure}
 
@@ -729,7 +724,7 @@ GET https://localhost/myapp/permissions
 ?tenant=a8990e1f-ff32-408a-9f8e-78d3b9139b95&state=12345
 &admin_consent=True
     \end{verbatim}    
-    \caption[Voorbeeld Adminconsent respons Microsoft Graph]{Een voorbeeld van een antwoord voor toestemming van de beheerder via \ac{HTTP} binnen Microsoft Graph door \textcite{Microsoft2023s}.}
+    \caption[Voorbeeld “/adminconsent” response Microsoft Graph]{Een voorbeeld van een antwoord voor toestemming van de beheerder via \ac{HTTP} binnen Microsoft Graph door \textcite{Microsoft2023s}.}
     \label{MSGRARES}
 \end{figure}
 
@@ -782,7 +777,9 @@ Host: graph.microsoft.com
 
 \subsection{Microsoft Graph API}
 
-De Microsoft Graph \Ac{API} is gebasseerd op \Ac{REST}. Door het gebruik van de \ac{API} zijn de cloud-servicebronnen van Microsoft beschikbaar. Om tot deze bronnen toegang te hebben en om de \Ac{API} aan te spreken, moeten er twee acties voldaan zijn volgens \textcite{Microsoft2023vv}.
+% Taal OK
+
+De Microsoft Graph \Ac{API} is gebaseerd op \Ac{REST}. Door het gebruik van de \ac{API} zijn de cloud-servicebronnen van Microsoft beschikbaar. Om tot deze bronnen toegang te hebben en om de \Ac{API} aan te spreken, moeten er twee acties voldaan zijn volgens \textcite{Microsoft2023vv}.
 
 \begin{itemize}
     \item De applicatie is geregistreerd.
@@ -791,9 +788,13 @@ De Microsoft Graph \Ac{API} is gebasseerd op \Ac{REST}. Door het gebruik van de 
 
 \subsubsection{OData}
 
+% Taal OK
+
 De \ac{API} maakt gebruik van OData. Door het gebruik van OData kunnen bronnen, methodes en opsommingen in de metadata van Microsoft Graph worden gedefinieerd \autocite{Microsoft2023vv}. Het woord “metadata” beschrijft simpelweg de informatie dat zorgt voor het creëren, opslaan en delen van dingen. Het is de data over de data in kwestie volgens \textcite{Riley2017}.
 
 \subsubsection{REST API}
+
+% Taal OK
 
 Om naar een bron te schrijven of te lezen, wordt er gebruikgemaakt van een verzoek. Een verzoek bestaat uit volgende vier componenten. De opbouw van een verzoek wordt weergegeven op Figuur \ref{RAM} \autocite{Microsoft2023vv}.
 
@@ -801,7 +802,7 @@ Om naar een bron te schrijven of te lezen, wordt er gebruikgemaakt van een verzo
     \item \ac{HTTP} method: Een \ac{HTTP}-methode dat gebruik wordt voor het verzoek. Dit staat voor de Microsoft Graph \ac{URL}.
     \item version: De versie van de \ac{API} dat de bijhorende applicatie ondersteunt.
     \item resource: De bron of resource dat gebruikt wordt.
-    \item query-parameters: Optionele OData-queryparameters of \Ac{REST}-methodes dat het antwoord aanpassen.
+    \item Queryparameters: Optionele OData-queryparameters of \Ac{REST}-methodes dat het antwoord aanpassen.
 \end{itemize}
 
 \begin{figure}[h!]
@@ -814,19 +815,9 @@ https://graph.microsoft.com/{version}/{resource}?query-parameters
 \end{figure}
 
 
-
-% TODO: nakijken!
-\begin{comment}
-Wanneer er een verzoek wordt verstuurd, krijgt dit ook een antwoord terug. Een antwoord bestaat uit minstens volgende onderdelen: 
-
-\begin{itemize}
-    \item Status code:
-    \item Response message:
-    \item @odata.nextLink:
-\end{itemize}
-\end{comment}
-
 \subsubsection{HTTP methods}
+
+% Taal OK
 
 Microsoft Graph werkt met vijf soorten \Ac{HTTP}-methodes bij een verzoek \autocite{Microsoft2023vv}.
 
@@ -888,11 +879,15 @@ Content-type: application/json
 
 \subsubsection{Beschikbare versies}
 
-Microsoft Graph is volop in ontwikkeling en ondersteunt op dit moment twee versies \Autocite{Microsoft2023f}. De eerste versie, onder de naam v1.0, is een stabiele versie dat toegepast kan worden in productieomgevingen en bijhorende applicaties. De tweede versie, onder de naam beta, is een versie waar actief aan (nieuwe) concepten gesleuteld wordt. Deze versie wordt eerder toegepast in testomgevingen, doordat het nog in ontwikkeling is. Het wordt niet aangeraden om de beta-versie in productieomgevingen te gebruiken \autocite{Microsoft2023vv}. 
+% Taal OK
+
+Microsoft Graph is volop in ontwikkeling en ondersteunt op dit moment twee versies \Autocite{Microsoft2023f}. De eerste versie, onder de naam “v1.0”, is een stabiele versie dat gemaakt is voor productieomgevingen en bijhorende applicaties. De tweede versie, onder de naam “beta”, is een versie waar actief aan (nieuwe) concepten gesleuteld wordt. Deze versie wordt eerder toegepast in testomgevingen, doordat het nog in ontwikkeling is. Het is niet aan te raden om de bètaversie in productieomgevingen te gebruiken \autocite{Microsoft2023vv}. Het bevat nieuwe concepten die eerst door gebruikers of geïnteresseerden worden getest \autocite{Microsoft2022e}. Dit kan enerzijds gaan om een uitbreiding van de huidige mogelijkheden (zoals Directory management of Microsoft Teams), anderzijds om een nieuwe concepten (zoals Education assignments en simulaties van cyberaanvallen) \autocite{Microsoft2023w}.
 
 \subsubsection{Wat zijn resources?}
 
-Bronnen, of beter bekend als resources, zijn entiteiten of types die gebruikt worden om de communicatie met een verzoek mogelijk te maken. Zoals in de Microsoft Graph \ac{URL} weergegeven, komt een resource hierin voor. Mogelijke bronnen zijn bijvoorbeeld een user, een groep, een tenant, een applicatie, etc. Deze bronnen vereisen machtigingen of een goedkeuring vooraleer een bepaalde actie plaatsvindt uit veiligheidsoverwegingen. Bovendien ondersteunen resources ook relaties, waardoor andere onderdelen aangesproken kunnen worden. Ter illustratie, wanneer de huidige gebruiker een mail wilt sturen, is dit mogelijk via “me/sendMail” \autocite{Microsoft2023vv}. Een ander voorbeeld van het gebruik van een resource is te vinden op Figuur \ref{MSGR}. Dit voorbeeld spreekt Microsoft OneNote aan en vraagt alle aanwezige “notebooks” van de huidige gebruiker. \\
+% Taal OK
+
+Bronnen, of beter bekend als resources, zijn entiteiten of types die gebruikt worden om de communicatie met een verzoek mogelijk te maken. Zoals in de Microsoft Graph \ac{URL} weergegeven, komt een resource hierin voor. Mogelijke bronnen zijn bijvoorbeeld een user, een groep, een tenant, een applicatie, etc. Deze bronnen vereisen machtigingen of een goedkeuring vooraleer een bepaalde actie plaatsvindt uit veiligheidsoverwegingen. Bovendien ondersteunen resources ook relaties, waardoor andere onderdelen aangesproken kunnen worden. Ter illustratie, wanneer de huidige gebruiker een mail wilt sturen, is dit mogelijk via “me/sendMail” \autocite{Microsoft2023vv}. Een ander voorbeeld van het gebruik van een resource is te vinden op Figuur \ref{MSGR}. Dit voorbeeld spreekt Microsoft OneNote aan en vraagt alle aanwezige “notebooks” van de huidige gebruiker. 
 
 \begin{figure}[h]
     \scriptsize
@@ -907,9 +902,11 @@ GET https://graph.microsoft.com/v1.0/me/onenote/notebooks
 
 \subsubsection{Responses aanpassen via queryparameters}
 
-Antwoorden of responses worden weergegeven na het gebruik van een bepaald \ac{HTTP}-verzoek. Het antwoord kan aangepast worden via twee soorten queryparameters \autocite{Microsoft2023vv}. \\
+% Taal OK
 
-Als eerste de OData-queryparameters. Deze queryparamaters zijn afkomstig van het OData-protocol waarvan bepaalde parameters worden ondersteund door \textcite{Microsoft2023g}. Een toegepast voorbeeld van een verzoek met een OData-queryparameter wordt weergegeven op Figuur \ref{TRAM}. \\
+\ac{HTTP}-verzoeken geven na een uitvoering een antwoord of response weer. Een antwoord kan aangepast worden via twee soorten queryparameters \autocite{Microsoft2023vv}. \\
+
+Als eerste de OData-queryparameters. Deze queryparamaters zijn afkomstig van het OData-protocol waarvan bepaalde parameters worden ondersteund door \textcite{Microsoft2023g}. Een toegepast voorbeeld van een verzoek met een OData-queryparameter is te zien op Figuur \ref{TRAM}. \\
 
 \begin{figure}[h]
     \scriptsize
@@ -920,26 +917,28 @@ GET https://graph.microsoft.com/v1.0/me/messages?$select=from,subject
     \label{TRAM}
 \end{figure}
 
-Het tweede soort dat antwoorden kan aanpassen zijn de normale queryparameters \autocite{Microsoft2023vv}. Met het woord “normaal” worden niet-OData-gerelateerde parameters bedoelt. Een voorbeeld van dit soort queryparameters is bijvoorbeeld “\$skipToken”. Deze queryparameter verkrijgt de volgende pagina met resultaten vanuit resultaatsets die over meerdere pagina's verspreid zijn \textcite{Microsoft2023g}. 
+Het tweede soort dat antwoorden kan aanpassen zijn de normale queryparameters \autocite{Microsoft2023vv}. Het woord “normaal” staat voor andere soorten queryparameters die niet OData-gerelateerd zijn. Een voorbeeld van dit soort queryparameters is bijvoorbeeld “\$skipToken”. Deze queryparameter verkrijgt de volgende pagina met resultaten vanuit resultaatsets die over meerdere pagina's verspreid zijn \textcite{Microsoft2023g}. 
 
 \subsubsection{Tools om de Microsoft Graph API te testen}
 
-Microsoft Graph raad twee tools aan om de \Ac{API} te testen \autocite{Microsoft2023vv}. De werking van de Microsoft Graph \Ac{API} kan worden getest in een demo-omgeving. Deze omgeving wordt “Graph Explorer” genoemd en wordt voorzien door \textcite{Microsoft2023h}. Hierin kunnen verzoeken worden getest met of zonder Microsoft-tenant. Daarnaast kan de \Ac{API} ook worden getest via Postman. Postman is een collaboratief \ac{API}-platform dat los van Microsoft staat \autocite{Postman2023}.
+% Taal OK
+
+Microsoft Graph raadt twee tools aan om de \Ac{API} te testen \autocite{Microsoft2023vv}. Als eerste kan een demo-omgeving de werking van de Microsoft Graph \Ac{API} testen. Deze omgeving wordt “Graph Explorer” genoemd en wordt voorzien door \textcite{Microsoft2023h}. Hierin kunnen verzoeken worden getest met of zonder Microsoft-tenant. Als tweede kan Postman de \Ac{API} oproepen en testen. Postman is een collaboratief \ac{API}-platform dat los van Microsoft staat \autocite{Postman2023}.
 
 \subsection{Microsoft Graph met PowerShell}
 
+% Taal OK 
+
 Microsoft Graph kan worden aangestuurd met PowerShell. Deze PowerShell-integratie zit in de Microsoft Graph PowerShell \ac{SDK} \autocite{Microsoft2023j}. Een \ac{SDK} bestaat uit een verzameling van tools die instaan voor het maken van bepaalde software of hardware \autocite{RedHat2020}. Deze PowerShell \ac{SDK} stelt de \ac{API} van Microsoft Graph bloot. Door deze blootstelling kan PowerShell de \ac{API} gebruiken, beheren en automatiseren.
 
-\subsubsection{Beschikbare versies}
-
-Er zijn twee Microsoft Graph versies aanwezig die ook voorkomen in de PowerShell-modules. De eerste stabiele versie (v1.0) en de preview-versie (beta). De stabiele versie bevat alle commando's en mogelijkheden die voor productieomgevingen gemaakt zijn. De beta-versie heeft eerder een testfunctie en wordt niet aangeraden voor productieomgevingen. Het bevat nieuwe concepten die eerst door gebruikers of geïnteresseerden worden getest \autocite{Microsoft2022e}. Dit kan enerzi
-jds gaan om een uitbreiding van de huidige mogelijkheden zoals Directory management of Microsoft Teams, anderzijds om een nieuw concept zoals Education assignments en simulaties van cyberaanvallen \autocite{Microsoft2023w}
 
 \subsubsection{Ondersteunende dependencies}
 
+% Taal OK
+
 Microsoft Graph PowerShell ondersteunt een lijst van dependencies \autocite{Microsoft2023k}. Een overzicht van alle ondersteunde dependencies tot aan versie 1.23 is te vinden in Tabel \ref{MSGDT}. 
 
-\begin{table} % TODO: bron toevoegen aan tabellen
+\begin{table}
     \small
     \centering
     \begin{tabular}{ |c| } 
@@ -993,7 +992,9 @@ Microsoft Graph PowerShell ondersteunt een lijst van dependencies \autocite{Micr
 
 \subsubsection{Geïntegreerde data-objecten van Azure AD}
 
-Door de uitfasering van Azure \ac{AD} PowerShell, worden de data-objecten van de AzureAD-module geïntegreerd binnen Microsoft Graph \autocite{Microsoft2023l}. Een overzicht van deze integratie wordt weergegeven in Tabel \ref{MSGDOT}.
+% Taal OK
+
+Door de uitfasering van Azure \ac{AD} PowerShell, worden de data-objecten van de AzureAD-module geïntegreerd binnen Microsoft Graph \autocite{Microsoft2023l}. Een overzicht van deze integratie is in Tabel \ref{MSGDOT} weergegeven.
 
 \begin{table}
     \small
