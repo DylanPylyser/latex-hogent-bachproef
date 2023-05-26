@@ -17,7 +17,7 @@ Voor de Proof-of-Concept wordt er gebruikgemaakt van een testomgeving. Deze test
 
 Een Azure \ac{AD} developer tenant is een gratis Sandbox-omgeving die voor 90 dagen beschikbaar is, met een mogelijkheid tot verlenging. Een Sandbox is in \ac{IT}-termen een omgeving waarin je kan spelen met één of meerdere technologieën, zonder dat hier consequenties aan vast hangen. \\
 
-Binnen deze Sandbox kan Microsoft Graph worden gebruikt wanneer dit  geconfigureerd is. Zoals vermeldt in de literatuurstudie kan Microsoft Graph op twee manieren worden toegepast. Voor de Proof-of-Concept wordt er gebruikgemaakt van de App-only access-methode. Enkele argumenten waarom deze authenticatiemethode wordt toegepast zijn hieronder te vinden. 
+Binnen deze Sandbox kan Microsoft Graph worden gebruikt wanneer dit geconfigureerd is. Uit de literatuurstudie kan Microsoft Graph op twee manieren worden toegepast. Voor de Proof-of-Concept wordt er gebruikgemaakt van de App-only access-methode. Enkele argumenten waarom deze authenticatiemethode wordt toegepast zijn hieronder te vinden. 
 
 \begin{itemize}
     \item Er moet niet via een account worden ingelogd. Dit bespaart moeite, tijd en verlaagt de kans op menselijke fouten.
@@ -73,7 +73,7 @@ Volgende aanpassingen worden uitgevoerd om de data van een productieomgeving te 
     \end{itemize}
     \item Licenties: De extra gebruiker Jarne Creten krijgt geen licenties toegewezen.
     \item Mailboxes: De gebruikers Adele, Diego, Johanna, Lynne, Megan, Miriam, Patti en Pradeep ontvangen drie mails waardoor de mailboxes meer gevuld zijn dan voordien.
-    \item \ac{MFA}: De gebruikers Adele en Jarne maken gebruik van de Microsoft Authenticator applicatie om in te loggen waardoor \ac{MFA} actief is.
+    \item \ac{MFA}: De gebruikers Adele en Jarne maken gebruik van Microsoft Authenticator om in te loggen waardoor \ac{MFA} actief is.
 \end{itemize}
 
 \section{Proof-of-Concept}
@@ -82,9 +82,9 @@ Volgende aanpassingen worden uitgevoerd om de data van een productieomgeving te 
 
 % taal ok
 
-Om een app-only authenticatie op te zetten me Microsoft Graph wordt er gebruikgemaakt van een stappenplan uit de blog van \textcite{Terlisten2022}. Het stappenplan begint met het registreren van een applicatie. Daarna worden er Microsoft Graph \Ac{API}-permissies toegevoegd voor de applicatie. Vervolgens wordt er een client secret gegenereerd. Als laatste wordt er connectie gemaakt met de Microsoft Graph \Ac{API}. \\
+Om een app-only authenticatie op te zetten met Microsoft Graph wordt er gebruikgemaakt van een stappenplan uit de blog van \textcite{Terlisten2022}. Het stappenplan begint met het registreren van een applicatie. Daarna worden er Microsoft Graph \Ac{API}-permissies toegevoegd voor de applicatie. Vervolgens wordt er een client secret gegenereerd. Als laatste wordt er connectie gemaakt met de Microsoft Graph \Ac{API}. \\
 
-Het opzetten van de effectieve connectie maakt gebruik van Listing \ref{PSQ0}. Dit PowerShell-script is ook uitgewerkt door \textcite{Terlisten2022}. Het script maakt gebruik van vier variabelen, namelijk “AppId”, “TenantId”, “ClientSecret” en “Token”. De eerste drie variabelen zijn nodig om de toepassing te kunnen aanspreken. De vierde variabele haalt een \ac{MSAL}-token op. Dit token wordt gebruikt om op een veilige manier in te loggen op de tenant met Microsoft Graph. In PowerShell wordt dit vertaald met het commando “Connect-Graph” met de optie “-AccessToken”. \\
+Het opzetten van de connectie via PowerShell maakt gebruik van Listing \ref{PSQ0}. Dit PowerShell-script is ook uitgewerkt door \textcite{Terlisten2022}. Het script maakt gebruik van vier variabelen, namelijk “AppId”, “TenantId”, “ClientSecret” en “Token”. De eerste drie variabelen zijn nodig om de toepassing te kunnen aanspreken. De vierde variabele haalt een \ac{MSAL}-token op. De \ac{MSAL}-token wordt gebruikt om op een veilige manier in te loggen op de tenant met Microsoft Graph. In PowerShell wordt dit vertaald met het commando “Connect-Graph” met de optie “-AccessToken”. \\
 
 Dit onderzoek maakt gebruik van een client secret, maar in de praktijk is het aanbevolen om te werken met certificaten in plaats van een client secret \autocite{Terlisten2022}.
 
@@ -94,7 +94,7 @@ Dit onderzoek maakt gebruik van een client secret, maar in de praktijk is het aa
 
 De twintig functies van het auditing-script worden in dit onderdeel besproken. De functies maken gebruik van testdata om de scripts te testen. Alle scripts zijn gemaakt om met versie 1.25 te werken van Microsoft Graph PowerShell. \\
 
-Alle functies in verband met \ac{MFA} maken gebruik van een bestaand script van \textcite{Allen2023}. Dit script wordt omgevormd tijdens de uitwerking, maar dient als basis om deze functies uit te werken. \\
+Alle functies in verband met \ac{MFA} maken gebruik van het script door \textcite{Allen2023}. Dit script wordt omgevormd tijdens de uitwerking, maar dient als basis om deze functies uit te werken. \\
 
 Een overzicht van de resultaten van de twintig functies is te vinden in Tabel \ref{POC}. De afkorting “VO” staat voor “volledig omgevormd”. De afkorting “DO” staat voor “deels omgevormd”. De afkorting “NO” staat voor “niet omgevormd”. 
 
@@ -111,8 +111,10 @@ Een overzicht van de resultaten van de twintig functies is te vinden in Tabel \r
             Aantal geblokkeerde gebruikers met actieve licenties & X & & \\
             Overzicht en telling van administrators met hun account status & X & & \\
             Overzicht en telling van de interne gebruikers met MFA & X & & \\
-            antal gelicenseerde, actieve accounts waarbij MFA niet aanwezig is & X & & \\
+            Aantal gelicenseerde, actieve accounts waarbij MFA niet aanwezig is & X & & \\
             Aantal externe accounts waarbij MFA uitstaat & X & &  \\
+            Overzicht van accounts met administratorpriviliges,
+            onderverdeeld in gebruik van MFA & X & & \\
             Groottes van elke type mailbox & & & X \\
             Groottes van elke mailbox, gerangschikt van groot naar klein & & & X \\ 
             Onderverdeling van gebruikersmailboxen op basis van grootte & & & X \\ 

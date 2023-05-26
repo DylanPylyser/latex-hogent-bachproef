@@ -513,7 +513,7 @@ Geen response beschikbaar. Bij een DELETE-request wordt er bij een succesvolle v
 % CHAPTER
 % ---
 
-\chapter{Audit-script PowerShell-scripts}%
+\chapter{Microsoft Graph PowerShell-scripts}%
 \label{ch:PowerShell-scripts}
 
 \clearpage
@@ -548,7 +548,7 @@ $Token = Get-MsalToken -TenantId $TenantId -ClientId $AppId `
 # Verbinding maken met de Microsoft Graph API via de toegangstoken.
 Connect-Graph -AccessToken $Token.AccessToken
     \end{minted}
-    \caption[connectMSGraph.ps1]{PowerShell-script om te connecteren met Microsoft Graph als applicatie aan de hand van \ac{MSAL}.}
+    \caption[connectMSGraph.ps1]{PowerShell-script om te connecteren met Microsoft Graph als applicatie aan de hand van \ac{MSAL} door \textcite{Terlisten2022}.}
     \label{PSQ0}
 \end{listing}
 
@@ -1042,7 +1042,7 @@ Write-Host "MFA Disabled (Member): $($MFAdisabled.count) - $([math]::Round((($MF
 Write-Host "MFA Enabled (Member): $($MFAenabled.count) - $([math]::Round((($MFAenabled.count/$results.count)*100),2))%"
 Write-Host "---`nGRANT TOTAL: $($results.count) - 100%"
     \end{minted}
-    \caption[functie6.ps1]{Microsoft Graph PowerShell-script dat een overzicht weergeeft en een telling van de interne gebruikers met \ac{MFA} uitvoert.}
+    \caption[functie6.ps1]{Microsoft Graph PowerShell-script met onderdelen uit het script van \textcite{Allen2023} dat een overzicht weergeeft en een telling van de interne gebruikers met \ac{MFA}.}
     \label{PSQ6}
 \end{listing}
 
@@ -1142,7 +1142,7 @@ foreach ($disabledMFA in $results) { if ($disabledMFA.MFAstatus -eq "Disabled") 
 $disabledMFAusers
 Write-Host "=== Summary ===`nMFA Disabled (Licensed + Account Enabled): $($disabledMFAusers.count)"
     \end{minted}
-    \caption[functie7.ps1]{Microsoft Graph PowerShell-script dat het aantal gelicenseerde, actieve accounts waarbij \Ac{MFA} niet aanwezig is weergeeft.}
+    \caption[functie7.ps1]{Microsoft Graph PowerShell-script met onderdelen uit het script van \textcite{Allen2023} dat het aantal gelicenseerde, actieve accounts waarbij \Ac{MFA} niet aanwezig is weergeeft.}
     \label{PSQ7}
 \end{listing}
 
@@ -1390,7 +1390,7 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
 $results
 Write-Host "=== Summary ===`nMFA Disabled (Guest): $($results.count)"
     \end{minted}
-    \caption[functie8.ps1]{Microsoft Graph PowerShell-script dat het aantal externe accounts waarbij \Ac{MFA} uitstaat weergeeft.}
+    \caption[functie8.ps1]{Microsoft Graph PowerShell-script met onderdelen uit het script van \textcite{Allen2023} dat het aantal externe accounts waarbij \Ac{MFA} uitstaat weergeeft.}
     \label{PSQ8}
 \end{listing}
 
@@ -1492,7 +1492,7 @@ Write-Host "MFA Disabled: $($MFAdisabled.count)"
 foreach ($MFAdisabledUser in $MFAdisabled) { Write-Host "   $($MFAdisabledUser.user)" }
 Write-Host "---`nGRAND TOTAL: $($results.count)"
     \end{minted}
-    \caption[functie9.ps1]{Microsoft Graph PowerShell-script dat een overzicht geeft van de accounts met administrator-priviliges, onderverdeeld in gebruik van \Ac{MFA}.}
+    \caption[functie9.ps1]{Microsoft Graph PowerShell-script met onderdelen uit het script van \textcite{Allen2023} dat een overzicht geeft van de accounts met administrator-priviliges, onderverdeeld in gebruik van \Ac{MFA}.}
     \label{PSQ9}
 \end{listing}
 
@@ -1531,9 +1531,7 @@ MFA Disabled: 0
 GRAND TOTAL: 2
     \end{verbatim}
 \end{scriptsize}
-
 \clearpage
-
 \section{Functie 14: Onderverdeling van hoeveelheid mailboxen per domein}
 
 \subsection{PowerShell-script: functie14.ps1}
@@ -1568,9 +1566,7 @@ foreach ($domain in $domains) {
         }
     }
 }
-
 Write-Host "=== Summary ==="
-
 # Loopt door elk domein in $domains en elk e-mailadres in de $mailboxes array
 foreach ($domain in $domains) {
     Write-Host "Domain: $($domain.id)"
@@ -1583,9 +1579,7 @@ foreach ($domain in $domains) {
     \caption[functie14.ps1]{Microsoft Graph PowerShell-script dat een onderverdeling weergeeft van de hoeveelheid mailboxen per domein.}
     \label{PSQ14}
 \end{listing}
-
 \subsection{Output}
-
 \begin{scriptsize}
     \begin{verbatim}
 === Summary ===
@@ -1613,9 +1607,7 @@ Domain: 25ky3d.onmicrosoft.com
 \end{scriptsize}
 
 \section{Functie 15: Overzicht van accounts met als primair SMTP-adresdomein “.onmicrosoft.com”}
-
 \subsection{PowerShell-script: functie15.ps1}
-
 \begin{listing}[!h]
     \begin{minted}
         [
@@ -1638,7 +1630,7 @@ $SMTPmatch1 = "\.onmicrosoft\.com$"
 # Initialiseer lege arrays voor de twee SMTP-categorieën
 $SMTPgroup1 = $SMTPothers = @()   
 
-# Loopt door de lijst van gebruikers en voor elke gebruiker wordt er gecontroleerd of de Mail eigenschap eindigt op ".onmicrosoft.com". 
+# Loopt door de lijst van gebruikers en er wordt gecontroleerd of de “Mail” eindigt op ".onmicrosoft.com". 
 # Indien ja, voeg de gebruiker toe aan de $SMTPgroup1 array. 
 # Indien nee, voeg de gebruiker toe aan de $SMTPothers array.
 foreach ($user in $users) {
@@ -1651,7 +1643,6 @@ foreach ($user in $users) {
         $SMTPotherCount++   
     }
 }
-
 Write-Host "=== Summary ==="
 
 # Toont de gebruikers die behoren tot SMTPgroup1
@@ -1837,7 +1828,7 @@ YAMMER_ENTERPRISE: 17
 
 \clearpage
 
-\section{Functie 20: Overzicht van de verschillende MFA-methodes met het aantal gebruikers}
+\section{Functie 20: Overzicht van de MFA-methodes met het aantal gebruikers}
 
 \subsection{PowerShell-script: functie20.ps1}
 
@@ -1918,7 +1909,7 @@ Write-Host "Email: $($emailCount)`nFIDO2: $($fido2Count)`nApp: $($appCount)"
 Write-Host "Password: $($passwordCount)`nPhone: $($phoneCount)`nSoftware OATH: $($softwareoathCount)"
 Write-Host "Temporary Access: $($tempaccessCount)`nHello for Business: $($hellobusinessCount)"
     \end{minted}
-    \caption[functie20.ps1]{Microsoft Graph PowerShell-script dat een overzicht geeft van de verschillende \Ac{MFA}-methodes met het aantal gebruikers.}
+    \caption[functie20.ps1]{Microsoft Graph PowerShell-script met onderdelen uit het script van \textcite{Allen2023} dat een overzicht geeft van de \Ac{MFA}-methodes met het aantal gebruikers.}
     \label{PSQ20}
 \end{listing}
 

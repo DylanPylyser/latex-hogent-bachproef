@@ -172,7 +172,7 @@ In het bijzonder gaat het om volgende commando's die vandaag de dag niet meer aa
     \end{itemize}
 \end{itemize}
 
-Naast de data-objecten bevat Microsoft Graph meer dependencies, dit wordt weergegeven in Tabel \ref{MSGDT}. Dit wilt zeggen dat Microsoft Graph meer Microsoft-entiteiten kan aanspreken dan de Azure \ac{AD} PowerShell-modules. 
+Naast de data-objecten bevat Microsoft Graph meer dependencies, dit wordt weergegeven in Tabel \ref{MSGDT}. Dit wil zeggen dat Microsoft Graph meer Microsoft-entiteiten kan aanspreken dan de Azure \ac{AD} PowerShell-modules. 
 
 % ---
 % Section
@@ -186,7 +186,7 @@ Naast de data-objecten bevat Microsoft Graph meer dependencies, dit wordt weerge
 
 % Taal ok
 
-Voor beide technologieën bestaan de twee dezelfde toegangsmogelijkheden, namelijk Delegated en App-only. Er zijn geen verschillen aan te merken voor de toegangsmogelijkheden. \\
+Voor beide technologieën bestaan twee toegangsmogelijkheden, namelijk Delegated en App-only. Deze toegangsmogelijkheden zijn niet verschillend tussen beide technologieën. \\
 
 De enige opmerking dat er kan gegeven worden, maar buiten de scope van dit onderdeel van de vergelijking valt, is dat \ac{ADAL} niet meer ondersteund wordt op 30 juni 2023. Wanneer er wordt gebruikgemaakt van een library om in te loggen, bijvoorbeeld voor App-only access met secrets, dan kan dit via \ac{MSAL}.
 
@@ -201,7 +201,7 @@ De enige opmerking dat er kan gegeven worden, maar buiten de scope van dit onder
 
 % taal ok
 
-De eerste methode is de gedelegeerde of interactieve manier. Deze methode maakt gebruik van een interactie van een gebruiker om de data te kunnen raadplegen. Hier ligt dus de nadruk op de gebruiker die wilt inloggen. \\
+De eerste methode is de gedelegeerde of interactieve manier. Deze methode maakt gebruik van een interactie van een gebruiker om de data te kunnen raadplegen. Hier ligt de nadruk op de gebruiker die wilt inloggen. \\
 
 De gebruiker die de actie uitvoert heeft bepaalde rechten verkregen. Dit kan gaan over leesrechten, maar ook over schrijfrechten. De veiligheid van de data wordt bepaald door twee factoren. \\
 
@@ -213,7 +213,7 @@ De tweede methode is de geprogrammeerde manier of niet-interactieve manier. Deze
 
 De applicatie heeft net zoals een gebruiker rechten die kunnen worden ingesteld. Deze applicatie staat los van de gebruikers en kan alleen worden aangepast door een gebruiker die toegang heeft tot het domein. \\
 
-Een applicatie kan niet gebruikmaken van \ac{MFA}, doordat er geen interacties plaatsvinden. In plaats daarvan is het mogelijk om gebruik te maken van secrets. Het principe van een secret is dat de waarde alleen bij het aanmaken wordt weergegeven, daarna kan het niet meer worden opgevraagd.
+Een applicatie maakt geen gebruik van \ac{MFA}, doordat er geen interacties plaatsvinden. In plaats daarvan is het mogelijk om gebruik te maken van secrets. Het principe van een secret is dat de waarde alleen bij het aanmaken wordt weergegeven, daarna kan het niet meer worden opgevraagd.
 
 \subsection{Gebruik van rechten}
 
@@ -250,6 +250,6 @@ De migratie van Azure \ac{AD} Graph naar Microsoft Graph op vlak van permissie s
     \label{AADMSGPS}
 \end{table}
 
-Tabel \ref{AADMSGPS} geeft weer dat het aantal permission scopes hetzelfde is gebleven. Microsoft Graph heeft wel, in vergelijking met het oude, de scopes in domeinen verdeeld. Daarnaast heeft Microsoft Graph drie extra scopes zowel Application als Delegated gemaakt. \\
+Tabel \ref{AADMSGPS} geeft weer dat het aantal permission scopes blijft. Microsoft Graph heeft wel, in vergelijking met het oude, de scopes in domeinen verdeeld. Daarnaast heeft Microsoft Graph drie extra scopes zowel Application als Delegated gemaakt. \\
 
 Na het vergelijken van alle criteria zijn volgende zaken op te merken. De werking van de \Ac{API} is gelijklopend, maar bevat kleine merkbare verschillen. Microsoft Graph neemt niet alle data-objecten over van Azure \ac{AD} Graph, maar heeft wel meer dependencies of afhankelijkheden. Door een toename in dependencies kan de nieuwe technologie meer Microsoft-entiteiten aanspreken. Op vlak van toegangsmogelijkheden zijn beide technologieën hetzelfde. In verband met de security heeft het nieuwe meer afhankelijkheden en dus meer beschikbare rechten, ten opzichte van het oude. Dit kan zowel een voor- als nadeel zijn voor de nieuwe technologie.

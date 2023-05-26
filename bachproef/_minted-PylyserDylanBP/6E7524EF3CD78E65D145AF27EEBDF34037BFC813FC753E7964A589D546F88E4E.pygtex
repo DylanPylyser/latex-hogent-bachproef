@@ -11,7 +11,7 @@
 \PYG{c}{\PYGZsh{} Initialiseer lege arrays voor de twee SMTP\PYGZhy{}categorieën}
 \PYG{n+nv}{\PYGZdl{}SMTPgroup1} \PYG{p}{=} \PYG{n+nv}{\PYGZdl{}SMTPothers} \PYG{p}{=} \PYG{p}{@()}
 
-\PYG{c}{\PYGZsh{} Loopt door de lijst van gebruikers en voor elke gebruiker wordt er gecontroleerd of de Mail eigenschap eindigt op \PYGZdq{}.onmicrosoft.com\PYGZdq{}.}
+\PYG{c}{\PYGZsh{} Loopt door de lijst van gebruikers en er wordt gecontroleerd of de “Mail” eindigt op \PYGZdq{}.onmicrosoft.com\PYGZdq{}.}
 \PYG{c}{\PYGZsh{} Indien ja, voeg de gebruiker toe aan de \PYGZdl{}SMTPgroup1 array.}
 \PYG{c}{\PYGZsh{} Indien nee, voeg de gebruiker toe aan de \PYGZdl{}SMTPothers array.}
 \PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}user} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}users}\PYG{p}{)} \PYG{p}{\PYGZob{}}
@@ -24,7 +24,6 @@
         \PYG{n+nv}{\PYGZdl{}SMTPotherCount}\PYG{p}{++}
     \PYG{p}{\PYGZcb{}}
 \PYG{p}{\PYGZcb{}}
-
 \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}=== Summary ===\PYGZdq{}}
 
 \PYG{c}{\PYGZsh{} Toont de gebruikers die behoren tot SMTPgroup1}

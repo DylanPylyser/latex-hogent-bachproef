@@ -60,7 +60,7 @@ Binnen Windows 2000 server zijn er administratieve tools zoals Microsoft Managem
 
 In het begin van de eenentwintigste eeuw werden systemen en servers zoals Windows 2000 Server met een focus op \ac{on-prem} onderhouden \autocite{Microsoft2022a}. On-premises betekent dat software en hardware, zoals computers en servers, op locaties staan dat eigendom is van het bedrijf en lokaal worden toegepast \autocite{Gastermann2015}. Hierbij wordt de systeemadministratie door systeembeheerders lokaal aangepakt. Ter illustratie, in dit scenario focust de automatisatie via PowerShell zich op de lokale entiteiten binnen het bedrijf. Databanken, mailservers, \ac{DNS}-servers en andere instanties worden lokaal aangesproken en geautomatiseerd indien nodig. \\
 
-Rond het jaar 2006 evolueerde de on-premises-aanpak naar een cloud-aanpak \autocite{Hayes2008}. \ac{EC2} van Amazon is een van de grondleggers binnen de cloudservices \autocite{Qian2009}. Deze inventie van Amazon heeft sindsdien invloed op de huidige marktleiderspositie van AWS in cloud computing. Op de tweede plaats bevindt zich de cloudservice van Microsoft, genaamd Azure \autocite{Vailshery2022}.
+Rond het jaar 2006 evolueerde de on-premises-aanpak naar een cloud-aanpak, volgens onderzoek van \textcite{Hayes2008}. \ac{EC2} van Amazon is een van de grondleggers binnen de cloudservices \autocite{Qian2009}. Deze inventie van Amazon heeft sindsdien invloed op de huidige marktleiderspositie van AWS in cloud computing. Op de tweede plaats bevindt zich de cloudservice van Microsoft, genaamd Azure \autocite{Vailshery2022}.
 
 
 
@@ -227,9 +227,7 @@ Het proces van Graph gaat van start wanneer een applicatie een verzoek doet. Dit
 
 % Taal OK
 
-Vooraleer de autorisatie kan plaatsvinden, moet er eerst worden geauthenticeerd. Dit gebeurt via een tool genaamd \ac{ADAL} of de modernere \ac{MSAL} van \textcite{Microsoft2022d}. \\
-
-\ac{ADAL} en \ac{MSAL} worden gebruikt voor verificatie- en autorisatiefunctionaliteiten \autocite{Ooms2022}. Beide technologieën dienen om te kunnen authenticeren met de Graph \ac{API}. \\ 
+Vooraleer de autorisatie kan plaatsvinden, moet er eerst worden geauthenticeerd. Dit gebeurt via een tool genaamd \ac{ADAL} of de modernere \ac{MSAL} van \textcite{Microsoft2022d}. \ac{ADAL} en \ac{MSAL} dienen voor verificatie- en autorisatiefunctionaliteiten \autocite{Ooms2022}. Beide technologieën kunnen authenticeren met de Graph \ac{API}. \\ 
 
 Er zijn twee methodes om te verbinden met de Graph \ac{API}. \\
 
@@ -410,7 +408,7 @@ Een voorbeeld van reponse headers binnen Azure \ac{AD} Graph wordt weergegeven b
 
 % Taal OK
 
-Request bodies kunnen via \Ac{JSON}- of \ac{XML}-payloads verzonden worden voor POST-, PATCH- en PUT-verzoeken \autocite{Microsoft2015}. Bovendien kunnen antwoorden, bijvoorbeeld van een server, worden teruggestuurd via \ac{JSON} of \ac{XML}. \\
+Request bodies kunnen via \Ac{JSON}- of \ac{XML}-payloads verzonden worden voor POST-, PATCH- en PUT-\newline verzoeken \autocite{Microsoft2015}. Bovendien kunnen antwoorden, bijvoorbeeld van een server, worden teruggestuurd via \ac{JSON} of \ac{XML}. \\
 
 Het woord “payload” staat voor het dragen van data via een pakket of transmissie \autocite{Comer2006}. Deze payloads kunnen in de request bodies gespecifieerd worden via de Content-Type request header en in antwoorden van accept request headers \autocite{Microsoft2015}. Een voorbeeld van een request, met bijhorende request en response body, wordt voorgesteld bij Figuur \ref{hpr}, \ref{hreqb} en \ref{hresb}. \\
 
@@ -479,7 +477,7 @@ POST https://graph.windows.net/myorganization/users?api-version
 
 % Taal OK
 
-Microsoft Graph is, net zoals de reeds besproken Azure \Ac{AD} Graph, een centrale \ac{REST} \ac{API} voor Microsoft-entiteiten. Deze technologie is verschillend, maar volgt de uitfaserende Azure \ac{AD} Graph op \autocite{Microsoft2023n}. Microsoft Graph werd door \textcite{Microsoft2015a} in de schijnwerper gezet in 2015. De technologie is gebaseerd op de wiskundige graaf zoals Azure \Ac{AD} Graph. Het logisch concept van Microsoft Graph wordt weergegeven op Figuur \ref{msg}. \\
+Microsoft Graph is, net zoals de reeds besproken Azure \Ac{AD} Graph, een centrale \ac{REST} \ac{API} voor Microsoft-entiteiten. Deze technologie is verschillend, maar volgt de uitfaserende Azure \ac{AD} Graph op \autocite{Microsoft2023n}. Microsoft Graph werd door \textcite{Microsoft2015a} in de schijnwerper gezet in 2015. De technologie is gebaseerd op de wiskundige graaf zoals Azure \Ac{AD} Graph. Het logisch concept van Microsoft Graph wordt weergegeven op Figuur \ref{msg}.
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{MicrosoftGraph.png}
@@ -831,7 +829,7 @@ Microsoft Graph werkt met vijf soorten \Ac{HTTP}-methodes bij een verzoek \autoc
     \item DELETE
 \end{itemize}
 
-De GET- en DELETE-methode vallen onder CRUD-methodes. CRUD staat voor CREATE, READ, UPDATE en DELETE. De CRUD-operaties komen voor in het \ac{IT}-component rond databanken \autocite{Truica2015}. In Microsoft Graph staan GET en DELETE gelijk aan de CRUD-operaties READ en DELETE. Bovendien maken deze twee methodes geen gebruik van een request body. De andere drie methodes (POST, PATCH en PUT) gebruiken wel een request body. In de meeste gevallen wordt in dit deel van het verzoek gebruikgemaakt van het \ac{JSON}-formaat. In dit formaat wordt er extra informatie meegeven over welke waarden moeten gebruikt worden voor een operatie of methode uit te voeren \autocite{Microsoft2023vv}. Een voorbeeld van een request met bijhorend antwoord is te vinden op Figuur \ref{MSPR} en \ref{MSPRES}. \\
+De GET- en DELETE-methode vallen onder CRUD-methodes. CRUD staat voor CREATE, READ, UPDATE en DELETE. CRUD-operaties komen voor in het \ac{IT}-component rond databanken \autocite{Truica2015}. In Microsoft Graph staan GET en DELETE gelijk aan de CRUD-operaties READ en DELETE. Bovendien maken deze twee methodes geen gebruik van een request body. De andere drie methodes (POST, PATCH en PUT) gebruiken wel een request body. In de meeste gevallen wordt in dit deel van het verzoek gebruikgemaakt van het \ac{JSON}-formaat. In dit formaat wordt er extra informatie meegeven over welke waarden moeten gebruikt worden voor een operatie of methode uit te voeren \autocite{Microsoft2023vv}. Een voorbeeld van een request met bijhorend antwoord is te vinden op Figuur \ref{MSPR} en \ref{MSPRES}. \\
 
 \begin{figure}[h]
     \scriptsize
@@ -908,7 +906,7 @@ GET https://graph.microsoft.com/v1.0/me/onenote/notebooks
 
 \ac{HTTP}-verzoeken geven na een uitvoering een antwoord of response weer. Een antwoord kan aangepast worden via twee soorten queryparameters \autocite{Microsoft2023vv}. \\
 
-Als eerste de OData-queryparameters. Deze queryparamaters zijn afkomstig van het OData-protocol waarvan bepaalde parameters worden ondersteund door \textcite{Microsoft2023g}. Een toegepast voorbeeld van een verzoek met een OData-queryparameter is te zien op Figuur \ref{TRAM}. \\
+Als eerste de OData-queryparameters. Deze queryparamaters zijn afkomstig van het OData-protocol waarvan bepaalde parameters worden ondersteund door \textcite{Microsoft2023g}. Een toegepast voorbeeld van een OData-queryparameter in een verzoek, is te zien op Figuur \ref{TRAM}. \\
 
 \begin{figure}[h]
     \scriptsize
@@ -931,7 +929,7 @@ Microsoft Graph raadt twee tools aan om de \Ac{API} te testen \autocite{Microsof
 
 % Taal OK 
 
-Microsoft Graph kan worden aangestuurd met PowerShell. Deze PowerShell-integratie zit in de Microsoft Graph PowerShell \ac{SDK} \autocite{Microsoft2023j}. Een \ac{SDK} bestaat uit een verzameling van tools die instaan voor het maken van bepaalde software of hardware \autocite{RedHat2020}. Deze PowerShell \ac{SDK} stelt de \ac{API} van Microsoft Graph bloot. Door deze blootstelling kan PowerShell de \ac{API} gebruiken, beheren en automatiseren.
+Microsoft Graph kan worden aangestuurd met PowerShell. Deze integratie met PowerShell zit in de Microsoft Graph PowerShell \ac{SDK} \autocite{Microsoft2023j}. Een \ac{SDK} bestaat uit een verzameling van tools die instaan voor het maken van bepaalde software of hardware \autocite{RedHat2020}. Deze PowerShell \ac{SDK} stelt de \ac{API} van Microsoft Graph bloot. Door deze blootstelling kan PowerShell de \ac{API} gebruiken, beheren en automatiseren.
 
 
 \subsubsection{Ondersteunende dependencies}

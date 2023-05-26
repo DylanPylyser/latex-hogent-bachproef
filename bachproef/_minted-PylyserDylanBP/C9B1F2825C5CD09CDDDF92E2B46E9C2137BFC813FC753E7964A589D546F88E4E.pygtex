@@ -19,9 +19,7 @@
         \PYG{p}{\PYGZcb{}}
     \PYG{p}{\PYGZcb{}}
 \PYG{p}{\PYGZcb{}}
-
 \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}=== Summary ===\PYGZdq{}}
-
 \PYG{c}{\PYGZsh{} Loopt door elk domein in \PYGZdl{}domains en elk e\PYGZhy{}mailadres in de \PYGZdl{}mailboxes array}
 \PYG{k}{foreach} \PYG{p}{(}\PYG{n+nv}{\PYGZdl{}domain} \PYG{k}{in} \PYG{n+nv}{\PYGZdl{}domains}\PYG{p}{)} \PYG{p}{\PYGZob{}}
     \PYG{n+nb}{Write\PYGZhy{}Host} \PYG{l+s+s2}{\PYGZdq{}Domain: }\PYG{p}{\PYGZdl{}(}\PYG{n+nv}{\PYGZdl{}domain}\PYG{p}{.}\PYG{n}{id}\PYG{p}{)}\PYG{l+s+s2}{\PYGZdq{}}

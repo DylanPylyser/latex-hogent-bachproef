@@ -11,9 +11,9 @@
 %% mogelijke manier toegepast hebt om een antwoord te vinden op de
 %% onderzoeksvraag.
 
-Om een antwoord te vinden op deze onderzoeksvraag, worden de volgende stappen gehanteerd. \\
+Om een antwoord te vinden op deze onderzoeksvraag, zijn volgende stappen gehanteerd. \\
 
-Als eerste wordt het onderzoeksdomein volledig gekaderd aan de hand van een literaire stand van zaken. Na het verzamelen en verwerken van alle literaire studies, volgt de vergelijking tussen het oude en het nieuwe. Zoals reeds vermeld wordt de PowerShell-module en \ac{API} van Azure \ac{AD} uitgefaseerd. Azure \ac{AD} wordt gezien als het “oude”. De nieuwe Microsoft Graph, de vervanger van Azure \ac{AD}, wordt gezien in de vergelijking als het “nieuwe”. \\
+Als eerste kadert de literaire stand van zaken het onderzoeksdomein. Na het verzamelen en verwerken van alle literaire studies, volgt de vergelijking tussen het oude en het nieuwe. Zoals reeds vermeld komt er een uifasering van de Azure \ac{AD} PowerShell-modules en \ac{API}. Azure \ac{AD} wordt gezien als het “oude”. De nieuwe Microsoft Graph, de vervanger van Azure \ac{AD}, wordt gezien in de vergelijking als het “nieuwe”. \\
 
 De vergelijking tussen de twee bevat de eerste helft van het antwoord op de onderzoeksvraag. In deze vergelijking wordt er gekeken naar vier criteria of onderdelen. 
 
@@ -24,13 +24,13 @@ De vergelijking tussen de twee bevat de eerste helft van het antwoord op de onde
     \item Security: Zijn de toegangsmogelijkheden veilig? Wordt er gebruikgemaakt van rechten om misbruik tegen te gaan?
 \end{itemize}
 
-Met deze vier onderdelen wordt de vergelijking tussen het oude en het nieuwe uitgevoerd. Deze vergelijking wordt aan de hand van de verwerkte literatuur toegepast. \\
+Met deze vier onderdelen wordt de vergelijking tussen het oude en het nieuwe uitgevoerd. De vergelijking tussen het oude en het nieuwe baseert zich op de verwerkte literatuur. \\
 
 Om de tweede helft van het antwoord te geven op de onderzoeksvraag wordt de casus praktisch uitgewerkt in een Proof-of-Concept. Het verouderde auditing-script van Easi, dat geschreven is in PowerShell, maakt gebruik van de verouderde modules. Dit script wordt vernieuwd door middel van de modernere Microsoft Graph PowerShell-modules. Door dit script op een praktisch manier te herwerken, kan dit aantonen wat vandaag de dag wel en niet mogelijk is met Microsoft Graph. \\
 
-Tijdens de praktische uitwerking wordt er gewerkt met een vijfstappenplan. Als eerste, het bekijken en beschrijven van de startende dataset na het activeren van de licentie. Als tweede, wordt de dataset aangepast naar een nagebootste klantenomgeving. Deze nabootsing wordt op basis van een intern document binnen Easi uitgevoerd. Daarna volgt het aanmaken van een applicatie voor Microsoft Graph. Vervolgens, het maken van een PowerShell-script om de testomgeving aan te spreken. Als laatste, het omvormen van het verouderde PowerShell-script dat Easi gebruikt. \\
+De praktische uitwerking maakt gebruik van een vijfstappenplan. Als eerste, het bekijken en beschrijven van de startende dataset na het activeren van de licentie. Als tweede, het aanpassen van de dataset naar een nagebootste klantenomgeving. Deze nabootsing wordt op basis van een intern document binnen Easi uitgevoerd. Daarna volgt het aanmaken van een applicatie voor Microsoft Graph. Vervolgens, het maken van een PowerShell-script om de testomgeving aan te spreken. Als laatste, het omvormen van het verouderde PowerShell-script dat Easi gebruikt. \\
 
-Om dit script zo efficiënt mogelijk te herwerken, worden twintig onderdelen van dit script behandeld. Deze twintig onderdelen of functies maken gebruik van de uitfaserende Azure \ac{AD} PowerShell-module. Hieronder volgt een opsomming van de twintig functies met een korte beschrijving. 
+Om dit script zo efficiënt mogelijk te herwerken, wordt het script in twintig functies verdeeld. Deze twintig onderdelen of functies maken gebruik van de uitfaserende Azure \ac{AD} PowerShell-module. Hieronder volgt een opsomming van de twintig functies met een korte beschrijving. 
 
 \begin{enumerate}
     \item Aantal aanwezige domeinen binnen de Office 365-omgeving.
@@ -54,7 +54,7 @@ Om dit script zo efficiënt mogelijk te herwerken, worden twintig onderdelen van
     \item Overzicht van verborgen mailboxen.
     \item Overzicht van \ac{SMTP}-forwarding.
     \item Overzicht verschillende types van licenties en het aantal personen met dit licentietype.
-    \item Overzicht verschillende methodes waarop \ac{MFA} wordt gebruikt met hoeveelheid gebruikers, onderverdeeld op basis van methode.
+    \item Overzicht methodes waarop \ac{MFA} wordt gebruikt met hoeveelheid gebruikers, onderverdeeld op basis van methode.
 \end{enumerate}
 
 Binnen deze twintig onderdelen zijn er vijf groepen van data. Dit zijn de vijf soorten data die worden nagekeken wanneer klanten een Office 365-audit uitvoeren door Easi. De vijf groepen worden hieronder weergegeven. 
