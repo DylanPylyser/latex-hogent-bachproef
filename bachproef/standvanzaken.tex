@@ -18,14 +18,16 @@ Soms wil je de auteur niet expliciet vernoemen, dan gebruik je \texttt{$\backsla
 
 \end{comment}
 
-In dit hoofdstuk wordt de state-of-the-art van dit onderzoek diepgaand besproken. Dit hoofdstuk biedt alle nodige informatie om de vergelijking tussen het oude en het nieuwe te vormen. Daarnaast is dit hoofdstuk de basislaag om dit onderzoek praktisch uit te werken. De titel bestaat uit drie onderdelen, namelijk Microsoft administration, de PowerShell-modules van Azure Active Directory en Microsoft Graph met \ac{API}. Als eerste wordt het begrip Microsoft administration besproken met bijhorende geschiedenis. Microsoft administration is de overkoepelende term waarin beide technologieën zich afspelen. Bij het tweede onderdeel wordt er dieper gekeken in dit domein. Er wordt meer duiding gegeven over Azure Active Directory met bijhorende componenten waaronder de Graph \Ac{API} en PowerShell-modules. Als laatste wordt Microsoft Graph aangeraakt met een focus op de \ac{API} en PowerShell-modules. De interne werking en mogelijkheden worden hierbij gedetailleerd besproken.
+% taal OK
+
+In dit hoofdstuk wordt de state of the art van dit onderzoek diepgaand besproken. Dit hoofdstuk biedt alle nodige informatie om de vergelijking tussen het oude en het nieuwe te vormen. Daarnaast is dit hoofdstuk de basislaag om dit onderzoek praktisch uit te werken. De titel bestaat uit drie onderdelen, namelijk Microsoft administration, de PowerShell-modules van Azure Active Directory en Microsoft Graph met \ac{API}. Als eerste wordt het begrip Microsoft administration besproken met bijhorende geschiedenis. Microsoft administration is de overkoepelende term waarin beide technologieën zich afspelen. Bij het tweede onderdeel wordt er dieper gekeken in dit domein. Er wordt meer duiding gegeven over Azure Active Directory met bijhorende componenten waaronder de Graph \Ac{API} en PowerShell-modules. Als laatste wordt Microsoft Graph aangeraakt met een focus op de \ac{API} en PowerShell-modules. De interne werking en mogelijkheden worden hierbij gedetailleerd besproken.
 
 
 \section{Wat is Microsoft administration?}
 
 % Taalcheck OK
 
-Microsoft administration bestaat uit twee kernwoorden die bekend zijn binnen de \ac{IT}-wereld. Microsoft staat voor het Amerikaanse technologiebedrijf en de producten die het aanbiedt \autocite{Warner2019}. Het woord administration, oftewel administratie in het Nederlands, staat voor het beheren van iets \autocite{Burgess2003}. Vanuit het woord administration volgde het woord administrator, dat duidt op een persoon die een of meerdere instanties beheert. Kortom, Microsoft administration staat voor het beheren van Microsoft-instanties en -producten zoals Windows en Azure. 
+Microsoft administration bestaat uit twee kernwoorden die bekend zijn binnen de \ac{IT}-wereld. Microsoft staat voor het Amerikaanse technologiebedrijf en de producten die het aanbiedt \autocite{Warner2019}. Het woord “administration”, oftewel administratie in het Nederlands, staat voor het beheren van iets \autocite{Burgess2003}. Vanuit het woord “administration” volgde het woord “administrator”, dat duidt op een persoon die een of meerdere instanties beheert. Kortom, Microsoft administration staat voor het beheren van Microsoft-instanties en -producten zoals Windows en Azure. 
 
 \subsection{Administration in de jaren tachtig en negentig}
 
@@ -250,11 +252,11 @@ Tokens van Azure Active Directory bevatten informatie over de applicatie, de geb
     \begin{verbatim}
 Authorization: Bearer eyJ0eX ... FWSXfwtQ
     \end{verbatim}    
-    \caption[Voorbeeld Azure AD-token]{Afgekort voorbeeld van een Azure \Ac{AD}-token binnen een autorisatieheader door \textcite{Microsoft2015}.}
+    \caption[Voorbeeld Azure AD token]{Afgekort voorbeeld van een Azure \Ac{AD} token binnen een autorisatieheader door \textcite{Microsoft2015}.}
     \label{ahtoken}
 \end{figure}
 
-Vervolgens voert de \ac{API} de nodige autorisaties uit via permissie scopes. Dit zijn OAuth 2.0 permissie scopes die aanwezig zijn in het Azure \Ac{AD}-token. OAuth 2.0 is een standaardprotocol voor autorisatie \autocite{OAuth}. \\
+Vervolgens voert de \ac{API} de nodige autorisaties uit via permission scopes. Dit zijn OAuth 2.0 permissie scopes die aanwezig zijn in het Azure \Ac{AD}-token. OAuth 2.0 is een standaardprotocol voor autorisatie \autocite{OAuth}. \\
 
 De permissie scopes worden gebruikt om te controleren of een gebruiker toegang heeft tot een bepaalde map of locatie \autocite{Microsoft2016a}. Een ontwikkelaar moet in dit scenario de juiste permissie scopes gebruiken om over de vereiste rechten te beschikken voor een actie. Wanneer er wordt aangemeld, krijgt de gebruiker de mogelijkheid om toestemming te geven of de applicatie in kwestie de gegevens van de gebruiker mag benutten. Tijdens het toestaan worden de permissie scopes meegegeven die de ontwikkelaar heeft ingesteld. Een opsomming van de mogelijk permissie scopes binnen de Azure \ac{AD} Graph \ac{API} bevindt zich in Tabel \ref{psaad}. \\
 
@@ -352,13 +354,13 @@ Een toegepast voorbeeld van een OData-queryparameter is te vinden in Figuur \ref
 https://graph.windows.net/contoso.com/groups/
 1747ad35-dd4c-4115-8604-09b54f89277d?$expand=members&api-version=1.6
 \end{verbatim}    
-\caption[Voorbeeld OData-queryparamter]{Toegepast voorbeeld van een OData-queryparameter op een \ac{HTTP}-request door \textcite{Microsoft2016b}.}
+\caption[Voorbeeld OData-queryparameter]{Toegepast voorbeeld van een OData-queryparameter op een \ac{HTTP}-request door \textcite{Microsoft2016b}.}
 \label{odqp}
 \end{figure}
 
 
 
-\subsubsection{Request en Response Headers}
+\subsubsection{Request en Response headers}
 
 % Taal OK
 
@@ -379,7 +381,7 @@ Daarnaast bestaan er ook een aantal response headers. Hieronder worden een enkel
     \item ocp-aad-session-key: Sleutel die een sessie met de directorydienst identificeert.
 \end{itemize}
 
-Een voorbeeld van antwoordheaders binnen Azure \ac{AD} Graph wordt weergegeven bij Figuur \ref{rhaad}. \\
+Een voorbeeld van reponse headers binnen Azure \ac{AD} Graph wordt weergegeven bij Figuur \ref{rhaad}. \\
 
 \begin{figure}[h!]
     \scriptsize
@@ -399,7 +401,7 @@ Een voorbeeld van antwoordheaders binnen Azure \ac{AD} Graph wordt weergegeven b
     "request-id": "c7f02989-6a03-444a-abb2-e3c7993c1ded"
 }
     \end{verbatim}
-    \caption[Voorbeeld Response Headers Azure AD Graph]{Voorbeeld van Response Headers binnen Azure \ac{AD} Graph via Azure \Ac{AD} Graph Explorer van \textcite{Microsoft}.}
+    \caption[Voorbeeld Response headers Azure AD Graph]{Voorbeeld van Response headers binnen Azure \ac{AD} Graph via Azure \Ac{AD} Graph Explorer van \textcite{Microsoft}.}
     \label{rhaad}
 \end{figure}
 
@@ -419,7 +421,7 @@ Het woord “payload” staat voor het dragen van data via een pakket of transmi
     \begin{verbatim}
 POST https://graph.windows.net/myorganization/users?api-version
     \end{verbatim}
-    \caption[Voorbeeld HTTP POST-request]{Voorbeeld van een \ac{HTTP} POST-request binnen Azure \ac{AD} Graph door \textcite{Microsoft2015}.}
+    \caption[Voorbeeld HTTP POST request]{Voorbeeld van een \ac{HTTP} POST request binnen Azure \ac{AD} Graph door \textcite{Microsoft2015}.}
     \label{hpr}
 \end{figure}
 
@@ -437,7 +439,7 @@ POST https://graph.windows.net/myorganization/users?api-version
     "userPrincipalName": "Alex@a830edad9050849NDA1.onmicrosoft.com"
 }
     \end{verbatim}
-    \caption[Voorbeeld Request Body Azure AD Graph]{Voorbeeld van een Request Body binnen Azure \ac{AD} Graph door \textcite{Microsoft2015}.}
+    \caption[Voorbeeld Request body Azure AD Graph]{Voorbeeld van een Request body binnen Azure \ac{AD} Graph door \textcite{Microsoft2015}.}
     \label{hreqb}
 \end{figure}
 
@@ -467,7 +469,7 @@ POST https://graph.windows.net/myorganization/users?api-version
     "userType": "Member"
 }
     \end{verbatim}
-    \caption[Voorbeeld Response Body Azure AD Graph]{Ingekort voorbeeld van een Response Body binnen Azure \ac{AD} Graph door \textcite{Microsoft2015}.}
+    \caption[Voorbeeld Response body Azure AD Graph]{Ingekort voorbeeld van een Response body binnen Azure \ac{AD} Graph door \textcite{Microsoft2015}.}
     \label{hresb}
 \end{figure}
 
@@ -555,7 +557,7 @@ Binnen Microsoft Graph zijn er twee mogelijkheden om toegang te verschaffen tot 
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{MIPmethods.png}
-    \caption[Voorbeeld toegangsmogelijkheden]{Voorstelling van de twee mogelijke methodes om toegang te krijgen tot het Microsoft identity platform door \autocite{Microsoft2022b}.}
+    \caption[Voorbeeld toegangsmogelijkheden Microsoft Graph]{Voorstelling van de twee mogelijke methodes om toegang te krijgen tot het Microsoft identity platform door \autocite{Microsoft2022b}.}
     \label{MIPM}
 \end{figure}
 
@@ -587,7 +589,7 @@ GET https://graph.microsoft.com/v1.0/me/ HTTP/1.1
 Host: graph.microsoft.com
 Authorization: Bearer EwAoA8l6BAAU ... 7PqHGsykYj7A0XqHCjbKKgWSkcAg==
     \end{verbatim}    
-    \caption[Voorbeeld Microsoft Graph Autorisatieverzoek]{Een voorbeeld van een autorisatieverzoek met een access token binnen Microsoft Graph door \textcite{Microsoft2022b}.}
+    \caption[Voorbeeld Microsoft Graph Authorization Request]{Een voorbeeld van een autorisatieverzoek met een access token binnen Microsoft Graph door \textcite{Microsoft2022b}.}
     \label{MSGA}
 \end{figure}
 
@@ -616,7 +618,7 @@ GET https://localhost/myapp/?
 code=M0ab92efe-b6fd-df08-87dc-2c6500a7f84d
 &state=12345
     \end{verbatim}    
-    \caption[Voorbeeld Microsoft Graph Authorization response]{Een voorbeeld van een autorisatie antwoord met de nodige code om een access token te verkrijgen binnen Microsoft Graph door \textcite{Microsoft2023r}.}
+    \caption[Voorbeeld Microsoft Graph Authorization Response]{Een voorbeeld van een autorisatie antwoord met de nodige code om een access token te verkrijgen binnen Microsoft Graph door \textcite{Microsoft2023r}.}
     \label{MSGAR}
 \end{figure}
 
@@ -636,7 +638,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 &grant_type=authorization_code
 &client_secret=JqQX2PNo9bpM0uEihUPzyrh
     \end{verbatim}
-    \caption[Voorbeeld User Token Request Microsoft Graph]{Een voorbeeld van een tokenverzoek via \ac{HTTP} binnen Microsoft Graph door \textcite{Microsoft2023r}.}
+    \caption[Voorbeeld User token Request Microsoft Graph]{Een voorbeeld van een tokenverzoek via \ac{HTTP} binnen Microsoft Graph door \textcite{Microsoft2023r}.}
     \label{HTR}
 \end{figure}
 
@@ -651,7 +653,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
     "refresh_token": "AwABAAAAvPM1KaPlrEqdFSBzjqfTGAMxZGUTdM0t4B4..."
 }        
     \end{verbatim}    
-    \caption[Voorbeeld User Token Response Microsoft Graph]{Een voorbeeld van een tokenantwoord via \ac{JSON} binnen Microsoft Graph door \textcite{Microsoft2023r}.}
+    \caption[Voorbeeld User token Response Microsoft Graph]{Een voorbeeld van een tokenantwoord via \ac{JSON} binnen Microsoft Graph door \textcite{Microsoft2023r}.}
     \label{HTRES}
 \end{figure}
 
@@ -672,7 +674,7 @@ client_id=11111111-1111-1111-1111-111111111111
 &grant_type=refresh_token
 &client_secret=jXoM3iz...   
     \end{verbatim}  
-    \caption[Voorbeeld Refresh Token request Microsoft Graph]{Een voorbeeld van een verzoek met een refresh token via \ac{HTTP} binnen Microsoft Graph door \textcite{Microsoft2023r}.}
+    \caption[Voorbeeld Refresh token Request Microsoft Graph]{Een voorbeeld van een verzoek met een refresh token via \ac{HTTP} binnen Microsoft Graph door \textcite{Microsoft2023r}.}
     \label{MSGRTR}
 \end{figure}
 
@@ -687,7 +689,7 @@ client_id=11111111-1111-1111-1111-111111111111
     "refresh_token": "AwABAAAAvPM1KaPlrEqdFSBzjqfTGAMxZGUTdM0t4B4...",
 }    
     \end{verbatim}    
-    \caption[Voorbeeld Refresh Token response Microsoft Graph]{Een voorbeeld van een antwoord met een refresh token via \ac{JSON} binnen Microsoft Graph door \textcite{Microsoft2023r}.}
+    \caption[Voorbeeld Refresh token Response Microsoft Graph]{Een voorbeeld van een antwoord met een refresh token via \ac{JSON} binnen Microsoft Graph door \textcite{Microsoft2023r}.}
     \label{MSGRTRES}
 \end{figure}
 
@@ -742,7 +744,7 @@ client_id=535fb089-9ff3-47b6-9bfb-4f1264799865
 &client_secret=qWgdYAmab0YSkuL1qKv5bPX
 &grant_type=client_credentials 
     \end{verbatim}    
-    \caption[Voorbeeld Application Token Request Microsoft Graph]{Een voorbeeld van een verzoek met een applicatie access token via \ac{HTTP} binnen Microsoft Graph door \textcite{Microsoft2023s}.}
+    \caption[Voorbeeld Application token Request Microsoft Graph]{Een voorbeeld van een verzoek met een applicatie access token via \ac{HTTP} binnen Microsoft Graph door \textcite{Microsoft2023s}.}
     \label{MSGATRR}
 \end{figure}
 
@@ -756,7 +758,7 @@ client_id=535fb089-9ff3-47b6-9bfb-4f1264799865
     "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNBVGZNNXBP..."
 } 
     \end{verbatim}    
-    \caption[Voorbeeld Application Token Response Microsoft Graph]{Een voorbeeld van een antwoord met een applicatie access token via \ac{JSON} binnen Microsoft Graph door \textcite{Microsoft2023s}.}
+    \caption[Voorbeeld Application token Response Microsoft Graph]{Een voorbeeld van een antwoord met een applicatie access token via \ac{JSON} binnen Microsoft Graph door \textcite{Microsoft2023s}.}
     \label{MSGATRRES}
 \end{figure}
 

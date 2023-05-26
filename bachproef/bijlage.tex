@@ -293,7 +293,7 @@
     "request-id": "40d52611-5733-411b-aa59-1e76643a6ff4"
 }
     \end{minted}
-    \caption[Query 2: Response body Microsoft Graph]{Response body van de tweede query via Azure \Ac{AD} Graph Explorer.}
+    \caption[Query 2: Response header Microsoft Graph]{Response header van de tweede query via Azure \Ac{AD} Graph Explorer.}
     \label{Q2AADRH}
 \end{listing}
 
@@ -1142,7 +1142,7 @@ foreach ($disabledMFA in $results) { if ($disabledMFA.MFAstatus -eq "Disabled") 
 $disabledMFAusers
 Write-Host "=== Summary ===`nMFA Disabled (Licensed + Account Enabled): $($disabledMFAusers.count)"
     \end{minted}
-    \caption[functie7.ps1]{Microsoft Graph PowerShell-script dat het aantal gelicenseerde, actieve accounts waarbij MFA niet aanwezig is weergeeft.}
+    \caption[functie7.ps1]{Microsoft Graph PowerShell-script dat het aantal gelicenseerde, actieve accounts waarbij \Ac{MFA} niet aanwezig is weergeeft.}
     \label{PSQ7}
 \end{listing}
 
@@ -1390,7 +1390,7 @@ foreach ($user in $users) { $resultObject = [PSCustomObject]@{
 $results
 Write-Host "=== Summary ===`nMFA Disabled (Guest): $($results.count)"
     \end{minted}
-    \caption[functie8.ps1]{Microsoft Graph PowerShell-script dat het aantal externe accounts waarbij MFA uitstaat weergeeft.}
+    \caption[functie8.ps1]{Microsoft Graph PowerShell-script dat het aantal externe accounts waarbij \Ac{MFA} uitstaat weergeeft.}
     \label{PSQ8}
 \end{listing}
 
@@ -1492,7 +1492,7 @@ Write-Host "MFA Disabled: $($MFAdisabled.count)"
 foreach ($MFAdisabledUser in $MFAdisabled) { Write-Host "   $($MFAdisabledUser.user)" }
 Write-Host "---`nGRAND TOTAL: $($results.count)"
     \end{minted}
-    \caption[functie9.ps1]{Microsoft Graph PowerShell-script dat een overzicht geeft van de accounts met administrator-priviliges, onderverdeeld in gebruik van MFA.}
+    \caption[functie9.ps1]{Microsoft Graph PowerShell-script dat een overzicht geeft van de accounts met administrator-priviliges, onderverdeeld in gebruik van \Ac{MFA}.}
     \label{PSQ9}
 \end{listing}
 
@@ -1845,8 +1845,8 @@ YAMMER_ENTERPRISE: 17
     \begin{minted}
         [
         frame=lines,
-        framesep=1.2mm,
-        baselinestretch=1.2,
+        framesep=1.1mm,
+        baselinestretch=1.1,
         fontsize=\tiny,
         linenos
         ]  
@@ -1918,7 +1918,7 @@ Write-Host "Email: $($emailCount)`nFIDO2: $($fido2Count)`nApp: $($appCount)"
 Write-Host "Password: $($passwordCount)`nPhone: $($phoneCount)`nSoftware OATH: $($softwareoathCount)"
 Write-Host "Temporary Access: $($tempaccessCount)`nHello for Business: $($hellobusinessCount)"
     \end{minted}
-    \caption[functie20.ps1]{Microsoft Graph PowerShell-script dat een overzicht geeft van de verschillende MFA-methodes met het aantal gebruikers.}
+    \caption[functie20.ps1]{Microsoft Graph PowerShell-script dat een overzicht geeft van de verschillende \Ac{MFA}-methodes met het aantal gebruikers.}
     \label{PSQ20}
 \end{listing}
 
