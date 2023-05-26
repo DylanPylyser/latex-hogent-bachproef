@@ -36,21 +36,21 @@ Microsoft administration bestaat uit twee kernwoorden die bekend zijn binnen de 
 Het beheren van systemen kan omvat worden in enkele taken, hieronder volgt een lijst van frequente taken tussen het jaar 1980 en 2000 \autocite{Frisch2002}. Deze taken zijn vandaag de dag nog steeds herkenbaar als dagdagelijkse taken van een systeembeheerder.
 
 \begin{itemize}
-    \item Toevoegen van nieuwe gebruikers en toestellen
-    \item Maken en beheren van back-ups
-    \item Bestanden en andere data recupereren
-    \item Gebruikers assisteren in dagelijkse taken en problemen
-    \item Monitoren van systemen
-    \item De veiligheid van de systemen garanderen
-    \item Het beheren en installeren van updates
-    \item Het automatiseren van taken
+    \item Toevoegen van nieuwe gebruikers en toestellen.
+    \item Maken en beheren van back-ups.
+    \item Bestanden en andere data recupereren.
+    \item Gebruikers assisteren in dagelijkse taken en problemen.
+    \item Monitoren van systemen.
+    \item De veiligheid van de systemen garanderen.
+    \item Het beheren en installeren van updates.
+    \item Het automatiseren van taken.
 \end{itemize} 
 
 \subsection{Microsoft administration via Windows}
 
 % Taalcheck OK
 
-Sinds de opkomst van Windows-systemen zoals Windows 2000 Server, zijn er mogelijkheden om administratieve taken uit te voeren binnen netwerkinfrastructuren \autocite{Tulloch2001}. \\
+Sinds de opkomst van systemen zoals Windows 2000 Server, zijn er mogelijkheden om administratieve taken uit te voeren binnen netwerkinfrastructuren \autocite{Tulloch2001}. \\
 
 Binnen Windows 2000 server zijn er administratieve tools zoals Microsoft Management Console, Event Viewer en Active Directory Domains and Trusts-instellingen beschikbaar. Deze tools dienen om de taken van een administrator te vergemakkelijken, door een overzicht te brengen van alle data in dat specifieke onderdeel \autocite{Sibisi2022}. Door het gebruik van deze administratieve tools kan een administrator Microsoft-entiteiten waaronder Windows-toestellen beheren om zijn taken mee uit te voeren. 
 
@@ -186,7 +186,7 @@ De naam “Graph” is afgeleid uit het wiskundige figuur van een graaf. Een gra
 
 \begin{figure}[h!]
     \includegraphics[width=\textwidth]{MathGraphExample.jpg}
-    \caption[Voorbeeld wiskundige graaf]{Voorbeeld van een graaf in de wiskunde uit het boek Graph Theory van \textcite{Diestel2010}.}
+    \caption[Voorbeeld wiskundige graaf]{Voorbeeld van een graaf in de wiskunde uit het boek van \textcite{Diestel2010}.}
     \label{mga}
 \end{figure}
 
@@ -245,9 +245,9 @@ De tweede methode is door een niet-interactieve of geprogrammeerde manier \autoc
 
 % Taal OK
 
-Tokens van Azure Active Directory bevatten informatie over de applicatie, de gebruiker, authenticatie en de rechten die een applicatie mag uitvoeren op de bijhorende directory \autocite{Microsoft2015}. Deze tokens bevinden zich in de autorisatieheader van een verzoek. Een afgekort voorbeeld hiervan is te zien op Figuur \ref{ahtoken}. \\
+Tokens van Azure Active Directory bevatten informatie over de applicatie, de gebruiker, authenticatie en de rechten die een applicatie mag uitvoeren op de bijhorende directory \autocite{Microsoft2015}. Deze tokens bevinden zich in de autorisatieheader van een verzoek. Een afgekort voorbeeld hiervan is te zien op Figuur \ref{ahtoken}. Vervolgens voert de \ac{API} de nodige autorisaties uit via permission scopes. Dit zijn OAuth 2.0 permissie scopes die aanwezig zijn in het Azure \Ac{AD}-token. OAuth 2.0 is een standaardprotocol voor autorisatie \autocite{OAuth}. \\
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \scriptsize
     \begin{verbatim}
 Authorization: Bearer eyJ0eX ... FWSXfwtQ
@@ -255,8 +255,6 @@ Authorization: Bearer eyJ0eX ... FWSXfwtQ
     \caption[Voorbeeld Azure AD token]{Afgekort voorbeeld van een Azure \Ac{AD} token binnen een autorisatieheader door \textcite{Microsoft2015}.}
     \label{ahtoken}
 \end{figure}
-
-Vervolgens voert de \ac{API} de nodige autorisaties uit via permission scopes. Dit zijn OAuth 2.0 permissie scopes die aanwezig zijn in het Azure \Ac{AD}-token. OAuth 2.0 is een standaardprotocol voor autorisatie \autocite{OAuth}. \\
 
 De permissie scopes worden gebruikt om te controleren of een gebruiker toegang heeft tot een bepaalde map of locatie \autocite{Microsoft2016a}. Een ontwikkelaar moet in dit scenario de juiste permissie scopes gebruiken om over de vereiste rechten te beschikken voor een actie. Wanneer er wordt aangemeld, krijgt de gebruiker de mogelijkheid om toestemming te geven of de applicatie in kwestie de gegevens van de gebruiker mag benutten. Tijdens het toestaan worden de permissie scopes meegegeven die de ontwikkelaar heeft ingesteld. Een opsomming van de mogelijk permissie scopes binnen de Azure \ac{AD} Graph \ac{API} bevindt zich in Tabel \ref{psaad}. \\
 
@@ -408,7 +406,7 @@ Een voorbeeld van reponse headers binnen Azure \ac{AD} Graph wordt weergegeven b
 
 
 
-\subsubsection{Request en Response Bodies}
+\subsubsection{Request en Response bodies}
 
 % Taal OK
 
@@ -515,7 +513,7 @@ De reden waarom Microsoft deze overgang in gang zet, ontstaat uit volgende reden
 
 % Taal OK
 
-Naast de uitfasering van de Azure \ac{AD} PowerShell-modules, start ook de uitval van \ac{ADAL} op 30 juni 2023 \autocite{Sahay2022}. Zoals reeds besproken in Azure \ac{AD} wordt er gebruikgemaakt van \ac{ADAL} of \ac{MSAL} om met de oude als nieuwe Graph te kunnen verbinden. \textcite{Microsoft2023m} verklaart dat migratie naar \ac{MSAL} voordelen met zich meebrengt dat \ac{ADAL} niet kan aanbieden. Daarnaast is \ac{MSAL} gebouwd om met het Microsoft identity platform te werken. Dit vereenvoudigt de werking met Microsoft Graph.
+Naast de uitfasering van de Azure \ac{AD} PowerShell-modules, start ook de uitval van \ac{ADAL} op 30 juni 2023 \autocite{Sahay2022}. Zoals reeds besproken in Azure \ac{AD} wordt er gebruikgemaakt van \ac{ADAL} of \ac{MSAL} om met de oude als nieuwe Graph te kunnen verbinden. \textcite{Microsoft2023m} verklaart dat de migratie naar \ac{MSAL} voordelen met zich meebrengt dat \ac{ADAL} niet kan aanbieden. Daarnaast is \ac{MSAL} gebouwd om met het Microsoft identity platform te werken. Dit vereenvoudigt de werking met Microsoft Graph.
 
 \subsection{Microsoft Graph toepassingen}
 
@@ -605,7 +603,7 @@ Als eerste stap moet de applicatie worden geregistreerd bij Azure \ac{AD}. De re
 
 \begin{itemize}
     \item Application ID: Unieke identificatie.
-    \item Redirect URI/URL: Eindpunt waar de applicatie wordt op aangesproken.
+    \item Redirect \ac{URI}/\Ac{URL}: Eindpunt waar de applicatie wordt op aangesproken.
     \item Client secret: Wachtwoord of sleutelpaar dat gebruikt wordt voor authenticatie. Dit wordt gebruikt bij webapplicaties.
 \end{itemize}
 
@@ -699,7 +697,7 @@ client_id=11111111-1111-1111-1111-111111111111
 
 % Taal OK
 
-De tweede manier om een access token te verkrijgen, is zonder het gebruik van een user. Dit zijn de volgende vijf stappen gehanteerd volgens \textcite{Microsoft2023s}. \\
+De tweede manier om een access token te verkrijgen, is zonder het gebruik van een user. Hieronder volgen de vijf stappen om dit te hanteren volgens \textcite{Microsoft2023s}. \\
 
 De eerste stap is het registreren van een applicatie \autocite{Microsoft2023s}. Dit komt overeen met de uitleg die in de eerste manier werd beschreven. \\
 
@@ -781,7 +779,7 @@ Host: graph.microsoft.com
 
 % Taal OK
 
-De Microsoft Graph \Ac{API} is gebaseerd op \Ac{REST}. Door het gebruik van de \ac{API} zijn de cloud-servicebronnen van Microsoft beschikbaar. Om tot deze bronnen toegang te hebben en om de \Ac{API} aan te spreken, moeten er twee acties voldaan zijn volgens \textcite{Microsoft2023vv}.
+De Microsoft Graph \Ac{API} is gebaseerd op \Ac{REST}. Door het gebruik van de \ac{API} zijn de bronnen van de Microsoft-cloudservices beschikbaar. Om tot deze bronnen toegang te hebben en om de \Ac{API} aan te spreken, moeten er twee acties voldaan zijn volgens \textcite{Microsoft2023vv}.
 
 \begin{itemize}
     \item De applicatie is geregistreerd.
@@ -792,7 +790,9 @@ De Microsoft Graph \Ac{API} is gebaseerd op \Ac{REST}. Door het gebruik van de \
 
 % Taal OK
 
-De \ac{API} maakt gebruik van OData. Door het gebruik van OData kunnen bronnen, methodes en opsommingen in de metadata van Microsoft Graph worden gedefinieerd \autocite{Microsoft2023vv}. Het woord “metadata” beschrijft simpelweg de informatie dat zorgt voor het creëren, opslaan en delen van dingen. Het is de data over de data in kwestie volgens \textcite{Riley2017}.
+De \ac{API} maakt gebruik van OData. Door het gebruik van OData kunnen bronnen, methodes en opsommingen in de metadata van Microsoft Graph worden gedefinieerd \autocite{Microsoft2023vv}. \\
+
+Het woord “metadata” beschrijft simpelweg de informatie dat zorgt voor het creëren, opslaan en delen van dingen. Het is de data over de data in kwestie volgens \textcite{Riley2017}.
 
 \subsubsection{REST API}
 
@@ -802,8 +802,8 @@ Om naar een bron te schrijven of te lezen, wordt er gebruikgemaakt van een verzo
 
 \begin{itemize}
     \item \ac{HTTP} method: Een \ac{HTTP}-methode dat gebruik wordt voor het verzoek. Dit staat voor de Microsoft Graph \ac{URL}.
-    \item version: De versie van de \ac{API} dat de bijhorende applicatie ondersteunt.
-    \item resource: De bron of resource dat gebruikt wordt.
+    \item Version: De versie van de \ac{API} dat de bijhorende applicatie ondersteunt.
+    \item Resource: De bron of resource dat gebruikt wordt.
     \item Queryparameters: Optionele OData-queryparameters of \Ac{REST}-methodes dat het antwoord aanpassen.
 \end{itemize}
 
@@ -883,7 +883,7 @@ Content-type: application/json
 
 % Taal OK
 
-Microsoft Graph is volop in ontwikkeling en ondersteunt op dit moment twee versies \Autocite{Microsoft2023f}. De eerste versie, onder de naam “v1.0”, is een stabiele versie dat gemaakt is voor productieomgevingen en bijhorende applicaties. De tweede versie, onder de naam “beta”, is een versie waar actief aan (nieuwe) concepten gesleuteld wordt. Deze versie wordt eerder toegepast in testomgevingen, doordat het nog in ontwikkeling is. Het is niet aan te raden om de bètaversie in productieomgevingen te gebruiken \autocite{Microsoft2023vv}. Het bevat nieuwe concepten die eerst door gebruikers of geïnteresseerden worden getest \autocite{Microsoft2022e}. Dit kan enerzijds gaan om een uitbreiding van de huidige mogelijkheden (zoals Directory management of Microsoft Teams), anderzijds om een nieuwe concepten (zoals Education assignments en simulaties van cyberaanvallen) \autocite{Microsoft2023w}.
+Microsoft Graph is volop in ontwikkeling en ondersteunt op dit moment twee versies \Autocite{Microsoft2023f}. De eerste versie, onder de naam “v1.0”, is een stabiele versie dat gemaakt is voor productieomgevingen en bijhorende applicaties. De tweede versie, onder de naam “beta”, is een versie waar actief aan (nieuwe) concepten gesleuteld wordt. Deze versie wordt eerder toegepast in testomgevingen, doordat het nog in ontwikkeling is. Het is niet aan te raden om de bètaversie in productieomgevingen te gebruiken \autocite{Microsoft2023vv}. Het bevat nieuwe concepten die eerst door gebruikers of geïnteresseerden worden getest \autocite{Microsoft2022e}. Dit kan enerzijds gaan om een uitbreiding van de huidige mogelijkheden (zoals Directory management of Microsoft Teams), anderzijds om nieuwe concepten (zoals Education assignments en simulaties van cyberaanvallen) \autocite{Microsoft2023w}.
 
 \subsubsection{Wat zijn resources?}
 
@@ -919,7 +919,7 @@ GET https://graph.microsoft.com/v1.0/me/messages?$select=from,subject
     \label{TRAM}
 \end{figure}
 
-Het tweede soort dat antwoorden kan aanpassen zijn de normale queryparameters \autocite{Microsoft2023vv}. Het woord “normaal” staat voor andere soorten queryparameters die niet OData-gerelateerd zijn. Een voorbeeld van dit soort queryparameters is bijvoorbeeld “\$skipToken”. Deze queryparameter verkrijgt de volgende pagina met resultaten vanuit resultaatsets die over meerdere pagina's verspreid zijn \textcite{Microsoft2023g}. 
+Het tweede soort dat antwoorden kan aanpassen zijn de normale queryparameters \autocite{Microsoft2023vv}. Het woord “normaal” staat voor andere soorten queryparameters die niet OData-gerelateerd zijn. Een voorbeeld van dit soort queryparameters is bijvoorbeeld “\$skipToken”. Deze queryparameter verkrijgt de volgende pagina met resultaten vanuit resultaatsets die over meerdere pagina's verspreid zijn \autocite{Microsoft2023g}. 
 
 \subsubsection{Tools om de Microsoft Graph API te testen}
 

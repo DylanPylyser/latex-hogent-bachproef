@@ -41,7 +41,7 @@ Op vlak van onderdelen, wordt het volgende opgemerkt bij het vergelijken. Azure 
 
 Voor dit onderdeel wordt er gebruikgemaakt van de Graph Explorer. Beide technologieën bieden deze functie aan om de \ac{API} te testen. Voor Azure \ac{AD} Graph kan dit via “https://graphexplorer.azurewebsites.net/”. Voor Microsoft Graph kan dit via “https://developer.microsoft.com/en-us/graph/graph-explorer”. \\
 
-In dit onderdeel worden er vier \ac{HTTP}-verzoeken uitgevoerd op basis van de verschillende \ac{HTTP}-verzoeken die in beide technologieën aanwezig zijn. De verzoeken die worden gebruikt zijn GET, POST, PATCH en DELETE. PUT wordt niet ondersteund in de Azure \ac{AD} Graph Explorer, deze wordt dus niet in de vergelijking opgenomen. \\
+In dit onderdeel worden er vier \ac{HTTP}-verzoeken uitgevoerd op basis van de \ac{HTTP}-methodes die in beide technologieën aanwezig zijn. De verzoeken die worden gebruikt zijn GET, POST, PATCH en DELETE. PUT wordt niet ondersteund in de Azure \ac{AD} Graph Explorer, deze wordt dus niet in de vergelijking opgenomen. \\
 
 Het verzoek en het antwoord worden op beide Graph Explorers uitgevoerd en vergeleken. De data uit de vergelijking wordt voorzien door de testomgeving van de Proof-of-Concept. De uitleg over de testomgeving met bijhorende data is te vinden in het volgende hoofdstuk. 
 
@@ -67,7 +67,7 @@ Azure \ac{AD} Graph en Microsoft Graph maken gebruik van PowerShell-modules. Dez
 
 Azure \ac{AD} Graph werkt met twee soorten PowerShell-modules, namelijk MSOnline en AzureAD. MSOnline is de eerste versie, waarbij AzureAD de verbeterde versie is van MSOnline voor het beheren van Azure \ac{AD}. \\
 
-Bij Microsoft Graph zijn er op dit moment twee versies beschikbaar. Versie 1.0 die de stabiele versie voorstelt. Daarnaast bestaat ook de bètaversie, vandaag de dag voorgesteld als versie 2.0, die de nadruk legt op nieuwe elementen die nog in ontwikkeling zijn. \\ 
+Bij Microsoft Graph zijn er op dit moment twee versies beschikbaar. Versie 1.0 die de stabiele versie voorstelt. Daarnaast bestaat ook de bètaversie, vandaag de dag voorgesteld als versie 2.0, die de nadruk legt op nieuwe elementen die nog in ontwikkeling zijn.  
 
 % ---
 % Section
@@ -86,7 +86,7 @@ Bij Microsoft Graph zijn er op dit moment twee versies beschikbaar. Versie 1.0 d
 
 Met de migratie van Azure \ac{AD} Graph naar Microsoft Graph, wordt er verondersteld dat alle aanspreekbare data-objecten worden overgenomen. Wanneer het overzicht van data-objecten bij Azure \ac{AD} PowerShell naast dat van Microsoft Graph wordt gezet, ontstaat volgend overzicht dat te vinden is in Tabel \ref{AADMSG}. \\
 
-\begin{table}
+\begin{table}[h]
     \centering
     \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{ |c|c||c|c| } 
@@ -250,6 +250,6 @@ De migratie van Azure \ac{AD} Graph naar Microsoft Graph op vlak van permissie s
     \label{AADMSGPS}
 \end{table}
 
-Tabel \ref{AADMSGPS} geeft weer dat er geen veranderingen zijn gebeurd op vlak van de scopes. Microsoft Graph biedt de extra mogelijkheid door het op te splitsen per domein. Daarnaast heeft Microsoft Graph drie extra scopes Application en Delegated-access gemaakt. \\
+Tabel \ref{AADMSGPS} geeft weer dat het aantal permission scopes hetzelfde is gebleven. Microsoft Graph heeft wel, in vergelijking met het oude, de scopes in domeinen verdeeld. Daarnaast heeft Microsoft Graph drie extra scopes zowel Application als Delegated gemaakt. \\
 
-Na het vergelijken van alle criteria zijn volgende zaken op te merken. De werking van de \Ac{API} is gelijklopend, maar bevat kleine merkbare verschillen. Microsoft Graph neemt niet alle data-objecten over van Azure \ac{AD} Graph, maar heeft wel meer dependencies of afhankelijkheden. Door een toename in dependencies kan de nieuwe technologie meer Microsoft-entiteiten aanspreken. Op vlak van toegangsmogelijkheden zijn beide technologieën hetzelfde. Wat betreft de security heeft het nieuwe meer afhankelijkheden en dus meer beschikbare rechten, ten opzichte van het oude. Dit kan zowel een voor- als nadeel zijn voor de nieuwe technologie.
+Na het vergelijken van alle criteria zijn volgende zaken op te merken. De werking van de \Ac{API} is gelijklopend, maar bevat kleine merkbare verschillen. Microsoft Graph neemt niet alle data-objecten over van Azure \ac{AD} Graph, maar heeft wel meer dependencies of afhankelijkheden. Door een toename in dependencies kan de nieuwe technologie meer Microsoft-entiteiten aanspreken. Op vlak van toegangsmogelijkheden zijn beide technologieën hetzelfde. In verband met de security heeft het nieuwe meer afhankelijkheden en dus meer beschikbare rechten, ten opzichte van het oude. Dit kan zowel een voor- als nadeel zijn voor de nieuwe technologie.
